@@ -1,0 +1,4298 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Lora:ital,wght@0,600;1,400&display=swap');
+
+  .pieria-tolkien-widget {
+    width: 100%;
+    max-width: 680px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #2b261f;
+    border: 4px solid #8c7355;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.7), inset 0 0 15px rgba(0,0,0,0.8);
+    text-align: center;
+    font-family: 'Lora', serif;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .pt-header { margin-bottom: 16px; }
+  
+  .pt-title {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: #d4c29d;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  }
+
+  .pt-subtitle {
+    font-size: 13px;
+    color: #a39274;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  /* ΤΟ ΧΑΡΤΙ ΠΕΡΓΑΜΗΝΗΣ */
+  .tolkien-map-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    border: 3px solid #5c4a36;
+    border-radius: 4px;
+    box-shadow: inset 0 0 40px rgba(71, 52, 30, 0.6);
+    overflow: hidden;
+    background-color: #e3d8bc;
+    /* Εφέ υφής παλιού χαρτιού με CSS */
+    background-image: 
+      radial-gradient(circle at 50% 50%, transparent 60%, rgba(92, 74, 54, 0.4) 100%),
+      linear-gradient(rgba(181, 161, 126, 0.1) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(181, 161, 126, 0.1) 2px, transparent 2px);
+    background-size: 100% 100%, 30px 30px, 30px 30px;
+  }
+
+  /* CSS DRAWING: ΘΑΛΑΣΣΑ (Δεξιά) */
+  .tolkien-sea {
+    position: absolute;
+    top: 0; right: 0;
+    width: 32%; height: 100%;
+    background: #84a5b3;
+    box-shadow: inset 15px 0 25px rgba(227, 216, 188, 0.7);
+    border-left: 2px dashed #6b8894;
+  }
+  
+  /* Γραμμές κυμάτων "σχεδιασμένες με πενάκι" */
+  .tolkien-sea::after {
+    content: '~   ~   ~\A  ~   ~   ~\A    ~   ~';
+    white-space: pre;
+    position: absolute;
+    top: 20%; left: 30%;
+    color: rgba(43, 65, 75, 0.3);
+    font-family: monospace;
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  /* CSS DRAWING: ΒΟΥΝΑ ΣΤΥΛ TOLKIEN */
+  .mountain-group {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  /* Το κάθε βουνό είναι ένα σκοτεινό τρίγωνο με λευκή κορυφή */
+  .t-peak {
+    position: absolute;
+    width: 0; height: 0;
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-bottom: 55px solid #4a525d; /* Σχιστόλιθος */
+    filter: drop-shadow(5px 3px 2px rgba(0,0,0,0.25));
+  }
+  
+  /* Το χιόνι στην κορυφή */
+  .t-peak::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -12px;
+    width: 0; height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 22px solid #eef2f5;
+  }
+
+  /* ΠΙΝΕΖΕΣ - ΜΕΣΑΙΩΝΙΚΑ ΛΑΒΑΡΑ (Banners) */
+  .t-banner {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 20;
+    transition: transform 0.2s;
+  }
+
+  .t-banner:hover {
+    transform: translate(-50%, -60%) scale(1.15);
+    z-index: 50;
+  }
+
+  .banner-label {
+    background: #6e2525; /* Βαθύ κόκκινο Μέσης Γης */
+    border: 1.5px solid #d4c29d;
+    color: #f7f4eb;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 2px;
+    box-shadow: 2px 4px 6px rgba(0,0,0,0.4);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ΠΕΡΙΣΤΑΣΗ: ΒΑΣΙΛΙΚΟ ΛΑΒΑΡΟ */
+  .banner-peristasi { z-index: 40; }
+  
+  .banner-peristasi .banner-label {
+    background: #c29b38; /* Βασιλικό Χρυσό */
+    color: #1a140c;
+    border: 2px solid #ffffff;
+    font-weight: 900;
+    box-shadow: 0 0 15px rgba(194, 155, 56, 0.8);
+    animation: royal-pulse 2.5s infinite;
+  }
+
+  @keyframes royal-pulse {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+  }
+
+  /* ΠΕΡΓΑΜΗΝΗ ΠΛΗΡΟФΟΡΙΩΝ (POPUP) */
+  .tolkien-tooltip {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 82%;
+    max-width: 340px;
+    background: #f4ecd8;
+    border: 3px solid #6e2525;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+    z-index: 100;
+    text-align: center;
+  }
+
+  .tolkien-tooltip.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .tolkien-tooltip h4 {
+    font-family: 'Cinzel', serif;
+    margin: 0 0 10px 0;
+    color: #591c1c;
+    font-size: 17px;
+    font-weight: 900;
+    border-bottom: 1px solid #c8b99c;
+    padding-bottom: 6px;
+  }
+
+  .tolkien-tooltip p {
+    margin: 0 0 18px 0;
+    color: #3b3228;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .close-t-btn {
+    background: #591c1c;
+    color: #d4c29d;
+    font-family: 'Cinzel', serif;
+    border: 1px solid #8c7355;
+    padding: 8px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+  .close-t-btn:hover { background: #7a2626; }
+
+  @media (max-width: 680px) {
+  .pt-title { 
+    /* Εδώ οι ρυθμίσεις για το pt-title αν θέλεις */
+  }
+  
+  /* Οι υπόλοιπες κλάσεις μέσα στο media query, αλλά ΕΞΩ από το .pt-title */
+  .banner-label { font-size: 8px; padding: 3px 5px; }
+  .banner-peristasi .banner-label { font-size:9px; }
+
+} /* <-- ΑΥΤΗ η αγκύλη έλειπε και σου χαλούσε το min-width παρακάτω! */
+@media (max-width: 680px) {
+  /* Αλλάζει το ύψος και την εμφάνιση του container στα κινητά */
+  .pieria-tolkien-widget {
+    height: 85vh; /* Καταλαμβάνει το 90% του ύψους της οθόνης */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Ο χάρτης μεγαλώνει για να γεμίσει τον διαθέσιμο χώρο */
+  .tolkien-map-frame {
+    flex-grow: 1;
+    aspect-ratio: auto; /* Καταργούμε το σταθερό ratio για να μην αφήνει κενά */
+  }
+
+  .banner-label { font-size: 8px!important; padding: 3px 5px; }
+  .banner-peristasi .banner-label { font-size: 9px!important; }
+}
+/* CSS DRAWING: ΔΕΝΤΡΑ (Στυλ Tolkien) */
+  .t-tree {
+    position: absolute;
+    width: 0; height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 20px solid #2b5736; /* Σκούρο πράσινο */
+
+animation: t-wind 4s infinite ease-in-out;
+  }
+  
+  .t-tree::after {
+    content: '';
+    position: absolute;
+    bottom: -24px; left: -2px;
+    width: 4px; height: 10px;
+    background: #5c4a36; /* Καφέ κορμός */
+  }
+
+  /* ΟΜΑΔΕΣ ΔΕΝΤΡΩΝ */
+  .tree-group {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* CSS DRAWING: ΒΑΡΚΕΣ (Στη Θάλασσα) */
+  .t-boat {
+    position: absolute;
+    width: 25px; height: 8px;
+    background: #5c4a36; /* Καφέ σκάφος */
+    border-radius: 0 0 10px 10px;
+ 
+    z-index: 15;
+animation: t-boat 6s infinite ease-in-out;
+  }
+
+  .t-boat::before { /* Κατάρτι */
+    content: '';
+    position: absolute;
+    top: -10px; left: 10px;
+    width: 2px; height: 10px;
+    background: #5c4a36;
+  }
+
+  .t-boat::after { /* Πανί */
+    content: '';
+    position: absolute;
+    top: -10px; left: 2px;
+    width: 0; height: 0;
+    border-left: 8px solid #f4ecd8;
+    border-bottom: 10px solid transparent;
+  }
+
+ /* ΣΩΣΤΟ ΣΧΗΜΑ ΔΕΛΦΙΝΙΟΥ */
+  .t-dolphin {
+    position: absolute;
+    width: 22px; 
+    height: 8px;
+    background: #3a434c;
+    border-radius: 70% 30% 20% 40%;
+    transform: rotate(-15deg);
+    z-index: 15;
+    animation: t-leap 4s infinite ease-in-out;
+  }
+
+  /* Ραχιαίο πτερύγιο */
+  .t-dolphin::before {
+    content: '';
+    position: absolute;
+    top: -4px; 
+    left: 8px;
+    width: 6px; 
+    height: 6px;
+    background: #3a434c;
+    clip-path: polygon(0 100%, 35% 0, 100% 100%);
+    transform: rotate(18deg);
+  }
+
+  /* Ουρά */
+  .t-dolphin::after {
+    content: '';
+    position: absolute;
+    top: -1px; 
+    left: -5px;
+    width: 7px; 
+    height: 8px;
+    background: #3a434c;
+    clip-path: polygon(0 0, 100% 50%, 0 100%, 45% 50%);
+  }
+@keyframes t-leap {
+    0%, 100% { transform: translateY(0px) rotate(-18deg); }
+    50%      { transform: translateY(-4px) rotate(8deg); }
+  }
+
+
+  @keyframes t-boat {
+    0%, 100% { transform: translateY(0px) rotate(-7deg); }
+    50%      { transform: translateY(-2px) rotate(6deg); }
+  }
+/* ΤΟ ΣΧΗΜΑ ΤΟΥ ΓΛΑΡΟΥ */
+.t-bird {
+  position: absolute;
+  width: 16px;       /* Ήταν 14px, το κάναμε ελάχιστα πιο μεγάλο */
+  height: 7px;
+  z-index: 12; 
+  animation: t-flap 2.5s infinite ease-in-out;
+  opacity: 0.9;      /* ΑΥΞΗΘΗΚΕ: Από 0.6 πήγε στο 0.9 για να φαίνεται καθαρά */
+}
+
+/* Αριστερό φτερό */
+.t-bird::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 50%; height: 100%;
+  border-top: 2px solid #2b1a08;   /* ΑΛΛΑΧΘΗΚΕ: Πιο χοντρή γραμμή και σκούρο μελάνι */
+  border-right: 2px solid #2b1a08; /* ΑΛΛΑΧΘΗΚΕ: Πιο χοντρή γραμμή και σκούρο μελάνι */
+  border-radius: 0 100% 0 0;
+}
+
+/* Δεξί φτερό */
+.t-bird::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0;
+  width: 50%; height: 100%;
+  border-top: 2px solid #2b1a08;   /* ΑΛΛΑΧΘΗΚΕ: Πιο χοντρή γραμμή και σκούρο μελάνι */
+  border-left: 2px solid #2b1a08;  /* ΑΛΛΑΧΘΗΚΕ: Πιο χοντρή γραμμή και σκούρο μελάνι */
+  border-radius: 100% 0 0 0;
+}
+/* ΚΙΝΗΣΗ ΦΤΕΡΩΝ (Ανοιγοκλείνουν και ανεβοκατεβαίνουν ελαφρώς) */
+@keyframes t-flap {
+  0%, 100% { 
+    transform: scaleY(1) translateY(0px); 
+  }
+  50% { 
+    transform: scaleY(0.4) translateY(-3px); /* Τα φτερά κλείνουν προς τα πάνω */
+  }
+}
+/* Εφαρμογή σταθερού ύψους 800px για μεγάλες οθόνες */
+@media (min-width: 770px) {
+  .tolkien-map-frame {
+    height: 570px !important; 
+    aspect-ratio: auto; 
+  }
+.pieria-tolkien-widget {
+    width: 100%;
+   margin-top: 25px;
+}
+}
+.tolkien-tt-img {
+    width: 100%;
+    max-height: 130px;
+    object-fit: cover;
+    border: 2px solid #8c7355;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    filter: sepia(0.3) contrast(1.1); /* Δίνει μια ελαφριά αίσθηση παλιού χαρτιού */
+  }
+  @media (max-width: 680px) {
+  .pt-title { 
+    font-size: 23px !important; /* Εδώ αλλάζεις το μέγεθος για κινητά */
+font-weight: 700 !important;
+  }
+  }
+.t-kraken-attack {
+  position: absolute;
+  width: 75px;
+  height: 65px;
+  z-index: 14;
+  display: none; /* <-- ΠΡΟΣΘΕΣΕ ΑΥΤΟ για να είναι κρυμμένο στην αρχή */
+}
+
+/* ΠΡΟΣΘΕΣΕ ΑΥΤΗ ΤΗΝ ΚΛΑΣΗ */
+.t-kraken-attack.active {
+  display: block; 
+}
+/* Νευρικό κούνημα καραβιού */
+.shaking-boat {
+  animation: kraken-boat-shake 2s infinite ease-in-out;
+  transform-origin: 50% 55px;
+}
+@keyframes kraken-boat-shake {
+  0%, 100% { transform: rotate(-5deg) translateY(0px); }
+  25% { transform: rotate(4deg) translateY(-1px); }
+  50% { transform: rotate(-6deg) translateY(1px); }
+  75% { transform: rotate(5deg) translateY(-0.5px); }
+}
+/* === ΜΥΘΙΚΑ SVG ΤΕΡΑΤΑ (ΟΠΩΣ ΤΟ ΚΡΑΚΕΝ) === */
+.t-stym-wrap {
+  position: absolute;
+  z-index: 14;
+  display: none; /* Κρυμμένα αρχικά όπως το Κράκεν */
+  
+}
+
+/* Εμφανίζονται όταν προστεθεί η κλάση .active από το JS σου */
+
+.t-stym-wrap.active {
+  display: block; 
+}
+
+/* 3. Στυμφαλίδες */
+.t-stym-wrap { 
+  width: 90px; height: 70px; 
+  animation: flock-fly 36s infinite linear; 
+  filter: drop-shadow(2px 5px 3px rgba(0,0,0,0.5)); 
+}
+.stym-wing { 
+  transform-origin: center; 
+  animation: wing-flap 0.2s infinite alternate; 
+}
+.stym-wing.right { 
+  transform-origin: center; 
+  animation: wing-flap-r 0.2s infinite alternate; 
+}
+
+@keyframes wing-flap { 0% { transform: scaleY(1) rotate(0deg); } 100% { transform: scaleY(0.5) rotate(10deg); } }
+@keyframes wing-flap-r { 0% { transform: scaleY(1) rotate(0deg); } 100% { transform: scaleY(0.5) rotate(-10deg); } }
+
+@keyframes flock-fly {
+  0% { transform: translate(-40px, -20px) scale(0.7); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translate(70px, 30px) scale(1); opacity: 0; }
+}
+/* Βασικό container - Φαίνεται κατευθείαν στον χάρτη */
+.t-sirens-song {
+  position: absolute;
+  width: 70px;
+  height: 60px;
+  z-index: 50;
+  /* Προαιρετικά: cursor: pointer; αν θέλεις να πατιέται */
+display: none; /* <-- ΠΡΟΣΘΕΣΕ ΑΥΤΟ για να είναι κρυμμένο */
+cursor: pointer; /* <-- ΠΡΟΣΘΕΣΕ ΑΥΤΟ για να φαίνεται ότι πατιέται */
+}
+/* ΠΡΟΣΘΕΣΕ ΑΥΤΗ ΤΗΝ ΚΛΑΣΗ για να το εμφανίζεις με JavaScript */
+.t-sirens-song.active {
+  display: block; 
+}
+
+/* Υπνωτισμένο πλοίο που παρασύρεται αργά προς τα δεξιά */
+.drifting-boat {
+  animation: boat-trance 4s infinite ease-in-out;
+  transform-origin: 25px 62px;
+}
+
+@keyframes boat-trance {
+  0% { transform: translateX(0px) rotate(0deg) translateY(0px); }
+  50% { transform: translateX(3px) rotate(2deg) translateY(1px); }
+  100% { transform: translateX(0px) rotate(0deg) translateY(0px); }
+}
+
+/* Η Σειρήνα που λικνίζεται ελκυστικά καθώς τραγουδά */
+.siren-figure {
+  animation: siren-sway 3s infinite ease-in-out;
+  transform-origin: 75px 52px; /* Το σημείο που "κάθεται" στον βράχο */
+}
+
+@keyframes siren-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* Το τραγούδι: Κύματα που ταξιδεύουν προς το καράβι και σβήνουν */
+.wave {
+  opacity: 0;
+  transform-origin: 62px 24px;
+}
+
+.wave1 { animation: magic-song 3s infinite linear; }
+.wave2 { animation: magic-song 3s infinite linear 1s; } /* Καθυστέρηση 1 δευτ. */
+.wave3 { animation: magic-song 3s infinite linear 2s; } /* Καθυστέρηση 2 δευτ. */
+
+@keyframes magic-song {
+  0% { 
+    opacity: 0; 
+    transform: translateX(0px) scale(0.5); 
+  }
+  20% { 
+    opacity: 0.8; 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateX(-15px) scale(1.5); 
+  }
+}
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά (συνολικά 50% από το αρχικό) */
+@media (max-width: 767px) {
+  .t-sirens-song {
+    width: 53.6px;
+    height: 48px;
+  }
+}
+/* Αναγκάζει τον χάρτη να έχει το κλασικό βελάκι και ακυρώνει τα 4 βελάκια του Panzoom */
+#map-area-2 {
+    cursor: default !important;
+}
+
+/* Κρατάει το χεράκι επιλογής μόνο για τα σημεία που πατιούνται */
+.t-banner {
+    cursor: pointer !important;
+}
+/* Βασικό container (Ορατό από την αρχή - Χωρίς display: none) */
+  .t-chimera-attack {
+    position: absolute;
+    width: 90px;
+    height: 80px;
+    z-index: 15;
+display: none;
+  }
+/* ΝΕΑ ΚΛΑΣΗ: Εμφανίζεται μόνο όταν μπαίνει το .active από το JS */
+.t-chimera-attack.active {
+  display: block; 
+}
+
+  /* 1. Η αναπνοή του θηρίου (ανεβοκατεβαίνει όλο το σώμα ελαφριά) */
+  .chimera-body {
+    animation: beast-breathe 2.5s infinite ease-in-out;
+    transform-origin: 50% 75px;
+  }
+
+  @keyframes beast-breathe {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.03); }
+  }
+
+  /* 2. Η φωτιά που αυξομειώνεται επιθετικά */
+  .roaring-fire {
+    animation: fire-breath 0.8s infinite alternate ease-in-out;
+    transform-origin: 85px 55px;
+  }
+
+  @keyframes fire-breath {
+    0% { transform: scale(0.6) rotate(-5deg); opacity: 0.6; }
+    100% { transform: scale(1.3) rotate(5deg); opacity: 1; }
+  }
+
+  /* 3. Το φίδι-ουρά που χτυπιέται νευρικά στο πίσω μέρος */
+  .snake-tail {
+    animation: tail-whip 2s infinite ease-in-out;
+    transform-origin: 35px 65px;
+  }
+
+  @keyframes tail-whip {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(15deg); }
+  }
+/* Μείωση όλου του σχεδίου κατά 30% ΜΟΝΟ στα κινητά */
+  @media (max-width: 767px) {
+    .t-chimera-attack {
+      width: 63px;  /* 90px μείον 30% */
+      height: 56px; /* 80px μείον 30% */
+    }
+  }
+/* === Η ΕΧΙΔΝΑ (ΜΗΤΕΡΑ ΤΩΝ ΤΕΡΑΤΩΝ) === */
+.t-echidna-lair {
+  position: absolute;
+  width: 48.5px;  /* Μειωμένο κατά 30% από 85px */
+  height: 42.5px; 
+  z-index: 50;
+  cursor: pointer;
+ display: none; 
+}
+
+/* Όταν προστίθεται η κλάση από το JS (αν ενεργοποιήσεις το display: none από πάνω) */
+.t-echidna-lair.active {
+  display: block; 
+}
+
+/* Η κίνηση του κορμού της (απαλό, σαγηνευτικό λίκνισμα) */
+.echidna-torso {
+  animation: echidna-sway 4s infinite ease-in-out;
+  transform-origin: 50px 55px; /* Το σημείο που ενώνεται με το φίδι */
+}
+
+@keyframes echidna-sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+/* Η κίνηση της ουράς (το φίδι συσπάται και "ανασαίνει") */
+.echidna-tail {
+  animation: snake-slither 3s infinite alternate ease-in-out;
+  transform-origin: 50px 75px;
+}
+
+@keyframes snake-slither {
+  0% { transform: scaleX(1) scaleY(1); }
+  100% { transform: scaleX(1.03) scaleY(0.97); }
+}
+
+/* Τα τρομακτικά μάτια των μικρών τεράτων μέσα στο σκοτάδι της σπηλιάς */
+.cave-eyes {
+  animation: evil-blink 4s infinite ease-in-out;
+}
+
+.cave-eyes.delay {
+  animation: evil-blink 5s infinite ease-in-out 2s;
+}
+
+@keyframes evil-blink {
+  0%, 10%, 100% { opacity: 0; }
+  5% { opacity: 1; } /* Αστραπιαίο ανοιγόκλεισμα */
+  50% { opacity: 0; }
+}
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά (συνολικά 50% από το αρχικό) */
+@media (max-width: 767px) {
+  #echidna-monster {
+    width: 43.6px;
+    height: 38px;
+  }
+}
+/* === Η ΧΑΡΥΒΔΗ (Η ΖΩΝΤΑΝΗ ΔΙΝΗ) === */
+.t-charybdis-vortex {
+  position: absolute;
+  width: 59.5px;  /* Μειωμένο κατά 30% */
+  height: 52.5px; /* Μειωμένο κατά 30% */
+  z-index: 49;    /* Λίγο κάτω από τα άλλα τέρατα για να μοιάζει ένα με το νερό */
+  cursor: pointer;
+  display: none; 
+}
+
+/* Ενεργοποίηση μέσω JavaScript */
+.t-charybdis-vortex.active {
+  display: block;
+}
+
+/* Ο παλλόμενος πυρήνας της αβύσσου */
+.vortex-abyss {
+  animation: abyss-pulse 16s infinite alternate ease-in-out;
+  transform-origin: 50px 42.5px;
+}
+
+@keyframes abyss-pulse {
+  0% { transform: scale(0.8); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Περιστροφή των ρευμάτων (Κάθε επίπεδο έχει άλλη ταχύτητα) */
+.vortex-swirl-1 { animation: vortex-spin 12s infinite linear; transform-origin: 50px 42.5px; }
+.vortex-swirl-2 { animation: vortex-spin 11s infinite linear; transform-origin: 50px 42.5px; }
+.vortex-swirl-3 { animation: vortex-spin 10s infinite linear; transform-origin: 50px 42.5px; }
+.vortex-swirl-4 { animation: vortex-spin 9s infinite linear; transform-origin: 50px 42.5px; }
+
+@keyframes vortex-spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Το άτυχο καραβάκι που ρουφιέται στον βυθό */
+.doomed-boat-wrapper {
+  animation: suck-into-abyss 7.5s infinite cubic-bezier(0.5, 0, 1, 1);
+  transform-origin: 50px 42.5px;
+}
+
+@keyframes suck-into-abyss {
+  0% { transform: rotate(0deg) scale(1); opacity: 1; }
+  75% { transform: rotate(360deg) scale(0.3); opacity: 1; }
+  100% { transform: rotate(450deg) scale(0); opacity: 0; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #charybdis-monster {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === ΟΙ ΑΡΠΥΙΕΣ (ΟΙ ΑΡΠΑΧΤΡΕΣ ΤΟΥ ΑΝΕΜΟΥ) === */
+.t-harpies-storm {
+  position: absolute;
+  width: 69.5px;
+  height: 62.5px;
+  z-index: 55; /* Ψηλά στον ουρανό */
+  cursor: pointer;
+   display: none; 
+}
+.t-harpies-storm.active { display: block; }
+
+/* Ο Ανεμοστρόβιλος */
+.wind-tornado {
+  animation: tornado-spin 10.5s infinite linear;
+  transform-origin: 50px 50px;
+}
+@keyframes tornado-spin {
+  0% { transform: rotate(0deg) scaleY(0.9); }
+  50% { transform: rotate(180deg) scaleY(1.1); }
+  100% { transform: rotate(360deg) scaleY(0.9); }
+}
+
+/* Η κυκλική πτήση τους */
+.harpy-1 {
+  animation: harpy-fly-1 5s infinite linear;
+  transform-origin: 50px 50px;
+}
+.harpy-2 {
+  animation: harpy-fly-2 5s infinite linear;
+  transform-origin: 50px 50px;
+}
+
+@keyframes harpy-fly-1 {
+  0% { transform: rotate(0deg) translateX(15px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(15px) rotate(-360deg); }
+}
+@keyframes harpy-fly-2 {
+  0% { transform: rotate(180deg) translateX(20px) rotate(-180deg); }
+  100% { transform: rotate(540deg) translateX(20px) rotate(-540deg); }
+}
+
+@media (max-width: 767px) {
+  #harpies-monster {
+    width: 52.6px;
+    height: 47px;
+  }
+}
+/* === Ο ΚΕΡΒΕΡΟΣ (Ο ΦΥΛΑΚΑΣ ΤΟΥ ΑΔΗ) === */
+.t-cerberus-gate {
+  position: absolute;
+  width: 42.5px;  /* Μειωμένο κατά 30% */
+  height: 35.5px; /* Μειωμένο κατά 30% */
+  z-index: 45;    /* Να κάθεται σωστά πάνω στον χάρτη */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-cerberus-gate.active { display: block; }
+
+/* Οι φλόγες της πύλης του Άδη */
+.hades-hellfire {
+  animation: hellfire-flicker 0.6s infinite alternate ease-in-out;
+  transform-origin: 50px 75px;
+}
+
+@keyframes hellfire-flicker {
+  0% { transform: scaleY(0.9); opacity: 0.6; }
+  100% { transform: scaleY(1.2); opacity: 1; }
+}
+
+/* Αναπνοή του θηρίου */
+.cerberus-body {
+  animation: cerberus-breathe 1.5s infinite alternate ease-in-out;
+  transform-origin: 50px 70px;
+}
+
+@keyframes cerberus-breathe {
+  0% { transform: scaleY(1) scaleX(1); }
+  100% { transform: scaleY(1.03) scaleX(1.02); }
+}
+
+/* Ανεξάρτητη κίνηση στα 3 κεφάλια */
+.cerberus-head-l { animation: head-snarl-l 3s infinite ease-in-out; transform-origin: 38px 48px; }
+.cerberus-head-c { animation: head-snarl-c 2.5s infinite ease-in-out; transform-origin: 50px 42px; }
+.cerberus-head-r { animation: head-snarl-r 3.5s infinite ease-in-out; transform-origin: 62px 48px; }
+
+@keyframes head-snarl-l { 
+  0%, 100% { transform: rotate(0deg); } 
+  50% { transform: rotate(-8deg) translateX(-2px); } 
+}
+@keyframes head-snarl-c { 
+  0%, 100% { transform: translateY(0px); } 
+  50% { transform: translateY(-3px) scale(1.05); } 
+}
+@keyframes head-snarl-r { 
+  0%, 100% { transform: rotate(0deg); } 
+  50% { transform: rotate(8deg) translateX(2px); } 
+}
+
+/* Η ουρά - φίδι που χτυπιέται */
+.cerberus-tail {
+  animation: cerberus-snake-whip 2s infinite ease-in-out;
+  transform-origin: 25px 65px;
+}
+
+@keyframes cerberus-snake-whip {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-12deg); }
+  75% { transform: rotate(15deg); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #cerberus-monster {
+    width: 30.6px;
+    height: 26px;
+  }
+}
+/* === Η ΣΚΥΛΛΑ (Ο ΕΦΙΑΛΤΗΣ ΤΩΝ ΒΡΑΧΩΝ) === */
+.t-scylla-cliffs {
+  position: absolute;
+  width: 50.5px;
+  height: 43.5px;
+  z-index: 52; /* Πιο πάνω από τη θάλασσα για να προεξέχει από τα βράχια */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-scylla-cliffs.active { display: block; }
+
+/* Τα σκοτεινά βράχια της σπηλιάς της */
+.scylla-cave {
+  animation: cave-shadow 3s infinite alternate ease-in-out;
+}
+@keyframes cave-shadow {
+  0% { fill: #1c1f24; }
+  100% { fill: #121417; }
+}
+
+/* Ανεξάρτητες κινήσεις για τα 6 κεφάλια (σαν να ψάχνουν/επιτίθενται) */
+.s-head-1 { animation: scylla-strike-1 2.5s infinite alternate ease-in-out; transform-origin: 20px 60px; }
+.s-head-2 { animation: scylla-strike-2 3.2s infinite alternate ease-in-out; transform-origin: 30px 65px; }
+.s-head-3 { animation: scylla-strike-3 2.8s infinite alternate ease-in-out; transform-origin: 40px 60px; }
+.s-head-4 { animation: scylla-strike-1 3.5s infinite alternate-reverse ease-in-out; transform-origin: 50px 65px; }
+.s-head-5 { animation: scylla-strike-2 2.9s infinite alternate-reverse ease-in-out; transform-origin: 60px 60px; }
+.s-head-6 { animation: scylla-strike-3 3.1s infinite alternate-reverse ease-in-out; transform-origin: 70px 65px; }
+
+@keyframes scylla-strike-1 {
+  0% { transform: rotate(-5deg) scale(0.95); }
+  100% { transform: rotate(10deg) scale(1.05) translateY(-3px); }
+}
+@keyframes scylla-strike-2 {
+  0% { transform: rotate(5deg) scale(1); }
+  100% { transform: rotate(-10deg) scale(1.1) translateY(-5px); }
+}
+@keyframes scylla-strike-3 {
+  0% { transform: rotate(-10deg) scale(0.9); }
+  100% { transform: rotate(15deg) scale(1.1) translateY(-2px); }
+}
+
+/* Το νερό που σκάει στα βράχια της */
+.scylla-waves {
+  animation: scylla-crash 2s infinite alternate ease-in-out;
+}
+@keyframes scylla-crash {
+  0% { transform: translateY(0px); opacity: 0.5; }
+  100% { transform: translateY(-3px); opacity: 0.9; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #scylla-monster {
+    width: 40.6px;
+    height: 25px;
+  }
+}
+/* === ΑΓΡΙΟΙ ΚΕΝΤΑΥΡΟΙ (Η ΑΓΕΛΗ ΤΟΥ ΔΑΣΟΥΣ) === */
+.t-centaurs-pack {
+  position: absolute;
+  width: 49.5px;  /* Μειωμένο κατά 30% */
+  height: 42.5px; /* Μειωμένο κατά 30% */
+  z-index: 46;    /* Κάθεται ωραία ανάμεσα στα δέντρα */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-centaurs-pack.active { display: block; }
+
+/* Καλπασμός του μπροστινού Κενταύρου */
+.centaur-lead {
+  animation: centaur-gallop 0.6s infinite alternate ease-in-out;
+  transform-origin: 50px 60px;
+}
+
+/* Καλπασμός του πίσω Κενταύρου (με μικρή διαφορά στο χρονισμό) */
+.centaur-rear {
+  animation: centaur-gallop 0.6s infinite alternate-reverse ease-in-out;
+  transform-origin: 30px 50px;
+}
+
+@keyframes centaur-gallop {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  100% { transform: translateY(-4px) rotate(4deg); }
+}
+
+/* Η φωτιά του πυρσού */
+.centaur-torch {
+  animation: torch-blaze 0.3s infinite alternate ease-in-out;
+  transform-origin: 75px 25px;
+}
+
+@keyframes torch-blaze {
+  0% { transform: scale(0.8) rotate(-5deg); opacity: 0.8; }
+  100% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #centaurs-monster {
+    width: 37.6px;
+    height: 32px;
+  }
+}
+/* === Η ΛΕΡΝΑΙΑ ΥΔΡΑ (ΤΟ ΤΕΡΑΣ ΤΟΥ ΒΑΛΤΟΥ) === */
+.t-hydra-swamp {
+  position: absolute;
+  width: 50.5px;
+  height: 47.5px;
+  z-index: 48; /* Πάνω από το νερό, ανάμεσα στις στεριές */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-hydra-swamp.active { display: block; }
+
+/* Τοξικές φυσαλίδες που αναδύονται */
+.toxic-bubbles circle {
+  animation: swamp-bubble-rise 3s infinite ease-in;
+}
+.toxic-bubbles .tb-1 { animation-delay: 0s; }
+.toxic-bubbles .tb-2 { animation-delay: 1.2s; }
+.toxic-bubbles .tb-3 { animation-delay: 2.4s; }
+
+@keyframes swamp-bubble-rise {
+  0% { transform: translateY(0) scale(0.5); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translateY(-15px) scale(1.5); opacity: 0; }
+}
+
+/* Ανεξάρτητη κίνηση στα κεφάλια (σαν φίδια που ψάχνουν) */
+.h-head-1 { animation: hydra-strike-1 3s infinite alternate ease-in-out; transform-origin: 30px 65px; }
+.h-head-2 { animation: hydra-strike-2 4s infinite alternate-reverse ease-in-out; transform-origin: 40px 65px; }
+.h-head-3 { animation: hydra-strike-3 2.5s infinite alternate ease-in-out; transform-origin: 55px 65px; }
+.h-head-4 { animation: hydra-strike-4 3.5s infinite alternate-reverse ease-in-out; transform-origin: 65px 65px; }
+
+@keyframes hydra-strike-1 {
+  0% { transform: rotate(-5deg) scale(0.9); }
+  100% { transform: rotate(10deg) scale(1.1) translateY(-2px); }
+}
+@keyframes hydra-strike-2 {
+  0% { transform: rotate(8deg); }
+  100% { transform: rotate(-8deg) translateY(-4px); }
+}
+@keyframes hydra-strike-3 {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(12deg) translateY(-5px); }
+}
+@keyframes hydra-strike-4 {
+  0% { transform: rotate(5deg) scale(0.9); }
+  100% { transform: rotate(-15deg) scale(1.1); }
+}
+
+/* Οι καλαμιές που κουνιούνται στον άνεμο */
+.swamp-reeds {
+  animation: reeds-sway 2.5s infinite alternate ease-in-out;
+  transform-origin: 50px 80px;
+}
+@keyframes reeds-sway {
+  0% { transform: skewX(-5deg); }
+  100% { transform: skewX(5deg); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #hydra-monster {
+    width: 37.6px;
+    height: 35px;
+  }
+}
+/* === ΤΟ ΚΗΤΟΣ (ΤΟ ΤΕΡΑΣ ΤΗΣ ΑΒΥΣΣΟΥ) === */
+.t-cetus-abyss {
+  position: absolute;
+  width: 50.5px;
+  height: 43.5px;
+  z-index: 50; /* Θάλασσα, στο ίδιο επίπεδο με τα πλοία */
+  cursor: pointer;
+   display: none;
+}
+
+.t-cetus-abyss.active { display: block; }
+
+/* Το βαρύ, αργό ανασήκωμα του κορμού του μέσα από το νερό */
+.cetus-body {
+  animation: cetus-heave 4s infinite alternate ease-in-out;
+  transform-origin: 50px 60px;
+}
+
+@keyframes cetus-heave {
+  0% { transform: translateY(2px) rotate(-2deg); }
+  100% { transform: translateY(-3px) rotate(2deg); }
+}
+
+/* Το τρομακτικό σαγόνι που ανοιγοκλείνει */
+.cetus-jaw {
+  animation: cetus-chomp 4s infinite alternate ease-in-out;
+  transform-origin: 20px 40px;
+}
+
+@keyframes cetus-chomp {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(5deg); }
+  100% { transform: rotate(25deg); } /* Ανοίγει διάπλατα */
+}
+
+/* Το δρακοντείο πτερύγιο/φτερό στην πλάτη του */
+.cetus-fin {
+  animation: cetus-flap 3s infinite alternate ease-in-out;
+  transform-origin: 70px 50px;
+}
+
+@keyframes cetus-flap {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(12deg); }
+}
+
+/* Τα σκοτεινά νερά που ταράζονται γύρω του */
+.cetus-water {
+  animation: cetus-churn 2s infinite alternate ease-in-out;
+}
+
+@keyframes cetus-churn {
+  0% { transform: scaleX(0.95) translateX(1px); opacity: 0.7; }
+  100% { transform: scaleX(1.05) translateX(-2px); opacity: 1; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #cetus-monster {
+    width: 40.6px;
+    height: 35px;
+  }
+}
+/* === ΩΤΟΣ ΚΑΙ ΕΦΙΑΛΤΗΣ (ΟΙ ΑΛΩΑΔΕΣ ΓΙΓΑΝΤΕΣ) === */
+.t-aloadae-giants {
+  position: absolute;
+  width: 49.5px;
+  height: 42.5px;
+  z-index: 47; /* Ψηλά στον χάρτη, πάνω από τα βουνά */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-aloadae-giants.active { display: block; }
+
+/* Το βουνό που σηκώνουν (τρέμει από την υπερπροσπάθεια) */
+.aloadae-mountain {
+  animation: mountain-lift 3s infinite alternate ease-in-out;
+  transform-origin: 50px 30px;
+}
+@keyframes mountain-lift {
+  0% { transform: translateY(2px) rotate(-1deg); }
+  100% { transform: translateY(-3px) rotate(1deg); }
+}
+
+/* Ο Ώτος (Αριστερός Γίγαντας) - Τεντώνει τους μυς του */
+.giant-left {
+  animation: giant-strain-l 3s infinite alternate ease-in-out;
+  transform-origin: 30px 70px;
+}
+@keyframes giant-strain-l {
+  0% { transform: scaleY(0.95) scaleX(1.02) translateX(-1px); }
+  100% { transform: scaleY(1.05) scaleX(0.98) translateX(1px); }
+}
+
+/* Ο Εφιάλτης (Δεξιός Γίγαντας) - Αντίρροπη κίνηση ισορροπίας */
+.giant-right {
+  animation: giant-strain-r 3s infinite alternate ease-in-out;
+  transform-origin: 70px 70px;
+}
+@keyframes giant-strain-r {
+  0% { transform: scaleY(1.05) scaleX(0.98) translateX(1px); }
+  100% { transform: scaleY(0.95) scaleX(1.02) translateX(-1px); }
+}
+
+/* Βράχια που πέφτουν από το βουνό */
+.falling-rocks circle, .falling-rocks polygon {
+  animation: rock-tumble 2.5s infinite linear;
+}
+.falling-rocks .r1 { animation-delay: 0s; }
+.falling-rocks .r2 { animation-delay: 0.8s; }
+.falling-rocks .r3 { animation-delay: 1.6s; }
+@keyframes rock-tumble {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(18px) rotate(360deg); opacity: 0; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #aloadae-monster {
+    width: 37.6px;
+    height: 32px;
+  }
+}
+/* === Ο ΤΥΦΩΕΑΣ (Η ΑΠΟΛΥΤΗ ΚΑΤΑΣΤΡΟΦΗ) === */
+.t-typhon-storm {
+  position: absolute;
+  width: 49.5px;
+  height: 42.5px;
+  z-index: 53; /* Ψηλά, γιατί είναι γιγάντιος */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-typhon-storm.active { display: block; }
+
+/* Τα γιγάντια φτερά που κρύβουν τον ήλιο */
+.typhon-wing-l {
+  animation: typhon-flap-l 4s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+.typhon-wing-r {
+  animation: typhon-flap-r 4s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes typhon-flap-l {
+  0% { transform: rotate(10deg) scaleY(1.1); }
+  100% { transform: rotate(-15deg) scaleY(0.9); }
+}
+@keyframes typhon-flap-r {
+  0% { transform: rotate(-10deg) scaleY(1.1); }
+  100% { transform: rotate(15deg) scaleY(0.9); }
+}
+
+/* Ο κορμός από λάβα που "ανασαίνει" */
+.typhon-torso {
+  animation: typhon-breathe 2s infinite alternate ease-in-out;
+  transform-origin: 50px 70px;
+}
+@keyframes typhon-breathe {
+  0% { transform: scaleX(0.95) translateY(2px); }
+  100% { transform: scaleX(1.05) translateY(-2px); }
+}
+
+/* Τα 100 κεφάλια δράκων (εδώ αναπαριστούμε τα κύρια που λικνίζονται) */
+.t-head-group {
+  animation: typhon-heads-sway 3s infinite alternate ease-in-out;
+  transform-origin: 50px 45px;
+}
+@keyframes typhon-heads-sway {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
+
+/* Τα πόδια-φίδια που χτυπιούνται στο έδαφος */
+.typhon-snakes path {
+  animation: typhon-whip 1.5s infinite alternate ease-in-out;
+}
+.typhon-snakes path:nth-child(even) { animation-direction: alternate-reverse; animation-duration: 2s; }
+@keyframes typhon-whip {
+  0% { transform: scaleY(0.9) skewX(-10deg); }
+  100% { transform: scaleY(1.1) skewX(10deg); }
+}
+
+/* Οι Κεραυνοί που ρίχνει ασταμάτητα */
+.typhon-lightning {
+  animation: typhon-strike 3s infinite;
+}
+.typhon-lightning.delay {
+  animation: typhon-strike 4s infinite 1.5s;
+}
+@keyframes typhon-strike {
+  0%, 9%, 11%, 19%, 21%, 100% { opacity: 0; }
+  10%, 20% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #typhon-monster {
+    width: 41.6px;
+    height: 36px;
+  }
+}
+/* === ΟΙ ΛΕΟΝΤΕΣ ΤΟΥ ΒΟΡΡΑ (Η ΑΓΕΛΗ ΠΟΥ ΤΡΕΧΕΙ) === */
+.t-macedonian-lions-pack {
+  position: absolute;
+  width: 55.5px;
+  height: 48.5px;
+  z-index: 46; 
+  cursor: pointer;
+  display: none; 
+}
+
+.t-macedonian-lions-pack.active { display: block; }
+
+/* Ο Αρχηγός (Μπροστά) - Άλμα και βρυχηθμός */
+.lion-lead {
+  animation: lion-gallop-1 0.5s infinite alternate ease-in-out;
+  transform-origin: 60px 50px;
+}
+@keyframes lion-gallop-1 {
+  0% { transform: translateY(0px) rotate(-4deg); }
+  100% { transform: translateY(-5px) rotate(4deg); }
+}
+
+/* Λιοντάρι 2 (Πίσω αριστερά) - Τρέχει πιο γρήγορα */
+.lion-chaser-1 {
+  animation: lion-gallop-2 0.4s infinite alternate-reverse ease-in-out;
+  transform-origin: 30px 40px;
+}
+@keyframes lion-gallop-2 {
+  0% { transform: translateY(-2px) rotate(2deg); }
+  100% { transform: translateY(2px) rotate(-3deg); }
+}
+
+/* Λιοντάρι 3 (Κάτω δεξιά) - Χαμηλό, επιθετικό τρέξιμο */
+.lion-chaser-2 {
+  animation: lion-gallop-3 0.45s infinite alternate ease-in-out;
+  transform-origin: 45px 65px;
+}
+@keyframes lion-gallop-3 {
+  0% { transform: translateY(1px) scale(0.9) rotate(-2deg); }
+  100% { transform: translateY(-2px) scale(0.95) rotate(2deg); }
+}
+
+/* Σκόνη από το τρέξιμο */
+.pack-dust path {
+  animation: dust-kick 0.6s infinite linear;
+}
+.pack-dust .d1 { animation-delay: 0s; }
+.pack-dust .d2 { animation-delay: 0.2s; }
+.pack-dust .d3 { animation-delay: 0.4s; }
+
+@keyframes dust-kick {
+  0% { transform: translateX(0) scale(0.5); opacity: 0.8; }
+  100% { transform: translateX(-15px) scale(1.5); opacity: 0; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #macedonian-lion-monster {
+    width: 44.6px;
+    height: 39px;
+  }
+}
+/* === ΟΙ ΤΕΛΧΙΝΕΣ (ΟΙ ΔΑΙΜΟΝΕΣ ΤΟΥ ΒΥΘΟΥ) === */
+.t-telchines-forge {
+  position: absolute;
+  width: 50.5px;  /* Μειωμένο κατά 30% */
+  height: 43.5px; /* Μειωμένο κατά 30% */
+  z-index: 49;    /* Στον βυθό της θάλασσας */
+  cursor: pointer;
+  display: none;
+}
+
+.t-telchines-forge.active { display: block; }
+
+/* Το σκοτεινό νερό που βράζει γύρω από το καμίνι */
+.forge-water {
+  animation: boiling-water 2s infinite alternate ease-in-out;
+}
+@keyframes boiling-water {
+  0% { transform: scaleX(0.95); opacity: 0.6; }
+  100% { transform: scaleX(1.05); opacity: 0.9; }
+}
+
+/* Ο Μεταλλουργός (Αριστερά) - Χτυπάει με το σφυρί */
+.telchine-smith-arm {
+  animation: hammer-strike 1.5s infinite;
+  transform-origin: 30px 45px;
+}
+@keyframes hammer-strike {
+  0%, 100% { transform: rotate(-45deg); }
+  15% { transform: rotate(15deg); } /* Το χτύπημα στο αμόνι */
+  30% { transform: rotate(-30deg); }
+}
+
+/* Το πυρωμένο μέταλλο που πάλλεται */
+.glowing-metal {
+  animation: metal-pulse 1.5s infinite;
+}
+@keyframes metal-pulse {
+  0%, 100% { fill: #ff4500; filter: drop-shadow(0 0 2px #ff4500); }
+  15% { fill: #ffffff; filter: drop-shadow(0 0 5px #fffb00); } /* Λάμψη στην κρούση */
+}
+
+/* Σπίθες από το χτύπημα */
+.forge-sparks circle {
+  animation: spark-fly 1.5s infinite;
+}
+.forge-sparks .s1 { animation-delay: 0s; }
+.forge-sparks .s2 { animation-delay: 0.05s; }
+.forge-sparks .s3 { animation-delay: 0.1s; }
+
+@keyframes spark-fly {
+  0%, 14% { opacity: 0; transform: translate(0, 0) scale(1); }
+  15% { opacity: 1; transform: translate(0, 0) scale(1.5); }
+  40% { opacity: 0; transform: translate(random(10px), -15px) scale(0); }
+  100% { opacity: 0; }
+}
+
+/* Ο Μάγος (Δεξιά) - Καλεί τη θύελλα */
+.telchine-mage {
+  animation: mage-chant 3s infinite alternate ease-in-out;
+  transform-origin: 75px 60px;
+}
+@keyframes mage-chant {
+  0% { transform: translateY(2px) rotate(2deg); }
+  100% { transform: translateY(-2px) rotate(-2deg); }
+}
+
+/* Η σκοτεινή μαγεία που στροβιλίζεται */
+.dark-magic-rings {
+  animation: magic-spin 4s infinite linear;
+  transform-origin: 75px 35px;
+}
+@keyframes magic-spin {
+  100% { transform: rotate(360deg) scale(1.1); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #telchines-monster {
+    width: 42.6px;
+    height: 37px;
+  }
+}
+/* Διακριτικό κουμπί για τα Τέρατα (Glassmorphism Effect) */
+.btn-monsters-only {
+  position: absolute;
+  /* Άλλαξε το top/bottom και το right/left ανάλογα με το πού ακριβώς είναι το 'Τα μυστικά της φύσης' */
+  top: 667px; 
+  right: 68px; 
+  padding: 2px 4px;
+  font-size: 10px;
+  font-family: 'Cinzel', serif;
+  color: #d4c29d;
+  background: rgba(43, 38, 31, 0.3); /* Αχνό, ημιδιαφανές χρώμα */
+  border: 1px solid rgba(140, 115, 85, 0.3);
+  border-radius: 1px;
+  backdrop-filter: blur(3px); /* Δημιουργεί την υφή του γυαλιού */
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0.9; /* Εδώ ρυθμίζεις πόσο αχνό θα είναι (0.5 = 50%) */
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Όταν το ποντίκι πάει από πάνω, φωτίζεται */
+.btn-monsters-only:hover {
+  opacity: 0.9;
+  background: rgba(43, 38, 31, 0.7);
+  border: 1px solid rgba(140, 115, 85, 0.8);
+  transform: scale(1.05);
+}
+@media (max-width: 767px) {
+  .btn-monsters-only {
+  position: absolute;
+  /* Άλλαξε το top/bottom και το right/left ανάλογα με το πού ακριβώς είναι το 'Τα μυστικά της φύσης' */
+  top: 573px; 
+  right: 65px; 
+  padding: 2px 4px;
+  font-size: 9px;
+  }
+}
+/* === Ο ΤΑΛΩΣ (ΤΟ ΧΑΛΚΙΝΟ ΡΟΜΠΟΤ ΤΗΣ ΑΡΧΑΙΟΤΗΤΑΣ) === */
+.t-talos-automaton {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 48; /* Στη στεριά, κοντά στην ακτή */
+  cursor: pointer;
+  display: none; 
+animation: talos-patrol 30s infinite alternate linear;
+}
+
+.t-talos-automaton.active { display: block; }
+
+/* Η κάθετη περιπολία "πάνω-κάτω" στον χάρτη */
+.talos-patrol-path {
+ 
+  transform-origin: 50px 50px;
+}
+@keyframes talos-patrol {
+  0% { transform: translateY(-82px); }
+  100% { transform: translateY(15px); }
+}
+
+/* Το βαρύ, μηχανικό περπάτημα (κίνηση άκρων) */
+.talos-arm-l { animation: talos-mech-walk 1.5s infinite alternate linear; transform-origin: 30px 40px; }
+.talos-arm-r { animation: talos-mech-walk 1.5s infinite alternate-reverse linear; transform-origin: 70px 40px; }
+.talos-leg-l { animation: talos-mech-walk 1.5s infinite alternate-reverse linear; transform-origin: 40px 65px; }
+.talos-leg-r { animation: talos-mech-walk 1.5s infinite alternate linear; transform-origin: 60px 65px; }
+
+@keyframes talos-mech-walk {
+  0% { transform: rotate(-18deg); }
+  100% { transform: rotate(18deg); }
+}
+
+/* Ο Ιχώρ (το θεϊκό αίμα) που πάλλεται και λάμπει */
+.talos-ichor {
+  animation: ichor-pulse 1.5s infinite alternate ease-in-out;
+}
+@keyframes ichor-pulse {
+  0% { fill: #ff4500; filter: drop-shadow(0 0 2px #ff4500); }
+  100% { fill: #fffb00; filter: drop-shadow(0 0 5px #ffea00); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #talos-monster {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Ο ΚΥΚΛΩΠΑΣ (Ο ΦΥΛΑΚΑΣ ΤΗΣ ΣΠΗΛΙΑΣ) === */
+.t-cyclops-cave {
+  position: absolute;
+  width: 49.5px;
+  height: 42.5px;
+  z-index: 47; /* Κοντά σε βουνά και ακτές */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-cyclops-cave.active { display: block; }
+
+/* Η βαριά, πρωτόγονη αναπνοή του */
+.cyclops-body {
+  animation: cyclops-breathe 3s infinite alternate ease-in-out;
+  transform-origin: 50px 70px;
+}
+@keyframes cyclops-breathe {
+  0% { transform: scaleY(0.98) scaleX(1.02); }
+  100% { transform: scaleY(1.02) scaleX(0.98); }
+}
+
+/* Το τεράστιο ρόπαλο που κουνιέται ελαφρά */
+.cyclops-club {
+  animation: club-rest 2.5s infinite alternate ease-in-out;
+  transform-origin: 75px 75px;
+}
+@keyframes club-rest {
+  0% { transform: rotate(-3deg); }
+  100% { transform: rotate(3deg); }
+}
+
+/* Το μάτι που σαρώνει τον ορίζοντα */
+.cyclops-eye-pupil {
+  animation: eye-search 4s infinite alternate ease-in-out;
+}
+@keyframes eye-search {
+  0%, 10% { transform: translateX(-2.5px); }
+  45%, 55% { transform: translateX(2.5px); }
+  90%, 100% { transform: translateX(-2.5px); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #cyclops-monster {
+    width: 38.6px;
+    height: 33px;
+  }
+}
+/* === Η ΜΕΔΟΥΣΑ (ΓΟΡΓΩ) === */
+.t-medusa-gorgon {
+  position: absolute;
+  width: 49.5px;
+  height: 42.5px;
+  z-index: 47; /* Σε ορεινό/βραχώδες σημείο */
+  cursor: pointer;
+  display: none;
+}
+
+.t-medusa-gorgon.active { display: block; }
+
+/* Η αναπνοή της / κίνηση κορμού */
+.medusa-head-sway {
+  animation: medusa-sway 3s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes medusa-sway {
+  0% { transform: translateY(1px) rotate(-2deg); }
+  100% { transform: translateY(-1px) rotate(2deg); }
+}
+
+/* Τα φίδια που συστρέφονται */
+.snake-group-1 path { animation: snake-writhe-1 2s infinite alternate ease-in-out; transform-origin: 50px 30px; }
+.snake-group-2 path { animation: snake-writhe-2 2.5s infinite alternate-reverse ease-in-out; transform-origin: 50px 30px; }
+
+@keyframes snake-writhe-1 {
+  0% { transform: rotate(-5deg) scaleY(0.95); }
+  100% { transform: rotate(5deg) scaleY(1.05); }
+}
+@keyframes snake-writhe-2 {
+  0% { transform: rotate(5deg) skewX(-2deg); }
+  100% { transform: rotate(-5deg) skewX(2deg); }
+}
+
+/* Η Πετρωτική, Πράσινη Λάμψη στα μάτια */
+.medusa-gaze {
+  animation: death-glare 1.5s infinite alternate;
+}
+@keyframes death-glare {
+  0% { fill: #00ff00; filter: drop-shadow(0 0 2px #00ff00); }
+  100% { fill: #ccffcc; filter: drop-shadow(0 0 8px #00ff00); }
+}
+
+.petrified-map {
+  backdrop-filter: grayscale(100%) contrast(110%) brightness(85%) !important;
+  -webkit-backdrop-filter: grayscale(100%) contrast(110%) brightness(85%) !important;
+  background-color: rgba(0, 0, 0, 0.05); /* Μια πολύ αχνή υποψία γκρι */
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #medusa-monster {
+    width: 37.6px;
+    height: 32px;
+  }
+}
+/* === Ο ΚΑΛΥΔΩΝΙΟΣ ΚΑΠΡΟΣ (ΤΟ ΔΑΙΜΟΝΙΚΟ ΑΓΡΙΟΓΟΥΡΟΥΝΟ) === */
+.t-calydonian-boar {
+  position: absolute;
+  width: 49.5px;
+  height: 42.5px;
+  z-index: 46; /* Στα ριζά των βουνών, ανάμεσα στα δέντρα */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-calydonian-boar.active { display: block; }
+
+/* Η ασταμάτητη, άγρια ορμή του σώματος */
+.boar-body {
+  animation: boar-charge 0.8s infinite alternate ease-in-out;
+  transform-origin: 50px 75px;
+}
+@keyframes boar-charge {
+  0% { transform: translateX(-1px) rotate(-1deg); }
+  100% { transform: translateX(3px) rotate(2deg); }
+}
+
+/* Το κεφάλι που σκάβει το έδαφος με μανία */
+.boar-head {
+  animation: boar-dig 0.4s infinite alternate ease-in-out;
+  transform-origin: 35px 55px;
+}
+@keyframes boar-dig {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(4px) rotate(-6deg); }
+}
+
+/* Χώματα και κομμάτια δέντρων που εκτοξεύονται από τις οπλές */
+.boar-debris polygon, .boar-debris circle {
+  animation: debris-fly 0.5s infinite linear;
+}
+.boar-debris .b1 { animation-delay: 0s; }
+.boar-debris .b2 { animation-delay: 0.15s; }
+.boar-debris .b3 { animation-delay: 0.3s; }
+
+@keyframes debris-fly {
+  0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
+  100% { transform: translate(-15px, -12px) rotate(-180deg) scale(1.2); opacity: 0; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #calydonian-boar-monster {
+    width: 42.6px;
+    height: 37px;
+  }
+}
+/* === Ο ΛΥΚΑΟΝΑΣ (Ο ΠΡΩΤΟΣ ΛΥΚΑΝΘΡΩΠΟΣ) === */
+.t-lycaon-werewolf {
+  position: absolute;
+  width: 44.5px;
+  height: 37.5px;
+  z-index: 47; /* Ύψωμα, δάση */
+  cursor: pointer;
+  display: none;  
+}
+
+.t-lycaon-werewolf.active { display: block; }
+
+/* Το ματωμένο φεγγάρι που πάλλεται πίσω του */
+.blood-moon {
+  animation: moon-pulse 3s infinite alternate ease-in-out;
+}
+@keyframes moon-pulse {
+  0% { transform: scale(0.95); filter: drop-shadow(0 0 3px #ff0000); }
+  100% { transform: scale(1.05); filter: drop-shadow(0 0 10px #ff0000); }
+}
+
+/* Η κίνηση: Τρέχει/κάνει άλμα μπροστά, σταματάει, ουρλιάζει, κάνει πίσω */
+.lycaon-container {
+  animation: lycaon-run-howl 4s infinite linear;
+  transform-origin: 50px 75px;
+}
+@keyframes lycaon-run-howl {
+  0% { transform: translateX(0) translateY(0); }
+  10% { transform: translateX(6px) translateY(-4px); } /* Άλμα μπροστά */
+  20% { transform: translateX(12px) translateY(0); }   /* Προσγείωση */
+  70% { transform: translateX(12px) translateY(0); }   /* Μένει ακίνητος και ουρλιάζει */
+  80% { transform: translateX(6px) translateY(-4px); } /* Άλμα πίσω */
+  100% { transform: translateX(0) translateY(0); }
+}
+
+/* Το κεφάλι πετάγεται πίσω για το ουρλιαχτό */
+.lycaon-head {
+  animation: howl-head 4s infinite ease-in-out;
+  transform-origin: 45px 35px; /* Η βάση του λαιμού */
+}
+@keyframes howl-head {
+  0%, 15%, 75%, 100% { transform: rotate(0deg); }
+  25%, 65% { transform: rotate(-40deg); } /* Γέρνει απότομα προς τα πίσω/πάνω */
+}
+
+/* Το μάτι γυαλίζει επιθετικά όταν ουρλιάζει */
+.lycaon-eye {
+  animation: eye-flare 4s infinite ease-in-out;
+}
+@keyframes eye-flare {
+  0%, 15%, 75%, 100% { fill: #ffcc00; filter: drop-shadow(0 0 1px #ffcc00); }
+  25%, 65% { fill: #ff2200; filter: drop-shadow(0 0 5px #ff0000); } /* Γίνεται κατακόκκινο */
+}
+
+/* Τα πόδια κάνουν κίνηση όσο τρέχει */
+.lycaon-legs {
+  animation: run-legs 4s infinite linear;
+  transform-origin: 40px 65px;
+}
+@keyframes run-legs {
+  0%, 20%, 70%, 100% { transform: rotate(0deg); }
+  5%, 15%, 75%, 85% { transform: rotate(15deg); }
+  10%, 80% { transform: rotate(-10deg); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #lycaon-monster {
+    width: 32.6px;
+    height: 27px;
+  }
+}
+/* === Ο ΜΙΝΩΤΑΥΡΟΣ (Ο ΕΚΤΕΛΕΣΤΗΣ ΤΟΥ ΛΑΒΥΡΙΝΘΟΥ) === */
+.t-minotaur-labyrinth {
+  position: absolute;
+  width: 48.5px;
+  height: 41.5px;
+  z-index: 47; /* Ανάμεσα σε αρχαία ερείπια / βράχια */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-minotaur-labyrinth.active { display: block; }
+
+/* Η βαριά, κτηνώδης αναπνοή στο στήθος */
+.minotaur-chest {
+  animation: minotaur-breathe 2s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes minotaur-breathe {
+  0% { transform: scaleX(0.98) scaleY(0.98); }
+  100% { transform: scaleX(1.03) scaleY(1.02); }
+}
+
+/* Το βίαιο, κοφτό χτύπημα με τον Λάβρυ (Τσεκούρι) */
+.minotaur-arm-weapon {
+  animation: axe-strike 3s infinite;
+  transform-origin: 40px 45px; /* Ο ώμος του τέρατος */
+}
+@keyframes axe-strike {
+  0%, 15% { transform: rotate(0deg); } /* Στάση αναμονής */
+  35% { transform: rotate(-35deg); } /* Σηκώνει το τσεκούρι αργά πίσω */
+  40% { transform: rotate(45deg); }  /* ΑΣΤΡΑΠΙΑΙΟ ΧΤΥΠΗΜΑ ΚΑΤΩ! */
+  45% { transform: rotate(38deg); }  /* Μικρή αναπήδηση από τη δύναμη */
+  60%, 100% { transform: rotate(0deg); } /* Επιστροφή στη βάση */
+}
+
+/* Τα μάτια που αστράφτουν με οργή */
+.minotaur-eye {
+  animation: minotaur-rage 3s infinite;
+}
+@keyframes minotaur-rage {
+  0%, 34% { fill: #ffcc00; }
+  35%, 45% { fill: #ff0000; filter: drop-shadow(0 0 3px #ff0000); } /* Κοκκινίζουν στο χτύπημα! */
+  46%, 100% { fill: #ffcc00; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #minotaur-monster {
+    width: 38.6px;
+    height: 33px;
+  }
+}
+/* === Ο ΧΑΡΩΝ ΚΑΙ ΟΙ ΧΑΜΕΝΕΣ ΨΥΧΕΣ === */
+.t-charon-ferry {
+  position: absolute;
+  width: 49.5px;
+  height: 42.5px;
+  z-index: 46; /* Πάνω από ποτάμια / νερά */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-charon-ferry.active { display: block; }
+
+/* Το απαλό λίκνισμα της βάρκας στο νερό */
+.charon-boat-rock {
+  animation: boat-rock 4s infinite alternate ease-in-out;
+  transform-origin: 50px 70px;
+}
+@keyframes boat-rock {
+  0% { transform: rotate(-2deg) translateY(1px); }
+  100% { transform: rotate(2deg) translateY(-1px); }
+}
+
+/* Η κίνηση της κωπηλασίας (Χέρι και Κουπί) */
+.charon-rowing {
+  animation: row-oar 3.5s infinite ease-in-out;
+  transform-origin: 50px 45px; /* Ο ώμος του Χάροντα */
+}
+@keyframes row-oar {
+  0%, 100% { transform: rotate(-12deg); }
+  50% { transform: rotate(15deg); }
+}
+
+/* Η κίνηση του σκοτεινού ποταμού */
+.charon-water {
+  animation: river-flow 2s infinite alternate ease-in-out;
+}
+@keyframes river-flow {
+  0% { transform: translateX(-2px); }
+  100% { transform: translateX(2px); }
+}
+
+/* Οι Φασματικές Ψυχές (Νέον Λάμψη & Αιώρηση) */
+.spectral-soul {
+  animation: soul-float 3s infinite alternate ease-in-out;
+}
+@keyframes soul-float {
+  0% { transform: translateY(0px) scale(0.9); opacity: 0.7; filter: drop-shadow(0 0 3px #00ffcc); }
+  100% { transform: translateY(-6px) scale(1.1); opacity: 1; filter: drop-shadow(0 0 8px #00ffaa); }
+}
+
+/* Διαφορετικοί ρυθμοί για κάθε ψυχή ώστε να μη μοιάζουν ρομποτικές */
+.soul-1 { animation-duration: 2.5s; animation-delay: 0s; }
+.soul-2 { animation-duration: 3.5s; animation-delay: -1s; }
+.soul-3 { animation-duration: 4s; animation-delay: -2s; }
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #charon-monster {
+    width: 37.6px;
+    height: 32px;
+  }
+}
+/* === ΟΙ ΧΑΛΚΟΤΑΥΡΟΙ (ΤΑ ΜΗΧΑΝΙΚΑ ΚΤΗΝΗ ΤΟΥ ΗΦΑΙΣΤΟΥ) === */
+.t-bronze-bull {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 47; 
+  cursor: pointer;
+  display: none; 
+}
+
+.t-bronze-bull.active { display: block; }
+
+/* Ο βαρύς, μεταλλικός κορμός που "μαρσάρει" */
+.bronze-bull-body {
+  animation: bull-heave 2s infinite alternate ease-in-out;
+  transform-origin: 50px 60px;
+}
+@keyframes bull-heave {
+  0% { transform: scaleY(0.98) rotate(-1deg); }
+  100% { transform: scaleY(1.02) rotate(1deg); }
+}
+
+/* Το μεταλλικό πόδι που χτυπάει το έδαφος */
+.bull-stomp-leg {
+  animation: mechanical-stomp 2s infinite;
+  transform-origin: 55px 45px; /* Ο ώμος */
+}
+@keyframes mechanical-stomp {
+  0%, 15% { transform: rotate(0deg); }
+  25% { transform: rotate(-35deg); } /* Σηκώνει το πόδι πίσω/πάνω */
+  35% { transform: rotate(15deg); }  /* ΒΙΑΙΟ ΧΤΥΠΗΜΑ ΚΑΤΩ */
+  45%, 100% { transform: rotate(0deg); } /* Επιστροφή */
+}
+
+/* Σπίθες από την πρόσκρουση του χαλκού στο έδαφος */
+.bull-sparks circle {
+  animation: hoof-sparks 2s infinite;
+}
+.bull-sparks .s1 { animation-delay: 0s; }
+.bull-sparks .s2 { animation-delay: 0.05s; }
+.bull-sparks .s3 { animation-delay: 0.1s; }
+
+@keyframes hoof-sparks {
+  0%, 34% { opacity: 0; transform: translate(0, 0) scale(1); }
+  35% { opacity: 1; transform: translate(0, 0) scale(1.5); } /* Συγχρονισμένο με το χτύπημα (35%) */
+  50% { opacity: 0; transform: translate(-8px, -15px) scale(0); }
+  100% { opacity: 0; }
+}
+
+/* Ο πίδακας φωτιάς από το στόμα */
+.bull-fire-breath {
+  animation: fire-stream 2s infinite;
+  transform-origin: 80px 45px;
+}
+@keyframes fire-stream {
+  0%, 34% { transform: scaleX(0); opacity: 0; }
+  35% { transform: scaleX(1.1); opacity: 1; } /* Ξεσπάει φωτιά την ώρα του χτυπήματος! */
+  50% { transform: scaleX(1); opacity: 0.8; }
+  65% { transform: scaleX(0.5); opacity: 0; }
+  100% { transform: scaleX(0); opacity: 0; }
+}
+
+/* Η λάμψη του εσωτερικού πυρήνα / ματιού */
+.bull-core-glow {
+  animation: core-pulse 1s infinite alternate;
+}
+@keyframes core-pulse {
+  0% { fill: #ff4500; filter: drop-shadow(0 0 2px #ff4500); }
+  100% { fill: #ffcc00; filter: drop-shadow(0 0 5px #ffcc00); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #bronze-bull-monster {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Η ΑΡΑΧΝΗ (Η ΚΑΤΑΡΑΜΕΝΗ ΥΦΑΝΤΡΑ) === */
+.t-arachne-weaver {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 48; /* Στα δάση, κρέμεται από τα δέντρα */
+  cursor: pointer;
+  display: none;
+}
+
+.t-arachne-weaver.active { display: block; }
+
+/* Ο λαμπερός ιστός στο φόντο */
+.arachne-web-bg {
+  animation: web-glow 3s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes web-glow {
+  0% { opacity: 0.4; transform: scale(0.98); }
+  100% { opacity: 0.7; transform: scale(1.02); filter: drop-shadow(0 0 2px #6b8c9e); }
+}
+
+/* Η κίνηση γιο-γιο (Ανεβοκατεβαίνει από τον ιστό της) */
+.arachne-yo-yo {
+  animation: spider-drop 5s infinite alternate ease-in-out;
+}
+@keyframes spider-drop {
+  0% { transform: translateY(-15px); } /* Κρυμμένη ψηλά */
+  100% { transform: translateY(12px); } /* Κατεβαίνει απειλητικά */
+}
+
+/* Τα ανατριχιαστικά πόδια που συσπώνται */
+.arachne-leg-l { animation: spider-twitch-l 0.5s infinite alternate ease-in-out; transform-origin: 45px 50px; }
+.arachne-leg-r { animation: spider-twitch-r 0.6s infinite alternate-reverse ease-in-out; transform-origin: 55px 50px; }
+
+@keyframes spider-twitch-l {
+  0% { transform: rotate(-2deg) scaleY(0.98); }
+  100% { transform: rotate(3deg) scaleY(1.02); }
+}
+@keyframes spider-twitch-r {
+  0% { transform: rotate(2deg) scaleY(0.98); }
+  100% { transform: rotate(-3deg) scaleY(1.02); }
+}
+
+/* Τα τοξικά, φωσφοριζέ μάτια */
+.arachne-eyes {
+  animation: eye-glare 2s infinite alternate;
+}
+@keyframes eye-glare {
+  0% { fill: #ff0044; filter: drop-shadow(0 0 1px #ff0044); }
+  100% { fill: #ff0088; filter: drop-shadow(0 0 4px #ff0088); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #arachne-monster {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Η ΥΠΕΡΤΑΤΗ ΚΑΤΑΙΓΙΔΑ (ΤΥΦΩΝΑΣ) === */
+.t-ultimate-storm {
+  position: absolute;
+  width: 49.5px;
+  height: 42.5px;
+  z-index: 50; 
+  cursor: pointer;
+  display: none; 
+}
+
+.t-ultimate-storm.active { display: block; }
+
+/* Ο Στροβιλισμός του Ανεμοστρόβιλου */
+.m-storm-cloud-1 { animation: storm-spin 0.4s infinite alternate ease-in-out; }
+.m-storm-cloud-2 { animation: storm-spin 0.5s infinite alternate-reverse ease-in-out; }
+.m-storm-cloud-3 { animation: storm-spin 0.3s infinite alternate ease-in-out; }
+
+@keyframes storm-spin {
+  0% { transform: translateX(-3px) skewX(2deg); }
+  100% { transform: translateX(3px) skewX(-2deg); }
+}
+
+/* Τα φίδια στη βάση */
+.m-storm-snake-l {
+  animation: storm-writhe-l 0.8s infinite alternate ease-in-out;
+  transform-origin: 40px 75px;
+}
+.m-storm-snake-r {
+  animation: storm-writhe-r 0.9s infinite alternate-reverse ease-in-out;
+  transform-origin: 60px 75px;
+}
+@keyframes storm-writhe-l {
+  0% { transform: rotate(-15deg) scaleY(0.9); }
+  100% { transform: rotate(10deg) scaleY(1.1); }
+}
+@keyframes storm-writhe-r {
+  0% { transform: rotate(15deg) scaleY(0.9); }
+  100% { transform: rotate(-10deg) scaleY(1.1); }
+}
+
+/* Οι Αστραπές */
+.m-storm-lightning {
+  animation: storm-lightning-strike 2.5s infinite;
+  opacity: 0;
+}
+.m-storm-lightning.l2 { animation-delay: 1.2s; }
+.m-storm-lightning.l3 { animation-delay: 0.5s; animation-duration: 3s; }
+
+@keyframes storm-lightning-strike {
+  0%, 85% { opacity: 0; filter: drop-shadow(0 0 0px #fff); }
+  88% { opacity: 1; filter: drop-shadow(0 0 8px #00ffff); }
+  92% { opacity: 0; }
+  94% { opacity: 1; filter: drop-shadow(0 0 12px #00ffff); }
+  100% { opacity: 0; }
+}
+
+/* Τα πύρινα μάτια */
+.m-storm-eyes {
+  animation: ultimate-storm-eyes 1.5s infinite alternate;
+}
+@keyframes ultimate-storm-eyes {
+  0% { fill: #ff2200; filter: drop-shadow(0 0 3px #ff2200); transform: scale(0.9); }
+  100% { fill: #ffaa00; filter: drop-shadow(0 0 8px #ff5500); transform: scale(1.1); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #ultimate-storm-monster {
+    width: 37.6px;
+    height: 32px;
+  }
+}
+/* === Ο ΠΗΓΑΣΟΣ (ΤΟ ΟΥΡΑΝΙΟ ΦΩΣ) === */
+.t-pegasus-flight {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 55; /* Ψηλά στον ουρανό! */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-pegasus-flight.active { display: block; }
+
+/* Η Γραμμική Πτήση (Περνάει από δεξιά προς τα αριστερά και εξαφανίζεται) */
+.pegasus-orbit-path {
+  animation: pegasus-fly-left 25s infinite linear;
+}
+/* Η Διαγώνια Πτήση (Προς τα Αριστερά και Κάτω) */
+@keyframes pegasus-fly-left {
+  /* Αρχή: Ψηλά δεξιά (translate(100px, -60px)), κοιτάει αριστερά και έχει κλίση 15 μοίρες προς τα κάτω */
+  0%   { transform: translate(100px, -60px) scaleX(-1) rotate(15deg); opacity: 0; }
+  
+  /* Εμφανίζεται πλήρως καθώς ξεκινάει τη βουτιά */
+  15%  { transform: translate(70px, -40px) scaleX(-1) rotate(15deg); opacity: 1; }
+  
+  /* Διασχίζει διαγώνια τον ουρανό */
+  85%  { transform: translate(-70px, 40px) scaleX(-1) rotate(15deg); opacity: 1; }
+  
+  /* Τέλος: Χαμηλά αριστερά (translate(-100px, 60px)) σβήνει ομαλά */
+  100% { transform: translate(-100px, 60px) scaleX(-1) rotate(15deg); opacity: 0; }
+}
+
+/* Το μεγαλειώδες χτύπημα των φτερών */
+.pegasus-wing-front {
+  animation: flap-front 0.6s infinite alternate ease-in-out;
+  transform-origin: 50px 45px;
+}
+.pegasus-wing-back {
+  animation: flap-back 0.6s infinite alternate ease-in-out;
+  transform-origin: 50px 45px;
+}
+@keyframes flap-front {
+  0% { transform: rotate(-20deg) scaleY(0.9); }
+  100% { transform: rotate(40deg) scaleY(1.1); }
+}
+@keyframes flap-back {
+  0% { transform: rotate(20deg) scaleY(1.1); }
+  100% { transform: rotate(-40deg) scaleY(0.9); }
+}
+
+/* Η Μαγική Αστερόσκονη / Χρυσόσκονη πίσω του */
+.pegasus-sparkles circle, .pegasus-sparkles path {
+  animation: magic-dust 1.5s infinite linear;
+}
+/* Καθυστέρηση για να μοιάζει με ίχνος που αφήνει φεύγοντας */
+.pegasus-sparkles .st-1 { animation-delay: 0s; }
+.pegasus-sparkles .st-2 { animation-delay: 0.3s; }
+.pegasus-sparkles .st-3 { animation-delay: 0.6s; }
+.pegasus-sparkles .st-4 { animation-delay: 0.9s; }
+.pegasus-sparkles .st-5 { animation-delay: 1.2s; }
+
+@keyframes magic-dust {
+  0% { transform: translateX(0) scale(1); opacity: 1; }
+  100% { transform: translateX(-30px) scale(0); opacity: 0; filter: drop-shadow(0 0 5px #fffb00); }
+}
+
+/* Ελαφριά αιώρηση στο σώμα την ώρα που καλπάζει */
+.pegasus-body-gallop {
+  animation: heavenly-gallop 0.6s infinite alternate ease-in-out;
+}
+@keyframes heavenly-gallop {
+  0% { transform: translateY(1px); }
+  100% { transform: translateY(-2px); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #pegasus-monster {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Η ΣΦΙΓΓΑ (ΤΟ ΑΠΟΛΥΤΟ ΑΙΝΙΓΜΑ) === */
+.t-sphinx-riddle {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 46; /* Καθισμένη ψηλά, αλλά όχι όσο ο ουρανός */
+  cursor: pointer;
+  display: none;
+}
+
+.t-sphinx-riddle.active { display: block; }
+
+/* Το αργό, μεγαλοπρεπές χτύπημα των χρυσών φτερών */
+.sphinx-wing-front {
+  animation: sphinx-flap-front 3s infinite alternate ease-in-out;
+  transform-origin: 45px 40px; /* Ο ώμος της Σφίγγας */
+}
+.sphinx-wing-back {
+  animation: sphinx-flap-back 3s infinite alternate ease-in-out;
+  transform-origin: 45px 40px;
+}
+@keyframes sphinx-flap-front {
+  0% { transform: rotate(-10deg) scaleY(0.95); }
+  100% { transform: rotate(15deg) scaleY(1.05); }
+}
+@keyframes sphinx-flap-back {
+  0% { transform: rotate(10deg) scaleY(1.05); }
+  100% { transform: rotate(-15deg) scaleY(0.95); }
+}
+
+/* Η μαγική λάμψη στα μάτια της όταν κάνει το αίνιγμα */
+.sphinx-eyes {
+  animation: sphinx-gaze 4s infinite;
+}
+@keyframes sphinx-gaze {
+  0%, 20% { fill: #1a1a1a; filter: drop-shadow(0 0 0px #00ffff); }
+  40%, 60% { fill: #00ffff; filter: drop-shadow(0 0 4px #00ffff); } /* Το βλέμμα φωτίζεται */
+  80%, 100% { fill: #1a1a1a; filter: drop-shadow(0 0 0px #00ffff); }
+}
+
+/* Τα αρχαία γράμματα που πάλλονται γύρω από το κεφάλι της */
+.sphinx-runes text {
+  font-family: serif;
+  font-size: 8px;
+  font-weight: bold;
+  fill: #00ffff;
+  animation: runes-glow 4s infinite;
+  opacity: 0;
+}
+/* Διαφορετικοί χρόνοι για να φαίνονται σαν να ανάβουν με τη σειρά */
+.sphinx-runes .r1 { animation-delay: 1.2s; }
+.sphinx-runes .r2 { animation-delay: 1.4s; }
+.sphinx-runes .r3 { animation-delay: 1.6s; }
+.sphinx-runes .r4 { animation-delay: 1.8s; }
+.sphinx-runes .r5 { animation-delay: 2.0s; }
+
+@keyframes runes-glow {
+  0%, 15% { opacity: 0; transform: translateY(2px); filter: drop-shadow(0 0 0px #00ffff); }
+  40%, 60% { opacity: 1; transform: translateY(0px); filter: drop-shadow(0 0 3px #00ffff); }
+  85%, 100% { opacity: 0; transform: translateY(-2px); filter: drop-shadow(0 0 0px #00ffff); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #sphinx-monster {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Ο ΔΡΑΚΟΝΤΑΣ ΤΗΣ ΚΟΛΧΙΔΑΣ (Ο ΑΙΩΝΙΟΣ ΦΥΛΑΚΑΣ) === */
+.t-colchian-dragon {
+  position: absolute;
+  width: 49.5px;
+  height: 42.5px;
+  z-index: 44; /* Στα δάση / ιερά άλση */
+  cursor: pointer;
+   display: none; 
+}
+
+.t-colchian-dragon.active { display: block; }
+
+/* Η μαγική λάμψη του Χρυσόμαλλου Δέρατος */
+.golden-fleece-glow {
+  animation: fleece-pulse 2s infinite alternate ease-in-out;
+}
+@keyframes fleece-pulse {
+  0% { filter: drop-shadow(0 0 2px #ffaa00); fill: #ffcc00; }
+  100% { filter: drop-shadow(0 0 8px #ffee00); fill: #fff566; }
+}
+
+/* Το "ξετύλιγμα" (uncoiling) του λαιμού και του κεφαλιού */
+.dragon-uncoil {
+  animation: snake-uncoil 4s infinite alternate ease-in-out;
+  transform-origin: 50px 35px; /* Κέντρο του κορμού */
+}
+@keyframes snake-uncoil {
+  0% { transform: translate(5px, -8px) rotate(10deg); } /* Πιο μαζεμένος ψηλά */
+  100% { transform: translate(-8px, 5px) rotate(-5deg); } /* Τεντώνεται χαμηλά προς τον χρήστη */
+}
+
+/* Τα Υπνωτικά Κύματα από τα μάτια του (Toxic Yellow) */
+.hypno-wave {
+  fill: none;
+  stroke: #ccff00;
+  stroke-width: 1.5;
+  animation: hypnotic-rings 2.5s infinite linear;
+  opacity: 0;
+}
+/* Καθυστέρηση για να δημιουργείται αλυσίδα κυμάτων */
+.hypno-wave.w1 { animation-delay: 0s; }
+.hypno-wave.w2 { animation-delay: 0.8s; }
+.hypno-wave.w3 { animation-delay: 1.6s; }
+
+@keyframes hypnotic-rings {
+  0% { transform: scale(0.1); opacity: 1; stroke-width: 2; }
+  100% { transform: scale(3.5); opacity: 0; stroke-width: 0.2; }
+}
+
+/* Το σώμα που αναπνέει βαριά πάνω στο δέντρο */
+.dragon-coils {
+  animation: snake-breathe 3s infinite alternate ease-in-out;
+}
+@keyframes snake-breathe {
+  0% { transform: scaleX(0.98); }
+  100% { transform: scaleX(1.03); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #colchian-monster {
+    width: 37.6px;
+    height: 32px;
+  }
+}
+/* === Ο ΧΡΥΣΑΕΤΟΣ (Ο ΒΑΣΙΛΙΑΣ ΤΩΝ ΟΥΡΑΝΩΝ) === */
+.t-golden-eagle {
+  position: absolute;
+  width: 49px;
+  height: 45px;
+  z-index: 56; /* Πολύ ψηλά, πάνω από τα βουνά και τα σύννεφα */
+  cursor: pointer;
+  display: none; 
+}
+
+/* Εμφανίζεται όταν προστεθεί η κλάση .active από το JS */
+.t-golden-eagle.active { display: block; }
+
+/* 1. Η Κυκλική, αρχοντική πτήση (Soaring) */
+.eagle-soar-path {
+  animation: eagle-orbit 16s infinite linear;
+  transform-origin: 50px 50px;
+}
+@keyframes eagle-orbit {
+  0% { transform: rotate(0deg) translateX(25px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(25px) rotate(-360deg); }
+}
+
+/* 2. Ελαφριά κλίση του κορμού καθώς καβαλάει τον άνεμο */
+.eagle-body-tilt {
+  animation: eagle-glide 4s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes eagle-glide {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+
+/* 3. Το αργό, επιβλητικό ανοιγόκλεισμα των φτερών */
+.eagle-wing-l {
+  animation: eagle-flap-l 2.5s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+.eagle-wing-r {
+  animation: eagle-flap-r 2.5s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes eagle-flap-l {
+  0%, 15% { transform: rotate(15deg) scaleY(0.85); }
+  85%, 100% { transform: rotate(-25deg) scaleY(1.15); }
+}
+@keyframes eagle-flap-r {
+  0%, 15% { transform: rotate(-15deg) scaleY(0.85); }
+  85%, 100% { transform: rotate(25deg) scaleY(1.15); }
+}
+
+/* Μείωση μεγέθους για κινητά */
+@media (max-width: 767px) {
+  #eagle-anim {
+    width: 42px;
+    height: 35px;
+  }
+}
+/* === ΟΙΚΟΛΟΓΙΑ: ΡΟΖ ΦΛΑΜΙΝΓΚΟ (ΑΛΥΚΗ ΚΙΤΡΟΥΣ) === */
+.t-eco-flamingos {
+  position: absolute;
+  width: 56px;
+  height: 51px;
+  z-index: 49; /* Σωστό επίπεδο για να είναι κάτω από το pop-up! */
+  cursor: pointer;
+  display: none; 
+}
+
+/* Εμφανίζονται όταν πάρουν την κλάση .active από το JS */
+.t-eco-flamingos.active { display: block; }
+
+/* 1. Η κίνηση του νερού της λιμνοθάλασσας */
+.flamingo-water {
+  animation: wetland-ripple 4s infinite alternate ease-in-out;
+  transform-origin: 50px 75px;
+}
+@keyframes wetland-ripple {
+  0% { transform: scaleX(0.9); opacity: 0.5; }
+  100% { transform: scaleX(1.1); opacity: 0.8; }
+}
+
+/* 2. Φλαμίνγκο 1: Βουτάει τον λαιμό για τροφή */
+.fl-neck-feed {
+  animation: flamingo-dip 7s infinite ease-in-out;
+  transform-origin: 65px 48px; /* Η βάση του λαιμού */
+}
+@keyframes flamingo-dip {
+  0%, 15%, 100% { transform: rotate(0deg) translate(0, 0); }
+  /* Σκύβει στο νερό */
+  35%, 65% { transform: rotate(-55deg) translate(-12px, 12px); }
+  /* Κάνει μικρές κινήσεις αναζήτησης (rummaging) κάτω από το νερό */
+  45%, 55% { transform: rotate(-52deg) translate(-10px, 10px); } 
+}
+
+/* Τα κυματάκια που δημιουργεί το ράμφος στο νερό */
+.feed-ripple {
+  animation: beak-ripple 7s infinite;
+  transform-origin: 38px 68px;
+  opacity: 0;
+}
+@keyframes beak-ripple {
+  0%, 34%, 66%, 100% { transform: scale(0); opacity: 0; stroke-width: 1.5; }
+  35% { transform: scale(0.5); opacity: 1; }
+  50% { transform: scale(2); opacity: 0; stroke-width: 0.5; }
+  55% { transform: scale(0.5); opacity: 1; }
+  65% { transform: scale(1.5); opacity: 0; stroke-width: 0.5; }
+}
+
+/* 3. Φλαμίνγκο 2: Ισορροπία στο ένα πόδι & Τέντωμα φτερού */
+.fl-body-balance {
+  animation: flamingo-balance 3s infinite alternate ease-in-out;
+  transform-origin: 25px 65px;
+}
+@keyframes flamingo-balance {
+  0% { transform: rotate(-2deg); }
+  100% { transform: rotate(3deg); }
+}
+
+/* Το εντυπωσιακό τέντωμα/άνοιγμα του φτερού */
+.fl-wing-stretch {
+  animation: flamingo-flap 6s infinite;
+  transform-origin: 22px 42px; /* Ο ώμος */
+}
+@keyframes flamingo-flap {
+  0%, 75%, 100% { transform: rotate(0deg) scaleY(1) scaleX(1); }
+  80% { transform: rotate(-50deg) scaleY(1.4) scaleX(1.1); } /* Ανοίγει ψηλά */
+  85% { transform: rotate(-15deg) scaleY(1.1); } /* Διπλώνει λίγο */
+  90% { transform: rotate(-45deg) scaleY(1.3) scaleX(1.1); } /* Δεύτερο τίναγμα */
+}
+
+/* Μείωση μεγέθους για τα κινητά */
+@media (max-width: 767px) {
+  #flamingos-anim {
+    width: 48px;
+    height: 43px;
+  }
+}
+/* === ΑΓΡΙΟΓΙΔΟ - PRO VERSION === */
+.t-eco-chamois {
+  position: absolute;
+  width: 75px; /* Μεγαλύτερο για να φαίνονται οι λεπτομέρειες */
+  height: 75px;
+  z-index: 50;
+  cursor: pointer;
+display: none;
+  
+}
+.t-eco-chamois.active { display: block; }
+
+/* 1. Η κίνηση της Ομίχλης (Ατμόσφαιρα) */
+.chamois-fog {
+  animation: fog-drift 12s infinite alternate ease-in-out;
+}
+@keyframes fog-drift {
+  0% { transform: translateX(-5px); opacity: 0.6; }
+  100% { transform: translateX(8px); opacity: 1; }
+}
+
+/* 2. Κύρια Τροχιά Άλματος (Αιωρείται, φτάνει ψηλά και προσγειώνεται) */
+.chamois-master-leap {
+  animation: chamois-trajectory 9s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: 25px 45px;
+}
+@keyframes chamois-trajectory {
+  0%, 25%, 85%, 100% { transform: translate(0, 0); } /* Αφετηρία (Βράχος 1) */
+  28% { transform: translate(8px, -10px) rotate(-15deg); } /* Άνοδος (Πριν ήταν -20px) */
+  31% { transform: translate(18px, -12px) rotate(10deg); }  /* Κορυφή άλματος (Πριν ήταν -25px) */
+  35%, 70% { transform: translate(25px, 4px); } /* Προσγείωση στον Βράχο 2 (Πριν ήταν 45px μακριά) */
+  73% { transform: translate(15px, -6px) rotate(15deg); } /* Άνοδος επιστροφής */
+  76% { transform: translate(5px, -10px) rotate(-10deg); } /* Κορυφή επιστροφής */
+}
+
+/* 3. Squash & Stretch (Συμπίεση για βάρος/κραδασμούς) */
+.chamois-body-squash {
+  animation: chamois-squash 9s infinite;
+  transform-origin: 22px 50px;
+}
+@keyframes chamois-squash {
+  0%, 22%, 37%, 67%, 82%, 100% { transform: scale(1, 1); }
+  24%, 69% { transform: scale(1.1, 0.8) translateY(2px); } /* Μάζεμα πριν το άλμα */
+  29%, 74% { transform: scale(0.95, 1.05); } /* Έκταση στον αέρα */
+  35%, 78% { transform: scale(1.15, 0.75) translateY(4px); } /* Σκληρή προσγείωση (κραδασμός) */
+}
+
+/* 4. Κίνηση Ποδιών (Αρθρωτή) */
+.chamois-leg-front {
+  animation: leg-tuck-front 9s infinite;
+  transform-origin: 30px 42px;
+}
+.chamois-leg-back {
+  animation: leg-tuck-back 9s infinite;
+  transform-origin: 15px 42px;
+}
+@keyframes leg-tuck-front {
+  0%, 25%, 35%, 70%, 80%, 100% { transform: rotate(0deg); }
+  28%, 74% { transform: rotate(-45deg); } /* Μαζεύονται προς τα πίσω στην πτήση */
+  33%, 78% { transform: rotate(20deg); }  /* Εκτείνονται μπροστά για προσγείωση */
+}
+@keyframes leg-tuck-back {
+  0%, 25%, 35%, 70%, 80%, 100% { transform: rotate(0deg); }
+  28%, 74% { transform: rotate(35deg); }  /* Μαζεύονται προς τα μπρος */
+  33%, 78% { transform: rotate(-15deg); } /* Εκτείνονται πίσω */
+}
+
+/* 5. Ανεξάρτητη κίνηση Λαιμού/Κεφαλιού */
+.chamois-head-neck {
+  animation: head-scan 9s infinite;
+  transform-origin: 32px 30px;
+}
+@keyframes head-scan {
+  0%, 25%, 35%, 70%, 85%, 100% { transform: rotate(0deg); }
+  5%, 15% { transform: rotate(-10deg); } /* Κοιτάζει αριστερά κάτω */
+  45%, 55% { transform: rotate(15deg); } /* Κοιτάζει δεξιά πάνω όταν είναι στον απέναντι βράχο */
+}
+
+/* 6. Σωματίδια Σκόνης κατά την εκκίνηση/προσγείωση */
+.dust-particles { opacity: 0; }
+#dust-left {
+  animation: puff-left 9s infinite;
+  transform-origin: 20px 55px;
+}
+#dust-right {
+  animation: puff-right 9s infinite;
+  transform-origin: 70px 60px;
+}
+@keyframes puff-left {
+  0%, 23%, 27%, 77%, 82%, 100% { opacity: 0; transform: scale(0) translateY(0); }
+  25%, 80% { opacity: 0.8; transform: scale(1.5) translateY(-3px); } /* Σκάει σκόνη στην εκκίνηση/προσγείωση */
+}
+@keyframes puff-right {
+  0%, 33%, 38%, 68%, 73%, 100% { opacity: 0; transform: scale(0) translateY(0); }
+  35%, 70% { opacity: 0.8; transform: scale(1.5) translateY(-3px); }
+}
+
+@media (max-width: 767px) {
+  #chamois-anim { width: 55px; height: 55px; }
+}
+/* === ΘΑΛΑΣΣΙΑ ΧΕΛΩΝΑ CARETTA-CARETTA === */
+.t-eco-turtle {
+  position: absolute;
+  width: 49px;
+  height: 45px;
+  z-index: 48; /* Πλέει στο νερό, κάτω από τα ιπτάμενα banners */
+  cursor: pointer;
+ display: none;
+}
+.t-eco-turtle.active { display: block; }
+
+/* 1. Το λίκνισμα και η κίνηση του νερού στο background */
+.turtle-water-layer {
+  animation: turtle-sea-pulse 6s infinite alternate ease-in-out;
+  transform-origin: 50px 53px;
+}
+@keyframes turtle-sea-pulse {
+  0% { transform: scale(0.96); opacity: 0.6; }
+  100% { transform: scale(1.04); opacity: 0.9; }
+}
+
+/* 2. Κύριο κολύμπι - Ήπια άνοδος και κάθοδος της χελώνης */
+.turtle-master-swim {
+  animation: turtle-swimming-cycle 12s infinite ease-in-out;
+  transform-origin: 50px 53px;
+}
+@keyframes turtle-swimming-cycle {
+  0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+  30% { transform: translateY(-3px) scale(0.96) rotate(1deg); }  /* Κατεβαίνει ελαφρώς */
+  42% { transform: translateY(2px) scale(1.03) rotate(-1deg); }  /* Ανεβαίνει για αέρα */
+  46%, 56% { transform: translateY(4px) scale(1.05) rotate(0deg); } /* Στην επιφάνεια */
+  75% { transform: translateY(-1px) scale(0.98) rotate(-1deg); } /* Επιστροφή στο βάθος */
+}
+
+/* 3. Ρυθμικά Μπροστινά Πτερύγια (Κουπιά) */
+.turtle-flipper-l {
+  animation: turtle-paddle-l 3.5s infinite ease-in-out;
+  transform-origin: 32px 42px;
+}
+.turtle-flipper-r {
+  animation: turtle-paddle-r 3.5s infinite ease-in-out;
+  transform-origin: 68px 42px;
+}
+@keyframes turtle-paddle-l {
+  0%, 100% { transform: rotate(0deg) skewX(0deg); }
+  50% { transform: rotate(-28deg) skewX(-6deg); } /* Ώθηση νερού πίσω */
+}
+@keyframes turtle-paddle-r {
+  0%, 100% { transform: rotate(0deg) skewX(0deg); }
+  50% { transform: rotate(28deg) skewX(6deg); }
+}
+
+/* Πίσω πτερύγια (Σταθεροποιητές) */
+.turtle-back-flippers {
+  animation: turtle-stabilize 4s infinite alternate ease-in-out;
+  transform-origin: 50px 70px;
+}
+@keyframes turtle-stabilize {
+  0% { transform: rotate(-4deg); }
+  100% { transform: rotate(4deg); }
+}
+
+/* 4. Κεφάλι που βγαίνει στην επιφάνεια */
+.turtle-head-neck {
+  animation: turtle-head-pop 12s infinite ease-in-out;
+  transform-origin: 50px 35px;
+}
+@keyframes turtle-head-pop {
+  0%, 39%, 59%, 100% { transform: scale(0.85) translateY(3px); opacity: 0.5; filter: blur(0.5px); } /* Υποβρύχια */
+  44%, 54% { transform: scale(1.12) translateY(-2px); opacity: 1; filter: blur(0); } /* Έξω από το νερό */
+}
+
+/* 5. Διαστελλόμενα Κυματάκια (Ripples) */
+.t-wave {
+  fill: none;
+  stroke: #a2eaf2;
+  transform-origin: 50px 18px;
+  opacity: 0;
+}
+.w1 { animation: turtle-ripple-fx 12s infinite ease-out; }
+.w2 { animation: turtle-ripple-fx 12s infinite ease-out; animation-delay: 0.6s; }
+
+@keyframes turtle-ripple-fx {
+  0%, 43%, 57%, 100% { transform: scale(0); opacity: 0; stroke-width: 2.5; }
+  45% { opacity: 0.8; stroke-width: 1.8; }
+  53% { transform: scale(4.5); opacity: 0; stroke-width: 0.5; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .t-eco-turtle { width: 40px; height: 35px; }
+}
+/* === Η ΚΑΦΕ ΑΡΚΟΥΔΑ === */
+.t-eco-bear {
+  position: absolute;
+  width: 49px;
+  height: 45px;
+  z-index: 51;
+  cursor: pointer;
+ display: none;
+}
+.t-eco-bear.active { display: block; }
+
+.bear-master {
+  animation: bear-emerge-cycle 10s infinite ease-in-out;
+  transform-origin: 50px 95px;
+}
+@keyframes bear-emerge-cycle {
+  0%, 15%, 85%, 100% { transform: translateY(45px); opacity: 0; } 
+  22% { transform: translateY(12px); opacity: 1; } 
+  25%, 42% { transform: translateY(12px); } 
+  48% { transform: translateY(-4px); } 
+  52%, 72% { transform: translateY(-4px); } 
+  78% { transform: translateY(12px); } 
+  82% { transform: translateY(45px); opacity: 0; } 
+}
+
+.bear-body-lift {
+  animation: bear-body-stretch 10s infinite ease-in-out;
+  transform-origin: 50px 80px;
+}
+@keyframes bear-body-stretch {
+  0%, 42%, 78%, 100% { transform: scaleY(1) scaleX(1); }
+  48%, 72% { transform: scaleY(1.16) scaleX(1.04); } 
+}
+
+.bear-paws {
+  animation: bear-raise-paws 10s infinite ease-in-out;
+  transform-origin: 50px 55px;
+}
+@keyframes bear-raise-paws {
+  0%, 42%, 78%, 100% { transform: translateY(0); }
+  48%, 72% { transform: translateY(-12px) rotate(4deg); } 
+}
+
+.bear-head {
+  animation: bear-head-scan 10s infinite ease-in-out;
+  transform-origin: 50px 35px;
+}
+@keyframes bear-head-scan {
+  0%, 22%, 78%, 100% { transform: rotate(0deg) scale(1); }
+  26% { transform: rotate(-10deg); } 
+  34% { transform: rotate(10deg); }  
+  40% { transform: rotate(0deg); }   
+  48%, 72% { transform: scale(1.08); } 
+}
+
+@media (max-width: 767px) {
+  .t-eco-bear { width: 43px; height: 38px; }
+}
+/* === ΟΙΚΟΛΟΓΙΑ: Η ΒΙΔΡΑ === */
+.t-eco-otter {
+  position: absolute;
+  width: 54px;
+  height: 49px;
+  z-index: 52; /* Ανάμεσα στο νερό και τα πουλιά */
+  cursor: pointer;
+   display: none;
+}
+.t-eco-otter.active { display: block; }
+
+/* 1. Ροή ποταμού (Εμπρός και πίσω επίπεδα για βάθος) */
+.otter-water-back {
+  animation: river-flow 3s infinite alternate ease-in-out;
+}
+.otter-water-front {
+  animation: river-flow 4s infinite alternate-reverse ease-in-out;
+}
+@keyframes river-flow {
+  0% { transform: translateX(-4px); }
+  100% { transform: translateX(4px); }
+}
+
+/* 2. Η κίνηση της Βίδρας: Βουτιά - Εμφάνιση - Παρατήρηση - Κατάδυση */
+.otter-dive-anim {
+  animation: otter-play 7s infinite ease-in-out;
+  transform-origin: 50px 65px;
+}
+@keyframes otter-play {
+  0%, 100% { transform: translateY(30px) rotate(15deg); opacity: 0; } /* Κρυμμένη βαθιά */
+  10% { transform: translateY(10px) rotate(-5deg); opacity: 1; } /* Σκάει μύτη */
+  25% { transform: translateY(-5px) rotate(-10deg); } /* Τεντώνεται έξω */
+  45% { transform: translateY(-2px) rotate(5deg); } /* Κοιτάει γύρω */
+  60% { transform: translateY(0px) rotate(-5deg); } /* Κολυμπάει ελαφρώς */
+  80% { transform: translateY(20px) rotate(25deg); opacity: 1; } /* Αρχίζει τη βουτιά */
+  90% { transform: translateY(30px) rotate(30deg); opacity: 0; } /* Χάνεται στο νερό */
+}
+
+/* 3. Φυσαλίδες από το παιχνίδι στο νερό */
+.ot-bubble {
+  animation: otter-bubble-rise 3s infinite ease-in;
+  opacity: 0;
+}
+.ot-b1 { animation-delay: 0.5s; }
+.ot-b2 { animation-delay: 1.2s; }
+.ot-b3 { animation-delay: 2.5s; }
+
+@keyframes otter-bubble-rise {
+  0% { transform: translateY(5px) scale(0.5); opacity: 0; }
+  30% { opacity: 0.8; }
+  100% { transform: translateY(-25px) scale(1.5); opacity: 0; }
+}
+
+/* Κινητά */
+@media (max-width: 767px) {
+  #otter-anim {
+    width: 44px;
+    height: 39px;
+  }
+}
+/* === ΟΙΚΟΛΟΓΙΑ: ΑΓΡΙΟΓΟΥΡΟΥΝΟ (Άγριο & Γρήγορο) === */
+.t-eco-boar {
+  position: absolute;
+  width: 50px;
+  height: 46px;
+  z-index: 53; 
+  cursor: pointer;
+display: none;
+}
+.t-eco-boar.active { display: block; }
+
+/* 1. Η κίνηση του κορμού: Καλπασμός (Πάνω-κάτω και ελαφριά κλίση) */
+.boar-running {
+  animation: boar-gallop-body 4.3s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes boar-gallop-body {
+  0% { transform: translateY(0px) rotate(-2deg); }
+  100% { transform: translateY(4px) rotate(2deg); }
+}
+
+/* 2. Κίνηση ποδιών: Εναλλάξ ψαλιδιστά για αίσθηση τρεξίματος */
+.boar-leg-b1 { animation: run-leg-b1 4.3s infinite linear; transform-origin: 30px 50px; }
+.boar-leg-b2 { animation: run-leg-b2 4.3s infinite linear; transform-origin: 30px 50px; }
+.boar-leg-f1 { animation: run-leg-f1 4.3s infinite linear; transform-origin: 65px 55px; }
+.boar-leg-f2 { animation: run-leg-f2 4.3s infinite linear; transform-origin: 65px 55px; }
+
+@keyframes run-leg-f1 { 0%, 100% { transform: rotate(-35deg); } 50% { transform: rotate(25deg); } }
+@keyframes run-leg-f2 { 0%, 100% { transform: rotate(25deg); } 50% { transform: rotate(-35deg); } }
+@keyframes run-leg-b1 { 0%, 100% { transform: rotate(35deg); } 50% { transform: rotate(-25deg); } }
+@keyframes run-leg-b2 { 0%, 100% { transform: rotate(-25deg); } 50% { transform: rotate(35deg); } }
+
+/* 3. Σκόνη από το τρέξιμο */
+.dust {
+  animation: dust-fly 0.5s infinite linear;
+  opacity: 0;
+}
+.d1 { animation-delay: 0s; }
+.d2 { animation-delay: 0.1s; }
+.d3 { animation-delay: 0.2s; }
+.d4 { animation-delay: 0.3s; }
+
+@keyframes dust-fly {
+  0% { transform: translateX(0) translateY(0) scale(0.5); opacity: 0.9; }
+  100% { transform: translateX(-40px) translateY(-15px) scale(1.8); opacity: 0; }
+}
+
+@media (max-width: 767px) {
+  #boar-anim { width: 45px; height: 40px; }
+}
+/* === Ο ΔΡΥΟΚΟΛΑΠΤΗΣ (ΤΟ ΧΤΥΠΗΜΑ) === */
+.t-woodpecker-tree {
+  position: absolute;
+  width: 49.5px;
+  height: 45.5px;
+  z-index: 36; /* Φύση / Δάσος */
+  cursor: pointer;
+   display: none; 
+}
+
+.t-woodpecker-tree.active { display: block; }
+
+/* Η δόνηση σε ΟΛΟ το SVG όταν χτυπάει το ράμφος */
+.woodpecker-shake {
+  animation: tree-vibration 2.5s infinite;
+}
+@keyframes tree-vibration {
+  0%, 60% { transform: translateX(0px); }
+  /* Το τριπλό χτύπημα */
+  62% { transform: translateX(-1px); }
+  65% { transform: translateX(1px); }
+  68% { transform: translateX(-1px); }
+  71% { transform: translateX(1px); }
+  74% { transform: translateX(-1px); }
+  77% { transform: translateX(0px); }
+  100% { transform: translateX(0px); }
+}
+
+/* Το κεφάλι και το ράμφος που "χτυπάνε" (Pecking) */
+.woodpecker-head-peck {
+  animation: bird-pecking 2.5s infinite;
+  transform-origin: 52px 35px; /* Η βάση του λαιμού του */
+}
+@keyframes bird-pecking {
+  0%, 60% { transform: rotate(0deg); }
+  /* Τριπλό γρήγορο χτύπημα προς τα εμπρός (αριστερά) */
+  62% { transform: rotate(-18deg); }
+  65% { transform: rotate(0deg); }
+  68% { transform: rotate(-18deg); }
+  71% { transform: rotate(0deg); }
+  74% { transform: rotate(-18deg); }
+  77% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Τα κομματάκια ξύλου που πετάγονται (Wood chips) */
+.wood-chips path {
+  opacity: 0;
+  animation: chips-fly 2.5s infinite;
+}
+.wood-chips .c1 { animation-delay: 0.05s; }
+.wood-chips .c2 { animation-delay: 0.15s; }
+.wood-chips .c3 { animation-delay: 0.25s; }
+
+@keyframes chips-fly {
+  0%, 60% { opacity: 0; transform: translate(0px, 0px) scale(0.5) rotate(0deg); }
+  65% { opacity: 1; }
+  80% { opacity: 0; transform: translate(-8px, 12px) scale(1) rotate(45deg); }
+  100% { opacity: 0; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #woodpecker-nature {
+    width: 39.6px;
+    height: 34px;
+  }
+}
+/* === ΤΟ ΖΑΡΚΑΔΙ (ΕΓΡΗΓΟΡΣΗ ΣΤΟ ΔΑΣΟΣ) === */
+.t-roe-deer {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 34; /* Φύση / Λιβάδια */
+  cursor: pointer;
+   display: none; 
+}
+
+.t-roe-deer.active { display: block; }
+
+/* Το σώμα αναπνέει ελαφρά */
+.deer-body-breathe {
+  animation: deer-breathe 4s infinite alternate ease-in-out;
+  transform-origin: 55px 45px;
+}
+@keyframes deer-breathe {
+  0% { transform: scaleY(0.98); }
+  100% { transform: scaleY(1.02); }
+}
+
+/* Το Τίναγμα του Κεφαλιού (Βόσκει -> Ελέγχει -> Βόσκει) */
+.deer-neck-head {
+  animation: deer-alert-bob 7s infinite ease-in-out;
+  transform-origin: 45px 48px; /* Η άρθρωση στον ώμο */
+}
+@keyframes deer-alert-bob {
+  0%, 30% { transform: rotate(-45deg) translate(-5px, 12px); } /* Σκυμμένο, τρώει */
+  35%, 65% { transform: rotate(0deg) translate(0px, 0px); } /* Πετιέται όρθιο! */
+  70%, 100% { transform: rotate(-45deg) translate(-5px, 12px); } /* Ξανασκύβει */
+}
+
+/* Τα αυτιά τεντώνονται και συσπώνται όταν είναι όρθιο */
+.deer-ear-l {
+  animation: ear-twitch-l 7s infinite;
+  transform-origin: 32px 20px;
+}
+.deer-ear-r {
+  animation: ear-twitch-r 7s infinite;
+  transform-origin: 36px 20px;
+}
+@keyframes ear-twitch-l {
+  0%, 40% { transform: rotate(0deg); }
+  45% { transform: rotate(-15deg); }
+  48% { transform: rotate(5deg); }
+  51% { transform: rotate(-15deg); }
+  55%, 100% { transform: rotate(0deg); }
+}
+@keyframes ear-twitch-r {
+  0%, 42% { transform: rotate(0deg); }
+  46% { transform: rotate(15deg); }
+  49% { transform: rotate(-5deg); }
+  52% { transform: rotate(15deg); }
+  56%, 100% { transform: rotate(0deg); }
+}
+
+/* Ελαφρύ κούνημα της ουράς */
+.deer-tail {
+  animation: tail-flick 4s infinite ease-in-out;
+  transform-origin: 75px 42px;
+}
+@keyframes tail-flick {
+  0%, 80% { transform: rotate(0deg); }
+  85% { transform: rotate(-15deg); }
+  90% { transform: rotate(5deg); }
+  95%, 100% { transform: rotate(0deg); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #roe-deer-nature {
+    width: 49.6px;
+    height: 45px;
+  }
+}
+/* === ΣΑΛΑΜΑΝΔΡΑ ΤΗΣ ΦΩΤΙΑΣ (S-CURVE ANIMATION) === */
+.t-eco-salamander {
+  position: absolute;
+  width: 50px;
+  height: 45px;
+  z-index: 49; /* Στο έδαφος, κάτω από τα πουλιά */
+  cursor: pointer;
+display: none;
+}
+.t-eco-salamander.active { display: block; }
+
+/* 1. Ο Κορμός λυγίζει αριστερά-δεξιά */
+.sal-torso {
+  animation: sal-body-bend 3s infinite ease-in-out;
+  transform-origin: 50px 48px; /* Κέντρο του σώματος */
+}
+@keyframes sal-body-bend {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+/* 2. Το Κεφάλι κάνει ΑΝΤΙΡΡΟΠΗ κίνηση για να στοχεύει μπροστά (Κύμα S) */
+.sal-head {
+  animation: sal-head-bend 3s infinite ease-in-out;
+  transform-origin: 50px 32px; /* Βάση του λαιμού */
+}
+@keyframes sal-head-bend {
+  0%, 100% { transform: rotate(14deg); }
+  50% { transform: rotate(-14deg); }
+}
+
+/* 3. Η Ουρά κάνει επίσης ΑΝΤΙΡΡΟΠΗ κίνηση σαν μαστίγιο */
+.sal-tail-group {
+  animation: sal-tail-bend 3s infinite ease-in-out;
+  transform-origin: 50px 63px; /* Ένωση ουράς με κορμό */
+}
+@keyframes sal-tail-bend {
+  0%, 100% { transform: rotate(20deg); }
+  50% { transform: rotate(-20deg); }
+}
+
+/* 4. ΚΙΝΗΣΗ ΠΟΔΙΩΝ (Σταυρωτό Βάδισμα - Cross Crawl) */
+/* Το Εμπρός Αριστερά (fl) & Πίσω Δεξιά (br) πάνε μαζί */
+.sal-leg.fl { animation: leg-swing-a 3s infinite ease-in-out; transform-origin: 41px 35px; }
+.sal-leg.br { animation: leg-swing-a 3s infinite ease-in-out; transform-origin: 59px 60px; }
+
+/* Το Εμπρός Δεξιά (fr) & Πίσω Αριστερά (bl) πάνε μαζί (αντίθετα από τα άλλα) */
+.sal-leg.fr { animation: leg-swing-b 3s infinite ease-in-out; transform-origin: 59px 35px; }
+.sal-leg.bl { animation: leg-swing-b 3s infinite ease-in-out; transform-origin: 41px 60px; }
+
+@keyframes leg-swing-a {
+  0%, 100% { transform: rotate(-30deg); } /* Πόδι τραβηγμένο πίσω */
+  50% { transform: rotate(30deg); }       /* Πόδι απλωμένο μπροστά */
+}
+@keyframes leg-swing-b {
+  0%, 100% { transform: rotate(30deg); }  /* Πόδι απλωμένο μπροστά */
+  50% { transform: rotate(-30deg); }      /* Πόδι τραβηγμένο πίσω */
+}
+
+/* 5. Μικρή παλινδρόμηση όλου του ζώου μπρος-πίσω (Εφέ έρπυσης) */
+.sal-wrapper {
+  animation: sal-forward-crawl 1.5s infinite ease-in-out;
+}
+@keyframes sal-forward-crawl {
+  0%, 100% { transform: rotate(35deg) translateY(0px); }
+  50% { transform: rotate(35deg) translateY(-2px); }
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .t-eco-salamander { width: 47px; height: 43px; }
+}
+/* === Η ΑΛΕΠΟΥ (ΤΟ ΣΚΑΝΑΡΙΣΜΑ) === */
+.t-eco-fox {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 34; /* Φύση / Θάμνοι */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-fox.active { display: block; }
+
+/* Η φουντωτή ουρά (Απαλό, συνεχόμενο κούνημα) */
+.fox-tail-swish {
+  animation: fox-tail-wag 3s infinite alternate ease-in-out;
+  transform-origin: 65px 70px; /* Η βάση της ουράς πίσω */
+}
+@keyframes fox-tail-wag {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(12deg); }
+}
+
+/* Το κεφάλι (Σκανάρισμα/Μύρισμα εδάφους κάθε 6 δευτερόλεπτα) */
+.fox-head-sniff {
+  animation: fox-sniffing 6s infinite ease-in-out;
+  transform-origin: 45px 45px; /* Η άρθρωση του λαιμού */
+}
+@keyframes fox-sniffing {
+  0%, 70% { transform: rotate(0deg) translate(0px, 0px); } /* Κοιτάει περήφανα μπροστά */
+  75%, 85% { transform: rotate(-35deg) translate(-10px, 12px); } /* Σκύβει και μυρίζει το χώμα */
+  90%, 100% { transform: rotate(0deg) translate(0px, 0px); } /* Επιστρέφει ψηλά */
+}
+
+/* Το σώμα αναπνέει ελαφρά */
+.fox-body-breathe {
+  animation: fox-breathe 2.5s infinite alternate ease-in-out;
+}
+@keyframes fox-breathe {
+  0% { transform: scaleY(0.98) translateY(1px); }
+  100% { transform: scaleY(1.02) translateY(0px); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #fox-eco-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Ο ΠΕΛΕΚΑΝΟΣ (ΤΟ ΤΕΝΤΩΜΑ) === */
+.t-eco-pelican {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 36; /* Φύση / Υγροβιότοπος */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-pelican.active { display: block; }
+
+/* 1. Η κίνηση του κεφαλιού (Γέρνει πίσω) */
+.peli-head-tilt {
+  animation: pelican-yawn 7s infinite ease-in-out;
+  transform-origin: 60px 30px; /* Βάση του λαιμού/κεφαλιού */
+}
+@keyframes pelican-yawn {
+  0%, 55% { transform: rotate(0deg); } /* Ήρεμος */
+  60%, 65% { transform: rotate(25deg); } /* Γέρνει πίσω για να χασμουρηθεί */
+  72%, 100% { transform: rotate(0deg); } /* Επιστρέφει */
+}
+
+/* 2. Το πάνω ράμφος (Ανοίγει διάπλατα) */
+.peli-upper-beak {
+  animation: beak-open 7s infinite ease-in-out;
+  transform-origin: 52px 28px;
+}
+@keyframes beak-open {
+  0%, 56% { transform: rotate(0deg); }
+  60%, 65% { transform: rotate(-35deg); } /* Ανοίγει ψηλά */
+  70%, 100% { transform: rotate(0deg); }
+}
+
+/* 3. Ο ελαστικός σάκος (Μεγαλώνει/Τεντώνεται) */
+.peli-pouch-stretch {
+  animation: pouch-expand 7s infinite ease-in-out;
+  transform-origin: 52px 30px;
+}
+@keyframes pouch-expand {
+  0%, 56% { transform: scaleY(1) scaleX(1) translateY(0); }
+  60%, 65% { transform: scaleY(1.5) scaleX(1.1) translateY(2px) skewX(-10deg); } /* Ο σάκος τεντώνεται */
+  70%, 100% { transform: scaleY(1) scaleX(1) translateY(0); }
+}
+
+/* 4. Η φτερούγα (Τεντώνεται ταυτόχρονα) */
+.peli-wing-stretch {
+  animation: wing-flex 7s infinite ease-in-out;
+  transform-origin: 65px 45px;
+}
+@keyframes wing-flex {
+  0%, 55% { transform: rotate(0deg) scale(1); }
+  60%, 65% { transform: rotate(-20deg) scale(1.1) translateY(-2px); } /* Σηκώνει τον ώμο */
+  72%, 100% { transform: rotate(0deg) scale(1); }
+}
+
+/* Ελαφριά αναπνοή στο σώμα */
+.peli-body-breathe {
+  animation: peli-breathe 3s infinite alternate ease-in-out;
+}
+@keyframes peli-breathe {
+  0% { transform: translateY(1px); }
+  100% { transform: translateY(-1px); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #pelican-eco-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Ο ΑΛΠΙΚΟΣ ΤΡΙΤΩΝΑΣ (ΤΟ ΔΡΑΚΑΚΙ ΤΗΣ ΛΙΜΝΗΣ) === */
+.t-eco-tritonas {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 33; /* Στα ρηχά / Λίμνες */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-tritonas.active { display: block; }
+
+/* Η αιώρηση στο νερό (Ολόκληρο το SVG ανεβοκατεβαίνει) */
+.triton-float {
+  animation: water-hover 4s infinite alternate ease-in-out;
+}
+@keyframes water-hover {
+  0% { transform: translateY(-3px); }
+  100% { transform: translateY(3px); }
+}
+
+/* Το κούνημα της ουράς (Κολύμπι με rotate και skewX) */
+.triton-tail-swim {
+  animation: tail-swish 1.5s infinite alternate ease-in-out;
+  transform-origin: 50px 55px; /* Η βάση της ουράς */
+}
+@keyframes tail-swish {
+  0% { transform: rotate(-15deg) skewX(-15deg); }
+  100% { transform: rotate(15deg) skewX(15deg); }
+}
+
+/* Τα κυματάκια του νερού (Ripples από κάτω του) */
+.triton-ripple {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1;
+  animation: ripple-expand 3s infinite linear;
+  opacity: 0;
+  transform-origin: 50px 40px; /* Κέντρο του τρίτωνα */
+}
+/* Καθυστέρηση για να βγαίνει το ένα μετά το άλλο */
+.triton-ripple.r1 { animation-delay: 0s; }
+.triton-ripple.r2 { animation-delay: 1.5s; }
+
+@keyframes ripple-expand {
+  0% { transform: scale(0.2); opacity: 0.5; stroke-width: 1.5; }
+  100% { transform: scale(2.5); opacity: 0; stroke-width: 0.2; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #tritonas-eco-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === ΤΟ ΝΕΡΟΦΙΔΟ (Η ΑΘΟΡΥΒΗ ΟΛΙΣΘΗΣΗ) === */
+.t-eco-nerofido {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 34; /* Πάνω στα ποτάμια / νερά */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-nerofido.active { display: block; }
+
+/* Κυματισμοί του ποταμού γύρω από το σώμα */
+.snake-water-ripple {
+  fill: none;
+  stroke: #7ec8e3;
+  stroke-width: 1.5;
+  animation: river-ripple 3s infinite linear;
+  opacity: 0;
+  transform-origin: 50px 50px;
+}
+.snake-water-ripple.r2 { animation-delay: 1.5s; }
+
+@keyframes river-ripple {
+  0% { transform: scale(0.3) scaleY(0.7); opacity: 0.8; stroke-width: 2; }
+  100% { transform: scale(2) scaleY(1); opacity: 0; stroke-width: 0.2; }
+}
+
+/* Το σώμα επιπλέει και αναπνέει ελαφρά */
+.snake-body-float {
+  animation: snake-hover 4s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes snake-hover {
+  0% { transform: scale(0.98) rotate(-2deg); }
+  100% { transform: scale(1.02) rotate(2deg); }
+}
+
+/* Το κεφάλι ανασηκώνεται λίγο πριν βγάλει τη γλώσσα */
+.snake-head-lift {
+  animation: head-bob 5s infinite ease-in-out;
+  transform-origin: 30px 30px; /* Η βάση του λαιμού */
+}
+@keyframes head-bob {
+  0%, 75% { transform: translateY(0px) rotate(0deg); }
+  85%, 95% { transform: translateY(-4px) rotate(-8deg); } /* Ανασηκώνεται */
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Η διχαλωτή γλώσσα (Αστραπιαίο διπλό flick) */
+.snake-tongue-flick {
+  animation: tongue-dart 5s infinite;
+  transform-origin: 19px 28px; /* Η άκρη της μουσούδας */
+}
+@keyframes tongue-dart {
+  0%, 84% { transform: scaleX(0); }
+  86% { transform: scaleX(1); } /* 1ο τίναγμα */
+  88% { transform: scaleX(0); }
+  90% { transform: scaleX(1); } /* 2ο τίναγμα */
+  92%, 100% { transform: scaleX(0); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #nerofido-eco-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Ο ΚΑΒΟΥΡΑΣ (Η ΠΛΑΓΙΑ ΠΕΡΙΠΟΛΙΑ) === */
+.t-sea-crab {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 33; /* Ακτογραμμή */
+  cursor: pointer;
+  display: none;
+}
+
+.t-sea-crab.active { display: block; }
+
+/* Το πλάγιο περπάτημα (Περιπολία) */
+.crab-sideways-patrol {
+  animation: crab-walk 6s infinite ease-in-out;
+}
+@keyframes crab-walk {
+  0%, 10% { transform: translateX(0); }
+  40%, 60% { transform: translateX(15px); } /* Μετακίνηση δεξιά και στάση */
+  90%, 100% { transform: translateX(0); } /* Επιστροφή */
+}
+
+/* Οι δαγκάνες ανοιγοκλείνουν ΜΟΝΟ όταν σταματάει (40%-60%) */
+.crab-claw-l {
+  animation: claw-snap-l 6s infinite;
+  transform-origin: 35px 45px;
+}
+.crab-claw-r {
+  animation: claw-snap-r 6s infinite;
+  transform-origin: 65px 45px;
+}
+
+@keyframes claw-snap-l {
+  0%, 42% { transform: rotate(0deg); }
+  45% { transform: rotate(-25deg); } /* 1ο Κλακ */
+  48% { transform: rotate(0deg); }
+  52% { transform: rotate(-25deg); } /* 2ο Κλακ */
+  55%, 100% { transform: rotate(0deg); }
+}
+@keyframes claw-snap-r {
+  0%, 42% { transform: rotate(0deg); }
+  45% { transform: rotate(25deg); } /* 1ο Κλακ */
+  48% { transform: rotate(0deg); }
+  52% { transform: rotate(25deg); } /* 2ο Κλακ */
+  55%, 100% { transform: rotate(0deg); }
+}
+
+/* Τα πόδια κουνιούνται μόνο όταν περπατάει */
+.crab-legs-move {
+  animation: leg-scuttle 0.2s infinite;
+}
+@keyframes leg-scuttle {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(1.5px); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #crab-sea-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === ΤΑ ΔΕΛΦΙΝΙΑ (ΣΥΓΧΡΟΝΙΣΜΕΝΟ ΑΛΜΑ) === */
+.t-sea-dolphins {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 33; /* Θάλασσα */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-sea-dolphins.active { display: block; }
+
+/* Το επικό άλμα (Τόξο στον αέρα) */
+.dolphin-jump {
+  animation: dolphin-jump-anim 4s infinite ease-in-out;
+  opacity: 0;
+}
+.dolphin-jump.parent { animation-delay: 0s; }
+.dolphin-jump.calf { animation-delay: 0.5s; } /* Καθυστέρηση μισού δευτερολέπτου */
+
+@keyframes dolphin-jump-anim {
+  0% { transform: translate(-35px, 25px) rotate(-60deg); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translate(0px, -35px) rotate(0deg); opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translate(35px, 25px) rotate(60deg); opacity: 0; }
+}
+
+/* Πιτσιλιές στη βάση του άλματος (Συγχρονισμένες με το χρόνο εισόδου/εξόδου) */
+.dolphin-splash {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  opacity: 0;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-out;
+}
+
+/* Πιτσιλιά απογείωσης μαμάς (0s) */
+.dolphin-splash.s-takeoff {
+  animation-name: splash-boom-start;
+  transform-origin: 20px 65px;
+}
+/* Πιτσιλιά απογείωσης παιδιού (καθυστέρηση 0.5s) */
+.dolphin-splash.s-calf-takeoff {
+  animation-name: splash-boom-start;
+  animation-delay: 0.5s;
+  transform-origin: 25px 65px;
+}
+/* Πιτσιλιά προσγείωσης μαμάς (στο 85% του κύκλου) */
+.dolphin-splash.s-landing {
+  animation-name: splash-boom-end;
+  transform-origin: 80px 65px;
+}
+
+@keyframes splash-boom-start {
+  0% { opacity: 0; transform: scale(0.2); }
+  2% { opacity: 1; stroke-width: 2; }
+  12% { opacity: 0; transform: scale(1.8); stroke-width: 0.5; }
+  100% { opacity: 0; }
+}
+
+@keyframes splash-boom-end {
+  0%, 82% { opacity: 0; transform: scale(0.2); }
+  85% { opacity: 1; stroke-width: 2; }
+  95% { opacity: 0; transform: scale(1.8); stroke-width: 0.5; }
+  100% { opacity: 0; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #dolphins-sea-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === ΠΑΝΙΔΑ: ΑΒΟΚΕΤΑ === */
+.t-eco-avocet {
+  position: absolute;
+  width: 54px;
+  height: 49px;
+  z-index: 48;
+  cursor: pointer;
+  display: none;
+}
+.t-eco-avocet.active { display: block; }
+
+/* 1. Η κίνηση εκκρεμούς (Sweeping) για τον λαιμό και το κεφάλι */
+.avocet-sweep-group {
+  animation: avocet-foraging 4s infinite ease-in-out;
+  transform-origin: 45px 52px; /* Η βάση του λαιμού, εκεί που ενώνεται με το στήθος */
+}
+@keyframes avocet-foraging {
+  0%, 100% { transform: rotate(-22deg); } /* Σκούπισμα τέρμα αριστερά */
+  50% { transform: rotate(18deg); }       /* Σκούπισμα τέρμα δεξιά */
+}
+
+/* 2. Κυματάκια στο νερό (Ripples) */
+.avo-ripple-l, .avo-ripple-r {
+  opacity: 0;
+}
+/* Το αριστερό σκάει στο 0% / 100% (άρα delay: 0s) */
+.avo-ripple-l circle {
+  animation: beak-ripple-fx 4s infinite ease-out;
+}
+/* Το δεξί σκάει στο 50% (άρα delay ακριβώς το μισό του κύκλου: 2s) */
+.avo-ripple-r circle {
+  animation: beak-ripple-fx 4s infinite ease-out;
+  animation-delay: 2s;
+}
+
+@keyframes beak-ripple-fx {
+  0% { transform: scale(0.2); opacity: 0; stroke-width: 2.5; }
+  5% { opacity: 1; }
+  35% { transform: scale(3.5); opacity: 0; stroke-width: 0.5; }
+  100% { opacity: 0; }
+}
+
+/* 3. Πολύ απαλή αναπνοή/στάση του σώματος για να μη μοιάζει με άγαλμα */
+.avocet-body {
+  animation: avocet-body-balance 2s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes avocet-body-balance {
+  0% { transform: translateY(0px) rotate(-1deg); }
+  100% { transform: translateY(-1.5px) rotate(1deg); }
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .t-eco-avocet { width: 43px; height: 38px; }
+}
+/* === ΠΑΝΙΔΑ: ΝΕΡΟΚΟΤΣΥΦΑΣ === */
+.t-eco-dipper {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: 47;
+  cursor: pointer;
+  display: none;
+}
+.t-eco-dipper.active { display: block; }
+
+/* 1. Το Νευρικό Καθισματάκι (Bobbing - Squash & Stretch) */
+.dipper-bob-master {
+  animation: dipper-squash-jump 2.5s infinite;
+  transform-origin: 50px 72px; /* Η βάση των ποδιών στον βράχο */
+}
+
+@keyframes dipper-squash-jump {
+  0%, 40%, 80%, 100% { transform: scale(1, 1) translateY(0); }
+  /* Διπλό γρήγορο καθισματάκι (Squash) */
+  8%  { transform: scale(1.08, 0.85) translateY(3px); } 
+  16% { transform: scale(0.95, 1.05) translateY(-2px); } 
+  24% { transform: scale(1.08, 0.85) translateY(3px); } 
+  32% { transform: scale(1, 1) translateY(0); }
+  /* Μεγάλο τέντωμα για να ελέγξει τον χώρο (Stretch & Alert) */
+  55% { transform: scale(0.92, 1.1) translateY(-4px); } 
+  65% { transform: scale(0.92, 1.1) translateY(-4px); } 
+}
+
+/* 2. Κίνηση Ουράς (Twitch) */
+.dipper-tail {
+  animation: dipper-tail-twitch 2.5s infinite;
+  transform-origin: 62px 60px;
+}
+@keyframes dipper-tail-twitch {
+  0%, 40%, 100% { transform: rotate(0deg); }
+  16% { transform: rotate(-15deg); } /* Πέφτει όταν τεντώνεται το σώμα */
+  55% { transform: rotate(10deg); }  /* Σηκώνεται πιο ψηλά στο alert */
+}
+
+/* 3. Ορμητικό Ρέμα (Fast Flowing Water) */
+.foam-fast {
+  stroke-dasharray: 15 15;
+
+}
+.foam-slow {
+  stroke-dasharray: 20 25;
+  opacity: 0.7;
+}
+.foam-splash {
+  stroke-dasharray: 10 30;
+
+  opacity: 0.9;
+}
+
+@keyframes river-flow {
+  from { stroke-dashoffset: 60; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .t-eco-dipper { width: 45px; height: 45px; }
+}
+/* === Ο ΓΛΑΡΟΣ (Η ΒΟΥΤΙΑ ΓΙΑ ΨΑΡΕΜΑ) === */
+.t-sea-gull {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 36; /* Ψηλά στον αέρα και νερό */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-sea-gull.active { display: block; }
+
+/* Ο κύκλος της βουτιάς (Αιώρηση -> Βουτιά -> Βυθός -> Ανάδυση) */
+.gull-dive-master {
+  animation: gull-hunt-cycle 6s infinite ease-in-out;
+  transform-origin: 25px 20px;
+}
+@keyframes gull-hunt-cycle {
+  0%, 15% { transform: translate(0px, 0px) rotate(0deg); opacity: 1; } /* Αιώρηση */
+  18% { transform: translate(5px, -5px) rotate(80deg); opacity: 1; } /* Στοχεύει κάτω */
+  25% { transform: translate(15px, 38px) rotate(80deg); opacity: 1; } /* Χτυπάει το νερό */
+  26%, 45% { transform: translate(15px, 38px) rotate(80deg); opacity: 0; } /* Κάτω από το νερό */
+  46% { transform: translate(15px, 38px) rotate(-35deg); opacity: 0; } /* Γυρνάει για ανάδυση */
+  50% { transform: translate(15px, 38px) rotate(-35deg); opacity: 1; } /* Σπάει την επιφάνεια */
+  65%, 100% { transform: translate(0px, 0px) rotate(0deg); opacity: 1; } /* Επιστρέφει ψηλά */
+}
+
+/* Κλείσιμο φτερών (Αεροδυναμικό σχήμα) */
+.gull-wings-fold {
+  animation: wing-aerodynamic 6s infinite ease-in-out;
+  transform-origin: 25px 20px;
+}
+@keyframes wing-aerodynamic {
+  0%, 15% { transform: scaleY(1) scaleX(1); }
+  18%, 25% { transform: scaleY(0.15) scaleX(0.7) rotate(10deg); } /* Κλειστά φτερά σαν βέλος */
+  26%, 100% { transform: scaleY(1) scaleX(1); }
+}
+
+/* Κανονικό φτερούγισμα (Γίνεται μικροσκοπικό όταν τα φτερά κάνουν scaleY(0.15)) */
+.gull-wing-flap {
+  animation: wing-beat 0.4s infinite alternate ease-in-out;
+  transform-origin: 25px 20px;
+}
+@keyframes wing-beat {
+  0% { transform: rotate(-25deg); }
+  100% { transform: rotate(25deg); }
+}
+
+/* Το συντριβάνι / πιτσιλιά στο νερό */
+.gull-water-splash {
+  fill: none;
+  stroke: #ffffff;
+  stroke-linecap: round;
+  animation: splash-burst 6s infinite ease-out;
+  transform-origin: 35px 65px;
+  opacity: 0;
+}
+@keyframes splash-burst {
+  0%, 24% { opacity: 0; transform: scale(0.3) translateY(0); stroke-width: 2; }
+  25% { opacity: 1; transform: scale(0.8) translateY(-2px); stroke-width: 2.5; }
+  30% { opacity: 0; transform: scale(1.6) translateY(-8px); stroke-width: 0.5; }
+  100% { opacity: 0; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #gull-sea-nature {
+    width: 54.6px;
+    height: 49px;
+  }
+}
+/* === ΤΟ ΜΙΚΡΟ ΚΟΠΑΔΙ (ΤΣΙΠΟΥΡΕΣ) === */
+.t-sea-school {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 32; /* Μέσα στο νερό */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-sea-school.active { display: block; }
+
+/* Το κοινό animation του κοπαδιού (Απαλή αιώρηση/κολύμπι) */
+.fish-swim {
+  animation: school-bob 2.5s infinite alternate ease-in-out;
+}
+
+/* Τα διαφορετικά delays δημιουργούν τον συγχρονισμό του κοπαδιού! */
+.fish-1 { animation-delay: 0s; }
+.fish-2 { animation-delay: 0.3s; }
+.fish-3 { animation-delay: 0.6s; }
+
+@keyframes school-bob {
+  0% { transform: translateY(-4px) rotate(-2deg); }
+  100% { transform: translateY(4px) rotate(2deg); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #school-sea-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Η ΦΩΚΙΑ (MONACHUS MONACHUS) - UPDATED === */
+.t-sea-seal {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 35;
+  cursor: pointer;
+  /* overflow: hidden για να εξαφανίζεται η φώκια όταν κατεβαίνει κάτω από τη βάση */
+  overflow: hidden; 
+  display: none; 
+}
+
+.t-sea-seal.active { display: block; }
+
+/* Animation Ανάδυσης (Παραμένει ίδιο) */
+.seal-emerge-anim {
+  animation: seal-hide-seek 7s infinite ease-in-out;
+}
+@keyframes seal-hide-seek {
+  0%, 65% { transform: translateY(45px); opacity: 0; }
+  70% { transform: translateY(5px); opacity: 1; }
+  85% { transform: translateY(5px); opacity: 1; }
+  90%, 100% { transform: translateY(45px); opacity: 0; }
+}
+
+/* Animation Ματιών (Το "σκανάρισμα") */
+.seal-eyes-look {
+  animation: eyes-scan 12s infinite ease-in-out;
+}
+@keyframes eyes-scan {
+  0%, 72% { transform: translateX(0px); }
+  75% { transform: translateX(-2.5px); } 
+  80% { transform: translateX(2.5px); }  
+  83%, 100% { transform: translateX(0px); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #seal-sea-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Η ΑΛΚΥΟΝΗ (ΤΟ ΑΙΩΡΟΥΜΕΝΟ ΨΑΡΕΜΑ) === */
+.t-eco-alkyoni {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 36; /* Ψηλά στον αέρα πάνω από το ποτάμι */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-alkyoni.active { display: block; }
+
+/* Ο κύκλος της αιώρησης και της αστραπιαίας κατάδυσης */
+.alkyoni-dive-master {
+  animation: alkyoni-hunt 5s infinite ease-in-out;
+  transform-origin: 50px 25px;
+}
+@keyframes alkyoni-hunt {
+  /* 0% έως 60%: Στάσιμη αιώρηση στον αέρα με μικρο-κινήσεις */
+  0%, 20%, 40%, 60% { transform: translateY(0px) rotate(0deg); }
+  10%, 30%, 50% { transform: translateY(-2px) rotate(1deg); }
+  
+  /* 64%: Στοχοποίηση και αστραπιαία κατακόρυφη πτώση στο νερό (Y=65) */
+  64% { transform: translateY(40px) rotate(75deg) scaleX(0.9); opacity: 1; }
+  
+  /* 65%-67%: Στιγμιαία εξαφάνιση μέσα στο νερό για το ψάρεμα */
+  65%, 67% { transform: translateY(42px) rotate(75deg); opacity: 0; }
+  
+  /* 75%: Δυναμική ανάδυση και επιστροφή στη θέση της */
+  75% { transform: translateY(-5px) rotate(-20deg); opacity: 1; }
+  82%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+}
+
+/* Πολύ γρήγορο, μικρό φτερούγισμα (flutter) κατά την αιώρηση */
+.alkyoni-wings-flutter {
+  animation: alkyoni-wing-beat 0.15s infinite alternate ease-in-out;
+  transform-origin: 50px 28px;
+}
+@keyframes alkyoni-wing-beat {
+  0% { transform: scaleY(0.3) rotate(-10deg); }
+  100% { transform: scaleY(1.2) rotate(15deg); }
+}
+
+/* Μικρή πιτσιλιά στο ποτάμι τη στιγμή της εισόδου (64%) */
+.alkyoni-river-splash {
+  fill: none;
+  stroke: #ffffff;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: alkyoni-splash-burst 5s infinite ease-out;
+  transform-origin: 62px 65px;
+}
+@keyframes alkyoni-splash-burst {
+  0%, 63% { opacity: 0; transform: scale(0.3); stroke-width: 2; }
+  64% { opacity: 1; transform: scale(1); stroke-width: 2.5; }
+  68% { opacity: 0; transform: scale(1.8); stroke-width: 0.5; }
+  100% { opacity: 0; }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #alkyoni-eco-nature {
+    width: 53.6px;
+    height: 48px;
+  }
+}
+/* === Ο ΣΚΙΟΥΡΟΣ (Ο ΑΚΡΟΒΑΤΗΣ ΤΩΝ ΚΟΡΜΩΝ) === */
+.t-eco-squirrel {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 34; /* Πάνω στους κορμούς των δέντρων */
+  cursor: pointer;
+   display: none; 
+}
+
+.t-eco-squirrel.active { display: block; }
+
+/* Το νευρικό σκαρφάλωμα (Άλμα -> Παύση -> Άλμα) */
+.squirrel-climb-anim {
+  animation: squirrel-scurry 8s infinite ease-in-out;
+}
+@keyframes squirrel-scurry {
+  0%, 15% { transform: translateY(40px); opacity: 0; } /* Κρυμμένος στη βάση */
+  17% { opacity: 1; }
+  
+  /* 1ο Πηδηματάκι */
+  20% { transform: translateY(25px) rotate(-10deg); }
+  22% { transform: translateY(25px) rotate(0deg); } /* Μικρή παύση */
+  
+  /* 2ο Πηδηματάκι */
+  25% { transform: translateY(10px) rotate(-10deg); }
+  27% { transform: translateY(10px) rotate(0deg); } /* Μικρή παύση */
+  
+  /* 3ο Πηδηματάκι - Φτάνει στη μέση του κορμού */
+  30%, 65% { transform: translateY(-5px) rotate(0deg); opacity: 1; } /* Στάση για έλεγχο */
+  
+  /* Αστραπιαίο σκαρφάλωμα και εξαφάνιση στα φύλλα */
+  68% { transform: translateY(-35px) rotate(-5deg); opacity: 1; }
+  72%, 100% { transform: translateY(-35px); opacity: 0; } /* Μέσα στα φύλλα */
+}
+
+/* Το απότομο γύρισμα του κεφαλιού/σώματος (Look Around στο 45%-55%) */
+.squirrel-turn-head {
+  animation: squirrel-flip 8s infinite ease-in-out;
+  transform-origin: 38px 35px; /* Το κέντρο του σκίουρου */
+}
+@keyframes squirrel-flip {
+  0%, 42% { transform: scaleX(1); }
+  45%, 58% { transform: scaleX(-1); } /* Γυρνάει ανάποδα κοιτώντας δεξιά */
+  62%, 100% { transform: scaleX(1); } /* Ξαναγυρνάει μπροστά και φεύγει */
+}
+
+/* Ελαφρύ τρέμουλο στην ουρά του όσο είναι σταματημένος */
+.squirrel-tail-twitch {
+  animation: tail-twitch 0.4s infinite alternate ease-in-out;
+  transform-origin: 32px 38px;
+}
+@keyframes tail-twitch {
+  0% { transform: rotate(-3deg); }
+  100% { transform: rotate(3deg); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #squirrel-eco-nature {
+    width: 52.6px;
+    height: 47px;
+  }
+}
+/* === ΤΟ ΑΓΡΙΟ ΑΛΟΓΟ (Ο ΕΛΕΥΘΕΡΟΣ ΚΑΛΠΑΣΜΟΣ) === */
+.t-wild-mustang {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 33; /* Πεδιάδες / Πρόποδες */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-wild-mustang.active { display: block; }
+
+/* 1. Η κίνηση κατά μήκος της οθόνης (Περνάει από δεξιά προς αριστερά) */
+.mustang-gallop-across {
+  animation: gallop-path 19s infinite linear;
+}
+@keyframes gallop-path {
+  0% { transform: translateX(30px); opacity: 0; }
+  10% { transform: translateX(15px); opacity: 1; }
+  90% { transform: translateX(-15px); opacity: 1; }
+  100% { transform: translateX(-30px); opacity: 0; }
+}
+
+/* 2. Ο ρυθμός του καλπασμού (Πάνω-κάτω και μπρος-πίσω) */
+.mustang-body-rhythm {
+  animation: gallop-bounce 0.6s infinite ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes gallop-bounce {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(4deg); } /* Τέντωμα στον αέρα */
+  100% { transform: translateY(0) rotate(-2deg); } /* Επαφή με το έδαφος */
+}
+
+/* 3. Η Χαίτη (Ανεμίζει προς τα πίσω) */
+.mustang-mane-wind {
+  animation: wind-blow-mane 0.4s infinite alternate ease-in-out;
+  transform-origin: 28px 25px; /* Στον αυχένα */
+}
+@keyframes wind-blow-mane {
+  0% { transform: skewX(10deg); }
+  100% { transform: skewX(25deg); }
+}
+
+/* 4. Η Ουρά (Ανεμίζει προς τα πίσω έντονα) */
+.mustang-tail-wind {
+  animation: wind-blow-tail 0.5s infinite alternate ease-in-out;
+  transform-origin: 75px 35px; /* Στη βάση της ουράς */
+}
+@keyframes wind-blow-tail {
+  0% { transform: rotate(10deg) skewX(10deg); }
+  100% { transform: rotate(25deg) skewX(20deg); }
+}
+
+/* Τα πόδια (Εντελώς απλό blur/κίνηση για την ψευδαίσθηση ταχύτητας) */
+.mustang-legs-blur {
+  animation: legs-gallop 0.3s infinite alternate;
+  transform-origin: 50px 60px;
+}
+@keyframes legs-gallop {
+  0% { transform: scaleX(0.8) skewX(10deg); }
+  100% { transform: scaleX(1.2) skewX(-10deg); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #mustang-eco-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Η ΚΟΥΚΟΥΒΑΓΙΑ (Ο ΝΥΧΤΕΡΙΝΟΣ ΠΑΡΑΤΗΡΗΤΗΣ) === */
+.t-eco-owl {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 34; /* Μέσα στις φυλλωσιές των δέντρων */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-owl.active { display: block; }
+
+/* 1. Η ομαλή περιστροφή του κεφαλιού (Rotate αριστερά-δεξιά) */
+.owl-head-turn {
+  animation: owl-head-rotate 7s infinite ease-in-out;
+  transform-origin: 50px 42px; /* Η βάση του κεφαλιού / λαιμός */
+}
+@keyframes owl-head-rotate {
+  0%, 25% { transform: rotate(0deg); }      /* Κοιτάει ευθεία */
+  35%, 55% { transform: rotate(-70deg); }   /* Στροφή αριστερά */
+  65%, 85% { transform: rotate(70deg); }    /* Στροφή δεξιά */
+  95%, 100% { transform: rotate(0deg); }    /* Επιστροφή στο κέντρο */
+}
+
+/* 2. Το αστραπιαίο ανοιγοκλείσιμο των ματιών (Double Blink με scaleY) */
+.owl-eyes-blink {
+  animation: owl-eye-snap 4s infinite ease-in-out;
+  transform-origin: 50px 33px; /* Ο άξονας των ματιών */
+}
+@keyframes owl-eye-snap {
+  0%, 45%, 49%, 53%, 100% { transform: scaleY(1); }
+  47%, 51% { transform: scaleY(0); } /* Ακαριαίο διπλό κλείσιμο ματιών */
+}
+
+/* 3. Ήπια αναπνοή για το σώμα */
+.owl-body-breath {
+  animation: owl-breath 3s infinite alternate ease-in-out;
+  transform-origin: 50px 55px;
+}
+@keyframes owl-breath {
+  0% { transform: scaleY(0.97); }
+  100% { transform: scaleY(1.03); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #owl-eco-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === ΟΙ ΠΥΓΟΛΑΜΠΙΔΕΣ (ΤΟ ΜΑΓΙΚΟ ΔΑΣΟΣ) === */
+.t-eco-firefly {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 35; 
+  cursor: pointer;
+display: none; 
+}
+
+.t-eco-firefly.active { display: block; }
+
+.ff-glow {
+  animation: firefly-pulse 2.5s infinite alternate ease-in-out;
+}
+.ff-glow.d1 { animation-duration: 3s; animation-delay: 0.5s; }
+.ff-glow.d2 { animation-duration: 2s; animation-delay: 1.2s; }
+.ff-glow.d3 { animation-duration: 3.5s; animation-delay: 0.2s; }
+
+/* Αυξήσαμε την ένταση (pixels) στο drop-shadow για πολύ μεγαλύτερη λάμψη */
+@keyframes firefly-pulse {
+  0%, 20% { opacity: 0.5; filter: drop-shadow(0 0 4px #ccff00); transform: scale(0.9); }
+  100% { opacity: 1; filter: drop-shadow(0 0 12px #ccff00) drop-shadow(0 0 22px #99ff00); transform: scale(1.1); }
+}
+
+.ff-flight-1 { animation: ff-path-1 8s infinite linear; transform-origin: 50px 45px; }
+.ff-flight-2 { animation: ff-path-2 10s infinite linear reverse; transform-origin: 50px 45px; }
+.ff-flight-3 { animation: ff-path-3 7s infinite linear; transform-origin: 50px 45px; }
+
+@keyframes ff-path-1 {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  33% { transform: translate(12px, -8px) rotate(15deg); }
+  66% { transform: translate(-8px, 12px) rotate(-10deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+@keyframes ff-path-2 {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  33% { transform: translate(-15px, -12px) rotate(-20deg); }
+  66% { transform: translate(10px, 8px) rotate(10deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+@keyframes ff-path-3 {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  33% { transform: translate(8px, 15px) rotate(10deg); }
+  66% { transform: translate(-12px, -5px) rotate(-15deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+@media (max-width: 767px) {
+  #firefly-eco-nature {
+    width: 53.6px;
+    height: 48px;
+  }
+}
+/* === Ο ΣΚΑΝΤΖΟΧΟΙΡΟΣ (ΑΜΥΝΑ ΚΑΙ ΚΟΥΒΑΡΙ) === */
+.t-eco-hedgehog {
+  position: absolute;
+  width: 54.5px;
+  height: 47.5px;
+  z-index: 34; /* Στα λιβάδια ή τις καλλιέργειες */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-hedgehog.active { display: block; }
+
+/* 1. Η κίνηση του περπατήματος (Αργά βήματα μπρος-πίσω και κούνημα) */
+.hh-walk-anim {
+  animation: hh-scuttle 8s infinite alternate ease-in-out;
+  transform-origin: 50px 60px;
+}
+@keyframes hh-scuttle {
+  0% { transform: translateX(-15px) rotate(0deg); }
+  25% { transform: translateX(-7.5px) rotate(3deg); }
+  50% { transform: translateX(0px) rotate(0deg); }
+  75% { transform: translateX(7.5px) rotate(-3deg); }
+  100% { transform: translateX(15px) rotate(0deg); }
+}
+
+/* Ομάδες για το Hover Effect με Transitions */
+.hh-face, .hh-legs, .hh-spikes {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Όταν γίνεται HOVER (Ο σκαντζόχοιρος γίνεται κουβάρι) */
+.t-eco-hedgehog:hover .hh-walk-anim {
+  animation-play-state: paused; /* Σταματάει να περπατάει */
+}
+
+/* Το μουσούδι μαζεύεται προς τα μέσα και εξαφανίζεται */
+.t-eco-hedgehog:hover .hh-face {
+  transform: translateX(-12px) scale(0.2);
+  opacity: 0;
+}
+
+/* Τα ποδαράκια μαζεύονται πάνω */
+.t-eco-hedgehog:hover .hh-legs {
+  transform: translateY(-8px) scaleY(0);
+  opacity: 0;
+}
+
+/* Η πλάτη με τα αγκάθια κατεβαίνει και "φουσκώνει" ελαφρώς */
+.t-eco-hedgehog:hover .hh-spikes {
+  transform: scale(1.05) translateY(4px);
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #hedgehog-eco-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Η ΠΕΤΑΛΟΥΔΑ ΑΠΟΛΛΩΝ (ΤΟ ΣΤΟΛΙΔΙ ΤΟΥ ΟΛΥΜΠΟΥ) === */
+.t-eco-apollo {
+  position: absolute;
+  width: 70px; /* Μεγάλο μέγεθος για να ξεχωρίζει καθαρά */
+  height: 60px;
+  z-index: 37; /* Πετάει ψηλότερα από όλα */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-apollo.active { display: block; }
+
+/* Ο άξονας X: Αργή μετακίνηση αριστερά-δεξιά με ελαφριά κλίση */
+.apollo-flight-x {
+  animation: apollo-wander-x 6s infinite ease-in-out;
+  transform-origin: 50px 42px;
+}
+@keyframes apollo-wander-x {
+  0%, 100% { transform: translateX(0px) rotate(0deg); }
+  25% { transform: translateX(25px) rotate(15deg); }
+  75% { transform: translateX(-25px) rotate(-15deg); }
+}
+
+/* Ο άξονας Y: Πιο γρήγορο πάνω-κάτω για την κυματιστή τροχιά */
+.apollo-flight-y {
+  animation: apollo-wander-y 1.8s infinite ease-in-out;
+}
+@keyframes apollo-wander-y {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Το φτερούγισμα (ScaleX στο 0.2 για τρισδιάστατη ψευδαίσθηση) */
+.apollo-wings-flap {
+  animation: apollo-flap 0.15s infinite alternate ease-in-out;
+  transform-origin: 50px 42px; /* Στο κέντρο του σώματος */
+}
+@keyframes apollo-flap {
+  0% { transform: scaleX(1); }
+  100% { transform: scaleX(0.25); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #apollo-eco-nature {
+    width: 47px;
+    height: 42px;
+  }
+}
+/* === Η ΝΥΧΤΕΡΙΔΑ (AUTOMATIC AMBIENT ENGINE) === */
+.t-eco-bat {
+  position: absolute;
+  width: 65px;
+  height: 60px;
+  z-index: 38;
+  cursor: pointer;
+  display: none; 
+}
+.t-eco-bat.active { display: block; }
+
+/* 1. Η ΤΡΟΧΙΑ ΤΗΣ ΠΤΗΣΗΣ (12 δευτερόλεπτα Master Loop) */
+.bat-master-path {
+  animation: bat-ambient-flight 12s infinite ease-in-out;
+  transform-origin: 50px 16px;
+}
+
+@keyframes bat-ambient-flight {
+  0%, 40%, 92%, 100% { transform: translate(0px, 0px) scale(1); } /* Μένει ακίνητη στον βράχο */
+  42% { transform: translate(0px, 10px) scale(1.05); }            /* Drop Momentum (Ξυπνάει & πέφτει) */
+  48% { transform: translate(-25px, -8px) scale(0.95); }          /* Swoop Αριστερά */
+  56% { transform: translate(20px, -28px) scale(0.85); }          /* Zig-Zag Δεξιά & Πάνω */
+  64% { transform: translate(-30px, -45px) scale(0.75); }         /* Κούρεμα αριστερά ψηλά */
+  74% { transform: translate(25px, -35px) scale(0.85); }          /* Ελιγμός δεξιά */
+  84% { transform: translate(5px, -12px) scale(0.95); }           /* Ευθυγράμμιση για προσγείωση */
+  90% { transform: translate(0px, 2px) scale(1); }                /* Πιάνει πάλι τον βράχο */
+}
+
+/* 2. ΔΙΑΧΕΙΡΙΣΗ ΟΡΑΤΟΤΗΤΑΣ ΚΑΤΑΣΤΑΣΕΩΝ (Συγχρονισμένη με τα 12s της πτήσης) */
+/* Η κρεμαστή νυχτερίδα κουνιέται στην αρχή, και εξαφανίζεται κατά την πτήση */
+.bat-resting-state {
+  transform-origin: 50px 11px;
+  animation: bat-hanging-sway 12s infinite ease-in-out;
+}
+@keyframes bat-hanging-sway {
+  0%, 100% { opacity: 1; transform: rotate(-4deg); }
+  20% { transform: rotate(4deg); }
+  38% { opacity: 1; transform: rotate(0deg); }
+  40%, 89% { opacity: 0; } /* Γίνεται αόρατη όσο πετάει η άλλη */
+  90% { opacity: 1; }
+}
+
+/* Η ιπτάμενη νυχτερίδα είναι αόρατη στην αρχή, και εμφανίζεται μόνο στο 40%-89% */
+.bat-flying-state {
+  animation: bat-flying-visibility 12s infinite steps(1);
+}
+@keyframes bat-flying-visibility {
+  0%, 39.9%, 90%, 100% { opacity: 0; }
+  40%, 89.9% { opacity: 1; }
+}
+
+/* 3. ΦΥΣΙΚΟ ΦΤΕΡΟΥΓΙΣΜΑ ΣΤΟΥΣ ΩΜΟΥΣ (Flapping from Shoulder Joints) */
+/* Αριστερό Φτερό: Περιστρέφεται γύρω από τον αριστερό ώμο */
+.bat-wing-left {
+  animation: wing-beat-l 0.12s infinite alternate ease-in-out;
+  transform-origin: 44px 35px;
+}
+@keyframes wing-beat-l {
+  0% { transform: rotate(30deg) scaleY(1); }
+  100% { transform: rotate(-35deg) scaleY(0.8); }
+}
+
+/* Δεξί Φτερό: Αντίρροπη περιστροφή γύρω από τον δεξί ώμο */
+.bat-wing-right {
+  animation: wing-beat-r 0.12s infinite alternate ease-in-out;
+  transform-origin: 56px 35px;
+}
+@keyframes wing-beat-r {
+  0% { transform: rotate(-30deg) scaleY(1); }
+  100% { transform: rotate(35deg) scaleY(0.8); }
+}
+
+/* Mobile Responsive (-20%) */
+@media (max-width: 767px) {
+  .t-eco-bat {
+    width: 55px;
+    height: 50px;
+  }
+}
+/* === Ο ΔΕΝΔΡΟΒΑΤΡΑΧΟΣ (ΤΟ ΤΡΑΓΟΥΔΙ ΣΤΟ ΡΕΜΑ) === */
+.t-eco-frog {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 35; /* Πάνω στα ποτάμια/ρέματα */
+  cursor: pointer;
+  display: none;
+}
+
+.t-eco-frog.active { display: block; }
+
+/* Ο Φωνητικός Σάκος φουσκώνει διπλά κάθε 5s (Το Κοάσμα) */
+.frog-vocal-sac {
+  animation: frog-croaking 5s infinite;
+  transform-origin: 50px 42px; /* Το κέντρο κάτω από το στόμα */
+}
+@keyframes frog-croaking {
+  0%, 80%, 100% { transform: scale(0); opacity: 0; }
+  82% { transform: scale(1.5); opacity: 0.85; } /* 1ο Φούσκωμα */
+  85% { transform: scale(0); opacity: 0; }
+  88% { transform: scale(1.5); opacity: 0.85; } /* 2ο Φούσκωμα */
+  91% { transform: scale(0); opacity: 0; }
+}
+
+/* Απαλή αναπνοή στο σώμα */
+.frog-body-breath {
+  animation: frog-breath 2s infinite alternate ease-in-out;
+  transform-origin: 50px 50px;
+}
+@keyframes frog-breath {
+  0% { transform: scaleY(0.98); }
+  100% { transform: scaleY(1.02); }
+}
+
+/* ΤΟ ΑΥΤΟΜΑΤΟ ΑΛΜΑ */
+.frog-jump-wrapper {
+  /* Αντί για transition, βάζουμε animation που διαρκεί 10s και επαναλαμβάνεται άπειρα */
+  animation: frog-auto-jump 10s infinite cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: 50px 70px;
+}
+
+@keyframes frog-auto-jump {
+  0%, 80% {
+    /* Ο βάτραχος κάθεται ήρεμος στο ρέμα */
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  85% {
+    /* Το άλμα! Φεύγει πάνω αριστερά και εξαφανίζεται */
+    transform: translate(-60px, -70px) rotate(-25deg) scale(0.6);
+    opacity: 0;
+  }
+  95% {
+    /* Επιστρέφει αόρατος στην αρχική του θέση */
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  100% {
+    /* Εμφανίζεται ξανά για να ξεκινήσει ο κύκλος */
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #frog-eco-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
+/* === Ο ΤΣΑΛΑΠΕΤΕΙΝΟΣ (Ο ΛΟΦΙΟΦΟΡΟΣ ΤΗΣ ΥΠΑΙΘΡΟΥ) === */
+.t-eco-hoopoe {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 35; /* Στα ξέφωτα και τις πεδινές περιοχές */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-hoopoe.active { display: block; }
+
+/* 1. Το animation του κεφαλιού (3 γρήγορα τσιμπήματα στο χώμα) */
+.hoopoe-head-group {
+  animation: hoopoe-peck-cycle 5s infinite ease-in-out;
+  transform-origin: 42px 42px; /* Η βάση του λαιμού */
+}
+@keyframes hoopoe-peck-cycle {
+  0% { transform: rotate(0deg); }
+  5% { transform: rotate(20deg); }  /* 1ο Τσίμπημα */
+  10% { transform: rotate(0deg); }
+  15% { transform: rotate(20deg); } /* 2ο Τσίμπημα */
+  20% { transform: rotate(0deg); }
+  25% { transform: rotate(20deg); } /* 3ο Τσίμπημα */
+  30%, 85% { transform: rotate(-5deg); } /* Σηκώνει το κεφάλι όρθιο & κοιτάζει */
+  92%, 100% { transform: rotate(0deg); } /* Επαναφορά */
+}
+
+/* 2. Το απότομο άνοιγμα του λοφίου σαν βεντάλια (στο 35% έως 80%) */
+.hoopoe-crest {
+  animation: hoopoe-crest-fan 5s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: 43px 28px; /* Η βάση του λοφίου στο κεφάλι */
+}
+@keyframes hoopoe-crest-fan {
+  0%, 34% { transform: scale(0.2) rotate(-25deg); opacity: 0.4; } /* Κλειστό λοφίο */
+  38% { transform: scale(1.1) rotate(2deg); opacity: 1; }         /* Απότομο άνοιγμα (υπερέκταση) */
+  42%, 80% { transform: scale(1) rotate(0deg); opacity: 1; }      /* Μένει ανοιχτό σαν βεντάλια */
+  85%, 100% { transform: scale(0.2) rotate(-25deg); opacity: 0.4; } /* Κλείνει */
+}
+
+/* Ήπια κίνηση στην ουρά για περισσότερη φυσικότητα */
+.hoopoe-tail-move {
+  animation: hoopoe-tail-wag 2.5s infinite alternate ease-in-out;
+  transform-origin: 26px 52px;
+}
+@keyframes hoopoe-tail-wag {
+  0% { transform: rotate(-2deg); }
+  100% { transform: rotate(4deg); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #hoopoe-eco-nature {
+    width: 54.6px;
+    height: 49px;
+  }
+}
+/* === ΤΟ ΓΕΡΑΚΙ (Ο ΚΥΚΛΙΚΟΣ ΠΕΡΙΠΑΤΟΣ) === */
+.t-eco-hawk {
+  position: absolute;
+  /* Μικρύναμε το πλαίσιο αφού ο κύκλος είναι πιο κλειστός */
+  width: 70px; 
+  height: 70px;
+  z-index: 39; /* Υψηλότερα από όλα, στον ουρανό */
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-hawk.active { display: block; }
+
+/* 1. Η μικρή, κλειστή κυκλική τροχιά */
+.hawk-orbit-center {
+  animation: hawk-glide-circle 20s linear infinite; /* Λίγο πιο γρήγορο */
+  transform-origin: 35px 35px; /* Το νέο κέντρο του πλαισίου */
+}
+@keyframes hawk-glide-circle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 2. Η αλλαγή υψομέτρου (Πιο ήπιο Scale για μικρότερο κύκλο) */
+.hawk-altitude-scale {
+  animation: hawk-thermal-lift 6s ease-in-out infinite alternate;
+  /* Το origin πρέπει να είναι στη βάση του πουλιού */
+  transform-origin: 35px 5px; 
+}
+@keyframes hawk-thermal-lift {
+  /* Πιο κοντά στο 1, για λιγότερη "βουτιά" */
+  0% { transform: scale(0.85); }
+  100% { transform: scale(1.05); }
+}
+
+/* Ελαφριά κίνηση στην ουρά για έλεγχο πτήσης */
+.hawk-tail-steer {
+  animation: hawk-tail-adjust 4s infinite alternate ease-in-out;
+  transform-origin: -15px 0px;
+}
+@keyframes hawk-tail-adjust {
+  0% { transform: rotate(-3deg); }
+  100% { transform: rotate(3deg); }
+}
+
+/* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
+@media (max-width: 767px) {
+  #hawk-eco-nature {
+    width: 69px;
+    height: 66px;
+  }
+}
+/* === Ο ΛΑΓΟΣ (Η ΣΥΝΕΧΗΣ ΕΓΡΗΓΟΡΣΗ) - ΒΕΛΤΙΩΜΕΝΗ ΕΚΔΟΣΗ === */
+.t-eco-hare {
+  position: absolute;
+  width: 59.5px;
+  height: 52.5px;
+  z-index: 34; 
+  cursor: pointer;
+  display: none; 
+}
+
+.t-eco-hare.active { display: block; }
+
+/* 1. Το animation του κεφαλιού */
+.hare-head-group {
+  animation: hare-head-logic 10s infinite ease-in-out;
+  transform-origin: 48px 48px; 
+}
+@keyframes hare-head-logic {
+  0%, 12%, 24%, 36%, 48%, 60% { transform: translate(4px, 8px) rotate(28deg); }
+  6%, 18%, 30%, 42%, 54% { transform: translate(4px, 10px) rotate(32deg); }
+  67% { transform: translate(0px, 0px) rotate(0deg); } /* Σηκώνει κεφάλι */
+  88% { transform: translate(0px, 0px) rotate(0deg); } /* Ελέγχει */
+  93%, 100% { transform: translate(4px, 8px) rotate(28deg); } /* Ξανασκύβει */
+}
+
+/* 2. Τα αυτιά-ραντάρ */
+.hare-ears-group {
+  animation: hare-ears-twitch 10s infinite ease-in-out;
+  transform-origin: 46px 32px; 
+}
+@keyframes hare-ears-twitch {
+  0%, 67% { transform: rotate(0deg); }
+  70% { transform: rotate(-12deg) skewX(-5deg); }
+  73% { transform: rotate(8deg) skewX(5deg); }
+  76% { transform: rotate(-10deg) skewX(-3deg); }
+  79% { transform: rotate(6deg) skewX(2deg); }
+  83%, 100% { transform: rotate(0deg); }
+}
+
+/* 3. Η λευκή φουντωτή ουρά */
+.hare-tail-twitch {
+  animation: hare-tail-move 1.5s infinite alternate ease-in-out;
+  transform-origin: 20px 58px;
+}
+@keyframes hare-tail-move {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(8deg); }
+}
+
+@media (max-width: 767px) {
+  #hare-eco-nature {
+    width: 47.6px;
+    height: 42px;
+  }
+}
