@@ -597,7 +597,7 @@ if (overlay) overlay.className = 'map-overlay';
   });
 // 👇 ΕΔΩ ΑΚΡΙΒΩΣ ΞΕΚΙΝΑΕΙ Ο ΚΩΔΙΚΑΣ ΕΝΑΛΛΑΓΗΣ ΓΙΑ ΤΟΝ 2Ο ΧΑΡΤΗ 👇
 // === ΗΧΟΣ 2ου ΧΑΡΤΗ (Ανεξάρτητες μεταβλητές) ===
-const oceanAudio2 = new Audio("https://res.cloudinary.com/drx2a5ane/video/upload/v1783095191/solarmusic-ocean-waves-112906._ee1tbg.mp3");
+const oceanAudio2 = new Audio("https://grafis.sch.gr/index.php/s/fMEcaLWSZxManpy/download");
 let audioTimeout2;
 let fadeInterval2;
 let mapState2 = 5; 
