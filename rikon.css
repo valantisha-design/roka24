@@ -2138,8 +2138,8 @@ animation: talos-patrol 30s infinite alternate linear;
 /* === Ο ΔΡΑΚΟΝΤΑΣ ΤΗΣ ΚΟΛΧΙΔΑΣ (Ο ΑΙΩΝΙΟΣ ΦΥΛΑΚΑΣ) === */
 .t-colchian-dragon {
   position: absolute;
-  width: 49.5px;
-  height: 42.5px;
+  width: 54.5px;
+  height: 48.5px;
   z-index: 44; /* Στα δάση / ιερά άλση */
   cursor: pointer;
    display: none; 
@@ -2196,8 +2196,8 @@ animation: talos-patrol 30s infinite alternate linear;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #colchian-monster {
-    width: 37.6px;
-    height: 32px;
+    width: 49.6px;
+    height: 44px;
   }
 }
 /* === Ο ΧΡΥΣΑΕΤΟΣ (Ο ΒΑΣΙΛΙΑΣ ΤΩΝ ΟΥΡΑΝΩΝ) === */
@@ -2261,8 +2261,8 @@ animation: talos-patrol 30s infinite alternate linear;
 /* === ΟΙΚΟΛΟΓΙΑ: ΡΟΖ ΦΛΑΜΙΝΓΚΟ (ΑΛΥΚΗ ΚΙΤΡΟΥΣ) === */
 .t-eco-flamingos {
   position: absolute;
-  width: 56px;
-  height: 51px;
+  width: 59px;
+  height: 55px;
   z-index: 49; /* Σωστό επίπεδο για να είναι κάτω από το pop-up! */
   cursor: pointer;
   display: none; 
@@ -2333,8 +2333,8 @@ animation: talos-patrol 30s infinite alternate linear;
 /* Μείωση μεγέθους για τα κινητά */
 @media (max-width: 767px) {
   #flamingos-anim {
-    width: 48px;
-    height: 43px;
+    width: 54px;
+    height: 45px;
   }
 }
 /* === ΑΓΡΙΟΓΙΔΟ - PRO VERSION === */
@@ -2440,8 +2440,8 @@ display: none;
 /* === ΘΑΛΑΣΣΙΑ ΧΕΛΩΝΑ CARETTA-CARETTA === */
 .t-eco-turtle {
   position: absolute;
-  width: 49px;
-  height: 45px;
+  width: 53px;
+  height: 49px;
   z-index: 48; /* Πλέει στο νερό, κάτω από τα ιπτάμενα banners */
   cursor: pointer;
  display: none;
@@ -2527,13 +2527,13 @@ display: none;
 
 /* Mobile Responsive */
 @media (max-width: 767px) {
-  .t-eco-turtle { width: 40px; height: 35px; }
+  .t-eco-turtle { width: 44px; height:40px; }
 }
 /* === Η ΚΑΦΕ ΑΡΚΟΥΔΑ === */
 .t-eco-bear {
   position: absolute;
-  width: 49px;
-  height: 45px;
+  width: 54px;
+  height: 49px;
   z-index: 51;
   cursor: pointer;
  display: none;
@@ -2585,13 +2585,13 @@ display: none;
 }
 
 @media (max-width: 767px) {
-  .t-eco-bear { width: 43px; height: 38px; }
+  .t-eco-bear { width: 49px; height: 45px; }
 }
 /* === ΟΙΚΟΛΟΓΙΑ: Η ΒΙΔΡΑ === */
 .t-eco-otter {
   position: absolute;
-  width: 54px;
-  height: 49px;
+  width: 59px;
+  height: 54px;
   z-index: 52; /* Ανάμεσα στο νερό και τα πουλιά */
   cursor: pointer;
    display: none;
@@ -2643,15 +2643,15 @@ display: none;
 /* Κινητά */
 @media (max-width: 767px) {
   #otter-anim {
-    width: 44px;
-    height: 39px;
+    width: 49px;
+    height: 44px;
   }
 }
 /* === ΟΙΚΟΛΟΓΙΑ: ΑΓΡΙΟΓΟΥΡΟΥΝΟ (Άγριο & Γρήγορο) === */
 .t-eco-boar {
   position: absolute;
-  width: 50px;
-  height: 46px;
+  width: 55px;
+  height: 50px;
   z-index: 53; 
   cursor: pointer;
 display: none;
@@ -2700,8 +2700,8 @@ display: none;
 /* === Ο ΔΡΥΟΚΟΛΑΠΤΗΣ (ΤΟ ΧΤΥΠΗΜΑ) === */
 .t-woodpecker-tree {
   position: absolute;
-  width: 49.5px;
-  height: 45.5px;
+  width: 55.5px;
+  height: 50.5px;
   z-index: 36; /* Φύση / Δάσος */
   cursor: pointer;
    display: none; 
@@ -2761,8 +2761,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #woodpecker-nature {
-    width: 39.6px;
-    height: 34px;
+    width: 47.6px;
+    height: 43px;
   }
 }
 /* === ΤΟ ΖΑΡΚΑΔΙ (ΕΓΡΗΓΟΡΣΗ ΣΤΟ ΔΑΣΟΣ) === */
@@ -3086,8 +3086,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #tritonas-eco-nature {
-    width: 47.6px;
-    height: 42px;
+    width: 49.6px;
+    height: 44px;
   }
 }
 /* === ΤΟ ΝΕΡΟΦΙΔΟ (Η ΑΘΟΡΥΒΗ ΟΛΙΣΘΗΣΗ) === */
@@ -3155,8 +3155,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #nerofido-eco-nature {
-    width: 47.6px;
-    height: 42px;
+    width: 51.6px;
+    height: 44px;
   }
 }
 /* === Ο ΚΑΒΟΥΡΑΣ (Η ΠΛΑΓΙΑ ΠΕΡΙΠΟΛΙΑ) === */
@@ -3629,8 +3629,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #alkyoni-eco-nature {
-    width: 53.6px;
-    height: 48px;
+    width: 57.6px;
+    height: 51px;
   }
 }
 /* === Ο ΣΚΙΟΥΡΟΣ (Ο ΑΚΡΟΒΑΤΗΣ ΤΩΝ ΚΟΡΜΩΝ) === */
@@ -3693,7 +3693,7 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #squirrel-eco-nature {
-    width: 52.6px;
+    width: 56.6px;
     height: 47px;
   }
 }
@@ -3869,8 +3869,8 @@ display: none;
 
 @media (max-width: 767px) {
   #firefly-eco-nature {
-    width: 53.6px;
-    height: 48px;
+    width: 56.6px;
+    height: 51px;
   }
 }
 /* === Ο ΣΚΑΝΤΖΟΧΟΙΡΟΣ (ΑΜΥΝΑ ΚΑΙ ΚΟΥΒΑΡΙ) === */
@@ -3928,8 +3928,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #hedgehog-eco-nature {
-    width: 47.6px;
-    height: 42px;
+    width: 49.6px;
+    height: 44px;
   }
 }
 /* === Η ΠΕΤΑΛΟΥΔΑ ΑΠΟΛΛΩΝ (ΤΟ ΣΤΟΛΙΔΙ ΤΟΥ ΟΛΥΜΠΟΥ) === */
@@ -4056,8 +4056,8 @@ display: none;
 /* Mobile Responsive (-20%) */
 @media (max-width: 767px) {
   .t-eco-bat {
-    width: 55px;
-    height: 50px;
+    width: 59px;
+    height: 54px;
   }
 }
 /* === Ο ΔΕΝΔΡΟΒΑΤΡΑΧΟΣ (ΤΟ ΤΡΑΓΟΥΔΙ ΣΤΟ ΡΕΜΑ) === */
@@ -4185,8 +4185,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #hoopoe-eco-nature {
-    width: 54.6px;
-    height: 49px;
+    width: 58.6px;
+    height: 53px;
   }
 }
 /* === ΤΟ ΓΕΡΑΚΙ (Ο ΚΥΚΛΙΚΟΣ ΠΕΡΙΠΑΤΟΣ) === */
