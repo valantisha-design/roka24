@@ -990,7 +990,7 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #hydra-monster {
-    width: 37.6px;
+    width: 44.6px;
     height: 35px;
   }
 }
@@ -1592,8 +1592,8 @@ animation: talos-patrol 30s infinite alternate linear;
 /* === Ο ΛΥΚΑΟΝΑΣ (Ο ΠΡΩΤΟΣ ΛΥΚΑΝΘΡΩΠΟΣ) === */
 .t-lycaon-werewolf {
   position: absolute;
-  width: 44.5px;
-  height: 37.5px;
+  width: 49.5px;
+  height: 46.5px;
   z-index: 47; /* Ύψωμα, δάση */
   cursor: pointer;
   display: none;  
@@ -1657,8 +1657,8 @@ animation: talos-patrol 30s infinite alternate linear;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #lycaon-monster {
-    width: 32.6px;
-    height: 27px;
+    width: 48.6px;
+    height: 45px;
   }
 }
 /* === Ο ΜΙΝΩΤΑΥΡΟΣ (Ο ΕΚΤΕΛΕΣΤΗΣ ΤΟΥ ΛΑΒΥΡΙΝΘΟΥ) === */
