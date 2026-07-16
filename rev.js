@@ -31,7 +31,7 @@
     audioOcean: new Audio(CONFIG.oceanAudioUrl),
     audioCurrentPin: null,
     isSoundOn: true,
-    mapStage: 5, 
+    mapStage: 4, 
     monstersOnlyActive: false,
     audioTimers: { fade: null, stop: null },
     isDraggingMap: false
@@ -577,7 +577,10 @@ mythic_echidna: {
       // Κεντρικός διακόπτης (Switch) που διαχειρίζεται τα Banners και τα SVG αστραπιαία!
       switch (STATE.mapStage) {
         case 1: // Group B
-          MapEngine.filterBanners(banners, b => CONFIG.groups.B.some(p => b.dataset.action.includes(p)) && !b.classList.contains('mythic-banner') && !b.classList.contains('eco-banner'));
+          MapEngine.filterBanners(banners, b => {
+  const id = (b.dataset.action.match(/showPlace\('([^']+)'/) || [])[1];
+  return id && CONFIG.groups.B.includes(id) && !b.classList.contains('mythic-banner') && !b.classList.contains('eco-banner');
+});
           MapEngine.toggleSVGs(CONFIG.svg.monsters, false);
           MapEngine.toggleSVGs(CONFIG.svg.eco, false);
           if (btn) btn.innerHTML = "✨Φώτισε όλα τα Μονοπάτια!";
@@ -601,7 +604,10 @@ mythic_echidna: {
           if (btn) btn.innerHTML = "🔄 Επαναφορά στην Αρχή!";
           break;
         case 5: // Αρχική (Group A)
-          MapEngine.filterBanners(banners, b => CONFIG.groups.A.some(p => b.dataset.action.includes(p)) && !b.classList.contains('mythic-banner') && !b.classList.contains('eco-banner'));
+          MapEngine.filterBanners(banners, b => {
+  const id = (b.dataset.action.match(/showPlace\('([^']+)'/) || [])[1];
+  return id && CONFIG.groups.A.includes(id) && !b.classList.contains('mythic-banner') && !b.classList.contains('eco-banner');
+});
           MapEngine.toggleSVGs(CONFIG.svg.monsters, false);
           MapEngine.toggleSVGs(CONFIG.svg.eco, false);
           if (btn) btn.innerHTML = "🗺️ Ανακάλυψε τα υπόλοιπα!";
@@ -618,7 +624,10 @@ mythic_echidna: {
       
       if (!STATE.monstersOnlyActive) {
         // Επαναφορά (Όλα τα μυθικά)
-        MapEngine.filterBanners(banners, b => b.classList.contains('mythic-banner'));
+        MapEngine.filterBanners(banners, b => {
+  const id = (b.dataset.action.match(/showPlace\('([^']+)'/) || [])[1];
+  return id && CONFIG.monsterPlaceIDs.includes(id);
+});
         btn.innerHTML = "ΜΟΝΟ ΤΕΡΑΤΑ";
       } else {
         // Μόνο Τέρατα
