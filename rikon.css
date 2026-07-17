@@ -3935,7 +3935,7 @@ display: none;
 /* === Η ΠΕΤΑΛΟΥΔΑ ΑΠΟΛΛΩΝ (ΤΟ ΣΤΟΛΙΔΙ ΤΟΥ ΟΛΥΜΠΟΥ) === */
 .t-eco-apollo {
   position: absolute;
-  width: 70px; /* Μεγάλο μέγεθος για να ξεχωρίζει καθαρά */
+  width: 65px; /* Μεγάλο μέγεθος για να ξεχωρίζει καθαρά */
   height: 60px;
   z-index: 37; /* Πετάει ψηλότερα από όλα */
   cursor: pointer;
@@ -3977,8 +3977,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #apollo-eco-nature {
-    width: 47px;
-    height: 42px;
+    width: 45px;
+    height: 40px;
   }
 }
 /* === Η ΝΥΧΤΕΡΙΔΑ (AUTOMATIC AMBIENT ENGINE) === */
