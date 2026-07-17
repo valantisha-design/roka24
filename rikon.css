@@ -748,8 +748,8 @@ display: none;
 
 @media (max-width: 767px) {
   #harpies-monster {
-    width: 52.6px;
-    height: 47px;
+    width: 56.6px;
+    height: 52px;
   }
 }
 /* === Ο ΚΕΡΒΕΡΟΣ (Ο ΦΥΛΑΚΑΣ ΤΟΥ ΑΔΗ) === */
@@ -2700,8 +2700,8 @@ display: none;
 /* === Ο ΔΡΥΟΚΟΛΑΠΤΗΣ (ΤΟ ΧΤΥΠΗΜΑ) === */
 .t-woodpecker-tree {
   position: absolute;
-  width: 55.5px;
-  height: 50.5px;
+  width: 51.5px;
+  height: 47.5px;
   z-index: 36; /* Φύση / Δάσος */
   cursor: pointer;
    display: none; 
