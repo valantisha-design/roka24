@@ -1,0 +1,7 @@
+/* ΛΥΣΗ 3: Γραμμή ανάμεσα σε αδέρφια-widgets */
+@media screen and (max-width: 768px) {
+    .widget + .widget {
+        border-top: 6px solid #e0e0e0 !important;
+    
+    }
+}
