@@ -5935,3 +5935,977 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
     #stc-widget { max-width: 100%; padding: 20px 0px; }
     .stc-polaroid { max-width: 100%; margin: 0 auto; transform: rotate(0deg); }
   }
+
+
+
+/* 1. Κεντρικό Panel */
+#smart-hub {
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--glass, rgba(255, 255, 255, 0.18));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.hub-divider {
+  display: flex;
+  align-items: center;
+  text-align: left; /* Αλλαγή από center σε left */
+  justify-content: flex-start; /* Σπρώχνει το περιεχόμενο αριστερά */
+  
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: #000;
+  letter-spacing: 0.5px;
+  
+  margin-bottom: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+/* Η γραμμή αριστερά (Μικραίνει για να κολλήσει το κείμενο αριστερά) */
+.hub-divider::before { 
+  content: ''; 
+  width: 16px; /* Σταθερό μικρό μήκος για την αριστερή γραμμή */
+  flex: none; /* Σταματάει να μεγαλώνει */
+  border-bottom: 1px solid rgba(0,0,0,0.15); 
+  margin-right: 5px; /* Απόσταση από το κείμενο */
+}
+/* Η γραμμή δεξιά (Μεγαλώνει για να γεμίσει το υπόλοιπο κενό) */
+.hub-divider::after { 
+  content: ''; 
+  flex: 1; /* Αυτή η γραμμή παίρνει όλο τον υπόλοιπο χώρο */
+  border-bottom: 1px solid rgba(0,0,0,0.15); 
+  margin-left: 15px; 
+}
+
+/* 3. Links - ΜΑΥΡΑ ΓΡΑΜΜΑΤΑ & ORIGINAL DESIGN */
+.hub-links { 
+  list-style: none !important; 
+  margin: 0 !important; 
+  padding: 0 !important; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+}
+
+.hub-links a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-left: 5px solid transparent; 
+  border-radius: 14px;
+  padding: 1px 1px;
+  color: #000 !important; /* ΚΑΘΑΡΟ ΜΑΥΡΟ */
+  font-weight: 700 !important; /* ΕΝΤΟΝΑ */
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* ΠΡΟΣΘΕΣΕ ΑΥΤΑ: */
+  -webkit-hyphens: auto !important; /* Για Chrome και Safari */
+  -ms-hyphens: auto !important;     /* Για παλιούς Edge */
+  hyphens: auto !important;         /* 
+ική ρύθμιση συλλαβισμού */
+  
+  word-break: break-word !important; /* Εξασφαλίζει ότι η λέξη θα σπάσει αν είναι πολύ μεγάλη */
+}
+
+.hub-ic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.9); /* Λευκό "συννεφάκι" */
+  border-radius: 10px;
+  font-size: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  
+  /* ΠΡΟΣΘΗΚΕΣ ΓΙΑ ΝΑ ΚΡΑΤΑΝΕ ΤΑ EMOJI ΤΟ ΧΡΩΜΑ ΤΟΥΣ: */
+  color: initial !important; /* Λέει στο emoji να αγνοήσει το μαύρο χρώμα του link */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif !important; /* Κλειδώνει την εμφάνισή τους ως "χρωματιστά εικονίδια" */
+}
+
+.hub-links a:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-left: 5px solid #a90e0e;
+  transform: translateX(6px) scale(1.02);
+  color: #a90e0e !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hub-links a:hover .hub-ic {
+  transform: scale(1.15) rotate(-5deg);
+  background: #fff;
+}
+/* Το κουμπί που ανοιγοκλείνει */
+.hub-divider {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Το βελάκι */
+.hub-toggle-icon {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 12px;
+  vertical-align: middle;
+  transition: transform 0.4s ease;
+}
+
+/* Όταν ανοίγει, το βελάκι γυρίζει */
+.hub-divider.active .hub-toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* Το "κρυφό" περιτύλιγμα που ανοιγοκλείνει */
+.hub-content-wrapper {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.7s ease-in-out, opacity 0.5s ease;
+}
+
+/* Η κατάσταση όταν είναι ανοιχτό */
+.hub-content-wrapper.open {
+  max-height: 5000px; 
+  opacity: 1;
+  margin-top: 20px;
+}
+@media (min-width: 701px) {
+  /* Κάνει το συρτάρι πάντα ανοιχτό σε PC */
+  .hub-content-wrapper {
+    max-height: none !important;
+    opacity: 1 !important;
+    margin-top: 20px !important;
+  }
+.mobile-only {
+    display: none !important;
+  }
+  
+  /* Κρύβει το βελάκι γιατί είναι περιττό σε PC */
+  .hub-toggle-icon {
+    display: none !important;
+  }
+  
+  /* Αφαιρεί το "χεράκι" στον τίτλο αφού δεν χρειάζεται κλικ */
+  .hub-divider {
+    cursor: default !important;
+  }
+}
+/* ΕΞΑΥΛΩΣΗ ΜΟΝΟ ΣΤΟ ΚΙΝΗΤΟ ΓΙΑ ΤΟ HTML 13 */
+@media screen and (max-width: 768px) {
+  #HTML13, #HTML13 .widget-content, #HTML13 .widget {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
+  }
+}
+/* ΣΤΟ PC ΕΠΑΝΑΦΟΡΑ ΓΙΑ ΤΟ HTML 13 */
+@media screen and (min-width: 769px) {
+  #HTML13 { display: block !important; visibility: visible !important; }
+}
+/* ΜΕΓΕΘΥΝΣΗ ΤΙΤΛΟΥ ΚΑΙ ΚΕΙΜΕΝΟΥ ΜΟΝΟ ΣΤΑ ΚΙΝΗΤΑ */
+@media screen and (max-width: 768px) {
+  /* Μεγαλώνει ο τίτλος "Έξυπνες Σελίδες" */
+  .hub-divider {
+    font-size: 15px !important; /* Από 16px το πάμε 24px */
+    font-weight: 900 !important;
+    letter-spacing: 0px !important;
+    padding: 10px 5px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Μεγαλώνει το βελάκι */
+  .hub-toggle-icon {
+    font-size: 18px !important;
+    margin-left: 15px !important;
+  }
+
+  /* Μεγαλώνει η γραμμή δεξιά για να γεμίσει το κενό */
+  .hub-divider::after {
+    flex: 1 !important;
+    border-bottom: 2px solid rgba(0,0,0,0.2) !important; /* Πιο παχιά γραμμή */
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+  }
+
+
+  /* Μεγαλώνει το κείμενο μέσα στα κουμπιά (links) */
+  .hub-links a {
+    font-size: 18px !important; /* Πιο ευανάγνωστο στο χέρι */
+    padding: 8px !important; /* Πιο "παχύ" κουμπί για να πατιέται εύκολα */
+  }
+
+  /* Μεγαλώνουν τα εικονίδια (emoji) */
+  .hub-ic {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 22px !important;
+  }
+}
+/* ΜΕΓΕΘΥΝΣΗ ΚΑΙ ΧΡΩΜΑ #a90e0e ΜΟΝΟ ΣΤΑ ΚΙΝΗΤΑ */
+@media screen and (max-width: 768px) {
+  /* Τίτλος: Μέγεθος και Χρώμα */
+  .hub-divider {
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    color: #a90e0e !important; /* ΕΔΩ ΤΟ ΧΡΩΜΑ ΣΟΥ */
+    padding: 20px 1px !important;
+  }
+
+  /* Το βελάκι δίπλα στον τίτλο */
+  .hub-toggle-icon {
+    font-size: 18px !important;
+    color: #a90e0e !important;
+  }
+
+  /* Η γραμμή δεξιά από τον τίτλο */
+  .hub-divider::after {
+    border-bottom: 1px solid #a90e0e !important; /* ΕΔΩ ΤΟ ΧΡΩΜΑ ΣΟΥ */
+    opacity: 0.4;
+  }
+.hub-divider::before { 
+  border-bottom: 1px solid #a90e0e !important; /* ΕΔΩ ΤΟ ΧΡΩΜΑ ΣΟΥ */
+    opacity: 0.4;
+}
+
+  /* Τα κουμπιά (links) όταν τα πατάς */
+  .hub-links a {
+    font-size: 18px !important;
+    padding: 8px !important;
+  }
+
+  .hub-links a:hover {
+    color: #a90e0e !important;
+    border-left: 5px solid #a90e0e !important;
+  }
+#smart-hub {
+    /* 2. ΚΑΘΕΤΗ ΘΕΣΗ (Πάνω-Κάτω) */
+    /* Αν είναι πολύ πάνω, αύξησε το πρώτο νούμερο (π.χ. 30px) */
+    margin-top: 5px !important; 
+    margin-bottom: 5px !important;
+
+    /* 3. ΕΣΩΤΕΡΙΚΕΣ ΑΠΟΣΤΑΣΕΙΣ */
+    padding: 5px !important;
+    
+    /* 4. ΕΞΑΣΦΑΛΙΣΗ ΣΩΣΤΩΝ ΔΙΑΣΤΑΣΕΩΝ */
+    display: block !important;
+    box-sizing: border-box !important;
+    float: none !important; /* Ακυρώνει τυχόν παλιά layouts που το σπρώχνουν πλάγια */
+  }
+/* ———————————— ΤΟ ΑΠΟΛΥΤΟ MODERN GLASS WIDGET ———————————— */
+
+  /* 1. Όλο το πλαίσιο (Το Κυρίως Γυαλί) */
+  #smart-hub {
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.9) !important; /* Έντονο φως από πάνω */
+    border-left: 1px solid rgba(255, 255, 255, 0.8) !important; /* Φως από αριστερά */
+    border-radius: 32px !important; /* Πιο μεγάλες, μοντέρνες καμπύλες */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(255,255,255,0.2) !important;
+    padding: 15px !important;
+    margin-top: 15px !important;
+    position: relative;
+    overflow: hidden !important;
+  }
+
+  /* 2. Εφέ "Χρωματιστής Αύρας" στο background του πλαισίου (Creative πινελιά) */
+  #smart-hub::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -20px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(169, 14, 14, 0.15) 0%, transparent 70%);
+    filter: blur(30px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* 3. Ο Τίτλος - Σαν ξεχωριστό, "παχύ" κουμπί μέσα στο γυαλί */
+  .hub-divider {
+    background: rgba(255, 255, 255, 0.6) !important;
+    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.8), 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    border-radius: 20px !important;
+    padding: 15px 5px !important;
+    font-size: 24px !important;
+    font-weight: 900 !important;
+    color: #1a1a1a !important;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.9) !important;
+    margin: 0 !important;
+    justify-content: space-between !important; /* Σπρώχνει το κείμενο αριστερά και το βελάκι δεξιά */
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Καθαρίζουμε τις παλιές γραμμές */
+  .hub-divider::before, .hub-divider::after { 
+    display: none !important; 
+  }
+
+  /* 4. Το Βελάκι - Γίνεται ένα όμορφο κυκλικό κουμπάκι */
+  .hub-toggle-icon {
+    background: #ffffff !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1) !important;
+    color: #a90e0e !important; /* Το κόκκινό σου */
+    font-size: 14px !important;
+    margin: 0 !important;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important; /* Bouncy άνοιγμα */
+  }
+
+  /* 5. Τα Links μέσα στο συρτάρι (όταν ανοίγει) - Modern Glass Cards */
+  .hub-links a {
+    background: rgba(255, 255, 255, 0.35) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 18px !important;
+    padding: 12px 15px !important;
+    margin-bottom: 10px !important;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.04) !important;
+    transform: none !important;
+  }
+
+  /* Εφέ πατήματος στα κινητά (Active state) */
+  .hub-links a:active {
+    transform: scale(0.97) !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+  }
+/* 3. Ο Τίτλος - Καθαρός και μεγάλος ΜΟΝΟ στα κινητά */
+  .hub-divider {
+    background: transparent !important; /* Εξαφανίζει το εσωτερικό πλαίσιο */
+    box-shadow: none !important;        /* Αφαιρεί τη σκιά του πλαισίου */
+    border: none !important;            /* Αφαιρεί το περίγραμμα */
+    border-radius: 0 !important;
+    padding: 30px 5px !important;
+    font-size: 24px !important;         /* Μεγαλώνει τη γραμματοσειρά για να χωράει και να φαίνεται */
+    font-weight: 900 !important;
+    color: #a90e0e !important;          /* Κρατάει το κόκκινο χρώμα σου */
+    text-shadow: none !important;
+    margin: 0 !important;
+    justify-content: space-between !important; 
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+
+/* 2. CSS - FIXED POSITION ΚΟΥΜΠΙΟΥ */
+#gt-floating-btn {
+  position: fixed !important;
+  top: 45px !important;        
+  right: 92px !important;      
+  width: 39px !important; /* Το μεγάλωσα λίγο για το PC για να χωράει το 35px icon */
+  height: 39px !important; 
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  border: 3px solid #a90e0e !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+  
+  /* ΚΕΝΤΡΑΡΙΣΜΑ */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  transition: transform 0.2s !important;
+  overflow: hidden !important; /* Για να μην εξέχει το icon */
+}
+
+#gt-floating-btn:hover { transform: scale(1.1) !important; }
+
+.gt-icon { 
+  font-size: 32px !important; /* Το κατέβασα ελάχιστα από 35 για να κεντράρει καλύτερα */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  line-height: 1 !important; /* ΠΟΛΥ ΣΗΜΑΝΤΙΚΟ: Μηδενίζει το κενό κάτω από το emoji */
+  margin-top: 0px !important; /* Μικρή διόρθωση προς τα πάνω αν χρειάζεται */
+}
+
+/* 3. ΤΟ ΜΕΝΟΥ ΚΑΤΩ ΑΠΟ ΤΟ ΚΟΥΜΠΙ */
+.gt-dropdown-menu {
+  display: none;
+  position: fixed !important;
+  top: 95px !important; /* Κάτω από το κουμπί (95px + 44px + 6px κενό) */
+  right: 70px !important;
+  width: 260px !important;
+  max-height: 400px !important;
+  background: #f4f7f6 !important;
+  border: 1px solid #dcdcdc !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2) !important;
+  z-index: 2147483647 !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  font-family: Arial, sans-serif !important;
+}
+
+.gt-menu-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 12px 15px !important;
+  border-bottom: 2px solid #e0e0e0 !important;
+}
+
+.gt-menu-title {
+  font-weight: 900 !important;
+  font-size: 14px !important;
+  color: #a90e0e !important;
+}
+
+.gt-close-small {
+  background: transparent !important;
+  border: none !important;
+  font-size: 20px !important;
+  cursor: pointer !important;
+  color: #666 !important;
+}
+
+/* ΛΙΣΤΑ ΜΕ ΓΛΩΣΣΕΣ ΜΙΑ ΚΑΤΩ ΑΠΟ ΤΗΝ ΑΛΛΗ */
+.gt-lang-list {
+  overflow-y: auto !important;
+  padding: 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+.gt-group-title {
+  font-weight: bold !important;
+  color: #a90e0e !important;
+  margin-top: 12px !important;
+  margin-bottom: 5px !important;
+  font-size: 11px !important;
+  text-align: left !important;
+  border-bottom: 1px solid #eee !important;
+  padding-bottom: 2px !important;
+}
+
+.gt-lang-list button {
+  width: 100% !important;
+  text-align: left !important;
+  padding: 10px 12px !important;
+  border: 1px solid #eee !important;
+  background: #fff !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  color: #333 !important;
+  transition: all 0.2s !important;
+  display: block !important;
+}
+
+.gt-lang-list button:hover {
+  background: #a90e0e !important;
+  color: white !important;
+  border-color: #a90e0e !important;
+}
+
+
+/* Google Bar Cleanup */
+.goog-te-banner-frame, .skiptranslate, #goog-gt-tt { display: none !important; }
+body { top: 0px !important; }
+/* ΡΥΘΜΙΣΕΙΣ ΜΟΝΟ ΓΙΑ ΤΑΜΠΛΕΤ / ΜΙΚΡΑ LAPTOP (800px - 1200px) */
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  
+  #gt-floating-btn {
+    display: flex !important; /* Διασφαλίζει ότι φαίνεται */
+    top: 120px !important;    /* Κατεβαίνει λίγο πιο κάτω από το αρχικό */
+    right: 19px !important;   /* Λίγο πιο μέσα από την άκρη */
+    width: 52px !important;    /* Μεγαλύτερο κουμπί */
+    height: 52px !important;   /* Μεγαλύτερο κουμπί */
+    border: 3px solid #a90e0e !important;
+  }
+
+  .gt-icon {
+    font-size: 45px !important; /* Μεγαλύτερο εικονίδιο υδρογείου */
+  }
+
+  .gt-dropdown-menu {
+    display: none; /* Παραμένει κρυφό μέχρι το κλικ */
+    top: 168px !important; /* Προσαρμογή για να ξεκινά κάτω από το νέο μέγεθος κουμπιού */
+    right: 25px !important;
+    width: 280px !important; /* Ελαφρώς πιο πλατύ μενού */
+    max-height: 550px !important;
+  }
+/* ΜΕΓΕΘΟΣ ΚΕΙΜΕΝΟΥ & ΚΟΥΜΠΙΩΝ ΜΕΣΑ ΣΤΟ ΜΕΝΟΥ */
+  .gt-lang-list button {
+    padding: 14px 18px !important; /* Πιο μεγάλα κουμπιά για εύκολο πάτημα με το δάχτυλο */
+    font-size: 16px !important;    /* Πιο μεγάλα γράμματα στις γλώσσες */
+  }
+
+  .gt-menu-title {
+    font-size: 18px !important;    /* Πιο μεγάλος τίτλος "ΕΠΙΛΟΓΗ ΓΛΩΣΣΑΣ" */
+  }
+  
+  .gt-group-title {
+    font-size: 14px !important;    /* Πιο μεγάλοι τίτλοι κατηγοριών (ΔΗΜΟΦΙΛΕΙΣ κλπ) */
+  }
+}
+
+/* ΕΞΑΦΑΝΙΣΗ ΣΤΑ ΚΙΝΗΤΑ (ΚΑΤΩ ΑΠΟ 800px) */
+@media screen and (max-width: 799px) {
+  #gt-floating-btn, 
+  #gt-languages-modal {
+    display: none !important;
+  }
+}
+#gt-floating-btn {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+#gt-floating-btn.is-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: scale(0.5) !important;
+}
+
+
+#HTML20, 
+#HTML20 .widget-content, 
+#HTML20 .widget {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+}
+
+/* ==========================================================================
+   2. SMART FEEDBACK (Γενικό στυλ για τα άρθρα)
+   ========================================================================== */
+.smart-feedback-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin: 0 auto !important; 
+    width: fit-content !important; 
+    padding: 2px 15px !important; 
+    border-left: 4px solid #ff5722 !important;
+    background-color: #f9f9f9 !important;
+    border-radius: 6px !important;
+    font-family: sans-serif !important;
+    clear: both !important;
+}
+
+/* Όταν ψηφίσει ο χρήστης */
+.smart-feedback-container.voted {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+}
+
+.smart-feedback-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 6px !important;
+}
+
+/* Απενεργοποιεί τα κλικ αφού ψηφίσει ο χρήστης για αποφυγή spam */
+.smart-feedback-container.voted .smart-feedback-buttons {
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.smart-feedback-btn {
+    background: #fff !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    padding: 4px 8px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    transition: 0.2s !important;
+}
+
+.smart-feedback-btn span:first-child { 
+    font-size: 18px !important; 
+}
+
+@media (max-width: 700px) {
+    .smart-feedback-container {
+        padding: 22px 10px !important;
+    }
+}
+
+/* Μεγαλύτερα κουμπιά μόνο για μεγάλες οθόνες (Desktop) */
+@media (min-width: 901px) {
+    .smart-feedback-btn {
+        padding: 4px 8px !important;
+        font-size: 16px !important;
+    }
+    .smart-feedback-btn span:first-child {
+        font-size: 24px !important;
+    }
+}
+
+/* ==========================================================================
+   3. CUSTOM READ MORE BUTTON
+   ========================================================================== */
+div.custom-read-more, 
+body .post-body .custom-read-more {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important; 
+    background: #0056b3 !important; 
+    background-color: #0056b3 !important;
+    color: #ffffff !important;
+    padding: 10px 25px !important; 
+    border-radius: 27px !important; 
+    font-weight: 700 !important;
+    font-size: 13px !important; 
+    cursor: pointer !important;
+    margin: 10px auto 0 auto !important; 
+    width: fit-content !important;
+    border: none !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+}
+
+.custom-read-more .icon {
+    font-size: 13px !important; 
+}
+
+div.custom-read-more:hover,
+.custom-read-more:hover {
+    background: #004494 !important;
+    background-color: #004494 !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Επιβολή λευκού χρώματος στα πάντα μέσα στο κουμπί */
+.custom-read-more, 
+.custom-read-more *,
+.custom-read-more span,
+.custom-read-more .icon {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* Lightbox & Spinner για το κουμπί */
+.custom-read-more.is-loading .icon {
+    display: inline-block !important;
+    animation: spin 1s linear infinite !important;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   4. FETCHED CONTENT (Το συρτάρι που ανοίγει)
+   ========================================================================== */
+.fetched-content-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff !important;
+}
+
+.fetched-content-inner {
+    overflow: hidden;
+}
+
+.fetched-content-wrapper.is-open {
+    grid-template-rows: 1fr;
+    margin-bottom: 25px;
+    border-top: 2px solid #0056b3 !important;
+}
+
+.scrollable-article-area {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+/* Κρύβουμε ΜΟΝΟ το παλιό Jump Link (Read More) */
+.jump-link, 
+.post-outer .jump-link { 
+    display: none !important; 
+}
+
+/* Επαναφορά για τα βέλη/κουμπιά Επόμενο-Προηγούμενο */
+.mobile-index-arrow, 
+.mobile-link-button, 
+.blog-pager {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ==========================================================================
+   5. CUSTOM LIGHTBOX (Εικόνες & Video + Thumbnails + Swipe)
+   ========================================================================== */
+/* JS-based Lightbox Fix: Εφαρμογή reset στο body */
+body.lb-active {
+    zoom: 1 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    perspective: none !important;
+    overflow: hidden !important; 
+}
+
+.my-custom-lightbox {
+    position: fixed !important; 
+    top: 0 !important; 
+    left: 0 !important; 
+    width: 100% !important; 
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.95) !important;
+    z-index: 99999999 !important; 
+    display: flex !important; 
+    flex-direction: column !important; 
+    justify-content: center !important; 
+    align-items: center !important;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    touch-action: none;
+    zoom: 1 !important;
+    transform: none !important;
+}
+
+.my-custom-lightbox.show { 
+    opacity: 1; 
+}
+
+.my-custom-lightbox-img-container {
+    position: relative !important;
+    display: flex !important; 
+    justify-content: center !important; 
+    align-items: center !important;
+    width: 100% !important; 
+    height: 75vh !important;
+    transform: none !important;
+    transition: opacity 0.2s ease;
+}
+
+img.my-lb-media {
+    max-width: 90vw !important; 
+    max-height: 75vh !important;
+    border: 3px solid #fff; 
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    object-fit: contain !important;
+    user-select: none;
+    transform: scale(1) !important; 
+}
+
+/* Στυλ αυστηρό για Βίντεο στο Lightbox */
+iframe.my-lb-media { 
+    width: 85vw !important; 
+    height: 48vw !important; 
+    max-height: 70vh !important; 
+    max-width: 1000px !important; 
+    background: #000;
+    border: 3px solid #fff; 
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.my-custom-lightbox-close {
+    position: absolute; 
+    top: 15px; 
+    right: 25px;
+    color: #fff; 
+    font-size: 45px; 
+    font-weight: bold;
+    cursor: pointer; 
+    user-select: none; 
+    z-index: 10;
+    line-height: 1;
+}
+
+.my-custom-lightbox-prev, 
+.my-custom-lightbox-next {
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%);
+    color: #fff; 
+    font-size: 40px; 
+    font-weight: bold;
+    cursor: pointer; 
+    user-select: none; 
+    padding: 20px;
+    transition: color 0.3s; 
+    z-index: 10;
+}
+
+.my-custom-lightbox-prev { left: 5px; }
+.my-custom-lightbox-next { right: 5px; }
+.my-custom-lightbox-prev:hover, 
+.my-custom-lightbox-next:hover { color: #bbb; }
+
+.my-custom-lightbox-counter {
+    position: absolute; 
+    top: 25px; 
+    left: 25px;
+    color: #ccc; 
+    font-size: 16px; 
+    font-family: sans-serif;
+}
+
+/* Μικρογραφίες (Thumbnails) */
+.my-custom-lightbox-thumbnails {
+    display: flex; 
+    gap: 10px; 
+    margin-top: 15px;
+    max-width: 90vw; 
+    height: 15vh; 
+    min-height: 70px;
+    overflow-x: auto; 
+    overflow-y: hidden;
+    padding-bottom: 10px;
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #222;
+    transform: none !important;
+    zoom: 1 !important;
+}
+
+.my-custom-lightbox-thumbnails::-webkit-scrollbar { height: 6px; }
+.my-custom-lightbox-thumbnails::-webkit-scrollbar-thumb { background-color: #888; border-radius: 3px; }
+
+.thumb-wrapper {
+    position: relative; 
+    width: 60px; 
+    height: 60px; 
+    flex-shrink: 0; 
+    cursor: pointer;
+    border: 2px solid transparent; 
+    border-radius: 6px; 
+    overflow: hidden;
+    opacity: 0.4; 
+    transition: all 0.2s ease;
+}
+
+.thumb-wrapper.active { 
+    opacity: 1; 
+    border-color: #fff; 
+    transform: scale(1.05); 
+}
+
+.thumb-wrapper:hover { opacity: 0.8; }
+.my-lb-thumb { width: 100%; height: 100%; object-fit: cover; }
+
+/* Λύση για χρήση ασφαλούς Unicode κωδικού */
+.thumb-wrapper.is-video-thumb::after {
+    content: "\25B6"; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    color: rgba(255,255,255,0.9);
+    font-size: 22px; 
+    text-shadow: 0 0 8px rgba(0,0,0,0.8); 
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   6. MEDIA QUERIES ΓΙΑ LIGHTBOX (Tablet & Mobile)
+   ========================================================================== */
+/* Tablet Landscape Optimization */
+@media screen and (min-width: 768px) and (max-width: 1300px) and (orientation: landscape) and (pointer: coarse) {
+    .my-custom-lightbox-thumbnails {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important; 
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important; 
+        overflow-y: hidden !important;
+        padding-left: 20px !important; 
+        padding-right: 20px !important;
+        height: auto !important;
+        min-height: 80px !important; 
+        margin-top: auto !important; 
+        margin-bottom: 35px !important; 
+        width: 100% !important;
+    }
+
+    .thumb-wrapper {
+        width: 60px !important; 
+        height: 60px !important; 
+        flex: 0 0 auto !important; 
+        border-width: 1px !important;
+        margin-right: 8px !important; 
+    }
+
+    .my-custom-lightbox-img-container {
+        height: 90vh !important; 
+        margin-top: 60px !important; 
+        display: flex !important;
+        align-items: flex-start !important; 
+    }
+
+    img.my-lb-media {
+        max-height: 90vh !important; 
+        width: auto !important;
+        object-fit: contain !important;
+        vertical-align: top !important;
+    }
+
+    .my-custom-lightbox-prev, 
+    .my-custom-lightbox-next {
+        font-size: 28px !important;
+        padding: 8px !important;
+        top: 45% !important; 
+    }
+}
+
+/* Mobile Lightbox Thumbnails Fix */
+@media screen and (max-width: 1467px) {
+    .my-custom-lightbox-thumbnails {
+        justify-content: flex-start !important;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .thumb-wrapper {
+        flex: 0 0 auto !important;
+        width: 55px !important;
+        height: 55px !important;
+    }
+}
