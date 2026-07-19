@@ -1,0 +1,9 @@
+/* ΛΥΣΗ 4: Στόχευση των εργοστασιακών στηλών του Blogger */
+@media screen and (max-width: 768px) {
+    #sidebar-wrapper .widget,
+    .sidebar-inner .widget,
+    .main-inner .widget {
+        border-bottom: 6px solid #cecece !important;
+     
+    }
+}
