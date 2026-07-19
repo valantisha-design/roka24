@@ -7729,8 +7729,9 @@ iframe.my-lb-media {
 @media screen and (min-width: 769px) {
 .slider-main-title { text-align: center; font-weight: 800; font-size: 18px; margin: 0 0 15px 0; color: #a90e0e; font-family: 'Inter', Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; display: table; margin: 0 auto 15px auto; padding: 6px 18px; background: #f8f8f8; border: 1px solid #eeeeee; border-radius: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
 .slider-main-title::before { content: '🔥 '; font-size: 16px; margin-right: 4px; }
+   }
 @media (min-width: 769px) { .slider-main-title { font-size: 30px !important; padding: 5px 13px !important; margin-bottom: 11px !important; } .slider-main-title::before { font-size: 18px !important; } }
-
+@media screen and (min-width: 769px) {
 #custom-post-slider-desktop { position: relative; width: 100%; margin: 0 auto; overflow: hidden; border-radius: 12px; background: transparent; }
 .slide-item { display: none; width: 100%; position: relative; animation: slideFade 0.8s ease; border-radius: 12px; overflow: hidden; }
 .slide-item.active { display: block; }
