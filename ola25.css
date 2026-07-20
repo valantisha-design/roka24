@@ -2981,18 +2981,26 @@ html:has(:fullscreen) body {
       width: 100% !important;
     }
 
-    .classes .mega-content,
-    .useful .mega-content {
+    .classes .mega-content {
       position: absolute !important;
       top: 100% !important;
       left: -55px !important;    
       right: auto !important;   
-      /* Προσοχή: Εδώ είχες δύο width. Το 100px είναι αυτό που υπερισχύει */
-      width: 55% !important;    
       width: 100px !important;
       margin: 5px 0 0 0 !important; 
       transform: none !important;
     }
+
+    .useful .mega-content {
+      position: absolute !important;
+      top: 100% !important;
+      left: -35px !important;    
+      right: auto !important;   
+      width: 100px !important;
+      margin: 5px 0 0 0 !important; 
+      transform: none !important;
+    }
+
 
     /* Στοχεύουμε την κλάση classes */
     .classes .mega-content {
