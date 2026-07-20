@@ -3636,7 +3636,6 @@ padding-top: 250px;
       position: absolute;
       width: 100%;
       height: 100%;
-      backface-visibility: hidden;
       border-radius: 15px;
       display: flex;
       flex-direction: column;
@@ -3648,6 +3647,8 @@ padding-top: 250px;
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
       overflow-y: auto; /* PRO ΠΙΝΕΛΙΑ: Ασφάλεια αν το κείμενο βγει μεγαλύτερο από τα 220px */
+        -webkit-backface-visibility: hidden; /* Κρίσιμο για τα κινητά! */
+  backface-visibility: hidden;
     }
 
     /* Κρύβουμε την μπάρα κύλισης για πιο καθαρό look (αν ενεργοποιηθεί το overflow) */
@@ -3675,12 +3676,20 @@ padding-top: 250px;
       border-radius: 15px;
     }
 
+#mobile-flip-wrapper .flip-back > * {
+  opacity: 0;
+  transition: opacity 0.1s; 
+}
+    #mobile-flip-wrapper .is-flipped .flip-back > * {
+  opacity: 1;
+  transition: opacity 0.3s ease 0.40s; 
+}
+
     @media (prefers-reduced-motion: reduce) {
       #mobile-flip-wrapper .flip-inner { transition: none; }
       #mobile-flip-wrapper .pulsating-lamp { animation: none !important; }
     }
   }
-
 
 
 /* --- ΑΠΟΛΥΤΗ ΑΠΟΚΡΥΨΗ ΣΕ PC (Κουτί & Περιεχόμενο) --- */
