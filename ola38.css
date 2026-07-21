@@ -3499,7 +3499,7 @@ padding-top: 250px;
   }
 
   /* ΚΡΥΒΟΥΜΕ ΤΟΝ ΜΙΚΡΟ ΚΩΔΙΚΑ ΣΤΑ ΚΙΝΗΤΑ (για να μη διπλασιάζει) */
-  @media (max-width: 768px) {
+  @media (max-width: 1368px) {
     #fb-outer { display: none !important; }
   }
 
