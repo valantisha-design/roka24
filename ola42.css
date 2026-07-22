@@ -5266,10 +5266,10 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
 /* 2. CSS - FIXED POSITION ΚΟΥΜΠΙΟΥ */
 #gt-floating-btn {
   position: fixed !important;
-  top: 45px !important;        
+  top: 43px !important;        
   right: 92px !important;      
-  width: 39px !important; /* Το μεγάλωσα λίγο για το PC για να χωράει το 35px icon */
-  height: 39px !important; 
+  width: 42px !important; /* Το μεγάλωσα λίγο για το PC για να χωράει το 35px icon */
+  height: 42px !important; 
   border-radius: 50% !important;
   background: #ffffff !important;
   border: 3px solid #a90e0e !important;
@@ -5385,14 +5385,14 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
 .goog-te-banner-frame, .skiptranslate, #goog-gt-tt { display: none !important; }
 body { top: 0px !important; }
 /* ΡΥΘΜΙΣΕΙΣ ΜΟΝΟ ΓΙΑ ΤΑΜΠΛΕΤ / ΜΙΚΡΑ LAPTOP (800px - 1200px) */
-@media screen and (min-width: 800px) and (max-width: 1200px) {
+@media (hover: none) and (pointer: coarse) and (min-width: 768px) and (max-width: 1500px) {
   
   #gt-floating-btn {
     display: flex !important; /* Διασφαλίζει ότι φαίνεται */
-    top: 120px !important;    /* Κατεβαίνει λίγο πιο κάτω από το αρχικό */
-    right: 19px !important;   /* Λίγο πιο μέσα από την άκρη */
-    width: 52px !important;    /* Μεγαλύτερο κουμπί */
-    height: 52px !important;   /* Μεγαλύτερο κουμπί */
+    top: 110px !important;    /* Κατεβαίνει λίγο πιο κάτω από το αρχικό */
+    right: 17px !important;   /* Λίγο πιο μέσα από την άκρη */
+    width: 42px !important;    /* Μεγαλύτερο κουμπί */
+    height: 42px !important;   /* Μεγαλύτερο κουμπί */
     border: 3px solid #a90e0e !important;
   }
 
