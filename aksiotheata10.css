@@ -752,8 +752,8 @@ display: none;
 
 @media (max-width: 767px) {
   #harpies-monster {
-    width: 60.6px;
-    height: 56px;
+    width: 70.6px;
+    height: 66px;
   }
 }
 /* === Ο ΚΕΡΒΕΡΟΣ (Ο ΦΥΛΑΚΑΣ ΤΟΥ ΑΔΗ) === */
@@ -823,8 +823,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #cerberus-monster {
-    width: 30.6px;
-    height: 26px;
+    width: 42.6px;
+    height: 38px;
   }
 }
 /* === Η ΣΚΥΛΛΑ (Ο ΕΦΙΑΛΤΗΣ ΤΩΝ ΒΡΑΧΩΝ) === */
@@ -928,8 +928,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #centaurs-monster {
-    width: 37.6px;
-    height: 32px;
+    width: 45.6px;
+    height: 40px;
   }
 }
 /* === Η ΛΕΡΝΑΙΑ ΥΔΡΑ (ΤΟ ΤΕΡΑΣ ΤΟΥ ΒΑΛΤΟΥ) === */
@@ -1118,8 +1118,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #aloadae-monster {
-    width: 37.6px;
-    height: 32px;
+    width: 44.6px;
+    height: 31px;
   }
 }
 /* === Ο ΤΥΦΩΕΑΣ (Η ΑΠΟΛΥΤΗ ΚΑΤΑΣΤΡΟΦΗ) === */
@@ -1589,8 +1589,8 @@ animation: talos-patrol 30s infinite alternate linear;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #calydonian-boar-monster {
-    width: 42.6px;
-    height: 37px;
+    width: 46.6px;
+    height: 32px;
   }
 }
 /* === Ο ΛΥΚΑΟΝΑΣ (Ο ΠΡΩΤΟΣ ΛΥΚΑΝΘΡΩΠΟΣ) === */
@@ -1904,8 +1904,8 @@ animation: talos-patrol 30s infinite alternate linear;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #arachne-monster {
-    width: 47.6px;
-    height: 42px;
+    width: 52.6px;
+    height: 49px;
   }
 }
 /* === Η ΥΠΕΡΤΑΤΗ ΚΑΤΑΙΓΙΔΑ (ΤΥΦΩΝΑΣ) === */
