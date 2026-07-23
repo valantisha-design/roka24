@@ -2700,8 +2700,8 @@ display: none;
 @media (max-width: 767px) {
   /* Προσαρμογή του βασικού container */
   .t-eco-boar {
-    width: 39px;  /* Παίξε με αυτό το νούμερο */
-    height: 35px;
+    width: 43px;  /* Παίξε με αυτό το νούμερο */
+    height: 39px;
   }
 
   /* Προσαρμογή του SVG μέσα στο νέο ID */
@@ -4282,8 +4282,8 @@ display: none;
 
 @media (max-width: 767px) {
   #hare-eco-nature {
-    width: 17.6px;  /* ηταν 57 και 52 */
-    height: 12px;
+    width: 57.6px;  /* ηταν 57 και 52 */
+    height: 52px;
   }
 }
 /* Πινέζες ΚΑΙ SVG ζωάκια/τέρατα που έχουν ήδη διαβαστεί */
