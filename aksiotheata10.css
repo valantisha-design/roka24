@@ -1349,10 +1349,10 @@ display: none;
 .btn-monsters-only {
   position: fixed;
   top: auto;
-  bottom: 86px;
-   right: 88px; 
+  bottom: 84px;
+   right: 85px; 
    padding: 1px 1px;
-  font-size: 13px;
+  font-size: 14px;
   font-family: 'Cinzel', serif;
   color: #d4c29d;
   background: rgba(43, 38, 31, 0.3); /* Αχνό, ημιδιαφανές χρώμα */
