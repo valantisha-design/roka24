@@ -4282,8 +4282,8 @@ display: none;
 
 @media (max-width: 767px) {
   #hare-eco-nature {
-    width: 57.6px;
-    height: 52px;
+    width: 17.6px;  /* ηταν 57 και 52 */
+    height: 12px;
   }
 }
 /* Πινέζες ΚΑΙ SVG ζωάκια/τέρατα που έχουν ήδη διαβαστεί */
