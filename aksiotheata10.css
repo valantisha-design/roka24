@@ -1347,12 +1347,12 @@ display: none;
 }
 /* Διακριτικό κουμπί για τα Τέρατα (Glassmorphism Effect) */
 .btn-monsters-only {
-  position: absolute;
-  /* Άλλαξε το top/bottom και το right/left ανάλογα με το πού ακριβώς είναι το 'Τα μυστικά της φύσης' */
-  top: 667px; 
-  right: 68px; 
-  padding: 2px 4px;
-  font-size: 10px;
+  position: fixed;
+  top: auto;
+  bottom: 86px;
+   right: 88px; 
+   padding: 1px 1px;
+  font-size: 12px;
   font-family: 'Cinzel', serif;
   color: #d4c29d;
   background: rgba(43, 38, 31, 0.3); /* Αχνό, ημιδιαφανές χρώμα */
@@ -1377,12 +1377,14 @@ display: none;
 }
 @media (max-width: 767px) {
   .btn-monsters-only {
-  position: absolute;
-  /* Άλλαξε το top/bottom και το right/left ανάλογα με το πού ακριβώς είναι το 'Τα μυστικά της φύσης' */
-  top: 573px; 
-  right: 65px; 
-  padding: 2px 4px;
-  font-size: 9px;
+    position: fixed;
+    top: auto;
+    bottom: calc(90px + env(safe-area-inset-bottom));
+    right: 33px;
+    left: auto;
+    padding: 1px 1px; 
+    font-size: 11px;    
+    z-index: 100;      
   }
 }
 /* === Ο ΤΑΛΩΣ (ΤΟ ΧΑΛΚΙΝΟ ΡΟΜΠΟΤ ΤΗΣ ΑΡΧΑΙΟΤΗΤΑΣ) === */
