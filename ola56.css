@@ -4206,7 +4206,7 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
   position: fixed !important;
   top: var(--btnTop) !important;
   /* Δυναμικός υπολογισμός θέσης δεξιά */
-  right: calc(max(20px, 50vw - (var(--blogMaxWidth) / 2) - var(--gapFromBlog))) !important;
+  right: calc(max(0px, 49vw - (var(--blogMaxWidth) / 2) - var(--gapFromBlog))) !important;
   transform: translateY(-50%) !important;
 
   width: var(--btnSize) !important;
