@@ -2103,21 +2103,6 @@ font-weight: 600; }
 font-weight: 900; }
   }
 
-/* --- OVERRIDE ΓΙΑ ΤΗ ΜΠΑΡΑ ΑΝΑΚΟΙΝΩΣΕΩΝ --- */
-#ticker-outer {
-    background: rgba(240, 246, 250, 0.95) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
-    border-radius: 12px !important;
-    padding: 8px 20px !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
-    
-    /* Ομαλό σβήσιμο στα άκρα για να μην κόβεται απότομα */
-    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent) !important;
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent) !important;
-}
-
 /* Το κεντρικό πλέγμα του Widget */
   .school-stats-wrapper {
     display: grid;
