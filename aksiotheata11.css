@@ -3933,8 +3933,8 @@ display: none;
 /* === Η ΠΕΤΑΛΟΥΔΑ ΑΠΟΛΛΩΝ (ΤΟ ΣΤΟΛΙΔΙ ΤΟΥ ΟΛΥΜΠΟΥ) === */
 .t-eco-apollo {
   position: absolute;
-  width: 65px; /* Μεγάλο μέγεθος για να ξεχωρίζει καθαρά */
-  height: 60px;
+  width: 45px; /* Μεγάλο μέγεθος για να ξεχωρίζει καθαρά */
+  height: 40px;
   z-index: 37; /* Πετάει ψηλότερα από όλα */
   cursor: pointer;
   display: none; 
