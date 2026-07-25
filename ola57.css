@@ -2044,7 +2044,7 @@ html body #mobile-share-button a:active {
   /* Σε κινητά */
   @media (max-width: 568px){
     #ticker-outer{
-      top: -596px !important;
+      top: -594px !important;
       width: 95% !important;
       max-width: none;
       min-width: 0;
@@ -2064,9 +2064,17 @@ font-weight: 600; }
     font-size: 16px; 
   }
 }
+@media (max-width: 360px){
+    #ticker-outer{
+      top: -587px !important;
+      width: 95% !important;
+      max-width: none;
+      min-width: 0;
+    }
+  }
 @media screen and (min-width: 650px) and (max-width: 720px) {
   #ticker-outer{
-      top: -570px !important;
+      top: -567px !important;
       width: 94% !important;
       max-width: none;
       min-width: 0;
