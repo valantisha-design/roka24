@@ -2103,6 +2103,40 @@ font-weight: 600; }
 font-weight: 900; }
   }
 
+/* =========================================================
+     2) ΤΟ TICKER ΕΜΦΑΝΙΖΕΤΑΙ ΣΤΟ ΣΗΜΕΙΟ ΤΟΥ GADGET (Αναβαθμισμένο UI)
+     ========================================================= */
+  #ticker-outer{
+    position: absolute !important;
+    top: var(--ticker-offset) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    width: var(--ticker-width) !important;
+    max-width: 1100px;
+    min-width: 320px;
+    z-index: 5;
+
+    /* ✅ 1. Ξεχωριστό Container με Glassmorphism & Padding */
+    background: rgba(240, 246, 250, 0.85) !important; /* Απαλό χρώμα που ταιριάζει με το μενού */
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-radius: 12px !important;
+    padding: 8px 20px !important; /* Δίνει αέρα πάνω-κάτω και δεξιά-αριστερά */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+
+    /* ✅ 2. Ομαλό "σβήσιμο" στα άκρα (Fade Effect) */
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+
+    pointer-events: none;
+    line-height: 1 !important;
+  }
+
+
 /* Το κεντρικό πλέγμα του Widget */
   .school-stats-wrapper {
     display: grid;
