@@ -743,8 +743,8 @@ html body #mobile-share-button a:active {
       top: 15px !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
-      width: 92% !important; 
-      max-width: 900px !important; 
+      width: 89% !important; 
+      max-width: 1000px !important; 
       z-index: 5 !important; 
       background: rgba(255, 255, 255, 0.9) !important;
       backdrop-filter: blur(0px) !important;
