@@ -2066,7 +2066,7 @@ font-weight: 600; }
 }
 @media (max-width: 360px){
     #ticker-outer{
-      top: -580px !important;
+      top: -579px !important;
       width: 95% !important;
       max-width: none;
       min-width: 0;
