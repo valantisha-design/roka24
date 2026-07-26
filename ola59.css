@@ -5773,6 +5773,7 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
     color: #a90e0e !important;
     border-left: 5px solid #a90e0e !important;
   }
+  }
 #smart-hub {
     /* 2. ΚΑΘΕΤΗ ΘΕΣΗ (Πάνω-Κάτω) */
     /* Αν είναι πολύ πάνω, αύξησε το πρώτο νούμερο (π.χ. 30px) */
@@ -5787,7 +5788,7 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
     box-sizing: border-box !important;
     float: none !important; /* Ακυρώνει τυχόν παλιά layouts που το σπρώχνουν πλάγια */
   }
-  }
+
 /* ———————————— ΤΟ ΑΠΟΛΥΤΟ MODERN GLASS WIDGET ———————————— */
 
   /* 1. Όλο το πλαίσιο (Το Κυρίως Γυαλί) */
