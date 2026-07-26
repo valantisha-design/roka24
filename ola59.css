@@ -1,3 +1,7 @@
+ @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Poppins:wght@300;500;600&display=swap');    /* από τη χρονοκαψουλα  */
+
+ 
+
 /* ===== BOOSTED MENU + SLIDER (φαίνεται καθαρά) ===== */
 
 /* MENU: πιο “premium” bar */
@@ -5286,9 +5290,7 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
     }
 }
 
- @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Poppins:wght@300;500;600&display=swap');
 
-  /* Container & Glassmorphism */
   #stc-widget {
     position: relative;
   max-width: 100%; /* Αντί για 420px, βάλε 100% για να προσαρμόζεται μόνο του */
