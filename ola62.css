@@ -2087,9 +2087,10 @@ html body #mobile-share-button a:active {
     font-weight: 700;
   }
   
-  #unique-top-ticker-outer:hover #unique-top-ticker-scroll {
-    animation-play-state: paused;
-  }
+  #unique-top-ticker-outer:hover #unique-top-ticker-scroll,
+#unique-top-ticker-outer:focus-within #unique-top-ticker-scroll {
+  animation-play-state: paused !important;
+}
 
 
 /* ===============================
