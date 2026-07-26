@@ -3975,8 +3975,8 @@ display: none;
 /* Επιπλέον 20% μείωση ΜΟΝΟ στα κινητά */
 @media (max-width: 767px) {
   #apollo-eco-nature {
-    width: 65px;
-    height: 60px;
+    width: 53px;
+    height: 48px;
   }
 }
 /* === Η ΝΥΧΤΕΡΙΔΑ (AUTOMATIC AMBIENT ENGINE) === */
