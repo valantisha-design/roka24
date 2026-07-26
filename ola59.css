@@ -5787,6 +5787,7 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
     box-sizing: border-box !important;
     float: none !important; /* Ακυρώνει τυχόν παλιά layouts που το σπρώχνουν πλάγια */
   }
+  }
 /* ———————————— ΤΟ ΑΠΟΛΥΤΟ MODERN GLASS WIDGET ———————————— */
 
   /* 1. Όλο το πλαίσιο (Το Κυρίως Γυαλί) */
