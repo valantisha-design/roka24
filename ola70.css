@@ -5188,7 +5188,7 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
     .video-zoom-fix {
         width: 100%; 
         position: relative;
-        padding-bottom: 56.25%;
+        padding-bottom: 80.25%;
         height: 0;
     }
 
@@ -5317,6 +5317,21 @@ padding-left: 0px;   /* 👈 Κενό από αριστερά (άλλαξε τα
         font-size: 19px !important;
         
     }
+}
+
+@media (hover: none) {
+    .video-sub-action {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(-50%) translateY(0) !important;
+    }
+}
+
+/* 2. Κλάση που θα προσθέτει η Javascript για να εξαφανίσει το κουμπί */
+.video-sub-action.is-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important; /* Απενεργοποιεί τα κλικ όταν είναι κρυφό */
 }
 
 
