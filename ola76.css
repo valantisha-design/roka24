@@ -7781,7 +7781,7 @@ html { scroll-behavior: smooth; }
   
   /* QUIZ / HISTORY / NEWSLETTER / FB */
   .q-title, .q-title-pc, .fb-breakout-title, .custom-newsletter-title, .stc-header, .history-header-pc h3 { font-size: 26px !important; }
-  .q-body p, .q-body-pc p, #question-display, #daily-riddle-question, .fb-breakout-desc, .custom-newsletter-subtitle, .stc-caption p, #history-fact-pc, #mission-text-pc, .mission-header-pc h4, .history-content-pc { font-size: 23px !important; line-height: 1.5 !important; }
+  .q-body p, .q-body-pc p, #question-display, #daily-riddle-question, .fb-breakout-desc, .custom-newsletter-subtitle, #history-fact-pc, #mission-text-pc, .mission-header-pc h4, .history-content-pc { font-size: 23px !important; line-height: 1.5 !important; }
   .wiki-search-input { font-size: 19px !important; } .wiki-search-btn { font-size: 18px !important; } .wiki-search-icon { font-size: 24px !important; }
   .featured-title, .featured-title-lib { font-size: 23px !important; } .featured-action, .featured-action-lib { font-size: 18px !important; }
   #recent-slider .slide-title strong { font-size: 24px !important; } .slide-desc { font-size: 20px !important; }
@@ -7873,7 +7873,7 @@ html { scroll-behavior: smooth; }
   /* Ειδοποίηση Newsletter (Σημαντικό...) */
   .custom-newsletter-notice { font-size: 19px !important; line-height: 1.5 !important; padding: 14px 18px !important; }
   /* Οδηγία Καιρού (Αγγίξτε ή περάστε το ποντίκι) - Στόχευση χωρίς κλάση! */
-  #hub-weather-container + div { font-size: 18px !important; line-height: 1.4 !important; margin-top: 15px !important; }
+  #hub-weather-container + div { font-size: 13px !important; line-height: 1.4 !important; margin-top: 15px !important; }
   /* Οδηγία Ημερολογίου (Επιλέξτε μια μέρα) - Στόχευση χωρίς κλάση! */
   .mobile-only-title + div { font-size: 20px !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
   /* Οδηγία Χρονοκάψουλας (Πάτα επάνω για μια αποστολή) */
@@ -7883,4 +7883,10 @@ html { scroll-behavior: smooth; }
   /* Smart Hub Dyo (Syndesmoi Sxoleiou) - Megenthynsi MONO sta links */
   #smart-hub2 .hub-links a { font-size: 22px !important; padding: 8px 10px !important; }
   #smart-hub2 .hub-ic { width: 44px !important; height: 44px !important; font-size: 22px !important; } 
+  /* Κουμπί Quiz (Πατήστε εδώ για να απαντήσετε) - Στόχευση μέσω του γονέα */
+  #quiz-trigger-pc button { 
+    font-size: 22px !important; 
+    padding: 14px 28px !important; 
+  }
+  .stc-caption p { font-size: 16px !important; line-height: 1.4 !important; }
 }
