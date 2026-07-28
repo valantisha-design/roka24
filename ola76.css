@@ -7870,5 +7870,17 @@ html { scroll-behavior: smooth; }
   /* Κυκλάκι με αριθμούς στις Λίστες των άρθρων */
   .post-body ol li::before { width: 34px !important; height: 34px !important; font-size: 16px !important; }
   .post-body ol li { padding-left: 45px !important; }
-  
+  /* Ειδοποίηση Newsletter (Σημαντικό...) */
+  .custom-newsletter-notice { font-size: 19px !important; line-height: 1.5 !important; padding: 14px 18px !important; }
+  /* Οδηγία Καιρού (Αγγίξτε ή περάστε το ποντίκι) - Στόχευση χωρίς κλάση! */
+  #hub-weather-container + div { font-size: 18px !important; line-height: 1.4 !important; margin-top: 15px !important; }
+  /* Οδηγία Ημερολογίου (Επιλέξτε μια μέρα) - Στόχευση χωρίς κλάση! */
+  .mobile-only-title + div { font-size: 20px !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
+  /* Οδηγία Χρονοκάψουλας (Πάτα επάνω για μια αποστολή) */
+  .history-hint-pc { font-size: 18px !important; margin-top: 5px !important; }
+  /* Οδηγία Γρίφου (Πέρασε το ποντίκι) - Στόχευση χωρίς κλάση! */
+  #daily-riddle-answer + p { font-size: 18px !important; margin-top: 18px !important; }
+  /* Smart Hub Dyo (Syndesmoi Sxoleiou) - Megenthynsi MONO sta links */
+  #smart-hub2 .hub-links a { font-size: 22px !important; padding: 8px 10px !important; }
+  #smart-hub2 .hub-ic { width: 44px !important; height: 44px !important; font-size: 22px !important; } 
 }
