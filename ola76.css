@@ -7873,7 +7873,7 @@ html { scroll-behavior: smooth; }
   /* Ειδοποίηση Newsletter (Σημαντικό...) */
   .custom-newsletter-notice { font-size: 19px !important; line-height: 1.5 !important; padding: 14px 18px !important; }
   /* Οδηγία Καιρού (Αγγίξτε ή περάστε το ποντίκι) - Στόχευση χωρίς κλάση! */
-  #hub-weather-container + div { font-size: 13px !important; line-height: 1.4 !important; margin-top: 15px !important; }
+  #hub-weather-container + div { font-size: 17px !important; line-height: 1.4 !important; margin-top: 15px !important; }
   /* Οδηγία Ημερολογίου (Επιλέξτε μια μέρα) - Στόχευση χωρίς κλάση! */
   .mobile-only-title + div { font-size: 20px !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
   /* Οδηγία Χρονοκάψουλας (Πάτα επάνω για μια αποστολή) */
@@ -7888,5 +7888,5 @@ html { scroll-behavior: smooth; }
     font-size: 22px !important; 
     padding: 14px 28px !important; 
   }
-  .stc-caption p { font-size: 16px !important; line-height: 1.4 !important; }
+  .stc-caption p { font-size: 17px !important; line-height: 1.4 !important; }
 }
