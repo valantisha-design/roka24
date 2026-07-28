@@ -7776,4 +7776,53 @@ html { scroll-behavior: smooth; }
     line-height: 1 !important; 
     padding: 6px !important; 
   }
+.bell-main {
+    font-size: 28px !important; /* Από 20px το κάνουμε 26px */
+    line-height: 1.4 !important;
+  }
+  .bell-sub {
+    font-size: 24px !important; /* Από 14px το κάνουμε 20px */
+  }
+  .tracker-title {
+    font-size: 1.2em !important;
+  }
+          
+          /* Όταν η κάρτα είναι ανοιχτή / στο προσκήνιο */
+.glass-bell-tracker.active { 
+  transform: scale(1.4) !important; /* Μεγαλώνει την κάρτα 30% */
+  z-index: 9999 !important; /* Τη φέρνει πάνω από το μαύρο φόντο */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+          /* --- ΜΕΓΕΘΥΝΣΗ ΑΝΑΔΥΟΜΕΝΟΥ (MODAL) ΓΙΑ TABLETS --- */
+  
+  /* Μεγαλώνει ολόκληρο το αναδυόμενο κουτί (το συννεφάκι) */
+  .glass-modal-box {
+    max-width: 500px !important; /* Από 370px, γίνεται πιο φαρδύ στα Tablet */
+    padding: 30px 20px !important; 
+  }
+
+  /* Μεγαλώνει το εικονίδιο */
+  .glass-modal-icon {
+    font-size: 70px !important; /* Από 50px */
+    margin-bottom: 20px !important;
+  }
+
+  /* Μεγαλώνει το κείμενο μέσα στο αναδυόμενο */
+  .glass-modal-text {
+    font-size: 26px !important; /* Από 16px */
+    line-height: 1.5 !important;
+    margin-bottom: 25px !important;
+  }
+
+  .glass-modal-close {
+    font-size: 40px !important; /* Από 28px */
+    top: 15px !important; 
+    right: 25px !important;
+  }
+
+  /* Μεγαλώνει το/τα κουμπιά δράσης μέσα στο αναδυόμενο */
+  .glass-modal-btn {
+    font-size: 22px !important; 
+    padding: 10px 20px !important; /* Πιο μεγάλο κουμπί */
+  } 
 }
