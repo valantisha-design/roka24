@@ -7747,10 +7747,10 @@ html { scroll-behavior: smooth; }
   .post-footer, .post-labels a, .post-timestamp { font-size: 15px !important; }
   
   nav { gap: 20px !important; padding: 14px !important; }
-  nav a, nav &gt; a, nav div.dropdown &gt; button, nav .mega-menu &gt; button, #HTML1 nav button { font-size: 26px !important; padding: 5px 10px !important; }
+  nav a, nav > a, nav div.dropdown > button, nav .mega-menu > button, #HTML1 nav button { font-size: 26px !important; padding: 5px 10px !important; }
   .dropdown-content a, .sub-dropdown-content a { font-size: 25px !important; padding: 6px !important; }
   
-  div.widget h2, div.widget &gt; h2.title, .slider-main-title, #slider-wrapper-desktop .slider-main-title { font-size: 28px !important; padding: 5px 9px !important; }
+  div.widget h2, div.widget > h2.title, .slider-main-title, #slider-wrapper-desktop .slider-main-title { font-size: 28px !important; padding: 5px 9px !important; }
   .glass-modal-btn, .custom-read-more, .custom-newsletter-btn, .quiz-btn, .fb-breakout-btn, .action-menu-btn, .lib-fullscreen-btn { font-size: 20px !important; padding: 7px 11px !important; }
   
   .stat-icon { font-size: 48px !important; } .stat-number { font-size: 45px !important; } .stat-label { font-size: 17px !important; }
@@ -7771,7 +7771,7 @@ html { scroll-behavior: smooth; }
   .alert-bar-content { font-size: 22px !important; }
   /* Ticker Ειδήσεων (Απόλυτη Στόχευση) */
   #unique-top-ticker-outer .unique-top-ticker-link { font-size: 28px !important; }
-      info-box, #eort-world-day, #eort-holiday, #eort-names, #eort-school { 
+      .info-box, #eort-world-day, #eort-holiday, #eort-names, #eort-school { 
     font-size: 18px !important; 
     line-height: 1 !important; 
     padding: 6px !important; 
