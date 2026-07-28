@@ -7723,170 +7723,169 @@ html { scroll-behavior: smooth; }
 }
 
 
-/* ENA KATHOLIKOS SYLLAVISMOS Prostasia apo spasimo ths Sidebar */
-@media screen and (pointer: coarse) {
-  .post-body, .widget, .hub-links a, .slide-title, .sch-msg, .q-body p, .q-body-pc p, .stc-caption p, .fb-breakout-desc, .menu-opt, .history-content-pc, .mission-text-pc, .custom-newsletter-notice {
-    -webkit-hyphens: auto !important;
-    -ms-hyphens: auto !important;
-    hyphens: auto !important;
-    word-break: break-word !important; 
-    overflow-wrap: break-word !important;
-  }
-  
- 
-  /* Prostasia sto prwto gramma gia na mi vgei ektos oriwn me ti megethynsi */
-  .post-body::first-letter {
-    font-size: 2.8em !important;
-  }
-}
-
 /* ==========================================================================
-   MASTER SENIOR: TABLET PORTRAIT TYPOGRAPHY (900px - 1499px)
-   Ενοποιημένο, με τις τιμές σου και προσθήκη όσων έλειπαν (Αυξημένα αναλογικά)
+   MASTER SENIOR TABLET TYPOGRAPHY 900px ews 1500px
+   Dynamic Scaling: 35 tois ekato panw apo ta arxika megethi tou PC Desktop
    ========================================================================== */
-@media screen and (min-width: 900px) and (max-width: 1499px) and (pointer: coarse) and (orientation: portrait) {
+@media screen and (min-width: 900px) and (max-width: 1500px) and (pointer: coarse) and (orientation: portrait) {
   
-  /* --- ΤΑ ΔΙΚΑ ΣΟΥ (Ακριβώς όπως τα έστειλες) --- */
-  .post-body, .post-body p, .post-body span, .post-body div, .post-body li { font-size: 26px !important; line-height: 1.6 !important; }
-  h3.post-title, .entry-title { font-size: 32px !important; line-height: 1.3 !important; }
+  /* KATHOLIKOS SYLLAVISMOS Prostasia Layout */
+  .post-body, .widget, .hub-links a, .slide-title, .sch-msg, .q-body p, .q-body-pc p, .stc-caption p, .fb-breakout-desc, .menu-opt, .history-content-pc, .mission-text-pc, .custom-newsletter-notice {
+    -webkit-hyphens: auto !important; -ms-hyphens: auto !important; hyphens: auto !important;
+    word-break: break-word !important; overflow-wrap: break-word !important;
+  }
   
-  /* Κλείδωμα ημερομηνίας αναρτήσεων (Όπως ζητήθηκε: Όχι μεγαλύτερη) */
-  .date-header, h2.date-header { font-size: 20px !important; padding: 3px 8px !important; }
+  /* Slider Fix kai Drop Cap */
+  .post-body::first-letter { font-size: 2.9em !important; }
+
+  /* VASIKA KEIMENA ARTHRWN (PC 16px -> 22px / PC 18px -> 25px) */
+  .post-body, .post-body p, .post-body span, .post-body div, .post-body li { font-size: 22px !important; line-height: 1.6 !important; }
+  h3.post-title, .entry-title { font-size: 25px !important; line-height: 1.3 !important; }
+  .date-header, h2.date-header { font-size: 18px !important; padding: 6px 12px !important; }
   .post-footer, .post-labels a, .post-timestamp { font-size: 15px !important; }
 
-  /* ΚΕΝΤΡΙΚΟ ΜΕΝΟΥ (NAV) */
-  nav { gap: 20px !important; padding: 14px !important; }
-  nav a, nav > a, nav div.dropdown > button, nav .mega-menu > button, #HTML1 nav button { font-size: 26px !important; padding: 5px 10px !important; }
-  .dropdown-content a, .sub-dropdown-content a { font-size: 25px !important; padding: 6px !important; }
+  /* KENTRIKO MENOU NAV (PC 17px -> 23px) */
+  nav { gap: 14px !important; padding: 14px !important; }
+  nav a, nav > a, nav div.dropdown > button, nav .mega-menu > button, #HTML1 nav button { font-size: 23px !important; padding: 13px 18px !important; }
+  .dropdown-content a, .sub-dropdown-content a { font-size: 22px !important; padding: 12px !important; }
 
-  /* ΤΙΤΛΟΙ WIDGETS ΚΑΙ ΚΟΥΜΠΙΑ */
-  div.widget h2, div.widget > h2.title, .slider-main-title, #slider-wrapper-desktop .slider-main-title { font-size: 28px !important; padding: 5px 9px !important; }
-  .glass-modal-btn, .custom-read-more, .custom-newsletter-btn, .quiz-btn, .fb-breakout-btn, .action-menu-btn, .lib-fullscreen-btn { font-size: 20px !important; padding: 7px 11px !important; }
-  
-  /* ΣΤΑΤΙΣΤΙΚΑ ΣΧΟΛΕΙΟΥ */
-  .stat-icon { font-size: 48px !important; } .stat-number { font-size: 45px !important; } .stat-label { font-size: 17px !important; }
-  
-  /* ΕΟΡΤΟΛΟΓΙΟ & ΚΑΙΡΟΣ */
-  .eortologio-title { font-size: 25px !important; } .eort-icon-body { font-size: 38px !important; } .eortologio-date { font-size: 22px !important; }
-  .c-day-temps { font-size: 18px !important; } .c-day-name { font-size: 15px !important; }
-  .info-box, #eort-world-day, #eort-holiday, #eort-names, #eort-school { font-size: 18px !important; line-height: 1 !important; padding: 6px !important; }
-  
+  /* TITLOI WIDGETS KAI KOUMPIA DRASEWN (PC 22px -> 30px) */
+  div.widget h2, div.widget > h2.title, .slider-main-title, #slider-wrapper-desktop .slider-main-title { font-size: 30px !important; padding: 8px 15px !important; }
+  .glass-modal-btn, .custom-read-more, .custom-newsletter-btn, .quiz-btn, .fb-breakout-btn, .action-menu-btn, .lib-fullscreen-btn, #quiz-trigger-pc button { font-size: 20px !important; padding: 14px 25px !important; }
+
+  /* STATISTIKA SXOLEIOU (PC 42px -> 57px / 32px -> 43px) */
+  .stat-icon { font-size: 48px !important; } 
+  .stat-number { font-size: 43px !important; } 
+  .stat-label { font-size: 15px !important; }
+
+  /* EORTOLOGIO KAI KAIROS */
+  .eortologio-title { font-size: 24px !important; } 
+  .eort-icon-body { font-size: 35px !important; } 
+  .eortologio-date { font-size: 20px !important; }
+  .c-day-temps { font-size: 18px !important; } 
+  .c-day-name { font-size: 15px !important; }
+  .info-box, #eort-world-day, #eort-holiday, #eort-names, #eort-school { font-size: 19px !important; line-height: 1.4 !important; padding: 10px !important; }
+
   /* JUKEBOX */
-  .juke-title { font-size: 28px !important; } .juke-icon { font-size: 48px !important; }
-  .playlist-btn, .extra-track-btn { font-size: 20px !important; padding: 5px 7px !important; }
-  .juke-hint { font-size: 20px !important; }
-  
-  /* ΕΞΥΠΝΕΣ ΣΕΛΙΔΕΣ */
-  .hub-divider { font-size: 26px !important; padding: 8px 3px !important; } .hub-links a { font-size: 24px !important; padding: 7px 8px !important; } .hub-ic { width: 48px !important; height: 48px !important; font-size: 26px !important; }
-  
-  /* QUIZ / HISTORY / NEWSLETTER / FB */
-  .q-title, .q-title-pc, .fb-breakout-title, .custom-newsletter-title, .stc-header, .history-header-pc h3 { font-size: 26px !important; }
-  .q-body p, .q-body-pc p, #question-display, #daily-riddle-question, .fb-breakout-desc, .custom-newsletter-subtitle, #history-fact-pc, #mission-text-pc, .mission-header-pc h4, .history-content-pc { font-size: 23px !important; line-height: 1.5 !important; }
-  .wiki-search-input { font-size: 19px !important; } .wiki-search-btn { font-size: 18px !important; } .wiki-search-icon { font-size: 24px !important; }
-  .featured-title, .featured-title-lib { font-size: 23px !important; } .featured-action, .featured-action-lib { font-size: 18px !important; }
-  #recent-slider .slide-title strong { font-size: 24px !important; } .slide-desc { font-size: 20px !important; }
-  .alert-bar-content { font-size: 22px !important; }
-  
-  /* TICKER ΕΙΔΗΣΕΩΝ & ALERT BAR */
-  #unique-top-ticker-outer .unique-top-ticker-link { font-size: 28px !important; }
-  
-  /* LIVE ΩΡΑΡΙΟ */
-  .bell-main { font-size: 28px !important; line-height: 1.4 !important; }
-  .bell-sub { font-size: 24px !important; }
-  .tracker-title { font-size: 1.2em !important; }
-  .glass-bell-tracker.active { transform: scale(1.4) !important; z-index: 9999 !important; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; }
-  
-  /* GLASS MODAL ΣΥΝΝΕΦΑΚΙ */
-  .glass-modal-box { max-width: 500px !important; padding: 30px 20px !important; }
-  .glass-modal-icon { font-size: 70px !important; margin-bottom: 20px !important; }
-  .glass-modal-text { font-size: 26px !important; line-height: 1.5 !important; margin-bottom: 25px !important; }
-  .glass-modal-close { font-size: 40px !important; top: 15px !important; right: 25px !important; }
-  
-  .stats-notice { font-size: 22px !important; }
-  .bouncing-secret { font-size: 20px !important; line-height: 1.5 !important; }
-  html body .video-glass-title { font-size: 18px !important; }
-  
-  /* ΚΑΡΤΑ ΓΝΩΣΗΣ FLIP CARD */
-  #custom-post-slider-desktop .slide-title { font-size: 18px !important; line-height: 1.4 !important; padding: 2px 5px !important; }
-  #desktop-flip-wrapper .pulsating-lamp { font-size: 54px !important; }
-  #desktop-flip-wrapper .flip-front h3 { font-size: 28px !important; line-height: 1.4 !important; }
-  #desktop-flip-wrapper .flip-front p { font-size: 21px !important; }
-  #fact-text-desk { font-size: 22px !important; line-height: 1.5 !important; }
-  #desktop-flip-wrapper .flip-back p { font-size: 18px !important; }
-  
-  /* ΚΑΡΤΑ ΔΙΑΚΟΠΩΝ / ΜΠΑΤΑΡΙΑ */
-  .holiday-icon { font-size: 42px !important; }
-  .holiday-text { font-size: 22px !important; }
-  .battery-box { width: 216px !important; height: 34px !important; }
-  .battery-text { font-size: 18px !important; margin-top: 10px !important; }
-  .click-hint { font-size: 19px !important; margin-top: 12px !important; }
-  .secret-message { font-size: 24px !important; line-height: 1.5 !important; padding: 24px 18px !important; }
+  .juke-title { font-size: 27px !important; } 
+  .juke-icon { font-size: 46px !important; }
+  .playlist-btn, .extra-track-btn { font-size: 16px !important; padding: 8px 12px !important; }
+  .juke-hint { font-size: 16px !important; }
 
+  /* EXYPNES SELIDES Smart Hub */
+  .hub-divider { font-size: 22px !important; padding: 18px 8px !important; } 
+  .hub-links a { font-size: 20px !important; padding: 12px 14px !important; } 
+  .hub-ic { width: 51px !important; height: 51px !important; font-size: 22px !important; }
   
-  /* Distance Learning (Εξ Αποστάσεως) */
-  .distance-learning-toggle .main-title { font-size: 24px !important; }
-  .distance-learning-toggle .main-title span:first-child { font-size: 28px !important; }
-  .collapsible-group summary { font-size: 20px !important; padding: 10px 14px !important; }
-  .collapsible-group summary .title-left span { font-size: 24px !important; }
-  .submenu-opt { font-size: 20px !important; padding: 10px !important; }
-  .submenu-opt span { font-size: 24px !important; }
+  #smart-hub2 .hub-links a { font-size: 20px !important; padding: 12px 14px !important; }
+  #smart-hub2 .hub-ic { width: 51px !important; height: 51px !important; font-size: 22px !important; } 
+  #smart-hub2 .hub-divider { font-size: 22px !important; padding: 0 !important; margin-bottom: 20px !important; }
 
-  /* Το Κουμπί "ΕΓΓΡΑΦΗ ΣΤΟ ΚΑΝΑΛΙ" στο Βίντεο */
-  .video-sub-action { font-size: 14px !important; padding: 10px 18px !important; }
+  /* QUIZ HISTORY NEWSLETTER FB WIKI */
+  .q-title, .q-title-pc, .fb-breakout-title, .custom-newsletter-title, .stc-header, .history-header-pc h3 { font-size: 24px !important; }
+  .q-body p, .q-body-pc p, #question-display, #daily-riddle-question, .fb-breakout-desc, .custom-newsletter-subtitle, #history-fact-pc, #mission-text-pc, .mission-header-pc h4, .history-content-pc { font-size: 19px !important; line-height: 1.5 !important; }
+  
+  .wiki-search-input { font-size: 19px !important; } 
+  .wiki-search-btn { font-size: 18px !important; } 
+  .wiki-search-icon { font-size: 24px !important; }
+  
+  .featured-title, .featured-title-lib { font-size: 23px !important; } 
+  .featured-action, .featured-action-lib { font-size: 18px !important; }
+  
+  #recent-slider .slide-title strong { font-size: 22px !important; } 
+  .slide-desc { font-size: 19px !important; }
+  .alert-bar-content { font-size: 18px !important; }
 
-  /* Αρχειοθήκη BLOG (BlogArchive1) */
-  #BlogArchive1 .archivedate { font-size: 20px !important; }
-  #BlogArchive1 .archivedate a { font-size: 20px !important; }
-  #BlogArchive1 ul.posts li a { font-size: 18px !important; line-height: 1.4 !important; }
-  .post-count { font-size: 14px !important; }
-  .zippy { font-size: 18px !important; }
-
-  /* Ημερολόγιο Sidebar (FullCalendar) */
-  #monthLabel { font-size: 22px !important; }
-  .fc-col-header-cell-cushion { font-size: 16px !important; }
-  .fc-daygrid-day-number { font-size: 18px !important; padding: 5px !important; }
-  .fc-day-today .fc-daygrid-day-number { width: 32px !important; height: 32px !important; line-height: 26px !important; font-size: 18px !important; }
-
-  /* Σχόλια (Comments Section) */
-  .comments h4 { font-size: 28px !important; }
-  .comment-body p { font-size: 22px !important; line-height: 1.6 !important; }
-  .comment-author { font-size: 20px !important; }
-  .comment-timestamp { font-size: 15px !important; }
-
-  /* Smart Feedback (Reactions / Καρδούλες) */
-  .smart-feedback-btn { padding: 6px 10px !important; font-size: 20px !important; }
-  .smart-feedback-btn span:first-child { font-size: 28px !important; }
-
-  /* Smart Glossary (Το Λεξικό / Wikipedia Tooltip) */
-  .glossary-title { font-size: 20px !important; }
-  #smart-glossary-tooltip { font-size: 18px !important; max-width: 400px !important; padding: 15px 20px !important; }
-
-  /* Lightbox (Προβολή εικόνων / βίντεο) */
-  .my-custom-lightbox-close { font-size: 60px !important; top: 20px !important; right: 30px !important; }
-  .my-custom-lightbox-prev, .my-custom-lightbox-next { font-size: 50px !important; padding: 25px !important; }
-  .my-custom-lightbox-counter { font-size: 20px !important; top: 30px !important; left: 30px !important; }
-  #lightbox-download { font-size: 46px !important; top: 30px !important; left: 40px !important; }
-
-  /* Κυκλάκι με αριθμούς στις Λίστες των άρθρων */
-  .post-body ol li::before { width: 34px !important; height: 34px !important; font-size: 16px !important; }
-  .post-body ol li { padding-left: 45px !important; }
-  /* Ειδοποίηση Newsletter (Σημαντικό...) */
-  .custom-newsletter-notice { font-size: 19px !important; line-height: 1.5 !important; padding: 14px 18px !important; }
-  /* Οδηγία Καιρού (Αγγίξτε ή περάστε το ποντίκι) - Στόχευση χωρίς κλάση! */
+  /* TICKER EIDISEWN KAI INLINE OVERRIDES */
+  #unique-top-ticker-outer .unique-top-ticker-link { font-size: 24px !important; }
+  .stats-notice { font-size: 19px !important; }
+  .bouncing-secret { font-size: 19px !important; line-height: 1.5 !important; }
+  html body .video-glass-title { font-size: 19px !important; }
+  #custom-post-slider-desktop .slide-title { font-size: 17px !important; line-height: 1.4 !important; padding: 5px 8px !important; }
+  .custom-newsletter-notice { font-size: 17px !important; line-height: 1.5 !important; padding: 14px 18px !important; }
   #hub-weather-container + div { font-size: 17px !important; line-height: 1.4 !important; margin-top: 15px !important; }
-  /* Οδηγία Ημερολογίου (Επιλέξτε μια μέρα) - Στόχευση χωρίς κλάση! */
-  .mobile-only-title + div { font-size: 20px !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
-  /* Οδηγία Χρονοκάψουλας (Πάτα επάνω για μια αποστολή) */
-  .history-hint-pc { font-size: 18px !important; margin-top: 5px !important; }
-  /* Οδηγία Γρίφου (Πέρασε το ποντίκι) - Στόχευση χωρίς κλάση! */
-  #daily-riddle-answer + p { font-size: 18px !important; margin-top: 18px !important; }
-  /* Smart Hub Dyo (Syndesmoi Sxoleiou) - Megenthynsi MONO sta links */
-  #smart-hub2 .hub-links a { font-size: 22px !important; padding: 8px 10px !important; }
-  #smart-hub2 .hub-ic { width: 44px !important; height: 44px !important; font-size: 22px !important; } 
-  /* Κουμπί Quiz (Πατήστε εδώ για να απαντήσετε) - Στόχευση μέσω του γονέα */
-  #quiz-trigger-pc button { 
-    font-size: 22px !important; 
-    padding: 14px 28px !important; 
-  }
-  .stc-caption p { font-size: 17px !important; line-height: 1.4 !important; }
+  .mobile-only-title + div { font-size: 19px !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
+  .history-hint-pc { font-size: 17px !important; margin-top: 5px !important; }
+  #daily-riddle-answer + p { font-size: 17px !important; margin-top: 18px !important; }
+
+  /* LIVE WRARIO KAI GLASS MODALS */
+  .bell-main { font-size: 27px !important; line-height: 1.4 !important; }
+  .bell-sub { font-size: 19px !important; }
+  .tracker-title { font-size: 1.2em !important; }
+  .glass-bell-tracker.active { transform: scale(1.35) !important; z-index: 9999 !important; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; }
+
+  .glass-modal-box { max-width: 500px !important; padding: 40px 25px !important; }
+  .glass-modal-icon { font-size: 68px !important; margin-bottom: 20px !important; }
+  .glass-modal-text { font-size: 22px !important; line-height: 1.5 !important; margin-bottom: 25px !important; }
+  .glass-modal-close { font-size: 38px !important; top: 15px !important; right: 25px !important; }
+
+  /* CARDS FLIP HOLIDAY KAI CHRONOCAPSULA */
+  #desktop-flip-wrapper .pulsating-lamp { font-size: 61px !important; }
+  #desktop-flip-wrapper .flip-front h3 { font-size: 25px !important; line-height: 1.4 !important; }
+  #desktop-flip-wrapper .flip-front p { font-size: 19px !important; }
+  #fact-text-desk { font-size: 23px !important; line-height: 1.5 !important; }
+  #desktop-flip-wrapper .flip-back p { font-size: 17px !important; }
+
+  .holiday-icon { font-size: 47px !important; }
+  .holiday-text { font-size: 24px !important; }
+  .battery-box { width: 243px !important; height: 38px !important; } 
+  .battery-text { font-size: 18px !important; margin-top: 12px !important; }
+  .click-hint { font-size: 19px !important; margin-top: 14px !important; }
+  .secret-message { font-size: 25px !important; line-height: 1.5 !important; padding: 25px 20px !important; }
+
+  .stc-caption p { font-size: 18px !important; line-height: 1.4 !important; }
+  .stc-header { font-size: 24px !important; } 
+  .stc-caption h4 { font-size: 24px !important; }
+
+  /* DISTANCE LEARNING Ex Apostasews */
+  .distance-learning-toggle .main-title { font-size: 23px !important; }
+  .distance-learning-toggle .main-title span:first-child { font-size: 27px !important; }
+  .collapsible-group summary { font-size: 18px !important; padding: 12px 16px !important; }
+  .collapsible-group summary .title-left span { font-size: 27px !important; }
+  .submenu-opt { font-size: 19px !important; padding: 12px !important; }
+  .submenu-opt span { font-size: 27px !important; }
+  .video-sub-action { font-size: 15px !important; padding: 12px 20px !important; }
+
+  /* ARXEIO THIKI KAI HMEROLOGIO */
+  #BlogArchive1 .archivedate, #BlogArchive1 .archivedate a { font-size: 19px !important; }
+  #BlogArchive1 ul.posts li a { font-size: 17px !important; line-height: 1.4 !important; }
+  .post-count { font-size: 14px !important; }
+  .zippy { font-size: 19px !important; }
+
+  #monthLabel { font-size: 23px !important; }
+  .fc-col-header-cell-cushion { font-size: 19px !important; }
+  .fc-daygrid-day-number { font-size: 21px !important; padding: 6px !important; }
+  .fc-day-today .fc-daygrid-day-number { width: 35px !important; height: 35px !important; line-height: 29px !important; font-size: 21px !important; }
+
+  /* SXOLIA KAI SMART FEEDBACK Kardoules */
+  .comments h4 { font-size: 30px !important; }
+  .comment-body p { font-size: 21px !important; line-height: 1.6 !important; }
+  .comment-author { font-size: 19px !important; }
+  .comment-timestamp { font-size: 17px !important; }
+  
+  .smart-feedback-btn { padding: 6px 12px !important; font-size: 25px !important; }
+  .smart-feedback-btn span:first-child { font-size: 33px !important; }
+
+  /* SMART GLOSSARY KAI LIGHTBOX Media Viewer */
+  .glossary-title { font-size: 22px !important; }
+  #smart-glossary-tooltip { font-size: 19px !important; max-width: 450px !important; padding: 18px 25px !important; }
+
+  .my-custom-lightbox-close { font-size: 61px !important; top: 20px !important; right: 30px !important; }
+  .my-custom-lightbox-prev, .my-custom-lightbox-next { font-size: 54px !important; padding: 25px !important; }
+  .my-custom-lightbox-counter { font-size: 22px !important; top: 30px !important; left: 30px !important; }
+  #lightbox-download { font-size: 52px !important; top: 30px !important; left: 40px !important; }
+
+  /* KYKLAKIA LISTWN KAI A11Y MENU */
+  .post-body ol li::before { width: 30px !important; height: 30px !important; font-size: 18px !important; }
+  .post-body ol li { padding-left: 45px !important; margin-bottom: 22px !important; }
+  
+  #main-master-fab { width: 108px !important; height: 108px !important; }
+  #main-master-fab svg { width: 44px !important; height: 44px !important; }
+  .sub-fab { width: 65px !important; height: 65px !important; }
+  .fab-label { font-size: 19px !important; padding: 8px 14px !important; left: 75px !important; }
+  
+  .a11y-title { font-size: 21px !important; }
+  .a11y-grid button { font-size: 17px !important; padding: 12px 6px !important; }
+  .a11y-grid button .icon { font-size: 27px !important; }
+  #a11y-btn-reset { font-size: 18px !important; padding: 14px !important; }
 }
