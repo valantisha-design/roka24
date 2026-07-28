@@ -7759,7 +7759,7 @@ html { scroll-behavior: smooth; }
   .c-day-temps { font-size: 18px !important; } .c-day-name { font-size: 15px !important; }
   .juke-title { font-size: 28px !important; } .juke-icon { font-size: 48px !important; }
   .playlist-btn, .extra-track-btn { font-size: 20px !important; padding: 5px 7px !important; }
-  .juke-hint { font-size: 18px !important; }
+  .juke-hint { font-size: 20px !important; }
   
   .hub-divider { font-size: 26px !important; padding: 8px 3px !important; } .hub-links a { font-size: 24px !important; padding: 7px 8px !important; } .hub-ic { width: 48px !important; height: 48px !important; font-size: 26px !important; }
   
@@ -7825,4 +7825,29 @@ html { scroll-behavior: smooth; }
     font-size: 22px !important; 
     padding: 10px 20px !important; /* Πιο μεγάλο κουμπί */
   } 
+   .stats-notice { font-size: 22px !important; }
+  /* Mystiko Minyma Daskalwn (Karfoti rythmisi gia inline css) */
+  .bouncing-secret { font-size: 20px !important; line-height: 1.5 !important; }
+/* Titlos Video (To sxoleio apo psila) */
+  html body .video-glass-title { font-size: 18px !important; }
+/* Λεζάντες στο Slider "Δημοφιλείς Αναρτήσεις" (Απόλυτη Στόχευση) */
+  #custom-post-slider-desktop .slide-title {
+    font-size: 18px !important; 
+    line-height: 1.4 !important; 
+    padding: 2px 5px !important; 
+  }
+  /* Karta Gnwsis Flip Card Mprosta kai Pisw Opsi */
+  #desktop-flip-wrapper .pulsating-lamp { font-size: 54px !important; }
+  #desktop-flip-wrapper .flip-front h3 { font-size: 28px !important; line-height: 1.4 !important; }
+  #desktop-flip-wrapper .flip-front p { font-size: 21px !important; }
+  
+  #fact-text-desk { font-size: 22px !important; line-height: 1.5 !important; }
+  #desktop-flip-wrapper .flip-back p { font-size: 18px !important; }
+  /* Karta Diakopwn kai Mpataria Daskalwn */
+  .holiday-icon { font-size: 42px !important; }
+  .holiday-text { font-size: 22px !important; }
+  .battery-box { width: 216px !important; height: 34px !important; }
+  .battery-text { font-size: 18px !important; margin-top: 10px !important; }
+  .click-hint { font-size: 19px !important; margin-top: 12px !important; }
+  .secret-message { font-size: 24px !important; line-height: 1.5 !important; padding: 24px 18px !important; }
 }
