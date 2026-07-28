@@ -7750,7 +7750,7 @@ html { scroll-behavior: smooth; }
   .dropdown-content a, .sub-dropdown-content a { font-size: 22px !important; padding: 8px !important; }
 
   /* TITLOI WIDGETS KAI KOUMPIA DRASEWN (PC 22px -> 30px) */
-  div.widget h2, div.widget > h2.title, .slider-main-title { font-size: 30px !important; padding: 8px 15px !important; }
+  div.widget h2, div.widget > h2.title, .slider-main-title { font-size: 25px !important; padding: 8px 15px !important; }
   .glass-modal-btn, .custom-read-more, .custom-newsletter-btn, .quiz-btn, .fb-breakout-btn, .action-menu-btn, .lib-fullscreen-btn, #quiz-trigger-pc button { font-size: 20px !important; padding: 14px 25px !important; }
   #slider-wrapper-desktop .slider-main-title { font-size: 22px !important; padding: 8px 15px !important; }
 
@@ -7805,7 +7805,6 @@ html { scroll-behavior: smooth; }
   #custom-post-slider-desktop .slide-title { font-size: 17px !important; line-height: 1.4 !important; padding: 5px 8px !important; }
   .custom-newsletter-notice { font-size: 17px !important; line-height: 1.5 !important; padding: 14px 18px !important; }
   #hub-weather-container + div { font-size: 17px !important; line-height: 1.4 !important; margin-top: 15px !important; }
-  .mobile-only-title + div { font-size: 16px !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
   .history-hint-pc { font-size: 17px !important; margin-top: 5px !important; }
   #daily-riddle-answer + p { font-size: 17px !important; margin-top: 18px !important; }
 
