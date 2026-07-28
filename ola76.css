@@ -7866,4 +7866,14 @@ html { scroll-behavior: smooth; }
   .my-custom-lightbox-prev, .my-custom-lightbox-next { font-size: 54px !important; padding: 25px !important; }
   .my-custom-lightbox-counter { font-size: 22px !important; top: 30px !important; left: 30px !important; }
   #lightbox-download { font-size: 52px !important; top: 30px !important; left: 40px !important; }
+  /* --- ΓΡΙΦΟΣ ΤΗΣ ΗΜΕΡΑΣ (+35% Scaling) --- */
+  .blur-box { 
+    font-size: 19px !important; 
+    padding: 28px !important; 
+    max-width: 450px !important; 
+  }
+  .blur-answer { 
+    font-size: 25px !important; 
+    margin-top: 20px !important; /* Έδωσα λίγο παραπάνω αέρα από τα 15px */
+  }
 }
