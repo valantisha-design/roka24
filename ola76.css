@@ -7723,14 +7723,8 @@ html { scroll-behavior: smooth; }
 }
 
 
-/* ==========================================================================
-   MASTER SENIOR SMART TABLET TYPOGRAPHY
-   Diathrei to PC Layout Anixneyei to fysiko megethos gia diorthwsi smikrynsis
-   Kathara sxolia xwris symbola gia apolyti asfaleia ston parser
-   ========================================================================== */
-
 /* ENA KATHOLIKOS SYLLAVISMOS Prostasia apo spasimo ths Sidebar */
-@media screen and (min-device-width: 900px) and (max-device-width: 1500px) and (pointer: coarse) {
+@media screen and (pointer: coarse) {
   .post-body, .widget, .hub-links a, .slide-title, .sch-msg, .q-body p, .q-body-pc p, .stc-caption p, .fb-breakout-desc, .menu-opt, .history-content-pc, .mission-text-pc, .custom-newsletter-notice {
     -webkit-hyphens: auto !important;
     -ms-hyphens: auto !important;
@@ -7739,46 +7733,47 @@ html { scroll-behavior: smooth; }
     overflow-wrap: break-word !important;
   }
   
-  /* Diorthwsi tou Slider gia na min paramorfwnei tis eikones sto PC Layout */
-  #recent-slider .slide img {
-    object-fit: cover !important; 
-    object-position: center !important;
-  }
-  
+ 
   /* Prostasia sto prwto gramma gia na mi vgei ektos oriwn me ti megethynsi */
   .post-body::first-letter {
     font-size: 2.8em !important;
   }
 }
-/* TESSERA ZWNH TRIA MEGALA TABLETS Othones 1100px ews 1500px Ayxisi 20 tois ekato */
-@media screen and (min-device-width: 900px) and (max-device-width: 1500px) and (pointer: coarse) {
-  .post-body, .post-body p, .post-body span, .post-body div, .post-body li { font-size: 19px !important; line-height: 1.6 !important; }
-  h3.post-title, .entry-title { font-size: 26px !important; }
-  .date-header, h2.date-header { font-size: 17px !important; padding: 6px 14px !important; }
-  .post-footer, .post-labels a, .post-timestamp { font-size: 14px !important; }
 
-  nav { gap: 10px !important; padding: 10px !important; }
-  nav a, nav &gt; a, nav div.dropdown &gt; button, nav .mega-menu &gt; button, #HTML1 nav button { font-size: 20px !important; padding: 11px 16px !important; }
-  .dropdown-content a, .sub-dropdown-content a { font-size: 18px !important; padding: 9px !important; }
-
-  div.widget h2, div.widget &gt; h2.title, .slider-main-title, #slider-wrapper-desktop .slider-main-title { font-size: 26px !important; padding: 6px 16px !important; }
-  .glass-modal-btn, .custom-read-more, .custom-newsletter-btn, .quiz-btn, .fb-breakout-btn, .action-menu-btn, .lib-fullscreen-btn { font-size: 16px !important; padding: 12px 20px !important; }
+@media screen and (min-width: 900px) and (max-width: 1499px) and (pointer: coarse) {
+  .post-body, .post-body p, .post-body span, .post-body div, .post-body li { font-size: 26px !important; line-height: 1.6 !important; }
+  h3.post-title, .entry-title { font-size: 32px !important; line-height: 1.3 !important; }
+  .date-header, h2.date-header { font-size: 20px !important; padding: 3px 8px !important; }
+  .post-footer, .post-labels a, .post-timestamp { font-size: 15px !important; }
   
-  .stat-icon { font-size: 50px !important; } .stat-number { font-size: 38px !important; } .stat-label { font-size: 13px !important; }
+  nav { gap: 20px !important; padding: 14px !important; }
+  nav a, nav &gt; a, nav div.dropdown &gt; button, nav .mega-menu &gt; button, #HTML1 nav button { font-size: 26px !important; padding: 5px 10px !important; }
+  .dropdown-content a, .sub-dropdown-content a { font-size: 25px !important; padding: 6px !important; }
   
-  .eortologio-title { font-size: 22px !important; } .eort-icon-body { font-size: 31px !important; } .eortologio-date { font-size: 18px !important; }
-  .c-day-temps { font-size: 16px !important; } .c-day-name { font-size: 13px !important; }
-  .juke-title { font-size: 24px !important; } .juke-icon { font-size: 41px !important; }
-  .playlist-btn, .extra-track-btn { font-size: 14px !important; padding: 8px 12px !important; }
-  .juke-hint { font-size: 14px !important; }
+  div.widget h2, div.widget &gt; h2.title, .slider-main-title, #slider-wrapper-desktop .slider-main-title { font-size: 28px !important; padding: 5px 9px !important; }
+  .glass-modal-btn, .custom-read-more, .custom-newsletter-btn, .quiz-btn, .fb-breakout-btn, .action-menu-btn, .lib-fullscreen-btn { font-size: 20px !important; padding: 7px 11px !important; }
   
-  .hub-divider { font-size: 19px !important; padding: 14px 6px !important; } .hub-links a { font-size: 18px !important; padding: 12px 14px !important; } .hub-ic { width: 45px !important; height: 45px !important; font-size: 19px !important; }
+  .stat-icon { font-size: 48px !important; } .stat-number { font-size: 45px !important; } .stat-label { font-size: 17px !important; }
   
-  .q-title, .q-title-pc, .fb-breakout-title, .custom-newsletter-title, .stc-header, .history-header-pc h3 { font-size: 20px !important; }
-  .q-body p, .q-body-pc p, #question-display, #daily-riddle-question, .fb-breakout-desc, .stc-caption p, #history-fact-pc, #mission-text-pc, .mission-header-pc h4, .history-content-pc { font-size: 17px !important; line-height: 1.5 !important; }
-  .wiki-search-input { font-size: 17px !important; } .wiki-search-btn { font-size: 16px !important; } .wiki-search-icon { font-size: 22px !important; }
-  .featured-title, .featured-title-lib { font-size: 20px !important; } .featured-action, .featured-action-lib { font-size: 16px !important; }
-  #recent-slider .slide-title strong { font-size: 19px !important; } .slide-desc { font-size: 16px !important; }
-  .alert-bar-content { font-size: 15px !important; }
- .unique-top-ticker-link { font-size: 26px !important; }
+  .eortologio-title { font-size: 25px !important; } .eort-icon-body { font-size: 38px !important; } .eortologio-date { font-size: 22px !important; }
+  .c-day-temps { font-size: 18px !important; } .c-day-name { font-size: 15px !important; }
+  .juke-title { font-size: 28px !important; } .juke-icon { font-size: 48px !important; }
+  .playlist-btn, .extra-track-btn { font-size: 20px !important; padding: 5px 7px !important; }
+  .juke-hint { font-size: 18px !important; }
+  
+  .hub-divider { font-size: 26px !important; padding: 8px 3px !important; } .hub-links a { font-size: 24px !important; padding: 7px 8px !important; } .hub-ic { width: 48px !important; height: 48px !important; font-size: 26px !important; }
+  
+  .q-title, .q-title-pc, .fb-breakout-title, .custom-newsletter-title, .stc-header, .history-header-pc h3 { font-size: 26px !important; }
+  .q-body p, .q-body-pc p, #question-display, #daily-riddle-question, .fb-breakout-desc, .custom-newsletter-subtitle, .stc-caption p, #history-fact-pc, #mission-text-pc, .mission-header-pc h4, .history-content-pc { font-size: 23px !important; line-height: 1.5 !important; }
+  .wiki-search-input { font-size: 19px !important; } .wiki-search-btn { font-size: 18px !important; } .wiki-search-icon { font-size: 24px !important; }
+  .featured-title, .featured-title-lib { font-size: 23px !important; } .featured-action, .featured-action-lib { font-size: 18px !important; }
+  #recent-slider .slide-title strong { font-size: 24px !important; } .slide-desc { font-size: 20px !important; }
+  .alert-bar-content { font-size: 22px !important; }
+  /* Ticker Ειδήσεων (Απόλυτη Στόχευση) */
+  #unique-top-ticker-outer .unique-top-ticker-link { font-size: 28px !important; }
+      info-box, #eort-world-day, #eort-holiday, #eort-names, #eort-school { 
+    font-size: 18px !important; 
+    line-height: 1 !important; 
+    padding: 6px !important; 
+  }
 }
