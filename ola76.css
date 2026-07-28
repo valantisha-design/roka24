@@ -7837,15 +7837,6 @@ html { scroll-behavior: smooth; }
   .stc-header { font-size: 24px !important; } 
   .stc-caption h4 { font-size: 24px !important; }
 
-  /* DISTANCE LEARNING Ex Apostasews */
-  .distance-learning-toggle .main-title { font-size: 23px !important; }
-  .distance-learning-toggle .main-title span:first-child { font-size: 27px !important; }
-  .collapsible-group summary { font-size: 18px !important; padding: 12px 16px !important; }
-  .collapsible-group summary .title-left span { font-size: 27px !important; }
-  .submenu-opt { font-size: 19px !important; padding: 12px !important; }
-  .submenu-opt span { font-size: 27px !important; }
-  .video-sub-action { font-size: 15px !important; padding: 12px 20px !important; }
-
   /* ARXEIO THIKI KAI HMEROLOGIO */
   #BlogArchive1 .archivedate, #BlogArchive1 .archivedate a { font-size: 19px !important; }
   #BlogArchive1 ul.posts li a { font-size: 17px !important; line-height: 1.4 !important; }
@@ -7874,18 +7865,4 @@ html { scroll-behavior: smooth; }
   .my-custom-lightbox-prev, .my-custom-lightbox-next { font-size: 54px !important; padding: 25px !important; }
   .my-custom-lightbox-counter { font-size: 22px !important; top: 30px !important; left: 30px !important; }
   #lightbox-download { font-size: 52px !important; top: 30px !important; left: 40px !important; }
-
-  /* KYKLAKIA LISTWN KAI A11Y MENU */
-  .post-body ol li::before { width: 30px !important; height: 30px !important; font-size: 18px !important; }
-  .post-body ol li { padding-left: 45px !important; margin-bottom: 22px !important; }
-  
-  #main-master-fab { width: 108px !important; height: 108px !important; }
-  #main-master-fab svg { width: 44px !important; height: 44px !important; }
-  .sub-fab { width: 65px !important; height: 65px !important; }
-  .fab-label { font-size: 19px !important; padding: 8px 14px !important; left: 75px !important; }
-  
-  .a11y-title { font-size: 21px !important; }
-  .a11y-grid button { font-size: 17px !important; padding: 12px 6px !important; }
-  .a11y-grid button .icon { font-size: 27px !important; }
-  #a11y-btn-reset { font-size: 18px !important; padding: 14px !important; }
 }
