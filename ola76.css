@@ -446,7 +446,7 @@ nav a[href="https://dimperist.blogspot.com/"]{
    SIMPLE MOBILE
    LIFT & GLASS FIX (ΔΟΚΙΜΗ -ΕΚΔΟΣΗ 2)
    ========================================= */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1500px) and (pointer: coarse) {
   
   /* 1. ΣΒΗΝΟΥΜΕ ΜΟΝΟ ΤΟ NAVBAR ΤΟΥ BLOGGER (Το "γυαλί" της κορυφής) */
   /* Αφαιρέσαμε το .tabs και το .PageList από εδώ για να μην "σπάνε" τα slides και το μενού */
@@ -7745,9 +7745,9 @@ html { scroll-behavior: smooth; }
   .post-footer, .post-labels a, .post-timestamp { font-size: 15px !important; }
 
   /* KENTRIKO MENOU NAV (PC 17px -> 23px) */
-  nav { gap: 16px !important; padding: 14px !important; }
-  nav a, nav > a, nav div.dropdown > button, nav .mega-menu > button, #HTML1 nav button { font-size: 23px !important; padding: 13px 18px !important; }
-  .dropdown-content a, .sub-dropdown-content a { font-size: 22px !important; padding: 12px !important; }
+  nav { gap: 15px !important; padding: 14px !important; }
+  nav a, nav > a, nav div.dropdown > button, nav .mega-menu > button, #HTML1 nav button { font-size: 28px !important; padding: 13px 8px !important; }
+  .dropdown-content a, .sub-dropdown-content a { font-size: 22px !important; padding: 8px !important; }
 
   /* TITLOI WIDGETS KAI KOUMPIA DRASEWN (PC 22px -> 30px) */
   div.widget h2, div.widget > h2.title, .slider-main-title { font-size: 30px !important; padding: 8px 15px !important; }
@@ -7760,7 +7760,7 @@ html { scroll-behavior: smooth; }
   .stat-label { font-size: 15px !important; }
 
   /* EORTOLOGIO KAI KAIROS */
-  .eortologio-title { font-size: 24px !important; } 
+  .eortologio-title { font-size: 22px !important; } 
   .eort-icon-body { font-size: 35px !important; } 
   .eortologio-date { font-size: 20px !important; }
   .c-day-temps { font-size: 18px !important; } 
@@ -7805,7 +7805,7 @@ html { scroll-behavior: smooth; }
   #custom-post-slider-desktop .slide-title { font-size: 17px !important; line-height: 1.4 !important; padding: 5px 8px !important; }
   .custom-newsletter-notice { font-size: 17px !important; line-height: 1.5 !important; padding: 14px 18px !important; }
   #hub-weather-container + div { font-size: 17px !important; line-height: 1.4 !important; margin-top: 15px !important; }
-  .mobile-only-title + div { font-size: 19px !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
+  .mobile-only-title + div { font-size: 16px !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
   .history-hint-pc { font-size: 17px !important; margin-top: 5px !important; }
   #daily-riddle-answer + p { font-size: 17px !important; margin-top: 18px !important; }
 
