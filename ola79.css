@@ -7884,6 +7884,6 @@ html { scroll-behavior: smooth; }
     left: -100px !important; 
 }
    body {
-        padding-left: 8px !important;
-        padding-right: 8px !important; } 
+        padding-left: 5px !important;
+        padding-right: 5px !important; } 
 }
