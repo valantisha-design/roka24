@@ -7729,7 +7729,7 @@ html { scroll-behavior: smooth; }
   .click-hint { font-size: 19px !important; margin-top: 14px !important; }
   .secret-message { font-size: 25px !important; line-height: 1.5 !important; padding: 25px 20px !important; }
 
-  .stc-caption p { font-size: 18px !important; line-height: 1.4 !important; }
+  .stc-caption p { font-size: 16px !important; line-height: 1.4 !important; }
   .stc-header { font-size: 24px !important; } 
   .stc-caption h4 { font-size: 24px !important; }
 
