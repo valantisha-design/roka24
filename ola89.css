@@ -7731,7 +7731,7 @@ html { scroll-behavior: smooth; }
 
   .stc-caption p { font-size: 16px !important; line-height: 1.4 !important; }
   .stc-header { font-size: 24px !important; } 
-  .stc-caption h4 { font-size: 24px !important; }
+  .stc-caption h4 { font-size: 20px !important; }
 
   /* ARXEIO THIKI KAI HMEROLOGIO */
   #BlogArchive1 .archivedate, #BlogArchive1 .archivedate a { font-size: 19px !important; }
