@@ -6696,13 +6696,6 @@ iframe.my-lb-media {
     }
 
 
-/* ΣΤΟ PC (ΠΑΝΩ ΑΠΟ 769px) ΕΠΑΝΑΦΟΡΑ ΣΤΗ SIDEBAR */
-@media screen and (min-width: 369px) {
-    #HTML17 {
-        display: block !important;
-        visibility: visible !important;
-    }
-}
   .blur-box { 
     background: #2c3e50; 
     color: white; 
