@@ -5084,7 +5084,7 @@ html.a11y-focus p:hover,
   }
 }
 
-   /* ΚΑΡΤΑ VIDEO - CLEAN VERSION (NO LINES) */
+     /* ΚΑΡΤΑ VIDEO - CLEAN VERSION (NO LINES) */
     .video-glass-card {
         width: 100%;
         max-width: 350px;
@@ -5212,32 +5212,6 @@ html.a11y-focus p:hover,
         border: none;
     }
 
-    /* ========================================= */
-    /* ΕΞΑΥΛΩΣΗ ΜΟΝΟ ΣΤΟ ΚΙΝΗΤΟ ΓΙΑ ΤΟ HTML 6 */
-    /* ========================================= */
-    @media screen and (max-width: 768px) {
-        #HTML6, 
-        #HTML6 .widget-content,
-        #HTML6 .widget {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            backdrop-filter: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            height: 0 !important;
-            min-height: 0 !important;
-            overflow: hidden !important;
-        }
-    }
-
-    /* ΣΤΟ PC (ΠΑΝΩ ΑΠΟ 769px) ΕΠΑΝΑΦΟΡΑ ΣΤΗ SIDEBAR ΓΙΑ ΤΟ HTML 6 */
-    @media screen and (min-width: 769px) {
-        #HTML6 {
-            display: block !important;
-            visibility: visible !important;
-        }
-    }
 /* ΕΞΩΤΕΡΙΚΟ ΚΟΥΜΠΙ FULLSCREEN ΒΙΒΛΙΟΘΗΚΗΣ */
     .lib-fullscreen-btn {
         display: flex;
