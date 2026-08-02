@@ -5254,10 +5254,14 @@ html.a11y-focus p:hover,
 }
 
 
-  #stc-widget {
+  /* =========================================================
+     ΒΑΣΙΚΟ ΚΟΥΤΙ & ΔΙΑΤΑΞΗ (Desktop & Mobile)
+     ========================================================= */
+  #stc-widget,
+  #stc-widget-mobile {
     position: relative;
-  max-width: 100%; /* Αντί για 420px, βάλε 100% για να προσαρμόζεται μόνο του */
-  margin: 15px 0;
+    max-width: 100%; /* Αντί για 420px, βάλε 100% για να προσαρμόζεται μόνο του */
+    margin: 15px 0;
     font-family: 'Poppins', sans-serif;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
@@ -5329,7 +5333,6 @@ html.a11y-focus p:hover,
     transition: opacity 0.9s ease;
   }
 
-  /* Photo Wrapper */
   /* Photo Wrapper */
   .stc-photo-wrapper {
     position: relative;
@@ -5474,7 +5477,8 @@ html.a11y-focus p:hover,
 
   /* Responsive */
   @media (max-width: 480px) {
-    #stc-widget { max-width: 100%; padding: 20px 0px; }
+    #stc-widget,
+    #stc-widget-mobile { max-width: 100%; padding: 20px 0px; }
     .stc-polaroid { max-width: 100%; margin: 0 auto; transform: rotate(0deg); }
   }
 
