@@ -2733,39 +2733,10 @@ html.a11y-focus p:hover,
   transform: translateY(-2px);
 }
 
-
-
-
-
-
-
-
-/* --- 1. ΚΡΥΒΟΥΜΕ ΤΟ WIDGET ΚΑΙ ΤΟ ΚΕΝΟ ΤΟΥ ΠΑΝΤΟΥ ΑΡΧΙΚΑ --- */
-  #mobile-newsletter-wrapper { display: none !important; }
-  .widget:has(#mobile-newsletter-wrapper) {
-      display: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-      background: transparent !important;
-      box-shadow: none !important;
-  }
-
   /* --- 2. ΕΜΦΑΝΙΣΗ ΜΟΝΟ ΣΤΑ ΚΙΝΗΤΑ ΚΑΙ ΜΟΝΟ ΑΝ ΕΙΝΑΙ ΑΡΧΙΚΗ --- */
   @media screen and (max-width: 767px) {
     /* Η κλάση .show-on-home μπαίνει αυτόματα από το script παρακάτω μόνο στην αρχική */
-    #mobile-newsletter-wrapper.show-on-home {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      height: auto !important;
-    }
-    /* Επαναφορά του widget container για να φανεί το newsletter */
-    .widget:has(#mobile-newsletter-wrapper.show-on-home) {
-        display: block !important;
-    }
-  
-
+    
   /* --- 3. ΣΤΥΛ ΤΟΥ NEWSLETTER (ΓΙΑ ΚΙΝΗΤΑ) - Ανανεωμένο με Glassmorphism --- */
   .custom-newsletter-box {
     background: rgba(255, 255, 255, 0.14);
@@ -4083,6 +4054,7 @@ html.a11y-focus p:hover,
   }
   .c-day-card {
     height: 110px;
+  }
   }
 
 /* --- MOZILLA FIREFOX ΕΙΔΙΚΗ ΔΙΟΡΘΩΣΗ ΓΙΑ ΤΟ 3D FLIP --- */
