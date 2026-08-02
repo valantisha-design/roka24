@@ -7049,9 +7049,10 @@ html { scroll-behavior: smooth; }
 
   /* TITLOI WIDGETS KAI KOUMPIA DRASEWN (PC 22px -> 30px) */
   div.widget h2, div.widget > h2.title, .slider-main-title { font-size: 25px !important; padding: 8px 15px !important; }
-  .glass-modal-btn, .custom-read-more, .custom-newsletter-btn, .quiz-btn, .fb-breakout-btn, .action-menu-btn, #quiz-trigger-pc button { font-size: 20px !important; padding: 14px 25px !important; }
+  .glass-modal-btn, .custom-read-more, .custom-newsletter-btn, .fb-breakout-btn, .action-menu-btn, #quiz-trigger-pc button { font-size: 20px !important; padding: 14px 25px !important; }
   #slider-wrapper-desktop .slider-main-title { font-size: 22px !important; padding: 8px 15px !important; }
   .lib-fullscreen-btn { font-size: 17px !important; padding: 7px 12px !important; }
+  .quiz-btn { font-size: 17px !important; padding: 7px 12px !important; }
 
   /* STATISTIKA SXOLEIOU (PC 42px -> 57px / 32px -> 43px) */
   .stat-icon { font-size: 48px !important; } 
