@@ -4615,7 +4615,8 @@ html.a11y-focus p:hover,
 /* =========================================================
      ΒΑΣΙΚΟ ΚΟΥΤΙ & ΔΙΑΤΑΞΗ (Ενιαίος κανόνας για όλες τις οθόνες)
      ========================================================= */
-  #calendar-widget-wrapper {
+  #calendar-widget-wrapper,
+  #calendar-widget-wrapper-mobile {
     width: 100%;
     max-width: 360px; /* Ιδανικό μέγεθος για sidebar και κινητά */
     margin: 0 auto 25px auto; /* Κεντράρισμα χωρίς αρνητικά margins */
@@ -4624,7 +4625,8 @@ html.a11y-focus p:hover,
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  #calendar-container {
+  #calendar-container,
+  #calendar-container-mobile {
     width: 100%;
     touch-action: pan-y;
     user-select: none;   
@@ -4640,7 +4642,8 @@ html.a11y-focus p:hover,
     margin-bottom: 10px;
   }
 
-  #prevBtn, #nextBtn { 
+  #prevBtn, #nextBtn,
+  #prevBtn-mobile, #nextBtn-mobile { 
     border: none;
     background: none;
     font-size: 20px;
@@ -4650,12 +4653,14 @@ html.a11y-focus p:hover,
     transition: color 0.2s ease, transform 0.2s ease; 
   }
   
-  #prevBtn:hover, #nextBtn:hover { 
+  #prevBtn:hover, #nextBtn:hover,
+  #prevBtn-mobile:hover, #nextBtn-mobile:hover { 
     color: #000; 
     transform: scale(1.2); 
   }
 
-  #monthLabel { 
+  #monthLabel,
+  #monthLabel-mobile { 
     font-size: 16px; 
     color: #333; 
     letter-spacing: 0.5px; 
@@ -4686,7 +4691,8 @@ html.a11y-focus p:hover,
         margin-bottom: 5px;
         color: #333; 
     }
-    #calendar-widget-wrapper {
+    #calendar-widget-wrapper,
+    #calendar-widget-wrapper-mobile {
         max-width: 400px; /* Λίγο μεγαλύτερο στα κινητά αν χρειάζεται */
     }
   }
@@ -4694,18 +4700,27 @@ html.a11y-focus p:hover,
   /* =========================================================
      FULLCALENDAR STYLES
      ========================================================= */
-  #calendar { 
+  #calendar,
+  #calendar-mobile { 
     width: 100%;
     /* Το ύψος ρυθμίζεται αυτόματα με CSS πλέον */
     min-height: 410px; 
   }
   
-  #calendar .fc-scrollgrid { border-radius: 8px; overflow: hidden; }
-  #calendar .fc-theme-standard td, #calendar .fc-theme-standard th { border-color: #eaeaea; }
-  #calendar .fc-day-today { background-color: #f0f8ff !important; font-weight: bold; }
+  #calendar .fc-scrollgrid,
+  #calendar-mobile .fc-scrollgrid { border-radius: 8px; overflow: hidden; }
   
-  #calendar .fc-col-header-cell { border: none !important; padding-bottom: 0px; }
-  #calendar .fc-col-header-cell-cushion { text-transform: uppercase; font-size: 11px !important; color: #888; font-weight: 600; }
+  #calendar .fc-theme-standard td, #calendar .fc-theme-standard th,
+  #calendar-mobile .fc-theme-standard td, #calendar-mobile .fc-theme-standard th { border-color: #eaeaea; }
+  
+  #calendar .fc-day-today,
+  #calendar-mobile .fc-day-today { background-color: #f0f8ff !important; font-weight: bold; }
+  
+  #calendar .fc-col-header-cell,
+  #calendar-mobile .fc-col-header-cell { border: none !important; padding-bottom: 0px; }
+  
+  #calendar .fc-col-header-cell-cushion,
+  #calendar-mobile .fc-col-header-cell-cushion { text-transform: uppercase; font-size: 11px !important; color: #888; font-weight: 600; }
   
   /* Απενεργοποίηση εσωτερικού scroll */
   .fc-scroller, .fc-scroller-liquid-absolute { overflow: hidden !important; }
@@ -4713,7 +4728,9 @@ html.a11y-focus p:hover,
   /* =========================================================
      ΔΙΑΔΡΑΣΤΙΚΟΤΗΤΑ & ΕΦΕ (Δικά σου)
      ========================================================= */
-  #calendar .fc-event { pointer-events: none; transition: transform 0.2s ease, background 0.2s ease; }
+  #calendar .fc-event,
+  #calendar-mobile .fc-event { pointer-events: none; transition: transform 0.2s ease, background 0.2s ease; }
+  
   .fc-daygrid-day-frame.has-posts { cursor: pointer !important; }
   
   .post-dot {
@@ -4741,14 +4758,16 @@ html.a11y-focus p:hover,
   /* =========================================================
      TOOLTIP & MODAL (Συννεφάκι)
      ========================================================= */
-  #calendar-overlay {
+  #calendar-overlay,
+  .calendar-overlay-class { /* Χρησιμοποιούμε και την κλάση για το κινητό */
       display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
       z-index: 9998; opacity: 0; transition: opacity 0.3s ease;
   }
 
-  #calendar-tooltip {
+  #calendar-tooltip,
+  .calendar-tooltip-class { /* Χρησιμοποιούμε και την κλάση για το κινητό */
       display: none; position: absolute;
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
