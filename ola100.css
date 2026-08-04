@@ -2664,7 +2664,7 @@ html.a11y-focus p:hover,
 /* 2. Το Modal Box (Γίνεται ξανά ημιδιάφανο και Γυάλινο) */
 .glass-modal-box {
   /* 👇 ΗΜΙΔΙΑΦΑΝΟ ΣΚΟΥΡΟ ΜΠΛΕ 👇 */
-  background: rgba(30, 41, 59, 0.85); 
+  background: rgba(30, 41, 59, 0.85) !important; 
   
   /* 👇 ΘΟΛΟΥΡΑ ΣΤΟ ΙΔΙΟ ΤΟ ΚΟΥΤΙ (Glass effect) 👇 */
   backdrop-filter: blur(12px); 
@@ -2711,7 +2711,7 @@ html.a11y-focus p:hover,
 
 .glass-modal-text {
   font-size: 16px; 
-  color: #f1f5f9; 
+   color: #f1f5f9 !important; 
   margin-bottom: 25px; 
   line-height: 1.6; 
   font-weight: 500;
@@ -2766,6 +2766,7 @@ html.a11y-focus p:hover,
 #mobile-newsletter-wrapper.show-on-home {
   display: block !important;
 }
+    /* --- ΔΙΟΡΘΩΣΗ ΧΡΩΜΑΤΩΝ ΓΙΑ ΤΟ MODAL ΣΤΟ PC --- */
 
 /* --- ΚΕΝΤΡΙΚΟ ΚΟΥΤΙ (Glassmorphism & Εφέ απόκρυψης) --- */
 .custom-newsletter-box {
