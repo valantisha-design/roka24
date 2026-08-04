@@ -7310,14 +7310,7 @@ iframe.my-lb-media {
     will-change: transform, opacity, backdrop-filter !important;
 }
 
-
-@media (prefers-reduced-transparency: reduce) {
-    .glass-modal-box, .stat-glass-card, .glass-quiz-widget, #smart-hub {
-        backdrop-filter: none !important;
-        background-color: rgba(240, 246, 250, 0.98) !important;
-    }
-}
-  
+ 
 a, button, .action-menu-btn, .playlist-btn, .sub-fab {
    
     -webkit-tap-highlight-color: transparent;
