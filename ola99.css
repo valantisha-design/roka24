@@ -4398,6 +4398,45 @@ html.a11y-focus p:hover,
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(169, 14, 14, 0.25);
   }
+  /* --- Κρυφή Προειδοποίηση (Slide-down) --- */
+.custom-newsletter-notice-wrapper {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+.custom-newsletter-notice-wrapper.open {
+  max-height: 100px;
+  opacity: 1;
+}
+
+/* --- Το Κουμπί όταν είναι Ανενεργό (Γκρι) --- */
+.custom-newsletter-btn:disabled {
+  background-color: #95a5a6 !important; 
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* --- Το Βελάκι όταν το κουμπί είναι Ενεργό (Τρέμει) --- */
+.custom-newsletter-btn:not(:disabled) #nl-arrow {
+  display: inline-block;
+  animation: arrow-shake 0.8s infinite alternate;
+}
+@keyframes arrow-shake {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(5px); }
+}
+
+/* --- Εφέ Απογείωσης για το ✉️ -> ✈️ --- */
+.custom-newsletter-icon {
+  display: inline-block;
+  transition: transform 1s ease-in, opacity 0.6s ease-in;
+}
+.custom-newsletter-icon.fly-away {
+  transform: translate(200px, -150px) scale(0.5) rotate(20deg);
+  opacity: 0;
+}
    }
 
 /* =========================================================
