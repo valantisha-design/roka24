@@ -4350,6 +4350,10 @@ html.a11y-focus p:hover,
     gap: 10px;
   }
 }
+/* Νύχτα (Απαλό βραδινό μπλε) */
+.bg-weather-night {
+  background: linear-gradient(145deg, rgba(200, 210, 230, 0.75) 0%, rgba(160, 175, 200, 0.9) 100%) !important;
+}
 
   
 @media screen and (min-width: 769px) {
