@@ -3881,7 +3881,7 @@ html.a11y-focus p:hover,
   flex: 1;
   background: transparent;
   perspective: 1200px;
-  height: 115px; /* Ελαφρώς ψηλότερο για καλύτερη αναλογία */
+  height: 125px; /* Ελαφρώς ψηλότερο για καλύτερη αναλογία */
   position: relative;
 }
 
@@ -4053,7 +4053,7 @@ html.a11y-focus p:hover,
     gap: 8px;
   }
   .c-day-card {
-    height: 110px;
+    height: 125px;
   }
   }
 
