@@ -7270,4 +7270,10 @@ html { scroll-behavior: smooth; }
 #calendar { 
     min-height: 430px; 
   }
+  /* --- ΚΑΡΤΕΣ ΚΑΙΡΟΥ & 3D FLIP EFFECT --- */
+.c-day-card {
+ 
+  height: 135px; /* Ελαφρώς ψηλότερο για καλύτερη αναλογία */
+  
+}
 }
