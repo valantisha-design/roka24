@@ -1582,11 +1582,12 @@ body.lb-active {
   font-size: 16px;
   pointer-events: none;
   z-index: 100;
-  animation: floatEmojiUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: floatEmojiUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 @keyframes floatEmojiUp {
   0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(-70px) scale(1.5) rotate(25deg); opacity: 0; }
+  /* Αυξήσαμε την απόσταση από -70px σε -130px */
+  100% { transform: translateY(-130px) scale(1.5) rotate(25deg); opacity: 0; } 
 }
 /* --- ΚΙΝΗΜΑΤΟΓΡΑΦΙΚΟ SLIDER (KEN BURNS EFFECT) --- */
 #recent-slider .slide.active img {
