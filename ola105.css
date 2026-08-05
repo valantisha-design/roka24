@@ -4954,9 +4954,8 @@ html.a11y-focus p:hover,
 
     .video-glass-title {
         font-family: 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 800;
-        text-transform: uppercase;
         color: #a90e0e;
         margin-bottom: 10px;
         display: flex;
