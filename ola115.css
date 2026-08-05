@@ -777,16 +777,18 @@ nav a[href="https://dimperist.blogspot.com/"]{
   .lightbox-prev { left: 20px; }
   .lightbox-next { right: 20px; }
 
-  .lightbox-counter {
+ .lightbox-counter {
     position: absolute;
-    bottom: 25px;
+    bottom: 95px; /* ⬅️ Η ΔΙΟΡΘΩΣΗ: Το σηκώνουμε πάνω από τα thumbnails! */
     color: #fff;
-    font-size: 18px;
+    font-size: 16px; /* Ελαφρώς πιο κομψό μέγεθος, πριν ήταν 18px */
     font-weight: bold;
     font-family: Arial, sans-serif;
-    background: rgba(0,0,0,0.5);
-    padding: 5px 15px;
+    background: rgba(0, 0, 0, 0.7); /* Λίγο πιο σκούρο για να διαβάζεται πιο καθαρά */
+    padding: 6px 16px;
     border-radius: 15px;
+    z-index: 100000;
+    pointer-events: none; /* ⬅️ Προστασία: Να μην εμποδίζει το ποντίκι αν πέσει πάνω σε εικόνα */
   }
 
   #lightbox-video {
