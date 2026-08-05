@@ -1119,12 +1119,19 @@ nav a[href="https://dimperist.blogspot.com/"]{
     margin-bottom: 5px;
   }
 
-  .classes .mega-content,
-  .useful .mega-content {
-    width: 360px !important; 
-    min-width: 200px !important;
-    max-width: 370px !important;
-  }
+  /* Το μενού "Τάξεις" παραμένει ως είχε */
+.classes .mega-content {
+  width: 360px !important;
+  min-width: 200px !important;
+  max-width: 370px !important;
+}
+
+/* Το νέο, μεγαλύτερο μενού "Χρήσιμα" */
+.useful .mega-content {
+  width: 380px !important;      /* Το νέο σου πλάτος */
+  min-width: 200px !important;
+  max-width: 380px !important;  /* ΣΗΜΑΝΤΙΚΟ: Αύξησε το max-width για να επιτρέψει την αλλαγή */
+}
 
   /* =========================================
      MOBILE & TABLET FIXES (Max-width 868px)
