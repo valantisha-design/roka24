@@ -1612,7 +1612,7 @@ body.lb-active {
     min-width: 320px;
 
     position: relative;
-    z-index: 9999 !important;
+    z-index: 50 !important;
     
     background: transparent !important;
     border: 0 !important;
