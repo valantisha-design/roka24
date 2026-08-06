@@ -7761,8 +7761,8 @@ html { scroll-behavior: smooth; }
   .eortologio-title { font-size: 22px !important; } 
   .eort-icon-body { font-size: 35px !important; } 
   .eortologio-date { font-size: 20px !important; }
-  .c-day-temps { font-size: 18px !important; } 
-  .c-day-name { font-size: 12px !important; }
+  .c-day-temps { font-size: 16px !important; } 
+  .c-day-name { font-size: 14px !important; }
   .info-box, #eort-world-day, #eort-holiday, #eort-names, #eort-school { font-size: 19px !important; line-height: 1.4 !important; padding: 10px !important; }
 
   /* JUKEBOX */
