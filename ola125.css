@@ -5098,9 +5098,10 @@ html.a11y-focus p:hover,
    ========================================================= */
 
 /* --- Ασφάλεια: Μόνιμος κενός χώρος κάτω από τις μέρες & απαγόρευση εσωτερικού scroll --- */
+#calendar-container,
 #calendar-container-mobile { 
     position: relative !important; 
-    padding-bottom: 30px !important; 
+    padding-bottom: 32px !important; 
     overflow: hidden !important; 
 }
 
@@ -5121,7 +5122,7 @@ html.a11y-focus p:hover,
 /* --- Time Anchor (Σήμερα) --- */
 .today-anchor-btn {
     position: absolute; 
-    bottom:  5px; /* Κάθεται ακριβώς μέσα στον νέο κενό χώρο που ανοίξαμε */
+    bottom:  1px; /* Κάθεται ακριβώς μέσα στον νέο κενό χώρο που ανοίξαμε */
     left: 50%; 
     transform: translateX(-50%) scale(0.8); /* Scale αντί για translateY για να μην βγαίνει εκτός ορίων */
     background: #4A90E2; color: #fff; padding: 6px 18px; border-radius: 20px;
@@ -7987,7 +7988,7 @@ html { scroll-behavior: smooth; }
   .post-count { font-size: 14px !important; }
   .zippy { font-size: 19px !important; }
 
-  #monthLabel { font-size: 18px !important; }
+  #monthLabel { font-size: 16px !important; }
   .fc-col-header-cell-cushion { font-size: 14px !important; }
   .fc-daygrid-day-number { font-size: 16px !important; padding: 6px !important; }
 
