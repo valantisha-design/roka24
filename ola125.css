@@ -5094,7 +5094,15 @@ html.a11y-focus p:hover,
 }
 /* =========================================================
    LEVEL 3: DIMENSIONAL ZOOM, ROULETTE, TIME ANCHOR, MAGNETIC UI
+   (ΔΙΟΡΘΩΜΕΝΟ - ΑΠΟΛΥΤΑ ΣΤΑΘΕΡΟ ΧΩΡΙΣ SCROLL)
    ========================================================= */
+
+/* --- Ασφάλεια: Μόνιμος κενός χώρος κάτω από τις μέρες & απαγόρευση εσωτερικού scroll --- */
+#calendar-container-mobile { 
+    position: relative !important; 
+    padding-bottom: 45px !important; 
+    overflow: hidden !important; 
+}
 
 /* --- Premium Κουμπιά & Header --- */
 .month-zoom-label { position: relative; padding-right: 18px; cursor: pointer; transition: color 0.2s; }
@@ -5112,12 +5120,17 @@ html.a11y-focus p:hover,
 
 /* --- Time Anchor (Σήμερα) --- */
 .today-anchor-btn {
-    position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%) translateY(20px);
+    position: absolute; 
+    bottom: 8px; /* Κάθεται ακριβώς μέσα στον νέο κενό χώρο που ανοίξαμε */
+    left: 50%; 
+    transform: translateX(-50%) scale(0.8); /* Scale αντί για translateY για να μην βγαίνει εκτός ορίων */
     background: #4A90E2; color: #fff; padding: 6px 18px; border-radius: 20px;
     font-size: 13px; font-weight: bold; box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
     opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 100;
 }
-.today-anchor-btn.visible { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.today-anchor-btn.visible { 
+    opacity: 1; pointer-events: auto; transform: translateX(-50%) scale(1); 
+}
 .today-anchor-btn:hover { background: #357ABD; transform: translateX(-50%) scale(1.05); }
 
 /* --- Εφέ Ρουλέτας --- */
@@ -5125,9 +5138,11 @@ html.a11y-focus p:hover,
 
 /* --- Dimensional Zoom (Year View Heatmap) --- */
 #year-view-overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0; /* Τεντώνει αυστηρά στα όρια αντί για 100% */
     background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    z-index: 90; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transform: scale(1.05);
+    z-index: 90; display: flex; flex-direction: column; opacity: 0; pointer-events: none; 
+    transform: scale(0.95); /* Ξεκινάει μικρότερο (0.95) αντί για 1.05 που ξεχείλωνε την οθόνη! */
     transition: opacity 0.3s ease, transform 0.3s ease; border-radius: 8px; box-sizing: border-box;
 }
 #year-view-overlay.active { opacity: 1; pointer-events: auto; transform: scale(1); }
@@ -5150,23 +5165,8 @@ html.a11y-focus p:hover,
 .year-month-box.high { background: #42a5f5; border-color: #1e88e5; color: #fff; }
 .ym-count { font-size: 11px; opacity: 0.8; font-weight: normal; margin-top: 2px; }
 
-/* --- Magnetic Dot Transitions --- */
+/* --- Magnetic Dot Transitions (Το αφήνουμε για το PC) --- */
 .post-dot { transition: transform 0.1s ease-out, background 0.2s, box-shadow 0.2s; will-change: transform; }
-
-/* Δημιουργεί 50px λευκό, κενό χώρο αυστηρά κάτω από τις ημερομηνίες */
-#calendar-container-mobile {
-    padding-bottom: 60px !important; 
-}
-
-/* Ανεβάζει το κουμπί "Σήμερα" ώστε να επιπλέει ακριβώς μέσα στον νέο κενό χώρο */
-.today-anchor-btn {
-    bottom: 8px !important; 
-}
-
-/* Για απόλυτη σιγουριά: Εξαφανίζει την εσωτερική μπάρα κύλισης */
-#calendar-mobile .fc-scroller {
-    overflow: hidden !important; 
-}
 
 
   .holiday-widget {
