@@ -5100,7 +5100,7 @@ html.a11y-focus p:hover,
 /* --- Ασφάλεια: Μόνιμος κενός χώρος κάτω από τις μέρες & απαγόρευση εσωτερικού scroll --- */
 #calendar-container-mobile { 
     position: relative !important; 
-    padding-bottom: 45px !important; 
+    padding-bottom: 15px !important; 
     overflow: hidden !important; 
 }
 
