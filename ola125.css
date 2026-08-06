@@ -5167,6 +5167,31 @@ html.a11y-focus p:hover,
 #calendar-mobile .fc-scroller {
     overflow: hidden !important; 
 }
+/* =========================================================
+   ΙΣΟΠΕΔΩΣΗ ΕΣΩΤΕΡΙΚΟΥ SCROLL (Τέλος η γκρι μπάρα)
+   ========================================================= */
+
+/* 1. Σπάμε την εσωτερική μπάρα του FullCalendar (Αναγκαστικό άπλωμα) */
+#calendar-mobile .fc-view-harness,
+#calendar-mobile .fc-view-harness-active,
+#calendar-mobile .fc-scroller,
+#calendar-mobile .fc-scroller-liquid-absolute {
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+}
+
+/* 2. Δημιουργούμε 55px καθαρού χώρου ΑΥΣΤΗΡΑ κάτω από το ημερολόγιο */
+#calendar-container-mobile {
+    padding-bottom: 55px !important; 
+    height: auto !important;
+}
+
+/* 3. Τοποθετούμε το κουμπί "Σήμερα" μέσα σε αυτόν τον νέο, κενό χώρο */
+.today-anchor-btn {
+    bottom: 10px !important; 
+    z-index: 100 !important;
+}
 
   .holiday-widget {
     background-color: #F0F6FA; 
