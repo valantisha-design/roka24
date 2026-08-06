@@ -5121,7 +5121,7 @@ html.a11y-focus p:hover,
 /* --- Time Anchor (Σήμερα) --- */
 .today-anchor-btn {
     position: absolute; 
-    bottom: 8px; /* Κάθεται ακριβώς μέσα στον νέο κενό χώρο που ανοίξαμε */
+    bottom: 0px; /* Κάθεται ακριβώς μέσα στον νέο κενό χώρο που ανοίξαμε */
     left: 50%; 
     transform: translateX(-50%) scale(0.8); /* Scale αντί για translateY για να μην βγαίνει εκτός ορίων */
     background: #4A90E2; color: #fff; padding: 6px 18px; border-radius: 20px;
