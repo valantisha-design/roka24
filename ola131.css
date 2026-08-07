@@ -4991,9 +4991,16 @@ html.a11y-focus p:hover,
     transform: scale(1.2); 
   }
 
-  #monthLabel,
+  
   #monthLabel-mobile { 
     font-size: 16px; 
+    color: #333; 
+    letter-spacing: 0.5px; 
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+#monthLabel { 
+    font-size: 15px; 
     color: #333; 
     letter-spacing: 0.5px; 
     font-weight: bold;
