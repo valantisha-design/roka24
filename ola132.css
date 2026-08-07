@@ -5000,14 +5000,14 @@ html.a11y-focus p:hover,
   #monthLabel-mobile { 
     font-size: 16px; 
     color: #333; 
-    letter-spacing: 0.5px; 
+    letter-spacing: 0.2px; 
     font-weight: bold;
     text-transform: capitalize;
   }
 #monthLabel { 
     font-size: 15px; 
     color: #333; 
-    letter-spacing: 0.5px; 
+    letter-spacing: 0.1px; 
     font-weight: bold;
     text-transform: capitalize;
   }
