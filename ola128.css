@@ -3804,14 +3804,12 @@ html.a11y-focus p:hover,
    --- ΝΕΟ: Ακτινογραφία Ημέρας (Mini-Map) ---
    ========================================== */
 .day-minimap {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  /* Αφαιρέσαμε τα position, bottom και left */
   width: 100%;
-  height: 4px; /* Λεπτό και διακριτικό */
+  height: 4px;
   display: flex;
-  gap: 2px; /* Τα "κοψίματα" (chapters) ανάμεσα στις ώρες */
-  padding: 0 16px; /* Για να μην καβαλάει τις στρογγυλές γωνίες της κάρτας */
+  gap: 2px;
+  margin-top: 8px; /* Φυσικό κενό από τα στοιχεία που βρίσκονται από πάνω της */
   box-sizing: border-box;
   opacity: 0.9;
 }
