@@ -4304,7 +4304,8 @@ html.a11y-focus p:hover,
 }
 /* Πρόσθεσε αυτό στο CSS σου (αν δεν έχεις ήδη το transition) */
 #google-form-iframe-mobile {
-    top: -300px; /* Αρχική κρυφή θέση */
+    top: -315px; /* Τραβάμε την κεφαλίδα της Google προς τα πάνω */
+    height: 1000px !important; 
     transition: top 0.4s ease-in-out; /* Ομαλή κίνηση */
 }
 
@@ -4312,6 +4313,10 @@ html.a11y-focus p:hover,
 #google-form-iframe-mobile.is-submitted {
     top: 0px; 
 }
+#quiz-form-mobile {
+    height: 580px; /* Το ορατό άνοιγμα του συρταριού στο κινητό */
+}
+
 
 /* ============================================================
    PREMIUM WIDGET STYLES - EORTOLOGIO & WEATHER (UI/UX MASTER)
@@ -7574,12 +7579,12 @@ iframe.my-lb-media {
 .form-container-pc {
     border-radius: 14px; overflow: hidden; background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: inset 0 2px 8px rgba(0,0,0,0.04);
-    position: relative; height: 385px; transition: box-shadow 0.3s ease;
+    position: relative; height: 545px; transition: box-shadow 0.3s ease;
 }
 .form-container-pc:hover { box-shadow: inset 0 2px 12px rgba(169, 14, 14, 0.08); }
 .form-container-pc iframe {
     display: block; position: absolute; top: -335px; left: 0;
-    width: 100%; height: 820px;
+    width: 100%; height: 985px;
 }
 #quiz-trigger-pc button:hover {
     transform: scale(1.05);
