@@ -4289,7 +4289,7 @@ html.a11y-focus p:hover,
     margin-bottom: 18px; padding: 12px 14px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4)); 
     border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.6);
-    border-left: 5px solid #a90e0e; text-align: justify;
+    border-left: 5px solid #a90e0e; text-align: left;
     box-shadow: 0 4px 15px rgba(0,0,0,0.04);
 }
 .form-container {
@@ -7598,7 +7598,7 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Η έντονη σκιά που 
     margin-bottom: 18px; padding: 12px 14px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4)); 
     border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.6);
-    border-left: 5px solid #a90e0e; text-align: justify;
+    border-left: 5px solid #a90e0e; text-align: left;
     box-shadow: 0 4px 15px rgba(0,0,0,0.04);
 }
 .form-container-pc {
