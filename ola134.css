@@ -3965,7 +3965,7 @@ html.a11y-focus p:hover,
 }
 
 .mission-container-mobile.open {
-  max-height: 150px;
+  max-height: 250px;
   opacity: 1;
   padding: 12px 15px;
   margin-top: 15px;
