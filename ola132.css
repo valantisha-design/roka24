@@ -1558,14 +1558,14 @@ body.lb-active {
 
 @media screen and (min-width: 800px){
   nav {
-    gap: 21px !important; /* Αυξάνει ΜΟΝΟ την απόσταση μεταξύ των κουμπιών (το αρχικό ήταν 2px) */
+    gap: 15px !important; /* Αυξάνει ΜΟΝΟ την απόσταση μεταξύ των κουμπιών (το αρχικό ήταν 2px) */
   }
 /* Διορθώθηκε το &gt; σε > */
   nav > a, 
   nav div.dropdown > button, 
   nav .mega-menu > button,
   #HTML1 nav button { 
-    font-size: 17px !important; 
+    font-size: 19px !important; 
   }
     
 @supports (-moz-appearance: none) {
