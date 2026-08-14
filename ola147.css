@@ -9937,8 +9937,8 @@ html { scroll-behavior: smooth; }
 
 .top-badge-pc {
     position: absolute;
-    margin-top: -11px;
-    right: -12px;
+    margin-top: -18px;
+    right: -14px;
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.8);
     color: #2c3e50;
