@@ -6153,12 +6153,11 @@ html.a11y-focus p:hover,
 }
 @media (max-width: 768px) {
 .return-to-today-badge {
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   font-weight: 800;
   opacity: 0.9;
   margin-left: 3px;
   text-decoration: none;
- 
 }
    }
 @media (min-width: 769px) {
