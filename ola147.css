@@ -6151,6 +6151,7 @@ html.a11y-focus p:hover,
   transform: scale(1.03);
   text-shadow: 0 2px 5px rgba(169, 14, 14, 0.15);
 }
+@media (max-width: 768px) {
 .return-to-today-badge {
   font-size: 0.75rem;
   font-weight: 800;
@@ -6158,6 +6159,18 @@ html.a11y-focus p:hover,
   margin-left: 6px;
   text-decoration: underline dotted;
   text-underline-offset: 3px;
+}
+   }
+@media (min-width: 769px) {
+  .return-to-today-badge {
+  font-size: 1.25rem; /* Ή ό,τι μέγεθος έχεις επιλέξει */
+  font-weight: 700;
+  opacity: 0.9;
+  margin-left: 1px;
+  text-decoration: none!important;
+  text-underline-offset: 3px;
+  white-space: nowrap; /* ΠΡΟΣΘΗΚΗ: Αποτρέπει την αναδίπλωση του κειμένου */
+}
 }
 
 /* --- 2. Expanding Search Box --- */
