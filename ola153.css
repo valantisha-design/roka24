@@ -1401,12 +1401,24 @@ html body #modern-mobile-share a:active {
       display: none !important;
   }
 }
-
+@media (max-width: 767px) {
+    #HTML30 {
+      display: none !important;
+    }
+    #HTML5 {
+      display: none !important;
+    }
+   #HTML19 {
+      display: none !important;
+    }
+  }
+body #gt-floating-btn {
+    display: none !important;
+}
 /* 1. Αφαιρεί το κόκκινο φόντο από τα κουμπιά (βελάκια, Αρχική) */
 .mobile-link-button {
     background-color: transparent !important;
 }
-
 
 /* Κρύβει εντελώς την υπογραφή "Από το Blogger" */
 #Attribution1 {
