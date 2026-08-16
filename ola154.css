@@ -10176,7 +10176,7 @@ html { scroll-behavior: smooth; }
   .lib-actions { display: flex; gap: 8px; }
   .lib-btn { 
     background: var(--btn-bg); color: var(--text-main); border: 1px solid var(--input-border); 
-    padding: 8px 14px; border-radius: 20px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: 0.2s; 
+    padding: 10px 16px; border-radius: 20px; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: 0.2s; 
     display: flex; align-items: center; justify-content: center; gap: 6px;
   }
   .lib-btn:hover { background: var(--btn-hover); border-color: var(--text-muted); }
