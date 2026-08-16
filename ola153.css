@@ -1459,9 +1459,21 @@ body #gt-floating-btn {
     }
 }
 
-
-
-
+.modern-share-container .sh-btn svg {
+    width: 24px;  /* Βάλε εδώ το νούμερο που θέλεις */
+    height: 24px; /* Βάλε το ίδιο νούμερο με το width */
+}
+/* 2. Σιγουρευόμαστε ότι το "κουμπί" αφήνει το εικονίδιο να απλωθεί */
+.modern-share-container .sh-btn {
+    display: inline-block;
+    width: auto ;
+    height: auto ;
+    line-height: 0; /* Βοηθάει στο να μην υπάρχει κρυφό κενό */
+}
+/* 2. (Προαιρετικά) Μεγαλώνει την περιοχή/κενό γύρω από τα εικονίδια αν έχουν φόντο */
+.modern-share-container .sh-btn {
+    padding: 6px; /* Αύξησε το νούμερο αν θέλεις το "κουμπί" να είναι πιο ευρύχωρο */
+}
 
 
 /* MOBILE: πιο συμπαγές menu */
