@@ -10365,7 +10365,8 @@ font-size: 14px;}
 .v4-theme .mini-lib-title { color: #333; font-size: 22px; font-weight: 800; margin: 0; }
 
 .v4-theme .search-container { margin-bottom: 10px; }
-.v4-theme .mini-lib-search { width: 100%; padding: 16px 25px; border-radius: 50px; border: none; background: #f0f3f5; box-shadow: inset 6px 6px 10px 0 #cbced1, inset -6px -6px 10px 0 #ffffff; box-sizing: border-box; font-size: 15px; color: #333; outline: none; transition: 0.3s ease; }
+.v4-theme .mini-lib-search { width: 90%; padding: 16px 15px; border-radius: 50px; border: none; background: #f0f3f5; box-shadow: inset 6px 6px 10px 0 #cbced1, inset -6px -6px 10px 0 #ffffff; box-sizing: border-box; font-size: 15px; color: #333; outline: none; transition: 0.3s ease; margin: 0 auto; 
+  display: block; }
 .v4-theme .mini-lib-search:focus { box-shadow: inset 2px 2px 5px #cbced1, inset -2px -2px 5px #ffffff, 0 0 0 3px rgba(74, 144, 226, 0.3); background: #fafafa; }
 
 /* Κοινές Ρυθμίσεις για Κάρτα */
