@@ -10360,7 +10360,7 @@ font-size: 14px;}
 }
 
 /* --- ΕΚΔΟΧΗ 4: Η "Απόλυτη Μπάρα" (Neumorphism) - Ο ΜΑΓΙΚΟΣ ΚΑΝΟΝΑΣ --- */
-.v4-theme { background: #f0f3f5; border-radius: 20px; padding: 0px 0px; box-shadow: 10px 10px 20px #cbced1, -10px -10px 20px #ffffff; font-family: sans-serif; box-sizing: border-box; }
+.v4-theme { background: #f0f3f5; border-radius: 20px; padding: 0px 0px 15px 0px; box-shadow: 10px 10px 20px #cbced1, -10px -10px 20px #ffffff; font-family: sans-serif; box-sizing: border-box; }
 .v4-theme .mini-lib-header { text-align: center; margin-bottom: 15px; }
 .v4-theme .mini-lib-title { color: #333; font-size: 22px; font-weight: 800; margin: 0; }
 
@@ -10470,7 +10470,8 @@ font-size: 14px;}
 }
 
 /* Κουμπί & Loader */
-.v4-theme .mini-lib-btn-bottom { display: block; text-align: center; background: #f0f3f5; color: #4a90e2; box-shadow: 5px 5px 10px #cbced1, -5px -5px 10px #ffffff; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 15px; transition: 0.2s; }
+.v4-theme .mini-lib-btn-bottom { display: block; text-align: center; background: #f0f3f5; color: #4a90e2; box-shadow: 5px 5px 10px #cbced1, -5px -5px 10px #ffffff; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 15px; transition: 0.2s; width: 90%; 
+  margin: 0 auto; }
 .v4-theme .mini-lib-btn-bottom:hover { box-shadow: inset 4px 4px 8px #cbced1, inset -4px -4px 8px #ffffff; }
 
 .v4-theme .mini-lib-loader { display: none; justify-content: center; padding: 10px; width: 100%; }
