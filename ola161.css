@@ -10360,11 +10360,11 @@ font-size: 14px;}
 }
 
 /* --- ΕΚΔΟΧΗ 4: Η "Απόλυτη Μπάρα" (Neumorphism) - Ο ΜΑΓΙΚΟΣ ΚΑΝΟΝΑΣ --- */
-.v4-theme { background: #f0f3f5; border-radius: 20px; padding: 25px 20px; box-shadow: 10px 10px 20px #cbced1, -10px -10px 20px #ffffff; font-family: sans-serif; box-sizing: border-box; }
-.v4-theme .mini-lib-header { text-align: center; margin-bottom: 25px; }
+.v4-theme { background: #f0f3f5; border-radius: 20px; padding: 0px 0px; box-shadow: 10px 10px 20px #cbced1, -10px -10px 20px #ffffff; font-family: sans-serif; box-sizing: border-box; }
+.v4-theme .mini-lib-header { text-align: center; margin-bottom: 15px; }
 .v4-theme .mini-lib-title { color: #333; font-size: 22px; font-weight: 800; margin: 0; }
 
-.v4-theme .search-container { margin-bottom: 25px; }
+.v4-theme .search-container { margin-bottom: 10px; }
 .v4-theme .mini-lib-search { width: 100%; padding: 16px 25px; border-radius: 50px; border: none; background: #f0f3f5; box-shadow: inset 6px 6px 10px 0 #cbced1, inset -6px -6px 10px 0 #ffffff; box-sizing: border-box; font-size: 15px; color: #333; outline: none; transition: 0.3s ease; }
 .v4-theme .mini-lib-search:focus { box-shadow: inset 2px 2px 5px #cbced1, inset -2px -2px 5px #ffffff, 0 0 0 3px rgba(74, 144, 226, 0.3); background: #fafafa; }
 
@@ -10438,7 +10438,7 @@ font-size: 14px;}
 #sidebar-lib-pc .mini-lib-grid { 
     display: flex; 
     flex-direction: column; 
-    gap: 80px; /* Τεράστιο κενό που εγγυάται ότι το 2ο βιβλίο ΔΕΝ φαίνεται! */
+    gap: 50px; /* Τεράστιο κενό που εγγυάται ότι το 2ο βιβλίο ΔΕΝ φαίνεται! */
     padding-bottom: 30px;
 }
 #sidebar-lib-pc .mini-book-card {
