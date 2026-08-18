@@ -10470,7 +10470,7 @@ font-size: 14px;}
 }
 
 /* Κουμπί & Loader */
-.v4-theme .mini-lib-btn-bottom { display: block; text-align: center; background: #f0f3f5; color: #4a90e2; box-shadow: 5px 5px 10px #cbced1, -5px -5px 10px #ffffff; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 15px; transition: 0.2s; width: 90%; 
+.v4-theme .mini-lib-btn-bottom { display: block; text-align: center; background: #f0f3f5; color: #4a90e2; box-shadow: 5px 5px 10px #cbced1, -5px -5px 10px #ffffff; padding: 10px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 15px; transition: 0.2s; width: 90%; 
   margin: 0 auto; }
 .v4-theme .mini-lib-btn-bottom:hover { box-shadow: inset 4px 4px 8px #cbced1, inset -4px -4px 8px #ffffff; }
 
@@ -10493,6 +10493,6 @@ font-size: 14px;}
         font-size: 16.8px; 
     }
     .v4-theme .mini-lib-btn-bottom { 
-        font-size: 18px; 
+        font-size: 20px; 
     }
 }
