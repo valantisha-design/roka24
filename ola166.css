@@ -1864,7 +1864,7 @@ nav a[href="https://dimperist.blogspot.com/"]{
       backdrop-filter: blur(0px) !important;
       box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
       border-radius: 50px !important;
-      animation: slideDown 0.8s ease-out; 
+      animation: slideDown 0.3s ease-out; 
       border: 1px solid rgba(255, 255, 255, 0.3) !important;
     }
   }
@@ -1886,7 +1886,7 @@ nav a[href="https://dimperist.blogspot.com/"]{
       backdrop-filter: blur(0px) !important;
       box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
       border-radius: 50px !important;
-      animation: slideDown 0.8s ease-out; 
+      animation: slideDown 0.3s ease-out; 
       border: 1px solid rgba(255, 255, 255, 0.3) !important;
     }
   }
@@ -2842,7 +2842,7 @@ nav a[href="https://dimperist.blogspot.com/"]{
     background: transparent !important; 
     box-shadow: none !important;        
     border: none !important;            
-    transition: all 0.8s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .nav-hidden-active > a, 
