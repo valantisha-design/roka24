@@ -5538,8 +5538,6 @@ html.a11y-focus p:hover,
   height: 220px; /* Κλείδωμα Ύψους */
   margin: auto;
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif; 
-     margin-top: 0px;
-   margin-bottom: 0px;
 }
 
 .kf-card-inner {
@@ -5667,18 +5665,6 @@ html.a11y-focus p:hover,
   .kf-card-inner { transition: none; }
   .kf-lamp-icon { animation: none !important; }
 }
-
-/* Μικρές διορθώσεις για μικρές οθόνες */
-@media screen and (max-width: 768px) {
-  .kf-card-container { margin-top: -15px !important; margin-bottom: -15px !important; }
-}
-
-
-
-
-
-
-
 
 
 /* --- ΑΠΟΛΥΤΗ ΑΠΟΚΡΥΨΗ ΣΕ PC (Κουτί & Περιεχόμενο) --- */
