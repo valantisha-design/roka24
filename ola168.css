@@ -5538,6 +5538,8 @@ html.a11y-focus p:hover,
   height: 220px; /* Κλείδωμα Ύψους */
   margin: auto;
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif; 
+     margin-top: 0px;
+   margin-bottom: 0px;
 }
 
 .kf-card-inner {
