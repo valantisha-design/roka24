@@ -10260,7 +10260,7 @@ font-size: 14px;}
 }
 
 /* --- ΕΚΔΟΧΗ 4: Η "Απόλυτη Μπάρα" (Neumorphism) - Ο ΜΑΓΙΚΟΣ ΚΑΝΟΝΑΣ --- */
-.v4-theme { background: #f0f3f5; border-radius: 20px; padding: 0px 0px 15px 0px; box-shadow: 0px 0px 20px #cbced1; font-family: sans-serif; box-sizing: border-box; }
+.v4-theme { background: #f0f3f5; border-radius: 20px; padding: 10px 0px 15px 0px; box-shadow: 0px 0px 20px #cbced1; font-family: sans-serif; box-sizing: border-box; }
 .v4-theme .mini-lib-header { text-align: center; margin-bottom: 15px; }
 .v4-theme .mini-lib-title { color: #333; font-size: 22px; font-weight: 800; margin: 0; }
 
