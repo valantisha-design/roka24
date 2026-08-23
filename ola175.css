@@ -7942,7 +7942,7 @@ div.custom-read-more:hover,
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    background: #ffffff !important;
+    background: transparent !important;
 }
 
 .fetched-content-inner {
