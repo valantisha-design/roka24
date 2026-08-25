@@ -7277,7 +7277,7 @@ html.a11y-focus p:hover,
     height: 100%;
     min-height: 100%; /* Αναγκάζει την εικόνα να καλύψει όλο το ύψος */
     display: block;
-    object-fit: fill; /* Κόβει ομοιόμορφα τα πλάγια αντί να αφήνει μαύρα κενά */
+    object-fit: fill!important; /* Κόβει ομοιόμορφα τα πλάγια αντί να αφήνει μαύρα κενά */
     filter: sepia(0.6) grayscale(0.3) contrast(0.8) brightness(0.9);
     transition: filter 0.9s ease-in-out, transform 0.9s ease;
   }
