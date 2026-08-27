@@ -6058,14 +6058,18 @@ html.a11y-focus p:hover,
 
 /* --- ΚΕΙΜΕΝΑ ΠΙΣΩ ΟΨΗΣ (ΔΙΑΛΕΙΜΜΑΤΑ) --- */
 .sch-time {
-  font-size: 0.65rem;
+  font-size: 0.70rem;
   font-weight: 800;
   display: block;
   margin: 2px 0;
   color: var(--text-dark);
   white-space: nowrap;
 }
-
+@media (max-width: 768px) {
+  .sch-time {
+    font-size: 0.75rem;
+  }
+}
 .sch-msg {
   font-size: 0.7rem;
   font-weight: 900;
