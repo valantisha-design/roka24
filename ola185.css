@@ -1400,14 +1400,11 @@ html body #modern-mobile-share a:active {
     #HTML30 {
       display: none !important;
     }
-    #HTML5 {
-      display: none !important;
-    }
    #HTML19 {
       display: none !important;
     }
   }
- #HTML20 { display: none !important; }
+
 body #gt-floating-btn {
     display: none !important;
 }
@@ -10175,11 +10172,6 @@ font-size: 14px;}
 
 /* TIDIO*/
 
-@media (max-width: 768px) {
-    #HTML28 {
-      display: none !important;
-    }
-  }
 
 /* --- ΒΑΣΙΚΟ TRANSITION (Ομαλή κίνηση) --- */
   html body div#tidio-chat,
