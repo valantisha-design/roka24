@@ -1140,7 +1140,7 @@ body {
    SIMPLE MOBILE
    LIFT & GLASS FIX (ΔΟΚΙΜΗ -ΕΚΔΟΣΗ 2)
    ========================================= */
-@media screen and (max-width: 1500px) and (pointer: coarse) {
+@media screen and (max-width: 1300px) and (pointer: coarse) {
   
   /* 1. ΣΒΗΝΟΥΜΕ ΜΟΝΟ ΤΟ NAVBAR ΤΟΥ BLOGGER (Το "γυαλί" της κορυφής) */
   /* Αφαιρέσαμε το .tabs και το .PageList από εδώ για να μην "σπάνε" τα slides και το μενού */
@@ -1156,7 +1156,12 @@ body {
     position: relative !important;
     top: -4px !important; /* ΑΛΛΑΞΕ ΑΥΤΟ: π.χ. -30px, -45px για να εξαφανιστεί το φόντο */
   }
-
+}
+/* Κενό στην κορυφή ΜΟΝΟ για υπολογιστές (πάνω από 768px και με ποντίκι) */
+@media (min-width: 969px) and (pointer: fine) {
+ .content {
+    margin-top:15px !important; 
+  }
 }
 .post-outer {
   opacity: 0;
