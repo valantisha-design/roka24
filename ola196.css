@@ -1959,12 +1959,9 @@ nav a[href="https://dimperist.blogspot.com/"]{
   }
 
   /* === ΜΕΙΩΣΗ ΚΕΝΩΝ ΓΙΑ ΜΙΚΡΑ ΚΙΝΗΤΑ (Έως 392px) === */
-  @media screen and (max-width: 392px) {
+  @media screen and (max-width: 372px) {
     nav {
       gap: 0px !important; 
-      padding: 0px 0px !important; 
-    }
-    nav a, .dropdown button {
       padding: 0px 0px !important; 
     }
   }
