@@ -10337,6 +10337,13 @@ html { scroll-behavior: smooth; }
     40% {transform: translateY(-15px);}
     60% {transform: translateY(-7px);}
 }
+/* --- Στόχευση μόνο για κινητά (οθόνες κάτω από 768px) --- */
+@media (max-width: 768px) {
+  .callout-action .callout-button {
+    font-size: 80%;       /* Μειώνει το μέγεθος των γραμμάτων κατά 20% */
+    padding: 8px 16px;    /* Μειώνει τον συνολικό όγκο του κουμπιού (αρχικά ήταν 10px 20px) */
+  }
+}
 /* TIDIO*/
 
 
