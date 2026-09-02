@@ -10340,8 +10340,8 @@ html { scroll-behavior: smooth; }
 /* --- Στόχευση μόνο για κινητά (οθόνες κάτω από 768px) --- */
 @media (max-width: 768px) {
   .callout-action .callout-button {
-    font-size: 80%;       /* Μειώνει το μέγεθος των γραμμάτων κατά 20% */
-    padding: 8px 16px;    /* Μειώνει τον συνολικό όγκο του κουμπιού (αρχικά ήταν 10px 20px) */
+    font-size: 90%;       
+    padding: 8px 16px;   
   }
 }
 /* TIDIO*/
