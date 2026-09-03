@@ -10402,3 +10402,171 @@ html { scroll-behavior: smooth; }
       pointer-events: none !important;
     }
   }
+  /* INTRO INTRO INTRO */
+ body.is-in-intro { overflow: hidden !important; height: 100vh !important; }
+
+  #epic-intro-overlay {
+    position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+    width: 100vw !important; height: 100vh !important; background-color: #000 !important;
+    z-index: 2147483647 !important; font-family: 'Inter', sans-serif !important; overflow: hidden !important;
+    margin: 0 !important; padding: 0 !important;
+  }
+
+  /* GPU Hardware Acceleration */
+  #intro-magic-canvas-container, #intro-clouds-layer, .intro-particles, #intro-lens-flare {
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0); /* Εξαναγκασμός χρήσης 3D GPU */
+  }
+
+  #intro-magic-canvas-container {
+    position: absolute; top: -2.20%; left: -2.80%; width: 105vw; height: 104vh; z-index: 1; 
+    /* Η μετάβαση ρυθμίζεται μέσω JS πλέον για 60fps απόδοση */
+  }
+
+  #intro-magic-canvas {
+    width: 100%; height: 100%;
+    background-image: url('https://images.weserv.nl/?url=blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCydq9SUcuEv0z-75nJkSaONpLTL8y0XHtnoy2ip0-WUAoXT6W3vVEM-GdyjWey6ydbWgRYVYbbGRXvvsBi-G36iZBpaZbcB56UPgeKKZv7mWC0Z6zZbbwiAdqNrCsrMTLz_LTnFXEpbm6Ccb9clPOHbnXz45pKzq6-czvrsDAz43pxGFd8cYk40OlfmM/s842/2026-06-24%2023_42_54-2025-09-25%2018_01_46-World%20of%20Warcraft.png.png&output=jpg');
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+    animation: introCinematicZoom 15s ease-out forwards;
+  }
+
+  /* Λείανση του νερού (Anti-glitch) & GPU rendering του canvas */
+  #intro-magic-canvas canvas { image-rendering: auto !important; will-change: contents; }
+
+  @keyframes introCinematicZoom {
+    0% { transform: scale(1.3); filter: brightness(0); }
+    20% { filter: brightness(1); }
+    100% { transform: scale(1); filter: brightness(1); }
+  }
+
+  #intro-clouds-layer {
+    position: absolute; top: 0; left: 0; width: 200vw; height: 100vh;
+    background: transparent url('https://cdn.rawgit.com/danielstuart14/CSS_FOG_ANIMATION/master/fog1.png') repeat-x;
+    background-size: cover; opacity: 0.2; z-index: 2;
+    animation: introCloudDrift 50s linear infinite; pointer-events: none; mix-blend-mode: screen;
+  }
+  @keyframes introCloudDrift { 0% { transform: translateX(0); } 100% { transform: translateX(-50vw); } }
+
+  #intro-lens-flare {
+    position: absolute; top: -50%; left: -50%; width: 200vw; height: 200vh;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 60%);
+    z-index: 3; pointer-events: none; animation: introFlareSweep 10s ease-in-out infinite; mix-blend-mode: overlay;
+  }
+  @keyframes introFlareSweep { 0% { transform: translate(-30%, -30%); opacity: 0; } 50% { transform: translate(10%, 10%); opacity: 1; } 100% { transform: translate(30%, 30%); opacity: 0; } }
+
+  .intro-particles {
+    position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 4; pointer-events: none;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px); background-size: 100px 100px;
+    animation: introParticlesFloat 20s linear infinite; opacity: 0.5;
+  }
+  .intro-particles:nth-child(2) { background-size: 150px 150px; animation: introParticlesFloat 30s linear infinite reverse; opacity: 0.3; }
+  @keyframes introParticlesFloat { 0% { background-position: 0 0; } 100% { background-position: 500px 500px; } }
+
+  #intro-enter-btn-wrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center; width: 90%; }
+  
+  .intro-cinematic-title { 
+    font-family: 'Cinzel', serif; 
+    color: #ffffff !important; 
+    font-size: 3.2vw; /* Ελάχιστα πιο μεγάλο */
+    font-weight: 800; /* Ακόμα πιο παχύ */
+    /* ΕΔΩ ΕΙΝΑΙ Η ΜΑΓΕΙΑ: Διπλή σκληρή σκιά + Βαθύς φωτισμός */
+    text-shadow: 
+      3px 3px 0px rgba(0,0,0,0.9), 
+      -1px -1px 0px rgba(0,0,0,0.5),
+      0 10px 30px rgba(0,0,0,0.9); 
+    margin-bottom: 40px; 
+    letter-spacing: 4px; 
+    opacity: 0; 
+    animation: introTextBlurIn 1.5s ease-out 0.5s forwards; 
+  }
+  
+  @keyframes introTextBlurIn { 0% { opacity: 0; filter: blur(10px); transform: translateY(-20px); } 100% { opacity: 1; filter: blur(0); transform: translateY(0); } }
+
+  .intro-glass-btn { 
+    background: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px); 
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    border-top: 1px solid rgba(255, 255, 255, 0.8); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255,255,255,0.2); 
+    color: #ffffff !important; 
+    padding: 20px 55px; 
+    font-size: 24px; 
+    font-weight: 800; 
+    letter-spacing: 4px; /* Λίγο περισσότερος αέρας στα γράμματα */
+    text-transform: uppercase; 
+    border-radius: 50px; 
+    cursor: pointer; 
+    text-decoration: none !important; 
+    transition: all 0.4s ease-out; 
+    /* Πιο έντονη σκιά στα γράμματα του κουμπιού για να μη χάνονται στο τζάμι */
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.9); 
+    display: inline-block; 
+    opacity: 0; 
+    animation: introTextBlurIn 1.5s ease-out 1s forwards, introPulseGlow 3s infinite alternate 2.5s; 
+    position: relative; 
+    overflow: hidden; 
+  }
+  
+  .intro-glass-btn::after { 
+    content: ''; position: absolute; top: -50%; left: -150%; width: 50%; height: 200%; 
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%); 
+    transform: rotate(30deg); animation: introBtnSweep 4s infinite; 
+  }
+  
+  .intro-glass-btn:hover, .intro-glass-btn:focus { 
+    background: rgba(255, 255, 255, 0.25); 
+    transform: scale(1.05) translateY(-3px); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255,255,255,0.5); 
+    color: #ffffff !important; /* <-- ΚΑΙ ΕΔΩ ΓΙΑ ΣΙΓΟΥΡΙΑ */
+    border-color: #ffffff; 
+    text-shadow: 0 0 10px rgba(255,255,255,0.8); 
+    outline: none; 
+  }
+  
+  .intro-btn-subtitle { 
+    margin-top: 30px; /* Λίγο περισσότερος χώρος από το κουμπί */
+    color: #ffffff !important; 
+    font-size: 18px; /* Το μεγαλώσαμε αρκετά για να διαβάζεται */
+    font-weight: 700; /* Πιο παχύ */
+    font-style: normal; /* Το βγάζουμε από italics για καθαρότητα */
+    letter-spacing: 3px; 
+    /* ΕΙΔΙΚΗ ΣΚΙΑ: Δημιουργεί ένα καθαρό μαύρο περίγραμμα γύρω από κάθε γράμμα */
+    text-shadow: 
+      2px 2px 0 #000, 
+      -1px -1px 0 #000, 
+      1px -1px 0 #000, 
+      -1px 1px 0 #000, 
+      1px 1px 0 #000, 
+      0 10px 20px rgba(0,0,0,1); 
+    opacity: 0; 
+    animation: introTextBlurIn 1.5s ease-out 1.5s forwards; 
+  }
+  
+  @keyframes introPulseGlow { 0% { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(255, 255, 255, 0.2); } 100% { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 30px 10px rgba(255, 255, 255, 0.05); } }
+
+  #intro-fade-black { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 1.5s cubic-bezier(0.5, 0, 0.5, 1); }
+
+  /* ΕΙΔΙΚΕΣ ΡΥΘΜΙΣΕΙΣ ΚΙΝΗΤΩΝ */
+  @media (max-width: 1500px) and (pointer: coarse) {
+    body.is-in-intro {
+      position: fixed !important; width: 100vw !important; height: 100vh !important;
+      overscroll-behavior: none !important; touch-action: none !important; 
+    }
+    #intro-magic-canvas {
+      background-size: cover !important; background-position: center center !important; background-attachment: scroll !important;
+      animation: none !important; /* Anti-crash */
+      -webkit-transform: translate3d(0,0,0) !important; transform: translate3d(0,0,0) !important;
+    }
+    #intro-clouds-layer, #intro-lens-flare { mix-blend-mode: normal !important; opacity: 0.05 !important; }
+    .intro-cinematic-title { font-size: 24px !important; }
+    .intro-glass-btn { font-size: 18px !important; padding: 16px 40px !important; }
+    .intro-btn-subtitle { font-size: 15px !important; }
+  }
+@media (min-width: 900px) and (max-width: 1500px) and (pointer: coarse) {
+.intro-cinematic-title { font-size: 34px !important; }
+    .intro-glass-btn { font-size: 28px !important; padding: 16px 40px !important; }
+    .intro-btn-subtitle { font-size: 20px !important; }
+}
