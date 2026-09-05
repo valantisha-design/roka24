@@ -1348,9 +1348,7 @@ html body #modern-mobile-share a:active {
 .sh-btn:hover.mail { border-color: #a90e0e; color: #a90e0e !important; }
 
   @media (min-width: 768px) {
-    #HTML15 {
-      display: none !important;
-    }
+ 
       #HTML49 {
     display: none !important;}
  
