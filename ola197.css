@@ -9777,6 +9777,7 @@ html { scroll-behavior: smooth; }
     min-width: 120px;
     height: 65px;
     margin-bottom: 4px;
+   top: 10px;
 }
 .emoji-glow-pc::before {
     content: '';
