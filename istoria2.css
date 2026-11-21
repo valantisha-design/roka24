@@ -1,0 +1,1793 @@
+/* 1. Βασικό Περίβλημα (Χωρίς διπλά ενδιάμεσα κουτιά) */
+  .post:has(.school-history-wrapper),
+  .hentry:has(.school-history-wrapper),
+  .post-body:has(.school-history-wrapper) {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .school-history-wrapper {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1e293b !important;
+    line-height: 1.7;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 0;
+    box-shadow: none !important;
+    box-sizing: border-box;
+  }
+
+  /* 2. Βίντεο Κεφαλίδας (Responsive & Glass) */
+  .video-hero {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(30, 108, 255, 0.1);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    margin-bottom: 50px;
+    text-align: left;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  
+  .video-hero:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(30, 108, 255, 0.08);
+  }
+  
+  .video-title {
+    font-size: 1.25em;
+    color: #1e6cff !important; /* Το μπλε του blog σου */
+    margin-bottom: 15px;
+    font-weight: 800;
+  }
+
+  .video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    background-color: #000;
+  }
+
+  .video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-source {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  .video-source a { 
+    color: #a90e0e !important; /* Το κόκκινο του blog σου */
+    text-decoration: none !important; 
+    transition: color 0.2s;
+  }
+  .video-source a:hover { color: #c0392b !important; text-decoration: underline !important; }
+
+  /* 3. Ιστορικό Χρονολόγιο (Modern Timeline) */
+  .history-section-title {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #a90e0e !important; /* Το κόκκινό σου */
+    border-bottom: 3px solid rgba(30, 108, 255, 0.3);
+    padding-bottom: 8px;
+    margin-bottom: 35px;
+    display: inline-block;
+  }
+
+  .history-timeline {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 50px;
+  }
+
+  .history-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 100%;
+    width: 4px;
+    background: rgba(30, 108, 255, 0.2); /* Απαλό μπλε γυαλί */
+    border-radius: 4px;
+  }
+
+  /* Οι κάρτες του χρονολογίου (Glass Elements) */
+  .timeline-event {
+    position: relative;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    padding: 20px 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .timeline-event:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 20px rgba(30, 108, 255, 0.08);
+  }
+
+  /* Η κουκκίδα πάνω στη γραμμή */
+  .timeline-event::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: -29px; /* Ευθυγράμμιση με την κάθετη γραμμή */
+    width: 16px;
+    height: 16px;
+    background: #1e6cff; /* Το μπλε σου */
+    border: 4px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(30, 108, 255, 0.3);
+    z-index: 2;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .timeline-event:hover::before {
+    transform: scale(1.2);
+    background: #a90e0e; /* Αλλάζει σε κόκκινο στο hover */
+  }
+
+  /* Ημερομηνία/Χρονολογία (Προστασία inline styles) */
+  .timeline-date,
+  .timeline-event span[style*="color: #2b00fe"],
+  .timeline-event span[style*="color: #ffffff"] {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #1e6cff, #0056b3) !important;
+    color: #ffffff !important;
+    padding: 6px 16px !important;
+    border-radius: 30px !important;
+    font-size: 0.95em !important;
+    font-weight: 800 !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    box-shadow: 0 4px 10px rgba(30, 108, 255, 0.3) !important;
+    letter-spacing: 0.5px;
+  }
+
+  .timeline-text { margin: 0; text-align: justify; font-size: 1.05em; color: #334155; }
+
+  /* Εικόνες στο Timeline */
+  .image-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.6);
+  }
+
+  .image-link:hover .responsive-img {
+    transform: scale(1.03);
+    filter: brightness(0.95);
+    cursor: zoom-in;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  }
+
+  /* 4. Ταυτότητα Χωριού (Glass Info Cards) */
+  .village-identity {
+    margin-top: 60px;
+    background: rgba(30, 108, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(30, 108, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+  }
+
+  .village-identity h3 {
+    margin-top: 0;
+    color: #1e293b;
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 1.5em;
+    font-weight: 800;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .info-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 20px 15px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border-bottom: 4px solid #1e6cff; /* Μπλε γραμμή κάτω */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(30, 108, 255, 0.1);
+  }
+
+  /* Ειδικός κανόνας για την κάρτα των Εκκλησιών */
+  .info-card[onclick], .info-card[style*="cursor: pointer"] {
+    border-bottom-color: #a90e0e !important;
+    cursor: pointer;
+  }
+  .info-card[onclick]:hover, .info-card[style*="cursor: pointer"]:hover {
+    transform: scale(1.03) translateY(-3px) !important;
+    box-shadow: 0 12px 30px rgba(169, 14, 14, 0.15) !important;
+  }
+
+  .info-icon {
+    font-size: 2.2em;
+    display: block;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+
+  .info-title { font-size: 0.95em; color: #64748b; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; }
+  .info-value { font-size: 1.00em; color: #0f172a; font-weight: 800; margin-top: 8px; line-height: 1.3; }
+
+  /* 5. Λίστα Υποδομών (Modern Badges) */
+  .facilities-list {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    margin-top: 35px;
+  }
+  
+  .facilities-list p {
+    color: #1e293b !important; 
+    font-weight: 800; 
+    font-size: 1.1em; 
+    margin-bottom: 15px;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .facilities-list ul {
+    list-style: none !important;
+    padding: 0 !important; margin: 0 !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .facilities-list li {
+    background: rgba(30, 108, 255, 0.08) !important;
+    color: #1e6cff !important;
+    border: 1px solid rgba(30, 108, 255, 0.15);
+    padding: 10px 20px !important;
+    border-radius: 30px !important;
+    font-size: 0.95em !important;
+    font-weight: 800 !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .facilities-list li:hover {
+    background: #1e6cff !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 108, 255, 0.3);
+  }
+
+  /* Link Χάρτη */
+  .facilities-list div a,
+  .village-identity > div > span > a {
+    color: #a90e0e !important;
+    text-decoration: none !important;
+    border-bottom: 2px dashed rgba(169, 14, 14, 0.4);
+    transition: all 0.3s ease;
+  }
+  .facilities-list div a:hover,
+  .village-identity > div > span > a:hover {
+    border-bottom-style: solid;
+    background: rgba(169, 14, 14, 0.05);
+  }
+
+  /* =========================================
+     6. Εμφάνιση Modal (Αναδυόμενο Παράθυρο Cinematic)
+  ========================================= */
+  .churches-modal {
+    display: none; 
+    position: fixed !important; 
+    z-index: 2147483647 !important; /* Πολύ υψηλό z-index για να είναι πάνω από όλα */
+    left: 0;
+    top: 0;
+    width: 100vw; 
+    height: 100vh; 
+    overflow: hidden; 
+    background-color: rgba(0,0,0,0.92); /* Πιο βαθύ μαύρο */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .churches-modal.show {
+    opacity: 1;
+  }
+
+  .churches-modal-content {
+    position: relative;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 90%;
+    max-width: 1000px;
+    height: 75vh;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    overflow: hidden;
+    background: transparent;
+  }
+
+  /* Κουμπί Κλεισίματος */
+  .churches-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: 300;
+    cursor: pointer;
+    z-index: 10000;
+    transition: color 0.3s, transform 0.3s;
+    line-height: 1;
+  }
+
+  .churches-close:hover {
+    color: #e74c3c;
+    transform: scale(1.1);
+  }
+
+  /* Διαφάνειες Slider */
+  .church-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .church-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    border-radius: 16px;
+  }
+
+  /* Λεζάντες (Glass Capsule) */
+  .church-caption {
+    position: absolute !important;
+    bottom: 30px !important; 
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    color: #ffffff !important;
+    font-size: 1.1em !important;
+    font-weight: 800 !important;
+    padding: 12px 30px !important;
+    background: rgba(0, 0, 0, 0.7) !important; 
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 40px !important;
+    text-align: center !important;
+    z-index: 99999 !important; 
+    display: block !important;
+    width: max-content !important;
+    max-width: 90% !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+  }
+
+  /* Βελάκια Εναλλαγής */
+  .church-prev, .church-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%; 
+    transition: all 0.3s ease;
+    user-select: none;
+    z-index: 10;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .church-prev { left: 15px; }
+  .church-next { right: 15px; }
+
+  .church-prev:hover, .church-next:hover {
+    background-color: #a90e0e; /* Το κόκκινό σου */
+    border-color: #a90e0e;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  /* Animation Αλλαγής Εικόνας */
+  .churches-fade {
+    animation-name: churchesFade;
+    animation-duration: 0.6s;
+  }
+
+  @keyframes churchesFade {
+    from {opacity: .4; transform: scale(0.98);} 
+    to {opacity: 1; transform: scale(1);}
+  }
+
+  /* ====================================================
+     7. Mobile Responsive Fixes (Ανανεωμένο για έως 668px) 
+     - Απελευθέρωση διαθέσιμου πλάτους για το κείμενο -
+  ==================================================== */
+  @media (max-width: 668px) {
+    /* Δραστική μείωση εξωτερικών και εσωτερικών κενών στο κεντρικό κουτί */
+    .school-history-wrapper { padding: 7px 4px; border-radius: 6px; margin: 7px auto; }
+    .video-hero { padding: 12px 8px; margin-bottom: 30px;}
+    .history-section-title { font-size: 1.3em; margin-bottom: 25px; }
+    
+    /* Τραβάμε τη γραμμή του χρονολογίου εντελώς αριστερά */
+    .history-timeline { padding-left: 12px; margin-bottom: 30px; }
+    .history-timeline::before { left: 0px; }
+    
+    /* Μείωση του κενού (padding) μέσα στις κάρτες γεγονότων για να απλώσει το κείμενο */
+    .timeline-event { padding: 15px 10px; margin-bottom: 25px; }
+    
+    /* Ευθυγράμμιση της κουκκίδας ακριβώς πάνω στη νέα θέση της γραμμής */
+    .timeline-event::before { left: -19px; width: 14px; height: 14px; top: 22px; border-width: 3px; }
+    
+    /* ΔΙΟΡΘΩΣΗ ΚΕΙΜΕΝΟΥ: Αριστερή στοίχιση για να μην "σπάνε" οι λέξεις */
+    .timeline-text { 
+      font-size: 0.95em; 
+      line-height: 1.5; 
+      text-align: left !important; 
+      word-wrap: break-word; 
+    }
+    
+    /* Μικρότερα "χάπια" ημερομηνιών */
+    .timeline-date,
+    .timeline-event span[style*="color: #2b00fe"],
+    .timeline-event span[style*="color: #ffffff"] {
+      padding: 6px 12px !important;
+      font-size: 0.85em !important;
+      margin-bottom: 12px !important;
+    }
+    
+    /* Ταυτότητα Χωριού: Μείωση κενών */
+    .village-identity { padding: 15px 10px; margin-top: 40px; }
+    .info-grid { gap: 12px; }
+    .info-card { padding: 15px 10px; }
+    
+    /* Λίστα Υποδομών */
+    .facilities-list ul { gap: 8px; }
+    .facilities-list li { padding: 8px 12px !important; font-size: 0.85em !important; }
+    
+    /* Modal Εκκλησιών */
+    .church-caption { 
+      font-size: 0.85em !important; 
+      padding: 10px 15px !important; 
+      bottom: 15px !important; 
+      max-width: 95% !important; 
+      white-space: normal !important; /* Για να μπορεί η λεζάντα να σπάσει σε 2 σειρές στο κινητό */
+    }
+    .church-prev, .church-next { width: 35px; height: 35px; font-size: 16px; }
+  }
+  
+  /* =========================================================
+     8. ΠΑΙΔΙΚΟ ΨΗΦΙΑΚΟ ΒΙΒΛΙΟ ΕΞΕΡΕΥΝΗΣΗΣ ΠΕΡΙΣΤΑΣΗΣ (KIDS UI)
+     ========================================================= */
+  .info-card.pexp-card-trigger {
+    cursor: pointer;
+    position: relative;
+  }
+  .info-card.pexp-card-pop   { border-bottom-color: #1e6cff !important; }
+  .info-card.pexp-card-route { border-bottom-color: #f59e0b !important; }
+  .info-card.pexp-card-elev  { border-bottom-color: #10b981 !important; }
+
+  .info-card.pexp-card-pop:hover   { transform: scale(1.03) translateY(-4px) !important; box-shadow: 0 14px 28px rgba(30, 108, 255, 0.16) !important; }
+  .info-card.pexp-card-route:hover { transform: scale(1.03) translateY(-4px) !important; box-shadow: 0 14px 28px rgba(245, 158, 11, 0.18) !important; }
+  .info-card.pexp-card-elev:hover  { transform: scale(1.03) translateY(-4px) !important; box-shadow: 0 14px 28px rgba(16, 185, 129, 0.18) !important; }
+
+  .pexp-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.8em;
+    font-weight: 800;
+    background: rgba(30, 108, 255, 0.1);
+    color: #1e6cff;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .pexp-card-route .pexp-card-cta  { background: rgba(245, 158, 11, 0.14); color: #b45309; }
+  .pexp-card-elev .pexp-card-cta   { background: rgba(16, 185, 129, 0.14); color: #047857; }
+  .pexp-card-church .pexp-card-cta { background: rgba(169, 14, 14, 0.1); color: #a90e0e; }
+
+  .pexp-card-pop:hover .pexp-card-cta    { background: #1e6cff; color: #ffffff; }
+  .pexp-card-route:hover .pexp-card-cta  { background: #f59e0b; color: #ffffff; }
+  .pexp-card-elev:hover .pexp-card-cta   { background: #10b981; color: #ffffff; }
+  .pexp-card-church:hover .pexp-card-cta { background: #a90e0e; color: #ffffff; }
+
+  /* Φόντο & Κεντρικό Παράθυρο Παραμυθιού/Εξερεύνησης */
+  .pexp-modal-overlay {
+    display: none;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 2147483645 !important;
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  .pexp-modal-overlay.is-open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .pexp-modal-box {
+    background: #ffffff;
+    color: #1e293b;
+    width: 100%;
+    max-width: 900px;
+    max-height: 91vh;
+    border-radius: 28px;
+    border: 3px solid #e0f2fe;
+    box-shadow: 0 28px 65px rgba(0, 0, 0, 0.42);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+    transform: translateY(14px) scale(0.97);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .pexp-modal-overlay.is-open .pexp-modal-box {
+    transform: translateY(0) scale(1);
+  }
+  .pexp-modal-box *, .pexp-modal-box *::before, .pexp-modal-box *::after {
+    box-sizing: border-box;
+  }
+
+  /* Παιδική Πάνω Μπάρα Καρτελών */
+  .pexp-modal-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 18px;
+    background: linear-gradient(90deg, #f0f9ff 0%, #fefce8 100%);
+    border-bottom: 2px solid #e2e8f0;
+    flex-shrink: 0;
+  }
+  .pexp-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 2px 0;
+  }
+  .pexp-tabs::-webkit-scrollbar { display: none; }
+
+  .pexp-tab-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid #dbeafe;
+    background: #ffffff;
+    color: #334155;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 9px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+  .pexp-tab-btn:hover {
+    transform: translateY(-1px);
+    border-color: #93c5fd;
+  }
+  .pexp-tab-btn.is-active {
+    background: #1e6cff;
+    border-color: #1e6cff;
+    color: #ffffff;
+    box-shadow: 0 5px 14px rgba(30, 108, 255, 0.3);
+  }
+  .pexp-tab-btn[data-tab="route"].is-active {
+    background: #f59e0b;
+    border-color: #f59e0b;
+    box-shadow: 0 5px 14px rgba(245, 158, 11, 0.32);
+  }
+  .pexp-tab-btn[data-tab="elevation"].is-active {
+    background: #10b981;
+    border-color: #10b981;
+    box-shadow: 0 5px 14px rgba(16, 185, 129, 0.32);
+  }
+
+  .pexp-close-btn {
+    appearance: none;
+    border: none;
+    background: #fee2e2;
+    color: #dc2626;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 900;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .pexp-close-btn:hover {
+    background: #ef4444;
+    color: #ffffff;
+    transform: scale(1.08);
+  }
+
+  .pexp-modal-body {
+    padding: 20px 22px 24px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex: 1;
+  }
+  .pexp-pane { display: none; }
+  .pexp-pane.is-active { display: block; animation: pexpSimpleFade 0.25s ease; }
+
+  @keyframes pexpSimpleFade {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pexpHousePop {
+    0%   { transform: scale(0.4); opacity: 0; }
+    80%  { transform: scale(1.12); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes pexpPulseRing {
+    0%, 100% { stroke-width: 3; opacity: 1; }
+    50%      { stroke-width: 6; opacity: 0.55; }
+  }
+
+  .pexp-kid-heading {
+    text-align: center;
+    margin: 0 0 16px;
+  }
+  .pexp-kid-heading h3 {
+    margin: 0 0 4px;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #0f172a;
+  }
+  .pexp-kid-heading p {
+    margin: 0;
+    font-size: 0.98rem;
+    color: #475569;
+    font-weight: 600;
+  }
+
+  /* =================================================
+     ΚΑΡΤΕΛΑ 1: ΤΟ ΧΩΡΙΟ ΜΑΣ ΜΕΓΑΛΩΝΕΙ (1924 -> 2021)
+     ================================================= */
+  .pexp-meadow-scene {
+    background: linear-gradient(180deg, #dbeafe 0%, #e0f2fe 42%, #dcfce7 43%, #bbf7d0 100%);
+    border: 2px solid #93c5fd;
+    border-radius: 24px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pexp-sky-stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .pexp-big-year {
+    background: #1e6cff;
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 900;
+    padding: 7px 18px;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(30, 108, 255, 0.3);
+  }
+  .pexp-big-pop {
+    background: #ffffff;
+    color: #0f172a;
+    font-size: 1.25rem;
+    font-weight: 900;
+    padding: 7px 18px;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  }
+  .pexp-bus-pill {
+    background: #fef9c3;
+    border: 2px solid #fde047;
+    color: #854d0e;
+    font-size: 0.92rem;
+    font-weight: 800;
+    padding: 7px 14px;
+    border-radius: 999px;
+  }
+
+  .pexp-houses-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    min-height: 108px;
+    align-items: center;
+    padding: 8px 4px;
+  }
+  .pexp-house-big {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    background: #ffffff;
+    box-shadow: 0 5px 12px rgba(15, 23, 42, 0.1);
+    animation: pexpHousePop 0.32s ease backwards;
+  }
+  .pexp-house-landmark {
+    background: #fef3c7;
+    border: 2px solid #f59e0b;
+  }
+  .pexp-h-thrace { background: #eff6ff; border: 2px solid #60a5fa; }
+  .pexp-h-vlach  { background: #fff7ed; border: 2px solid #fb923c; }
+  .pexp-h-pontic { background: #ecfdf5; border: 2px solid #34d399; }
+
+  .pexp-roots-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 2px dashed rgba(15, 23, 42, 0.12);
+  }
+  .pexp-root-badge {
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.65);
+    color: #64748b;
+    border: 2px solid transparent;
+    opacity: 0.45;
+    transition: all 0.25s ease;
+  }
+  .pexp-root-badge.is-unlocked {
+    opacity: 1;
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+  }
+  .pexp-root-thrace.is-unlocked { border-color: #60a5fa; }
+  .pexp-root-vlach.is-unlocked  { border-color: #fb923c; }
+  .pexp-root-pontic.is-unlocked { border-color: #34d399; }
+
+  /* Χειριστήριο Χρονολογίας */
+  .pexp-time-controls {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .pexp-slider-line {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .pexp-play-btn {
+    appearance: none;
+    border: none;
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 5px 14px rgba(22, 163, 74, 0.3);
+    transition: transform 0.15s ease;
+  }
+  .pexp-play-btn:hover { transform: scale(1.04); }
+
+  .pexp-slider {
+    flex: 1;
+    width: 100%;
+    height: 10px;
+    accent-color: #1e6cff;
+    cursor: pointer;
+  }
+
+  .pexp-year-stones {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+  }
+  .pexp-year-stone {
+    appearance: none;
+    border: 2px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 6px 4px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.16s ease;
+  }
+  .pexp-year-stone:hover {
+    border-color: #1e6cff;
+    color: #1e6cff;
+  }
+  .pexp-year-stone.is-active {
+    background: #1e6cff;
+    border-color: #1e6cff;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  /* Κουτί Αφήγησης για Παιδιά */
+  .pexp-kid-story {
+    background: #fffbeb;
+    border: 2px solid #fde68a;
+    border-radius: 20px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .pexp-kid-story-icon {
+    font-size: 30px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .pexp-kid-story-text {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: #1e293b;
+    font-weight: 600;
+  }
+
+  /* =================================================
+     ΚΑΡΤΕΛΑ 2: ΤΑΞΙΔΙ 1922 & ΣΗΜΕΡΙΝΕΣ ΑΠΟΣΤΑΣΕΙΣ
+     ================================================= */
+  .pexp-subswitch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .pexp-subswitch-btn {
+    appearance: none;
+    border: 2px solid #fde68a;
+    background: #fffbeb;
+    color: #92400e;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 9px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .pexp-subswitch-btn.is-active {
+    background: #f59e0b;
+    border-color: #f59e0b;
+    color: #ffffff;
+    box-shadow: 0 5px 14px rgba(245, 158, 11, 0.3);
+  }
+
+  .pexp-map-card {
+    background: #dff0ff;
+    border: 2px solid #93c5fd;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .pexp-map-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid #bae6fd;
+  }
+  .pexp-mini-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pexp-mini-pill {
+    appearance: none;
+    border: 1.5px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 11px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .pexp-mini-pill.is-active {
+    background: #0f172a;
+    border-color: #0f172a;
+    color: #ffffff;
+  }
+  .pexp-map-card svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .pexp-pin, .pexp-zone-hit {
+    cursor: pointer;
+  }
+  .pexp-pulse-ring {
+    animation: pexpPulseRing 1.6s infinite ease-in-out;
+    pointer-events: none;
+  }
+
+  /* Ενιαία Κάρτα Σταθμού + Φωτογραφιών */
+  .pexp-stop-showcase {
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    gap: 18px;
+    background: #fffbeb;
+    border: 2px solid #fde68a;
+    border-radius: 22px;
+    padding: 16px;
+    align-items: center;
+  }
+  .pexp-stop-photo-col img.pexp-main-photo {
+    width: 100% !important;
+    height: 168px !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+    border: 3px solid #ffffff !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
+    display: block !important;
+    padding: 0 !important;
+    cursor: zoom-in;
+  }
+  .pexp-thumb-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .pexp-thumb-btn {
+    appearance: none;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    background: #ffffff;
+    opacity: 0.65;
+    transition: all 0.18s ease;
+  }
+  .pexp-thumb-btn.is-active {
+    border-color: #f59e0b;
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  .pexp-thumb-btn img {
+    width: 100% !important;
+    height: 46px !important;
+    object-fit: cover !important;
+    display: block !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  .pexp-stop-badge {
+    display: inline-block;
+    background: #fef3c7;
+    color: #b45309;
+    font-size: 12.5px;
+    font-weight: 900;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+  }
+  .pexp-stop-title {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #0f172a;
+  }
+  .pexp-stop-desc {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #334155;
+    font-weight: 600;
+  }
+  .pexp-big-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pexp-nav-btn {
+    appearance: none;
+    border: 2px solid #f59e0b;
+    background: #ffffff;
+    color: #b45309;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .pexp-nav-btn--primary {
+    background: #f59e0b;
+    color: #ffffff;
+  }
+  .pexp-nav-btn:hover { transform: translateY(-1px); }
+
+  /* Υπο-οθόνη Σημερινών Αποστάσεων από το Σχολείο */
+  .pexp-dest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .pexp-dest-btn {
+    appearance: none;
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 12px 10px;
+    border-radius: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.18s ease;
+  }
+  .pexp-dest-btn.is-active {
+    background: #eff6ff;
+    border-color: #1e6cff;
+    color: #1e6cff;
+    box-shadow: 0 6px 16px rgba(30, 108, 255, 0.14);
+  }
+  .pexp-vehicles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .pexp-vehicle-card {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 18px 12px;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+  }
+  .pexp-vehicle-emoji {
+    font-size: 36px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .pexp-vehicle-lbl {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #64748b;
+    display: block;
+  }
+  .pexp-vehicle-val {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #0f172a;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* =================================================
+     ΚΑΡΤΕΛΑ 3: ΑΠΟ ΤΗ ΘΑΛΑΣΣΑ ΣΤΟΝ ΟΛΥΜΠΟ
+     ================================================= */
+  .pexp-temp-banner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .pexp-temp-pill {
+    background: linear-gradient(135deg, #ecfdf5 0%, #eff6ff 100%);
+    border: 2px solid #6ee7b7;
+    color: #065f46;
+    font-size: 13.5px;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 999px;
+    text-align: center;
+  }
+
+  .pexp-nature-card {
+    background: #f0fdf4;
+    border: 2px solid #bbf7d0;
+    border-radius: 22px;
+    padding: 16px;
+  }
+  .pexp-nature-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .pexp-nature-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .pexp-dual-imgs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .pexp-dual-imgs img {
+    width: 100% !important;
+    height: 138px !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+    border: 3px solid #ffffff !important;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1) !important;
+    padding: 0 !important;
+    background: #e2e8f0;
+    cursor: zoom-in;
+  }
+  .pexp-zoom-hint {
+    margin: 7px 0 0;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #047857;
+    text-align: center;
+  }
+
+  .pexp-nature-group {
+    margin: 8px 0;
+  }
+  .pexp-nature-lbl {
+    font-size: 13px;
+    font-weight: 900;
+    color: #14532d;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .pexp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pexp-tag-flora {
+    background: #ffffff;
+    border: 1.5px solid #86efac;
+    color: #166534;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 800;
+  }
+  .pexp-tag-fauna {
+    background: #ffffff;
+    border: 1.5px solid #7dd3fc;
+    color: #0369a1;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 800;
+  }
+  .pexp-fact-bubble {
+    background: #fef9c3;
+    border: 2px solid #fde047;
+    padding: 11px 14px;
+    border-radius: 16px;
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #713f12;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* Προβολή Μεγέθυνσης Εικόνας */
+  .pexp-img-zoom {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    background: rgba(0, 0, 0, 0.92);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+  .pexp-img-zoom.is-open { display: flex; }
+  .pexp-img-zoom img {
+    max-width: 94vw !important;
+    max-height: 80vh !important;
+    object-fit: contain !important;
+    border-radius: 14px !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+  .pexp-img-zoom-cap {
+    margin-top: 12px;
+    color: #f8fafc;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  @media (max-width: 720px) {
+    .pexp-modal-overlay { padding: 6px; }
+    .pexp-modal-box { max-height: 94vh; border-radius: 22px; }
+    .pexp-modal-topbar { padding: 10px 12px; }
+    .pexp-tab-btn { font-size: 12.5px; padding: 8px 12px; }
+    .pexp-modal-body { padding: 14px 12px 18px; }
+    .pexp-kid-heading h3 { font-size: 1.18rem; }
+    .pexp-sky-stats { justify-content: center; text-align: center; }
+    .pexp-house-big { width: 38px; height: 38px; font-size: 21px; }
+    .pexp-slider-line { flex-direction: column; align-items: stretch; }
+    .pexp-year-stones { grid-template-columns: repeat(4, 1fr); }
+   .pexp-stop-showcase, .pexp-nature-grid { grid-template-columns: 1fr; }
+    .pexp-vehicles-grid { grid-template-columns: 1fr; }
+  }
+
+  /* =========================================================
+     9. ΠΑΙΔΙΚΕΣ ΚΑΡΤΕΣ ΥΠΟΔΟΜΩΝ & ΦΟΡΕΩΝ ΤΟΥ ΧΩΡΙΟΥ
+     ========================================================= */
+  .school-history-wrapper .facilities-list .pfac-subhint {
+    text-align: center !important;
+    color: #64748b !important;
+    font-size: 0.92em !important;
+    font-weight: 600 !important;
+    margin: -8px 0 16px 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  .school-history-wrapper .facilities-list li[data-fac] {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .school-history-wrapper .facilities-list li[data-fac].is-active {
+    background: var(--pfac-accent, #1e6cff) !important;
+    color: #ffffff !important;
+    border-color: var(--pfac-accent, #1e6cff) !important;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.16) !important;
+  }
+
+  .pfac-stage {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  .pfac-card {
+    margin-top: 18px;
+    background: #ffffff;
+    border: 2.5px solid var(--pfac-border, #93c5fd);
+    border-radius: 24px;
+    padding: 18px 20px;
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+    text-align: left;
+    animation: pexpSimpleFade 0.25s ease;
+  }
+
+  .pfac-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .pfac-badge {
+    display: inline-block;
+    padding: 5px 13px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 800;
+    background: var(--pfac-soft, #eff6ff);
+    color: var(--pfac-accent, #1e6cff);
+  }
+
+  .pfac-close {
+    appearance: none;
+    border: none;
+    background: #f1f5f9;
+    color: #475569;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .pfac-close:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    transform: scale(1.08);
+  }
+
+  .pfac-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .pfac-big-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    background: var(--pfac-soft, #eff6ff);
+    border: 2px solid var(--pfac-border, #93c5fd);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .pfac-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1.3;
+  }
+
+  .pfac-story {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: #334155;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .pfac-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+
+  .pfac-tag {
+    background: #f8fafc;
+    border: 1.5px solid var(--pfac-border, #cbd5e1);
+    color: #1e293b;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 800;
+  }
+
+  .pfac-fact {
+    background: #fef9c3;
+    border: 2px solid #fde047;
+    border-radius: 16px;
+    padding: 11px 14px;
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #713f12;
+    line-height: 1.5;
+  }
+
+  .pfac-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1.5px dashed #e2e8f0;
+  }
+
+  .pfac-nav-btn {
+    appearance: none;
+    border: 2px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .pfac-nav-btn:hover {
+    border-color: var(--pfac-accent, #1e6cff);
+    color: var(--pfac-accent, #1e6cff);
+  }
+
+  .pfac-count {
+    font-size: 12px;
+    font-weight: 800;
+    color: #64748b;
+  }
+
+  @media (max-width: 668px) {
+    .pfac-card { padding: 14px 12px; border-radius: 18px; }
+    .pfac-title { font-size: 1.06rem; }
+    .pfac-big-icon { width: 42px; height: 42px; font-size: 22px; }
+    .pfac-story { font-size: 0.93rem; }
+  }
+.school-history-wrapper .history-section-title {
+    display: block !important;
+    width: fit-content;
+    max-width: 100%;
+    margin: 24px auto 18px !important;
+    padding: 11px 26px !important;
+    font-size: clamp(1.22rem, 2.8vw, 1.45rem) !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 65%, #2563eb 100%) !important;
+    border: 2px solid #fcd34d !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 22px rgba(30, 58, 138, 0.28) !important;
+    letter-spacing: 0.25px;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  .school-history-wrapper .village-identity > h3 {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 12px !important;
+    padding: 10px 24px !important;
+    font-size: clamp(1.25rem, 2.8vw, 1.65rem) !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #0284c7 100%) !important;
+    border: 2px solid #93c5fd !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 22px rgba(29, 78, 216, 0.3) !important;
+    letter-spacing: 0.3px;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  .school-history-wrapper .facilities-list {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .school-history-wrapper .facilities-list > p:first-of-type {
+    order: 1;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 8px auto 14px !important;
+    padding: 10px 24px !important;
+    font-size: clamp(1.22rem, 2.7vw, 1.55rem) !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #1d4ed8 0%, #059669 100%) !important;
+    border: 2px solid #86efac !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 22px rgba(29, 78, 216, 0.28) !important;
+    letter-spacing: 0.25px;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+  .school-history-wrapper .facilities-list > .pfac-map-wrap {
+    order: 2;
+    width: 100%;
+  }
+  .school-history-wrapper .facilities-list > .pfac-cards-head {
+    order: 3;
+    margin: 18px 0 8px !important;
+    padding-top: 16px !important;
+    border-top: 2px dashed #cbd5e1 !important;
+    text-align: center !important;
+  }
+  .school-history-wrapper .pfac-cards-title {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 10px !important;
+    padding: 10px 24px !important;
+    font-size: clamp(1.22rem, 2.7vw, 1.55rem) !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #1d4ed8 0%, #059669 100%) !important;
+    border: 2px solid #86efac !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 22px rgba(29, 78, 216, 0.28) !important;
+    letter-spacing: 0.25px;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+  .school-history-wrapper .pfac-cards-head .pfac-subhint {
+    margin: 4px auto 4px !important;
+    text-align: center !important;
+  }
+  .school-history-wrapper .facilities-list > #pfacPillsList {
+    order: 4;
+  }
+  .school-history-wrapper .facilities-list > #pfacStage {
+    order: 5;
+  }
+  .school-history-wrapper .facilities-list > div:not(.pfac-map-wrap):not(.pfac-cards-head):not(#pfacStage) {
+    order: 6;
+  }
+  .school-history-wrapper .video-title {
+    display: block !important;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 18px !important;
+    padding: 11px 20px !important;
+    font-size: clamp(1.18rem, 2.6vw, 1.4rem) !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #0f172a 0%, #1e40af 55%, #0284c7 100%) !important;
+    border: 2px solid #93c5fd !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 22px rgba(30, 64, 175, 0.28) !important;
+    letter-spacing: 0.25px;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 640px) {
+    .school-history-wrapper .history-section-title {
+      font-size: 1.08rem !important;
+      padding: 9px 16px !important;
+      border-radius: 16px !important;
+    }
+    .school-history-wrapper .village-identity > h3 {
+      font-size: 1.12rem !important;
+      padding: 8px 18px !important;
+    }
+    .school-history-wrapper .facilities-list > p:first-of-type {
+      font-size: 1.12rem !important;
+      padding: 8px 18px !important;
+    }
+   .school-history-wrapper .pfac-cards-title {
+      font-size: 1.12rem !important;
+      padding: 8px 18px !important;
+      border-radius: 16px !important;
+    }
+    .school-history-wrapper .video-title {
+      font-size: 1.05rem !important;
+      padding: 9px 16px !important;
+      border-radius: 16px !important;
+    }
+  }
+
+  .school-history-wrapper .tl-dual-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .school-history-wrapper .tl-dual-card {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #cbd5e1;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  }
+  .school-history-wrapper .tl-dual-card--archival {
+    border-color: #f59e0b;
+    background: #fffbeb;
+  }
+  .school-history-wrapper .tl-dual-card--illus {
+    border-color: #93c5fd;
+    background: #eff6ff;
+  }
+  .school-history-wrapper .tl-dual-card a.image-link {
+    display: block;
+    margin: 0 !important;
+  }
+  .school-history-wrapper .tl-dual-card img.responsive-img {
+    width: 100% !important;
+    height: 225px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: block;
+  }
+  .school-history-wrapper .tl-dual-card--archival img.responsive-img {
+    object-fit: contain !important;
+    background: linear-gradient(180deg, #fef3c7 0%, #f8fafc 100%);
+    padding: 4px;
+    box-sizing: border-box;
+  }
+  .school-history-wrapper .tl-dual-card--illus img.responsive-img {
+    object-fit: cover !important;
+  }
+  .school-history-wrapper .tl-dual-cap {
+    padding: 8px 11px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.38;
+    text-align: left;
+    border-top: 1px solid rgba(148, 163, 184, 0.25);
+  }
+  .school-history-wrapper .tl-dual-card--archival .tl-dual-cap {
+    color: #78350f;
+    background: #fffbeb;
+  }
+  .school-history-wrapper .tl-dual-card--illus .tl-dual-cap {
+    color: #1e3a8a;
+    background: #eff6ff;
+  }
+  .pexp-era-photo[src*="AVvXsEhIF5CIP9A7"],
+  .pexp-root-fig img[src*="AVvXsEhIF5CIP9A7"] {
+    object-fit: contain !important;
+    background: linear-gradient(180deg, #fef3c7 0%, #f8fafc 100%) !important;
+    padding: 3px;
+    box-sizing: border-box;
+  }
+  @media (max-width: 640px) {
+    .school-history-wrapper .tl-dual-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .school-history-wrapper .tl-dual-card img.responsive-img {
+      height: 205px !important;
+    }
+  }
+
+#pregMapWrap:not(.is-zoomed) {
+    margin-top: 26px !important;
+  }
+
+  #pregMapWrap .preg-head {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin-bottom: 12px !important;
+    text-align: center !important;
+  }
+
+  #pregMapWrap .preg-head-title {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto !important;
+    padding: 10px 22px !important;
+    font-size: clamp(1.06rem, 2.3vw, 1.32rem) !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #0284c7 100%) !important;
+    border: 2px solid #93c5fd !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 22px rgba(29, 78, 216, 0.3) !important;
+    letter-spacing: 0.25px;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  #pregMapWrap .preg-head-actions,
+  #pregMapWrap .preg-layers {
+    justify-content: center !important;
+  }
+
+  #pregMapWrap.is-zoomed .preg-head {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    margin-bottom: 8px !important;
+  }
+
+  #pregMapWrap.is-zoomed .preg-head-title {
+    margin: 0 !important;
+    padding: 7px 16px !important;
+    font-size: clamp(0.95rem, 1.8vw, 1.12rem) !important;
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25) !important;
+  }
+
+  @media (max-width: 640px) {
+    #pregMapWrap .preg-head-title {
+      font-size: 1rem !important;
+      padding: 8px 14px !important;
+      border-radius: 16px !important;
+    }
+    #pregMapWrap.is-zoomed .preg-head {
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+  }
