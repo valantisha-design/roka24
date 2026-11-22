@@ -1,0 +1,1735 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Lora:ital,wght@0,600;1,400&display=swap');
+
+/* ==========================================
+   1. ΒΑΣΙΚΟ ΠΛΑΙΣΙΟ, ΧΑΡΤΗΣ & ΛΑΒΑΡΑ
+   ========================================== */
+.pieria-tolkien-widget {
+  width: 100%;
+  max-width: 680px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #2b261f;
+  border: 4px solid #8c7355;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.7), inset 0 0 15px rgba(0,0,0,0.8);
+  text-align: center;
+  font-family: 'Lora', serif;
+  position: relative;
+  box-sizing: border-box;
+  contain: layout style;
+}
+
+.pt-header { margin-bottom: 16px; }
+
+.pt-title {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: #d4c29d;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.pt-subtitle {
+  font-size: 13px;
+  color: #a39274;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.tolkien-map-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  border: 3px solid #5c4a36;
+  border-radius: 4px;
+  box-shadow: inset 0 0 40px rgba(71, 52, 30, 0.6);
+  overflow: hidden;
+  background-color: #e3d8bc;
+  background-image:
+    radial-gradient(circle at 50% 50%, transparent 60%, rgba(92, 74, 54, 0.4) 100%),
+    linear-gradient(rgba(181, 161, 126, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(181, 161, 126, 0.1) 2px, transparent 2px);
+  background-size: 100% 100%, 30px 30px, 30px 30px;
+}
+
+#map-area-2 { cursor: default !important; }
+
+/* ΘΑΛΑΣΣΑ & ΒΟΥΝΑ */
+.tolkien-sea {
+  position: absolute;
+  top: 0; right: 0;
+  width: 32%; height: 100%;
+  background: #84a5b3;
+  box-shadow: inset 15px 0 25px rgba(227, 216, 188, 0.7);
+  border-left: 2px dashed #6b8894;
+}
+
+.tolkien-sea::after {
+  content: '~   ~   ~\A  ~   ~   ~\A    ~   ~';
+  white-space: pre;
+  position: absolute;
+  top: 20%; left: 30%;
+  color: rgba(43, 65, 75, 0.3);
+  font-family: monospace;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.mountain-group {
+  position: absolute;
+  pointer-events: none;
+}
+
+.t-peak {
+  position: absolute;
+  width: 0; height: 0;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-bottom: 55px solid #4a525d;
+  filter: drop-shadow(5px 3px 2px rgba(0,0,0,0.25));
+}
+
+.t-peak::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -12px;
+  width: 0; height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 22px solid #eef2f5;
+}
+
+/* ΠΙΝΕΖΕΣ - ΜΕΣΑΙΩΝΙΚΑ ΛΑΒΑΡΑ */
+.t-banner {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer !important;
+  z-index: 20;
+  transition: transform 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .t-banner:hover {
+    transform: translate(-50%, -60%) scale(1.15);
+    z-index: 50;
+  }
+}
+
+.banner-label {
+  background: #6e2525;
+  border: 1.5px solid #d4c29d;
+  color: #f7f4eb;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 2px;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.4);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* ΠΕΡΙΣΤΑΣΗ: ΒΑΣΙΛΙΚΟ ΛΑΒΑΡΟ (GPU-only λάμψη χωρίς filter repaint) */
+.banner-peristasi { z-index: 40; }
+
+.banner-peristasi .banner-label {
+  position: relative;
+  background: #c29b38;
+  color: #1a140c;
+  border: 2px solid #ffffff;
+  font-weight: 900;
+  box-shadow: 0 0 15px rgba(194, 155, 56, 0.8);
+}
+
+.banner-peristasi .banner-label::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #fff6cc;
+  pointer-events: none;
+  opacity: 0;
+  animation: royal-pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes royal-pulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.25; }
+}
+
+/* ΠΕΡΓΑΜΗΝΗ ΠΛΗΡΟΦΟΡΙΩΝ (POPUP) */
+.tolkien-tooltip {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 82%;
+  max-width: 340px;
+  background: #f4ecd8;
+  border: 3px solid #6e2525;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 100;
+  text-align: center;
+}
+
+.tolkien-tooltip.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.tolkien-tooltip h4 {
+  font-family: 'Cinzel', serif;
+  margin: 0 0 10px 0;
+  color: #591c1c;
+  font-size: 17px;
+  font-weight: 900;
+  border-bottom: 1px solid #c8b99c;
+  padding-bottom: 6px;
+}
+
+.tolkien-tooltip p {
+  margin: 0 0 18px 0;
+  color: #3b3228;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tolkien-tt-img {
+  width: 100%;
+  max-height: 130px;
+  object-fit: cover;
+  border: 2px solid #8c7355;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  filter: sepia(0.3) contrast(1.1);
+}
+
+.close-t-btn {
+  background: #591c1c;
+  color: #d4c29d;
+  font-family: 'Cinzel', serif;
+  border: 1px solid #8c7355;
+  padding: 8px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .close-t-btn:hover { background: #7a2626; }
+}
+
+@media (max-width: 680px) {
+  .pieria-tolkien-widget {
+    height: 85vh;
+    height: 85dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .tolkien-map-frame {
+    flex-grow: 1;
+    aspect-ratio: auto;
+  }
+  .pt-title {
+    font-size: 23px !important;
+    font-weight: 700 !important;
+  }
+  .banner-label { font-size: 8px !important; padding: 3px 5px; }
+  .banner-peristasi .banner-label { font-size: 9px !important; }
+}
+
+@media (min-width: 770px) {
+  .tolkien-map-frame {
+    height: 570px !important;
+    aspect-ratio: auto;
+  }
+  .pieria-tolkien-widget {
+    width: 100%;
+    margin-top: 25px;
+  }
+}
+
+/* ==========================================
+   2. ΔΙΑΚΟΣΜΗΤΙΚΑ ΣΤΟΙΧΕΙΑ ΧΑΡΤΗ (CSS DRAWINGS)
+   ========================================== */
+.tree-group {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ΔΕΝΤΡΑ: Παραμένουν 100% στατικά χωρίς animation */
+.t-tree {
+  position: absolute;
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 20px solid #2b5736;
+}
+
+.t-tree::after {
+  content: '';
+  position: absolute;
+  bottom: -24px; left: -2px;
+  width: 4px; height: 10px;
+  background: #5c4a36;
+}
+
+.t-boat {
+  position: absolute;
+  width: 25px; height: 8px;
+  background: #5c4a36;
+  border-radius: 0 0 10px 10px;
+  z-index: 15;
+  animation: t-boat 6s infinite ease-in-out;
+}
+
+.t-boat::before {
+  content: '';
+  position: absolute;
+  top: -10px; left: 10px;
+  width: 2px; height: 10px;
+  background: #5c4a36;
+}
+
+.t-boat::after {
+  content: '';
+  position: absolute;
+  top: -10px; left: 2px;
+  width: 0; height: 0;
+  border-left: 8px solid #f4ecd8;
+  border-bottom: 10px solid transparent;
+}
+
+@keyframes t-boat {
+  0%, 100% { transform: translateY(0px) rotate(-7deg); }
+  50% { transform: translateY(-2px) rotate(6deg); }
+}
+
+.t-dolphin {
+  position: absolute;
+  width: 22px; height: 8px;
+  background: #3a434c;
+  border-radius: 70% 30% 20% 40%;
+  transform: rotate(-15deg);
+  z-index: 15;
+  animation: t-leap 4s infinite ease-in-out;
+}
+
+.t-dolphin::before {
+  content: '';
+  position: absolute;
+  top: -4px; left: 8px;
+  width: 6px; height: 6px;
+  background: #3a434c;
+  clip-path: polygon(0 100%, 35% 0, 100% 100%);
+  transform: rotate(18deg);
+}
+
+.t-dolphin::after {
+  content: '';
+  position: absolute;
+  top: -1px; left: -5px;
+  width: 7px; height: 8px;
+  background: #3a434c;
+  clip-path: polygon(0 0, 100% 50%, 0 100%, 45% 50%);
+}
+
+@keyframes t-leap {
+  0%, 100% { transform: translateY(0px) rotate(-18deg); }
+  50% { transform: translateY(-4px) rotate(8deg); }
+}
+
+.t-bird {
+  position: absolute;
+  width: 16px; height: 7px;
+  z-index: 12;
+  animation: t-flap 2.5s infinite ease-in-out;
+  opacity: 0.9;
+}
+
+.t-bird::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 50%; height: 100%;
+  border-top: 2px solid #2b1a08;
+  border-right: 2px solid #2b1a08;
+  border-radius: 0 100% 0 0;
+}
+
+.t-bird::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0;
+  width: 50%; height: 100%;
+  border-top: 2px solid #2b1a08;
+  border-left: 2px solid #2b1a08;
+  border-radius: 100% 0 0 0;
+}
+
+@keyframes t-flap {
+  0%, 100% { transform: scaleY(1) translateY(0px); }
+  50% { transform: scaleY(0.4) translateY(-3px); }
+}
+
+/* ΚΟΥΜΠΙ "ΜΟΝΟ ΤΕΡΑΤΑ" (Χωρίς βαρύ backdrop-filter blur) */
+.btn-monsters-only {
+  position: fixed;
+  top: auto;
+  bottom: 84px;
+  right: 85px;
+  padding: 1px 1px;
+  font-size: 14px;
+  font-family: 'Cinzel', serif;
+  color: #d4c29d;
+  background: rgba(43, 38, 31, 0.65);
+  border: 1px solid rgba(140, 115, 85, 0.45);
+  border-radius: 1px;
+  opacity: 0.9;
+  cursor: pointer;
+  z-index: 100;
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.btn-monsters-only::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-monsters-only:hover {
+    opacity: 0.95;
+    background: rgba(43, 38, 31, 0.85);
+    border: 1px solid rgba(140, 115, 85, 0.8);
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 767px) {
+  .btn-monsters-only {
+    position: fixed;
+    top: auto;
+    bottom: calc(90px + env(safe-area-inset-bottom));
+    right: 33px;
+    left: auto;
+    padding: 1px 1px;
+    font-size: 11px;
+    z-index: 100;
+  }
+}
+
+/* ==========================================
+   3. ΜΥΘΙΚΑ ΠΛΑΣΜΑΤΑ & ΤΕΡΑΤΑ (SVG)
+   ========================================== */
+
+/* ΚΡΑΚΕΝ */
+.t-kraken-attack { position: absolute; width: 75px; height: 65px; z-index: 14; display: none; }
+.t-kraken-attack.active { display: block; }
+.shaking-boat { animation: kraken-boat-shake 2s infinite ease-in-out; transform-origin: 50% 55px; }
+@keyframes kraken-boat-shake {
+  0%, 100% { transform: rotate(-5deg) translateY(0px); }
+  25% { transform: rotate(4deg) translateY(-1px); }
+  50% { transform: rotate(-6deg) translateY(1px); }
+  75% { transform: rotate(5deg) translateY(-0.5px); }
+}
+
+/* ΣΤΥΜΦΑΛΙΔΕΣ */
+.t-stym-wrap {
+  position: absolute; width: 90px; height: 70px; z-index: 14; display: none;
+  animation: flock-fly 36s infinite linear;
+  filter: drop-shadow(2px 5px 3px rgba(0,0,0,0.5));
+}
+.t-stym-wrap.active { display: block; }
+.stym-wing { transform-origin: center; animation: wing-flap 0.2s infinite alternate; }
+.stym-wing.right { transform-origin: center; animation: wing-flap-r 0.2s infinite alternate; }
+@keyframes wing-flap { 0% { transform: scaleY(1) rotate(0deg); } 100% { transform: scaleY(0.5) rotate(10deg); } }
+@keyframes wing-flap-r { 0% { transform: scaleY(1) rotate(0deg); } 100% { transform: scaleY(0.5) rotate(-10deg); } }
+@keyframes flock-fly {
+  0% { transform: translate(-40px, -20px) scale(0.7); opacity: 0; }
+  20%, 80% { opacity: 1; }
+  100% { transform: translate(70px, 30px) scale(1); opacity: 0; }
+}
+
+/* ΣΕΙΡΗΝΕΣ */
+.t-sirens-song { position: absolute; width: 70px; height: 60px; z-index: 50; display: none; cursor: pointer; }
+.t-sirens-song.active { display: block; }
+.drifting-boat { animation: boat-trance 4s infinite ease-in-out; transform-origin: 25px 62px; }
+@keyframes boat-trance {
+  0%, 100% { transform: translateX(0px) rotate(0deg) translateY(0px); }
+  50% { transform: translateX(3px) rotate(2deg) translateY(1px); }
+}
+.siren-figure { animation: siren-sway 3s infinite ease-in-out; transform-origin: 75px 52px; }
+@keyframes siren-sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+.wave { opacity: 0; transform-origin: 62px 24px; }
+.wave1 { animation: magic-song 3s infinite linear; }
+.wave2 { animation: magic-song 3s infinite linear 1s; }
+.wave3 { animation: magic-song 3s infinite linear 2s; }
+@keyframes magic-song {
+  0% { opacity: 0; transform: translateX(0px) scale(0.5); }
+  20% { opacity: 0.8; }
+  100% { opacity: 0; transform: translateX(-15px) scale(1.5); }
+}
+@media (max-width: 767px) { .t-sirens-song { width: 53.6px; height: 48px; } }
+
+/* ΧΙΜΑΙΡΑ */
+.t-chimera-attack { position: absolute; width: 90px; height: 80px; z-index: 15; display: none; }
+.t-chimera-attack.active { display: block; }
+.chimera-body { animation: beast-breathe 2.5s infinite ease-in-out; transform-origin: 50% 75px; }
+@keyframes beast-breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.03); } }
+.roaring-fire { animation: fire-breath 0.8s infinite alternate ease-in-out; transform-origin: 85px 55px; }
+@keyframes fire-breath {
+  0% { transform: scale(0.6) rotate(-5deg); opacity: 0.6; }
+  100% { transform: scale(1.3) rotate(5deg); opacity: 1; }
+}
+.snake-tail { animation: tail-whip 2s infinite ease-in-out; transform-origin: 35px 65px; }
+@keyframes tail-whip {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(15deg); }
+}
+@media (max-width: 767px) { .t-chimera-attack { width: 63px; height: 56px; } }
+
+/* ΕΧΙΔΝΑ */
+.t-echidna-lair { position: absolute; width: 48.5px; height: 42.5px; z-index: 50; cursor: pointer; display: none; }
+.t-echidna-lair.active { display: block; }
+.echidna-torso { animation: echidna-sway 4s infinite ease-in-out; transform-origin: 50px 55px; }
+@keyframes echidna-sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+.echidna-tail { animation: snake-slither 3s infinite alternate ease-in-out; transform-origin: 50px 75px; }
+@keyframes snake-slither { 0% { transform: scaleX(1) scaleY(1); } 100% { transform: scaleX(1.03) scaleY(0.97); } }
+.cave-eyes { animation: evil-blink 4s infinite ease-in-out; }
+.cave-eyes.delay { animation: evil-blink 5s infinite ease-in-out 2s; }
+@keyframes evil-blink { 0%, 10%, 50%, 100% { opacity: 0; } 5% { opacity: 1; } }
+@media (max-width: 767px) { #echidna-monster { width: 43.6px; height: 38px; } }
+
+/* ΧΑΡΥΒΔΗ */
+.t-charybdis-vortex { position: absolute; width: 59.5px; height: 52.5px; z-index: 49; cursor: pointer; display: none; }
+.t-charybdis-vortex.active { display: block; }
+.vortex-abyss { animation: abyss-pulse 16s infinite alternate ease-in-out; transform-origin: 50px 42.5px; }
+@keyframes abyss-pulse { 0% { transform: scale(0.8); opacity: 0.85; } 100% { transform: scale(1); opacity: 1; } }
+.vortex-swirl-1 { animation: vortex-spin 12s infinite linear; transform-origin: 50px 42.5px; }
+.vortex-swirl-2 { animation: vortex-spin 11s infinite linear; transform-origin: 50px 42.5px; }
+.vortex-swirl-3 { animation: vortex-spin 10s infinite linear; transform-origin: 50px 42.5px; }
+.vortex-swirl-4 { animation: vortex-spin 9s infinite linear; transform-origin: 50px 42.5px; }
+@keyframes vortex-spin { 100% { transform: rotate(360deg); } }
+.doomed-boat-wrapper { animation: suck-into-abyss 7.5s infinite cubic-bezier(0.5, 0, 1, 1); transform-origin: 50px 42.5px; }
+@keyframes suck-into-abyss {
+  0% { transform: rotate(0deg) scale(1); opacity: 1; }
+  75% { transform: rotate(360deg) scale(0.3); opacity: 1; }
+  100% { transform: rotate(450deg) scale(0); opacity: 0; }
+}
+@media (max-width: 767px) { #charybdis-monster { width: 47.6px; height: 42px; } }
+
+/* ΑΡΠΥΙΕΣ */
+.t-harpies-storm {
+  position: absolute; width: 69.5px; height: 62.5px; z-index: 55; cursor: pointer; display: none;
+  filter: drop-shadow(0px 0px 3px rgba(255, 255, 255, 0.9)) drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.5));
+}
+.t-harpies-storm.active { display: block; }
+.wind-tornado { animation: tornado-spin 10.5s infinite linear; transform-origin: 50px 50px; opacity: 0.95; }
+@keyframes tornado-spin {
+  0% { transform: rotate(0deg) scaleY(0.9); }
+  50% { transform: rotate(180deg) scaleY(1.1); }
+  100% { transform: rotate(360deg) scaleY(0.9); }
+}
+.harpy-1 { animation: harpy-fly-1 5s infinite linear; transform-origin: 50px 50px; opacity: 1; }
+.harpy-2 { animation: harpy-fly-2 5s infinite linear; transform-origin: 50px 50px; opacity: 1; }
+@keyframes harpy-fly-1 {
+  0% { transform: rotate(0deg) translateX(15px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(15px) rotate(-360deg); }
+}
+@keyframes harpy-fly-2 {
+  0% { transform: rotate(180deg) translateX(20px) rotate(-180deg); }
+  100% { transform: rotate(540deg) translateX(20px) rotate(-540deg); }
+}
+@media (max-width: 767px) { #harpies-monster { width: 70.6px; height: 66px; } }
+
+/* ΚΕΡΒΕΡΟΣ */
+.t-cerberus-gate { position: absolute; width: 42.5px; height: 35.5px; z-index: 45; cursor: pointer; display: none; }
+.t-cerberus-gate.active { display: block; }
+.hades-hellfire { animation: hellfire-flicker 0.6s infinite alternate ease-in-out; transform-origin: 50px 75px; }
+@keyframes hellfire-flicker { 0% { transform: scaleY(0.9); opacity: 0.6; } 100% { transform: scaleY(1.2); opacity: 1; } }
+.cerberus-body { animation: cerberus-breathe 1.5s infinite alternate ease-in-out; transform-origin: 50px 70px; }
+@keyframes cerberus-breathe { 0% { transform: scaleY(1) scaleX(1); } 100% { transform: scaleY(1.03) scaleX(1.02); } }
+.cerberus-head-l { animation: head-snarl-l 3s infinite ease-in-out; transform-origin: 38px 48px; }
+.cerberus-head-c { animation: head-snarl-c 2.5s infinite ease-in-out; transform-origin: 50px 42px; }
+.cerberus-head-r { animation: head-snarl-r 3.5s infinite ease-in-out; transform-origin: 62px 48px; }
+@keyframes head-snarl-l { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-8deg) translateX(-2px); } }
+@keyframes head-snarl-c { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-3px) scale(1.05); } }
+@keyframes head-snarl-r { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(8deg) translateX(2px); } }
+.cerberus-tail { animation: cerberus-snake-whip 2s infinite ease-in-out; transform-origin: 25px 65px; }
+@keyframes cerberus-snake-whip { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-12deg); } 75% { transform: rotate(15deg); } }
+@media (max-width: 767px) { #cerberus-monster { width: 42.6px; height: 38px; } }
+
+/* ΣΚΥΛΛΑ */
+.t-scylla-cliffs { position: absolute; width: 50.5px; height: 43.5px; z-index: 52; cursor: pointer; display: none; }
+.t-scylla-cliffs.active { display: block; }
+.scylla-cave { fill: #121417; animation: cave-shadow 3s infinite alternate ease-in-out; }
+@keyframes cave-shadow { 0% { opacity: 0.85; } 100% { opacity: 1; } }
+.s-head-1 { animation: scylla-strike-1 2.5s infinite alternate ease-in-out; transform-origin: 20px 60px; }
+.s-head-2 { animation: scylla-strike-2 3.2s infinite alternate ease-in-out; transform-origin: 30px 65px; }
+.s-head-3 { animation: scylla-strike-3 2.8s infinite alternate ease-in-out; transform-origin: 40px 60px; }
+.s-head-4 { animation: scylla-strike-1 3.5s infinite alternate-reverse ease-in-out; transform-origin: 50px 65px; }
+.s-head-5 { animation: scylla-strike-2 2.9s infinite alternate-reverse ease-in-out; transform-origin: 60px 60px; }
+.s-head-6 { animation: scylla-strike-3 3.1s infinite alternate-reverse ease-in-out; transform-origin: 70px 65px; }
+@keyframes scylla-strike-1 { 0% { transform: rotate(-5deg) scale(0.95); } 100% { transform: rotate(10deg) scale(1.05) translateY(-3px); } }
+@keyframes scylla-strike-2 { 0% { transform: rotate(5deg) scale(1); } 100% { transform: rotate(-10deg) scale(1.1) translateY(-5px); } }
+@keyframes scylla-strike-3 { 0% { transform: rotate(-10deg) scale(0.9); } 100% { transform: rotate(15deg) scale(1.1) translateY(-2px); } }
+.scylla-waves { animation: scylla-crash 2s infinite alternate ease-in-out; }
+@keyframes scylla-crash { 0% { transform: translateY(0px); opacity: 0.5; } 100% { transform: translateY(-3px); opacity: 0.9; } }
+@media (max-width: 767px) { #scylla-monster { width: 40.6px; height: 25px; } }
+
+/* ΚΕΝΤΑΥΡΟΙ */
+.t-centaurs-pack { position: absolute; width: 49.5px; height: 42.5px; z-index: 46; cursor: pointer; display: none; }
+.t-centaurs-pack.active { display: block; }
+.centaur-lead { animation: centaur-gallop 0.6s infinite alternate ease-in-out; transform-origin: 50px 60px; }
+.centaur-rear { animation: centaur-gallop 0.6s infinite alternate-reverse ease-in-out; transform-origin: 30px 50px; }
+@keyframes centaur-gallop { 0% { transform: translateY(0px) rotate(-3deg); } 100% { transform: translateY(-4px) rotate(4deg); } }
+.centaur-torch { animation: torch-blaze 0.3s infinite alternate ease-in-out; transform-origin: 75px 25px; }
+@keyframes torch-blaze { 0% { transform: scale(0.8) rotate(-5deg); opacity: 0.8; } 100% { transform: scale(1.2) rotate(5deg); opacity: 1; } }
+@media (max-width: 767px) { #centaurs-monster { width: 45.6px; height: 40px; } }
+
+/* ΛΕΡΝΑΙΑ ΥΔΡΑ */
+.t-hydra-swamp { position: absolute; width: 50.5px; height: 47.5px; z-index: 48; cursor: pointer; display: none; }
+.t-hydra-swamp.active { display: block; }
+.toxic-bubbles circle { animation: swamp-bubble-rise 3s infinite ease-in; }
+.toxic-bubbles .tb-1 { animation-delay: 0s; }
+.toxic-bubbles .tb-2 { animation-delay: 1.2s; }
+.toxic-bubbles .tb-3 { animation-delay: 2.4s; }
+@keyframes swamp-bubble-rise {
+  0% { transform: translateY(0) scale(0.5); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translateY(-15px) scale(1.5); opacity: 0; }
+}
+.h-head-1 { animation: hydra-strike-1 3s infinite alternate ease-in-out; transform-origin: 30px 65px; }
+.h-head-2 { animation: hydra-strike-2 4s infinite alternate-reverse ease-in-out; transform-origin: 40px 65px; }
+.h-head-3 { animation: hydra-strike-3 2.5s infinite alternate ease-in-out; transform-origin: 55px 65px; }
+.h-head-4 { animation: hydra-strike-4 3.5s infinite alternate-reverse ease-in-out; transform-origin: 65px 65px; }
+@keyframes hydra-strike-1 { 0% { transform: rotate(-5deg) scale(0.9); } 100% { transform: rotate(10deg) scale(1.1) translateY(-2px); } }
+@keyframes hydra-strike-2 { 0% { transform: rotate(8deg); } 100% { transform: rotate(-8deg) translateY(-4px); } }
+@keyframes hydra-strike-3 { 0% { transform: rotate(-10deg); } 100% { transform: rotate(12deg) translateY(-5px); } }
+@keyframes hydra-strike-4 { 0% { transform: rotate(5deg) scale(0.9); } 100% { transform: rotate(-15deg) scale(1.1); } }
+.swamp-reeds { animation: reeds-sway 2.5s infinite alternate ease-in-out; transform-origin: 50px 80px; }
+@keyframes reeds-sway { 0% { transform: skewX(-5deg); } 100% { transform: skewX(5deg); } }
+@media (max-width: 767px) { #hydra-monster { width: 44.6px; height: 35px; } }
+
+/* ΚΗΤΟΣ */
+.t-cetus-abyss { position: absolute; width: 50.5px; height: 43.5px; z-index: 50; cursor: pointer; display: none; }
+.t-cetus-abyss.active { display: block; }
+.cetus-body { animation: cetus-heave 4s infinite alternate ease-in-out; transform-origin: 50px 60px; }
+@keyframes cetus-heave { 0% { transform: translateY(2px) rotate(-2deg); } 100% { transform: translateY(-3px) rotate(2deg); } }
+.cetus-jaw { animation: cetus-chomp 4s infinite alternate ease-in-out; transform-origin: 20px 40px; }
+@keyframes cetus-chomp { 0% { transform: rotate(0deg); } 20% { transform: rotate(5deg); } 100% { transform: rotate(25deg); } }
+.cetus-fin { animation: cetus-flap 3s infinite alternate ease-in-out; transform-origin: 70px 50px; }
+@keyframes cetus-flap { 0% { transform: rotate(-8deg); } 100% { transform: rotate(12deg); } }
+.cetus-water { animation: cetus-churn 2s infinite alternate ease-in-out; }
+@keyframes cetus-churn { 0% { transform: scaleX(0.95) translateX(1px); opacity: 0.7; } 100% { transform: scaleX(1.05) translateX(-2px); opacity: 1; } }
+@media (max-width: 767px) { #cetus-monster { width: 40.6px; height: 35px; } }
+
+/* ΑΛΩΑΔΕΣ ΓΙΓΑΝΤΕΣ */
+.t-aloadae-giants { position: absolute; width: 49.5px; height: 42.5px; z-index: 47; cursor: pointer; display: none; }
+.t-aloadae-giants.active { display: block; }
+.aloadae-mountain { animation: mountain-lift 3s infinite alternate ease-in-out; transform-origin: 50px 30px; }
+@keyframes mountain-lift { 0% { transform: translateY(2px) rotate(-1deg); } 100% { transform: translateY(-3px) rotate(1deg); } }
+.giant-left { animation: giant-strain-l 3s infinite alternate ease-in-out; transform-origin: 30px 70px; }
+@keyframes giant-strain-l { 0% { transform: scaleY(0.95) scaleX(1.02) translateX(-1px); } 100% { transform: scaleY(1.05) scaleX(0.98) translateX(1px); } }
+.giant-right { animation: giant-strain-r 3s infinite alternate ease-in-out; transform-origin: 70px 70px; }
+@keyframes giant-strain-r { 0% { transform: scaleY(1.05) scaleX(0.98) translateX(1px); } 100% { transform: scaleY(0.95) scaleX(1.02) translateX(-1px); } }
+.falling-rocks circle, .falling-rocks polygon { animation: rock-tumble 2.5s infinite linear; }
+.falling-rocks .r1 { animation-delay: 0s; }
+.falling-rocks .r2 { animation-delay: 0.8s; }
+.falling-rocks .r3 { animation-delay: 1.6s; }
+@keyframes rock-tumble { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(18px) rotate(360deg); opacity: 0; } }
+@media (max-width: 767px) { #aloadae-monster { width: 44.6px; height: 31px; } }
+
+/* ΤΥΦΩΕΑΣ */
+.t-typhon-storm { position: absolute; width: 49.5px; height: 42.5px; z-index: 53; cursor: pointer; display: none; }
+.t-typhon-storm.active { display: block; }
+.typhon-wing-l { animation: typhon-flap-l 4s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+.typhon-wing-r { animation: typhon-flap-r 4s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes typhon-flap-l { 0% { transform: rotate(10deg) scaleY(1.1); } 100% { transform: rotate(-15deg) scaleY(0.9); } }
+@keyframes typhon-flap-r { 0% { transform: rotate(-10deg) scaleY(1.1); } 100% { transform: rotate(15deg) scaleY(0.9); } }
+.typhon-torso { animation: typhon-breathe 2s infinite alternate ease-in-out; transform-origin: 50px 70px; }
+@keyframes typhon-breathe { 0% { transform: scaleX(0.95) translateY(2px); } 100% { transform: scaleX(1.05) translateY(-2px); } }
+.t-head-group { animation: typhon-heads-sway 3s infinite alternate ease-in-out; transform-origin: 50px 45px; }
+@keyframes typhon-heads-sway { 0% { transform: rotate(-5deg); } 100% { transform: rotate(5deg); } }
+.typhon-snakes path { animation: typhon-whip 1.5s infinite alternate ease-in-out; }
+.typhon-snakes path:nth-child(even) { animation-direction: alternate-reverse; animation-duration: 2s; }
+@keyframes typhon-whip { 0% { transform: scaleY(0.9) skewX(-10deg); } 100% { transform: scaleY(1.1) skewX(10deg); } }
+.typhon-lightning { animation: typhon-strike 3s infinite; }
+.typhon-lightning.delay { animation: typhon-strike 4s infinite 1.5s; }
+@keyframes typhon-strike { 0%, 9%, 11%, 19%, 21%, 100% { opacity: 0; } 10%, 20% { opacity: 1; transform: scale(1.1); } }
+@media (max-width: 767px) { #typhon-monster { width: 41.6px; height: 36px; } }
+
+/* ΛΕΟΝΤΕΣ ΤΟΥ ΒΟΡΡΑ */
+.t-macedonian-lions-pack { position: absolute; width: 55.5px; height: 48.5px; z-index: 46; cursor: pointer; display: none; }
+.t-macedonian-lions-pack.active { display: block; }
+.lion-lead { animation: lion-gallop-1 0.5s infinite alternate ease-in-out; transform-origin: 60px 50px; }
+@keyframes lion-gallop-1 { 0% { transform: translateY(0px) rotate(-4deg); } 100% { transform: translateY(-5px) rotate(4deg); } }
+.lion-chaser-1 { animation: lion-gallop-2 0.4s infinite alternate-reverse ease-in-out; transform-origin: 30px 40px; }
+@keyframes lion-gallop-2 { 0% { transform: translateY(-2px) rotate(2deg); } 100% { transform: translateY(2px) rotate(-3deg); } }
+.lion-chaser-2 { animation: lion-gallop-3 0.45s infinite alternate ease-in-out; transform-origin: 45px 65px; }
+@keyframes lion-gallop-3 { 0% { transform: translateY(1px) scale(0.9) rotate(-2deg); } 100% { transform: translateY(-2px) scale(0.95) rotate(2deg); } }
+.pack-dust path { animation: dust-kick 0.6s infinite linear; }
+.pack-dust .d1 { animation-delay: 0s; }
+.pack-dust .d2 { animation-delay: 0.2s; }
+.pack-dust .d3 { animation-delay: 0.4s; }
+@keyframes dust-kick { 0% { transform: translateX(0) scale(0.5); opacity: 0.8; } 100% { transform: translateX(-15px) scale(1.5); opacity: 0; } }
+@media (max-width: 767px) { #macedonian-lion-monster { width: 44.6px; height: 39px; } }
+
+/* ΤΕΛΧΙΝΕΣ */
+.t-telchines-forge { position: absolute; width: 50.5px; height: 43.5px; z-index: 49; cursor: pointer; display: none; }
+.t-telchines-forge.active { display: block; }
+.forge-water { animation: boiling-water 2s infinite alternate ease-in-out; }
+@keyframes boiling-water { 0% { transform: scaleX(0.95); opacity: 0.6; } 100% { transform: scaleX(1.05); opacity: 0.9; } }
+.telchine-smith-arm { animation: hammer-strike 1.5s infinite; transform-origin: 30px 45px; }
+@keyframes hammer-strike { 0%, 100% { transform: rotate(-45deg); } 15% { transform: rotate(15deg); } 30% { transform: rotate(-30deg); } }
+.glowing-metal { fill: #ffaa00; filter: drop-shadow(0 0 4px #ff5500); animation: metal-pulse 1.5s infinite; }
+@keyframes metal-pulse { 0%, 100% { opacity: 0.65; } 15% { opacity: 1; } }
+.forge-sparks circle { animation: spark-fly 1.5s infinite; }
+.forge-sparks .s1 { animation-delay: 0s; }
+.forge-sparks .s2 { animation-delay: 0.05s; }
+.forge-sparks .s3 { animation-delay: 0.1s; }
+@keyframes spark-fly {
+  0%, 14%, 100% { opacity: 0; transform: translate(0, 0) scale(1); }
+  15% { opacity: 1; transform: translate(0, 0) scale(1.5); }
+  40% { opacity: 0; transform: translate(-6px, -15px) scale(0); }
+}
+.telchine-mage { animation: mage-chant 3s infinite alternate ease-in-out; transform-origin: 75px 60px; }
+@keyframes mage-chant { 0% { transform: translateY(2px) rotate(2deg); } 100% { transform: translateY(-2px) rotate(-2deg); } }
+.dark-magic-rings { animation: magic-spin 4s infinite linear; transform-origin: 75px 35px; }
+@keyframes magic-spin { 100% { transform: rotate(360deg) scale(1.1); } }
+@media (max-width: 767px) { #telchines-monster { width: 42.6px; height: 37px; } }
+
+/* ΤΑΛΩΣ (.talos-patrol-path παραμένει στατικό) */
+.t-talos-automaton {
+  position: absolute; width: 59.5px; height: 52.5px; z-index: 48; cursor: pointer; display: none;
+  animation: talos-patrol 30s infinite alternate linear;
+}
+.t-talos-automaton.active { display: block; }
+.talos-patrol-path { transform-origin: 50px 50px; }
+@keyframes talos-patrol { 0% { transform: translateY(-82px); } 100% { transform: translateY(15px); } }
+.talos-arm-l { animation: talos-mech-walk 1.5s infinite alternate linear; transform-origin: 30px 40px; }
+.talos-arm-r { animation: talos-mech-walk 1.5s infinite alternate-reverse linear; transform-origin: 70px 40px; }
+.talos-leg-l { animation: talos-mech-walk 1.5s infinite alternate-reverse linear; transform-origin: 40px 65px; }
+.talos-leg-r { animation: talos-mech-walk 1.5s infinite alternate linear; transform-origin: 60px 65px; }
+@keyframes talos-mech-walk { 0% { transform: rotate(-18deg); } 100% { transform: rotate(18deg); } }
+.talos-ichor { fill: #ffae00; filter: drop-shadow(0 0 4px #ff5500); animation: ichor-pulse 1.5s infinite alternate ease-in-out; }
+@keyframes ichor-pulse { 0% { opacity: 0.6; } 100% { opacity: 1; } }
+@media (max-width: 767px) { #talos-monster { width: 47.6px; height: 42px; } }
+
+/* ΚΥΚΛΩΠΑΣ */
+.t-cyclops-cave { position: absolute; width: 49.5px; height: 42.5px; z-index: 47; cursor: pointer; display: none; }
+.t-cyclops-cave.active { display: block; }
+.cyclops-body { animation: cyclops-breathe 3s infinite alternate ease-in-out; transform-origin: 50px 70px; }
+@keyframes cyclops-breathe { 0% { transform: scaleY(0.98) scaleX(1.02); } 100% { transform: scaleY(1.02) scaleX(0.98); } }
+.cyclops-club { animation: club-rest 2.5s infinite alternate ease-in-out; transform-origin: 75px 75px; }
+@keyframes club-rest { 0% { transform: rotate(-3deg); } 100% { transform: rotate(3deg); } }
+.cyclops-eye-pupil { animation: eye-search 4s infinite alternate ease-in-out; }
+@keyframes eye-search { 0%, 10%, 90%, 100% { transform: translateX(-2.5px); } 45%, 55% { transform: translateX(2.5px); } }
+@media (max-width: 767px) { #cyclops-monster { width: 38.6px; height: 33px; } }
+
+/* ΜΕΔΟΥΣΑ */
+.t-medusa-gorgon { position: absolute; width: 49.5px; height: 42.5px; z-index: 47; cursor: pointer; display: none; }
+.t-medusa-gorgon.active { display: block; }
+.medusa-head-sway { animation: medusa-sway 3s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes medusa-sway { 0% { transform: translateY(1px) rotate(-2deg); } 100% { transform: translateY(-1px) rotate(2deg); } }
+.snake-group-1 path { animation: snake-writhe-1 2s infinite alternate ease-in-out; transform-origin: 50px 30px; }
+.snake-group-2 path { animation: snake-writhe-2 2.5s infinite alternate-reverse ease-in-out; transform-origin: 50px 30px; }
+@keyframes snake-writhe-1 { 0% { transform: rotate(-5deg) scaleY(0.95); } 100% { transform: rotate(5deg) scaleY(1.05); } }
+@keyframes snake-writhe-2 { 0% { transform: rotate(5deg) skewX(-2deg); } 100% { transform: rotate(-5deg) skewX(2deg); } }
+.medusa-gaze { fill: #66ff66; filter: drop-shadow(0 0 5px #00ff00); animation: death-glare 1.5s infinite alternate; }
+@keyframes death-glare { 0% { opacity: 0.55; } 100% { opacity: 1; } }
+.petrified-map { background-color: rgba(0, 0, 0, 0.05); }
+.pieria-tolkien-widget:has(.petrified-map) #map-area-2 {
+  filter: grayscale(100%) contrast(110%) brightness(85%);
+}
+@supports not selector(:has(*)) {
+  .petrified-map {
+    backdrop-filter: grayscale(100%) contrast(110%) brightness(85%) !important;
+    -webkit-backdrop-filter: grayscale(100%) contrast(110%) brightness(85%) !important;
+  }
+}
+@media (max-width: 767px) { #medusa-monster { width: 37.6px; height: 32px; } }
+
+/* ΚΑΛΥΔΩΝΙΟΣ ΚΑΠΡΟΣ */
+.t-calydonian-boar { position: absolute; width: 49.5px; height: 42.5px; z-index: 46; cursor: pointer; display: none; }
+.t-calydonian-boar.active { display: block; }
+.boar-body { animation: boar-charge 0.8s infinite alternate ease-in-out; transform-origin: 50px 75px; }
+@keyframes boar-charge { 0% { transform: translateX(-1px) rotate(-1deg); } 100% { transform: translateX(3px) rotate(2deg); } }
+.boar-head { animation: boar-dig 0.4s infinite alternate ease-in-out; transform-origin: 35px 55px; }
+@keyframes boar-dig { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(4px) rotate(-6deg); } }
+.boar-debris polygon, .boar-debris circle { animation: debris-fly 0.5s infinite linear; }
+.boar-debris .b1 { animation-delay: 0s; }
+.boar-debris .b2 { animation-delay: 0.15s; }
+.boar-debris .b3 { animation-delay: 0.3s; }
+@keyframes debris-fly { 0% { transform: translate(0, 0) scale(0.5); opacity: 1; } 100% { transform: translate(-15px, -12px) rotate(-180deg) scale(1.2); opacity: 0; } }
+@media (max-width: 767px) { #calydonian-boar-monster { width: 46.6px; height: 32px; } }
+
+/* ΛΥΚΑΟΝΑΣ */
+.t-lycaon-werewolf { position: absolute; width: 49.5px; height: 46.5px; z-index: 47; cursor: pointer; display: none; }
+.t-lycaon-werewolf.active { display: block; }
+.blood-moon { filter: drop-shadow(0 0 6px #ff0000); animation: moon-pulse 3s infinite alternate ease-in-out; }
+@keyframes moon-pulse { 0% { transform: scale(0.95); opacity: 0.75; } 100% { transform: scale(1.05); opacity: 1; } }
+.lycaon-container { animation: lycaon-run-howl 4s infinite linear; transform-origin: 50px 75px; }
+@keyframes lycaon-run-howl {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  10%, 80% { transform: translateX(6px) translateY(-4px); }
+  20%, 70% { transform: translateX(12px) translateY(0); }
+}
+.lycaon-head { animation: howl-head 4s infinite ease-in-out; transform-origin: 45px 35px; }
+@keyframes howl-head { 0%, 15%, 75%, 100% { transform: rotate(0deg); } 25%, 65% { transform: rotate(-40deg); } }
+.lycaon-eye { fill: #ff3300; filter: drop-shadow(0 0 4px #ff0000); animation: eye-flare 4s infinite ease-in-out; }
+@keyframes eye-flare { 0%, 15%, 75%, 100% { opacity: 0.5; } 25%, 65% { opacity: 1; } }
+.lycaon-legs { animation: run-legs 4s infinite linear; transform-origin: 40px 65px; }
+@keyframes run-legs {
+  0%, 20%, 70%, 100% { transform: rotate(0deg); }
+  5%, 15%, 75%, 85% { transform: rotate(15deg); }
+  10%, 80% { transform: rotate(-10deg); }
+}
+@media (max-width: 767px) { #lycaon-monster { width: 48.6px; height: 45px; } }
+
+/* ΜΙΝΩΤΑΥΡΟΣ */
+.t-minotaur-labyrinth { position: absolute; width: 48.5px; height: 41.5px; z-index: 47; cursor: pointer; display: none; }
+.t-minotaur-labyrinth.active { display: block; }
+.minotaur-chest { animation: minotaur-breathe 2s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes minotaur-breathe { 0% { transform: scaleX(0.98) scaleY(0.98); } 100% { transform: scaleX(1.03) scaleY(1.02); } }
+.minotaur-arm-weapon { animation: axe-strike 3s infinite; transform-origin: 40px 45px; }
+@keyframes axe-strike {
+  0%, 15%, 60%, 100% { transform: rotate(0deg); }
+  35% { transform: rotate(-35deg); }
+  40% { transform: rotate(45deg); }
+  45% { transform: rotate(38deg); }
+}
+.minotaur-eye { fill: #ff2200; filter: drop-shadow(0 0 3px #ff0000); animation: minotaur-rage 3s infinite; }
+@keyframes minotaur-rage { 0%, 34%, 46%, 100% { opacity: 0.55; } 35%, 45% { opacity: 1; } }
+@media (max-width: 767px) { #minotaur-monster { width: 38.6px; height: 33px; } }
+
+/* ΧΑΡΩΝ */
+.t-charon-ferry { position: absolute; width: 49.5px; height: 42.5px; z-index: 46; cursor: pointer; display: none; }
+.t-charon-ferry.active { display: block; }
+.charon-boat-rock { animation: boat-rock 4s infinite alternate ease-in-out; transform-origin: 50px 70px; }
+@keyframes boat-rock { 0% { transform: rotate(-2deg) translateY(1px); } 100% { transform: rotate(2deg) translateY(-1px); } }
+.charon-rowing { animation: row-oar 3.5s infinite ease-in-out; transform-origin: 50px 45px; }
+@keyframes row-oar { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(15deg); } }
+.spectral-soul { filter: drop-shadow(0 0 5px #00ffcc); animation: soul-float 3s infinite alternate ease-in-out; }
+@keyframes soul-float {
+  0% { transform: translateY(0px) scale(0.9); opacity: 0.65; }
+  100% { transform: translateY(-6px) scale(1.1); opacity: 1; }
+}
+.soul-1 { animation-duration: 2.5s; animation-delay: 0s; }
+.soul-2 { animation-duration: 3.5s; animation-delay: -1s; }
+.soul-3 { animation-duration: 4s; animation-delay: -2s; }
+@media (max-width: 767px) { #charon-monster { width: 37.6px; height: 32px; } }
+
+/* ΧΑΛΚΟΤΑΥΡΟΙ */
+.t-bronze-bull { position: absolute; width: 59.5px; height: 52.5px; z-index: 47; cursor: pointer; display: none; }
+.t-bronze-bull.active { display: block; }
+.bronze-bull-body { animation: bull-heave 2s infinite alternate ease-in-out; transform-origin: 50px 60px; }
+@keyframes bull-heave { 0% { transform: scaleY(0.98) rotate(-1deg); } 100% { transform: scaleY(1.02) rotate(1deg); } }
+.bull-stomp-leg { animation: mechanical-stomp 2s infinite; transform-origin: 55px 45px; }
+@keyframes mechanical-stomp {
+  0%, 15%, 45%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-35deg); }
+  35% { transform: rotate(15deg); }
+}
+.bull-sparks circle { animation: hoof-sparks 2s infinite; }
+.bull-sparks .s1 { animation-delay: 0s; }
+.bull-sparks .s2 { animation-delay: 0.05s; }
+.bull-sparks .s3 { animation-delay: 0.1s; }
+@keyframes hoof-sparks {
+  0%, 34%, 100% { opacity: 0; transform: translate(0, 0) scale(1); }
+  35% { opacity: 1; transform: translate(0, 0) scale(1.5); }
+  50% { opacity: 0; transform: translate(-8px, -15px) scale(0); }
+}
+.bull-fire-breath { animation: fire-stream 2s infinite; transform-origin: 80px 45px; }
+@keyframes fire-stream {
+  0%, 34%, 100% { transform: scaleX(0); opacity: 0; }
+  35% { transform: scaleX(1.1); opacity: 1; }
+  50% { transform: scaleX(1); opacity: 0.8; }
+  65% { transform: scaleX(0.5); opacity: 0; }
+}
+.bull-core-glow { fill: #ff8800; filter: drop-shadow(0 0 4px #ff5500); animation: core-pulse 1s infinite alternate; }
+@keyframes core-pulse { 0% { opacity: 0.6; } 100% { opacity: 1; } }
+@media (max-width: 767px) { #bronze-bull-monster { width: 47.6px; height: 42px; } }
+
+/* ΑΡΑΧΝΗ */
+.t-arachne-weaver { position: absolute; width: 59.5px; height: 52.5px; z-index: 48; cursor: pointer; display: none; }
+.t-arachne-weaver.active { display: block; }
+.arachne-web-bg { filter: drop-shadow(0 0 2px #6b8c9e); animation: web-glow 3s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes web-glow { 0% { opacity: 0.4; transform: scale(0.98); } 100% { opacity: 0.7; transform: scale(1.02); } }
+.arachne-yo-yo { animation: spider-drop 5s infinite alternate ease-in-out; }
+@keyframes spider-drop { 0% { transform: translateY(-15px); } 100% { transform: translateY(12px); } }
+.arachne-leg-l { animation: spider-twitch-l 0.5s infinite alternate ease-in-out; transform-origin: 45px 50px; }
+.arachne-leg-r { animation: spider-twitch-r 0.6s infinite alternate-reverse ease-in-out; transform-origin: 55px 50px; }
+@keyframes spider-twitch-l { 0% { transform: rotate(-2deg) scaleY(0.98); } 100% { transform: rotate(3deg) scaleY(1.02); } }
+@keyframes spider-twitch-r { 0% { transform: rotate(2deg) scaleY(0.98); } 100% { transform: rotate(-3deg) scaleY(1.02); } }
+.arachne-eyes { fill: #ff0066; filter: drop-shadow(0 0 3px #ff0066); animation: eye-glare 2s infinite alternate; }
+@keyframes eye-glare { 0% { opacity: 0.6; } 100% { opacity: 1; } }
+@media (max-width: 767px) { #arachne-monster { width: 52.6px; height: 49px; } }
+
+/* ΥΠΕΡΤΑΤΗ ΚΑΤΑΙΓΙΔΑ */
+.t-ultimate-storm { position: absolute; width: 49.5px; height: 42.5px; z-index: 50; cursor: pointer; display: none; }
+.t-ultimate-storm.active { display: block; }
+.m-storm-cloud-1 { animation: storm-spin 0.4s infinite alternate ease-in-out; }
+.m-storm-cloud-2 { animation: storm-spin 0.5s infinite alternate-reverse ease-in-out; }
+.m-storm-cloud-3 { animation: storm-spin 0.3s infinite alternate ease-in-out; }
+@keyframes storm-spin { 0% { transform: translateX(-3px) skewX(2deg); } 100% { transform: translateX(3px) skewX(-2deg); } }
+.m-storm-snake-l { animation: storm-writhe-l 0.8s infinite alternate ease-in-out; transform-origin: 40px 75px; }
+.m-storm-snake-r { animation: storm-writhe-r 0.9s infinite alternate-reverse ease-in-out; transform-origin: 60px 75px; }
+@keyframes storm-writhe-l { 0% { transform: rotate(-15deg) scaleY(0.9); } 100% { transform: rotate(10deg) scaleY(1.1); } }
+@keyframes storm-writhe-r { 0% { transform: rotate(15deg) scaleY(0.9); } 100% { transform: rotate(-10deg) scaleY(1.1); } }
+.m-storm-lightning { filter: drop-shadow(0 0 6px #00ffff); animation: storm-lightning-strike 2.5s infinite; opacity: 0; }
+.m-storm-lightning.l2 { animation-delay: 1.2s; }
+.m-storm-lightning.l3 { animation-delay: 0.5s; animation-duration: 3s; }
+@keyframes storm-lightning-strike { 0%, 85%, 92%, 100% { opacity: 0; } 88%, 94% { opacity: 1; } }
+.m-storm-eyes { fill: #ff5500; filter: drop-shadow(0 0 5px #ff3300); animation: ultimate-storm-eyes 1.5s infinite alternate; }
+@keyframes ultimate-storm-eyes { 0% { opacity: 0.7; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+@media (max-width: 767px) { #ultimate-storm-monster { width: 37.6px; height: 32px; } }
+
+/* ΠΗΓΑΣΟΣ */
+.t-pegasus-flight { position: absolute; width: 59.5px; height: 52.5px; z-index: 55; cursor: pointer; display: none; }
+.t-pegasus-flight.active { display: block; }
+.pegasus-orbit-path { animation: pegasus-fly-left 25s infinite linear; }
+@keyframes pegasus-fly-left {
+  0%   { transform: translate(100px, -60px) scaleX(-1) rotate(15deg); opacity: 0; }
+  15%  { transform: translate(70px, -40px) scaleX(-1) rotate(15deg); opacity: 1; }
+  85%  { transform: translate(-70px, 40px) scaleX(-1) rotate(15deg); opacity: 1; }
+  100% { transform: translate(-100px, 60px) scaleX(-1) rotate(15deg); opacity: 0; }
+}
+.pegasus-wing-front { animation: flap-front 0.6s infinite alternate ease-in-out; transform-origin: 50px 45px; }
+.pegasus-wing-back { animation: flap-back 0.6s infinite alternate ease-in-out; transform-origin: 50px 45px; }
+@keyframes flap-front { 0% { transform: rotate(-20deg) scaleY(0.9); } 100% { transform: rotate(40deg) scaleY(1.1); } }
+@keyframes flap-back { 0% { transform: rotate(20deg) scaleY(1.1); } 100% { transform: rotate(-40deg) scaleY(0.9); } }
+.pegasus-sparkles circle, .pegasus-sparkles path { filter: drop-shadow(0 0 3px #fffb00); animation: magic-dust 1.5s infinite linear; }
+.pegasus-sparkles .st-1 { animation-delay: 0s; }
+.pegasus-sparkles .st-2 { animation-delay: 0.3s; }
+.pegasus-sparkles .st-3 { animation-delay: 0.6s; }
+.pegasus-sparkles .st-4 { animation-delay: 0.9s; }
+.pegasus-sparkles .st-5 { animation-delay: 1.2s; }
+@keyframes magic-dust { 0% { transform: translateX(0) scale(1); opacity: 1; } 100% { transform: translateX(-30px) scale(0); opacity: 0; } }
+.pegasus-body-gallop { animation: heavenly-gallop 0.6s infinite alternate ease-in-out; }
+@keyframes heavenly-gallop { 0% { transform: translateY(1px); } 100% { transform: translateY(-2px); } }
+@media (max-width: 767px) { #pegasus-monster { width: 47.6px; height: 42px; } }
+
+/* ΣΦΙΓΓΑ */
+.t-sphinx-riddle { position: absolute; width: 59.5px; height: 52.5px; z-index: 46; cursor: pointer; display: none; }
+.t-sphinx-riddle.active { display: block; }
+.sphinx-wing-front { animation: sphinx-flap-front 3s infinite alternate ease-in-out; transform-origin: 45px 40px; }
+.sphinx-wing-back { animation: sphinx-flap-back 3s infinite alternate ease-in-out; transform-origin: 45px 40px; }
+@keyframes sphinx-flap-front { 0% { transform: rotate(-10deg) scaleY(0.95); } 100% { transform: rotate(15deg) scaleY(1.05); } }
+@keyframes sphinx-flap-back { 0% { transform: rotate(10deg) scaleY(1.05); } 100% { transform: rotate(-15deg) scaleY(0.95); } }
+.sphinx-eyes { fill: #00ffff; filter: drop-shadow(0 0 3px #00ffff); animation: sphinx-gaze 4s infinite; }
+@keyframes sphinx-gaze { 0%, 20%, 80%, 100% { opacity: 0.2; } 40%, 60% { opacity: 1; } }
+.sphinx-runes text {
+  font-family: serif; font-size: 8px; font-weight: bold; fill: #00ffff;
+  filter: drop-shadow(0 0 3px #00ffff); animation: runes-glow 4s infinite; opacity: 0;
+}
+.sphinx-runes .r1 { animation-delay: 1.2s; }
+.sphinx-runes .r2 { animation-delay: 1.4s; }
+.sphinx-runes .r3 { animation-delay: 1.6s; }
+.sphinx-runes .r4 { animation-delay: 1.8s; }
+.sphinx-runes .r5 { animation-delay: 2.0s; }
+@keyframes runes-glow {
+  0%, 15% { opacity: 0; transform: translateY(2px); }
+  40%, 60% { opacity: 1; transform: translateY(0px); }
+  85%, 100% { opacity: 0; transform: translateY(-2px); }
+}
+@media (max-width: 767px) { #sphinx-monster { width: 47.6px; height: 42px; } }
+
+/* ΔΡΑΚΟΝΤΑΣ ΤΗΣ ΚΟΛΧΙΔΑΣ */
+.t-colchian-dragon { position: absolute; width: 54.5px; height: 48.5px; z-index: 44; cursor: pointer; display: none; }
+.t-colchian-dragon.active { display: block; }
+.golden-fleece-glow { fill: #ffe033; filter: drop-shadow(0 0 5px #ffbb00); animation: fleece-pulse 2s infinite alternate ease-in-out; }
+@keyframes fleece-pulse { 0% { opacity: 0.7; } 100% { opacity: 1; } }
+.dragon-uncoil { animation: snake-uncoil 4s infinite alternate ease-in-out; transform-origin: 50px 35px; }
+@keyframes snake-uncoil { 0% { transform: translate(5px, -8px) rotate(10deg); } 100% { transform: translate(-8px, 5px) rotate(-5deg); } }
+.hypno-wave { fill: none; stroke: #ccff00; stroke-width: 1.5; animation: hypnotic-rings 2.5s infinite linear; opacity: 0; }
+.hypno-wave.w1 { animation-delay: 0s; }
+.hypno-wave.w2 { animation-delay: 0.8s; }
+.hypno-wave.w3 { animation-delay: 1.6s; }
+@keyframes hypnotic-rings { 0% { transform: scale(0.1); opacity: 1; } 100% { transform: scale(3.5); opacity: 0; } }
+.dragon-coils { animation: snake-breathe 3s infinite alternate ease-in-out; }
+@keyframes snake-breathe { 0% { transform: scaleX(0.98); } 100% { transform: scaleX(1.03); } }
+@media (max-width: 767px) { #colchian-monster { width: 49.6px; height: 44px; } }
+
+/* ==========================================
+   4. ΟΙΚΟΛΟΓΙΚΟ LAYER - ΠΑΝΙΔΑ & ΦΥΣΗ (SVG)
+   ========================================== */
+
+/* ΧΡΥΣΑΕΤΟΣ */
+.t-golden-eagle { position: absolute; width: 49px; height: 45px; z-index: 56; cursor: pointer; display: none; }
+.t-golden-eagle.active { display: block; }
+.eagle-soar-path { animation: eagle-orbit 16s infinite linear; transform-origin: 50px 50px; }
+@keyframes eagle-orbit { 0% { transform: rotate(0deg) translateX(25px) rotate(0deg); } 100% { transform: rotate(360deg) translateX(25px) rotate(-360deg); } }
+.eagle-body-tilt { animation: eagle-glide 4s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes eagle-glide { 0% { transform: rotate(-8deg); } 100% { transform: rotate(8deg); } }
+.eagle-wing-l { animation: eagle-flap-l 2.5s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+.eagle-wing-r { animation: eagle-flap-r 2.5s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes eagle-flap-l { 0%, 15% { transform: rotate(15deg) scaleY(0.85); } 85%, 100% { transform: rotate(-25deg) scaleY(1.15); } }
+@keyframes eagle-flap-r { 0%, 15% { transform: rotate(-15deg) scaleY(0.85); } 85%, 100% { transform: rotate(25deg) scaleY(1.15); } }
+@media (max-width: 767px) { #eagle-anim { width: 42px; height: 35px; } }
+
+/* ΡΟΖ ΦΛΑΜΙΝΓΚΟ */
+.t-eco-flamingos { position: absolute; width: 59px; height: 55px; z-index: 49; cursor: pointer; display: none; }
+.t-eco-flamingos.active { display: block; }
+.flamingo-water { animation: wetland-ripple 4s infinite alternate ease-in-out; transform-origin: 50px 75px; }
+@keyframes wetland-ripple { 0% { transform: scaleX(0.9); opacity: 0.5; } 100% { transform: scaleX(1.1); opacity: 0.8; } }
+.fl-neck-feed { animation: flamingo-dip 7s infinite ease-in-out; transform-origin: 65px 48px; }
+@keyframes flamingo-dip {
+  0%, 15%, 100% { transform: rotate(0deg) translate(0, 0); }
+  35%, 65% { transform: rotate(-55deg) translate(-12px, 12px); }
+  45%, 55% { transform: rotate(-52deg) translate(-10px, 10px); }
+}
+.feed-ripple { animation: beak-ripple 7s infinite; transform-origin: 38px 68px; opacity: 0; }
+@keyframes beak-ripple {
+  0%, 34%, 66%, 100% { transform: scale(0); opacity: 0; }
+  35%, 55% { transform: scale(0.5); opacity: 1; }
+  50% { transform: scale(2); opacity: 0; }
+  65% { transform: scale(1.5); opacity: 0; }
+}
+.fl-body-balance { animation: flamingo-balance 3s infinite alternate ease-in-out; transform-origin: 25px 65px; }
+@keyframes flamingo-balance { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
+.fl-wing-stretch { animation: flamingo-flap 6s infinite; transform-origin: 22px 42px; }
+@keyframes flamingo-flap {
+  0%, 75%, 100% { transform: rotate(0deg) scaleY(1) scaleX(1); }
+  80% { transform: rotate(-50deg) scaleY(1.4) scaleX(1.1); }
+  85% { transform: rotate(-15deg) scaleY(1.1); }
+  90% { transform: rotate(-45deg) scaleY(1.3) scaleX(1.1); }
+}
+@media (max-width: 767px) { #flamingos-anim { width: 54px; height: 45px; } }
+
+/* ΑΓΡΙΟΓΙΔΟ */
+.t-eco-chamois { position: absolute; width: 75px; height: 75px; z-index: 50; cursor: pointer; display: none; }
+.t-eco-chamois.active { display: block; }
+.chamois-fog { animation: fog-drift 12s infinite alternate ease-in-out; }
+@keyframes fog-drift { 0% { transform: translateX(-5px); opacity: 0.6; } 100% { transform: translateX(8px); opacity: 1; } }
+.chamois-master-leap { animation: chamois-trajectory 9s infinite cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 25px 45px; }
+@keyframes chamois-trajectory {
+  0%, 25%, 85%, 100% { transform: translate(0, 0); }
+  28% { transform: translate(8px, -10px) rotate(-15deg); }
+  31% { transform: translate(18px, -12px) rotate(10deg); }
+  35%, 70% { transform: translate(25px, 4px); }
+  73% { transform: translate(15px, -6px) rotate(15deg); }
+  76% { transform: translate(5px, -10px) rotate(-10deg); }
+}
+.chamois-body-squash { animation: chamois-squash 9s infinite; transform-origin: 22px 50px; }
+@keyframes chamois-squash {
+  0%, 22%, 37%, 67%, 82%, 100% { transform: scale(1, 1); }
+  24%, 69% { transform: scale(1.1, 0.8) translateY(2px); }
+  29%, 74% { transform: scale(0.95, 1.05); }
+  35%, 78% { transform: scale(1.15, 0.75) translateY(4px); }
+}
+.chamois-leg-front { animation: leg-tuck-front 9s infinite; transform-origin: 30px 42px; }
+.chamois-leg-back { animation: leg-tuck-back 9s infinite; transform-origin: 15px 42px; }
+@keyframes leg-tuck-front {
+  0%, 25%, 35%, 70%, 80%, 100% { transform: rotate(0deg); }
+  28%, 74% { transform: rotate(-45deg); }
+  33%, 78% { transform: rotate(20deg); }
+}
+@keyframes leg-tuck-back {
+  0%, 25%, 35%, 70%, 80%, 100% { transform: rotate(0deg); }
+  28%, 74% { transform: rotate(35deg); }
+  33%, 78% { transform: rotate(-15deg); }
+}
+.chamois-head-neck { animation: head-scan 9s infinite; transform-origin: 32px 30px; }
+@keyframes head-scan {
+  0%, 25%, 35%, 70%, 85%, 100% { transform: rotate(0deg); }
+  5%, 15% { transform: rotate(-10deg); }
+  45%, 55% { transform: rotate(15deg); }
+}
+.dust-particles { opacity: 0; }
+#dust-left { animation: puff-left 9s infinite; transform-origin: 20px 55px; }
+#dust-right { animation: puff-right 9s infinite; transform-origin: 70px 60px; }
+@keyframes puff-left {
+  0%, 23%, 27%, 77%, 82%, 100% { opacity: 0; transform: scale(0) translateY(0); }
+  25%, 80% { opacity: 0.8; transform: scale(1.5) translateY(-3px); }
+}
+@keyframes puff-right {
+  0%, 33%, 38%, 68%, 73%, 100% { opacity: 0; transform: scale(0) translateY(0); }
+  35%, 70% { opacity: 0.8; transform: scale(1.5) translateY(-3px); }
+}
+@media (max-width: 767px) { #chamois-anim { width: 55px; height: 55px; } }
+
+/* ΘΑΛΑΣΣΙΑ ΧΕΛΩΝΑ CARETTA-CARETTA */
+.t-eco-turtle { position: absolute; width: 53px; height: 49px; z-index: 48; cursor: pointer; display: none; }
+.t-eco-turtle.active { display: block; }
+.turtle-water-layer { animation: turtle-sea-pulse 6s infinite alternate ease-in-out; transform-origin: 50px 53px; }
+@keyframes turtle-sea-pulse { 0% { transform: scale(0.96); opacity: 0.6; } 100% { transform: scale(1.04); opacity: 0.9; } }
+.turtle-master-swim { animation: turtle-swimming-cycle 12s infinite ease-in-out; transform-origin: 50px 53px; }
+@keyframes turtle-swimming-cycle {
+  0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+  30% { transform: translateY(-3px) scale(0.96) rotate(1deg); }
+  42% { transform: translateY(2px) scale(1.03) rotate(-1deg); }
+  46%, 56% { transform: translateY(4px) scale(1.05) rotate(0deg); }
+  75% { transform: translateY(-1px) scale(0.98) rotate(-1deg); }
+}
+.turtle-flipper-l { animation: turtle-paddle-l 3.5s infinite ease-in-out; transform-origin: 32px 42px; }
+.turtle-flipper-r { animation: turtle-paddle-r 3.5s infinite ease-in-out; transform-origin: 68px 42px; }
+@keyframes turtle-paddle-l { 0%, 100% { transform: rotate(0deg) skewX(0deg); } 50% { transform: rotate(-28deg) skewX(-6deg); } }
+@keyframes turtle-paddle-r { 0%, 100% { transform: rotate(0deg) skewX(0deg); } 50% { transform: rotate(28deg) skewX(6deg); } }
+.turtle-back-flippers { animation: turtle-stabilize 4s infinite alternate ease-in-out; transform-origin: 50px 70px; }
+@keyframes turtle-stabilize { 0% { transform: rotate(-4deg); } 100% { transform: rotate(4deg); } }
+.turtle-head-neck { animation: turtle-head-pop 12s infinite ease-in-out; transform-origin: 50px 35px; }
+@keyframes turtle-head-pop {
+  0%, 39%, 59%, 100% { transform: scale(0.85) translateY(3px); opacity: 0.5; }
+  44%, 54% { transform: scale(1.12) translateY(-2px); opacity: 1; }
+}
+.t-wave { fill: none; stroke: #a2eaf2; stroke-width: 1.5; transform-origin: 50px 18px; opacity: 0; }
+.w1 { animation: turtle-ripple-fx 12s infinite ease-out; }
+.w2 { animation: turtle-ripple-fx 12s infinite ease-out 0.6s; }
+@keyframes turtle-ripple-fx {
+  0%, 43%, 57%, 100% { transform: scale(0); opacity: 0; }
+  45% { opacity: 0.8; }
+  53% { transform: scale(4.5); opacity: 0; }
+}
+@media (max-width: 767px) { .t-eco-turtle { width: 44px; height: 40px; } }
+
+/* ΚΑΦΕ ΑΡΚΟΥΔΑ */
+.t-eco-bear { position: absolute; width: 54px; height: 49px; z-index: 51; cursor: pointer; display: none; }
+.t-eco-bear.active { display: block; }
+.bear-master { animation: bear-emerge-cycle 10s infinite ease-in-out; transform-origin: 50px 95px; }
+@keyframes bear-emerge-cycle {
+  0%, 15%, 85%, 100% { transform: translateY(45px); opacity: 0; }
+  22% { transform: translateY(12px); opacity: 1; }
+  25%, 42%, 78% { transform: translateY(12px); }
+  48%, 52%, 72% { transform: translateY(-4px); }
+  82% { transform: translateY(45px); opacity: 0; }
+}
+.bear-body-lift { animation: bear-body-stretch 10s infinite ease-in-out; transform-origin: 50px 80px; }
+@keyframes bear-body-stretch { 0%, 42%, 78%, 100% { transform: scaleY(1) scaleX(1); } 48%, 72% { transform: scaleY(1.16) scaleX(1.04); } }
+.bear-paws { animation: bear-raise-paws 10s infinite ease-in-out; transform-origin: 50px 55px; }
+@keyframes bear-raise-paws { 0%, 42%, 78%, 100% { transform: translateY(0); } 48%, 72% { transform: translateY(-12px) rotate(4deg); } }
+.bear-head { animation: bear-head-scan 10s infinite ease-in-out; transform-origin: 50px 35px; }
+@keyframes bear-head-scan {
+  0%, 22%, 78%, 100% { transform: rotate(0deg) scale(1); }
+  26% { transform: rotate(-10deg); }
+  34% { transform: rotate(10deg); }
+  40% { transform: rotate(0deg); }
+  48%, 72% { transform: scale(1.08); }
+}
+@media (max-width: 767px) { .t-eco-bear { width: 49px; height: 45px; } }
+
+/* ΒΙΔΡΑ (Τα νερά .otter-water-back/front παραμένουν στατικά) */
+.t-eco-otter { position: absolute; width: 59px; height: 54px; z-index: 52; cursor: pointer; display: none; }
+.t-eco-otter.active { display: block; }
+.otter-dive-anim { animation: otter-play 7s infinite ease-in-out; transform-origin: 50px 65px; }
+@keyframes otter-play {
+  0%, 100% { transform: translateY(30px) rotate(15deg); opacity: 0; }
+  10% { transform: translateY(10px) rotate(-5deg); opacity: 1; }
+  25% { transform: translateY(-5px) rotate(-10deg); }
+  45% { transform: translateY(-2px) rotate(5deg); }
+  60% { transform: translateY(0px) rotate(-5deg); }
+  80% { transform: translateY(20px) rotate(25deg); opacity: 1; }
+  90% { transform: translateY(30px) rotate(30deg); opacity: 0; }
+}
+.ot-bubble { animation: otter-bubble-rise 3s infinite ease-in; opacity: 0; }
+.ot-b1 { animation-delay: 0.5s; }
+.ot-b2 { animation-delay: 1.2s; }
+.ot-b3 { animation-delay: 2.5s; }
+@keyframes otter-bubble-rise {
+  0% { transform: translateY(5px) scale(0.5); opacity: 0; }
+  30% { opacity: 0.8; }
+  100% { transform: translateY(-25px) scale(1.5); opacity: 0; }
+}
+@media (max-width: 767px) { #otter-anim { width: 49px; height: 44px; } }
+
+/* ΑΓΡΙΟΓΟΥΡΟΥΝΟ */
+.t-eco-boar { position: absolute; width: 59px; height: 55px; z-index: 53; cursor: pointer; display: none; }
+.t-eco-boar.active { display: block; }
+.boar-running { animation: boar-gallop-body 4.3s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes boar-gallop-body { 0% { transform: translateY(0px) rotate(-2deg); } 100% { transform: translateY(4px) rotate(2deg); } }
+.boar-leg-b1 { animation: run-leg-b1 4.3s infinite linear; transform-origin: 30px 50px; }
+.boar-leg-b2 { animation: run-leg-b2 4.3s infinite linear; transform-origin: 30px 50px; }
+.boar-leg-f1 { animation: run-leg-f1 4.3s infinite linear; transform-origin: 65px 55px; }
+.boar-leg-f2 { animation: run-leg-f2 4.3s infinite linear; transform-origin: 65px 55px; }
+@keyframes run-leg-f1 { 0%, 100% { transform: rotate(-35deg); } 50% { transform: rotate(25deg); } }
+@keyframes run-leg-f2 { 0%, 100% { transform: rotate(25deg); } 50% { transform: rotate(-35deg); } }
+@keyframes run-leg-b1 { 0%, 100% { transform: rotate(35deg); } 50% { transform: rotate(-25deg); } }
+@keyframes run-leg-b2 { 0%, 100% { transform: rotate(-25deg); } 50% { transform: rotate(35deg); } }
+.dust { animation: dust-fly 0.5s infinite linear; opacity: 0; }
+.d1 { animation-delay: 0s; }
+.d2 { animation-delay: 0.1s; }
+.d3 { animation-delay: 0.2s; }
+.d4 { animation-delay: 0.3s; }
+@keyframes dust-fly {
+  0% { transform: translateX(0) translateY(0) scale(0.5); opacity: 0.9; }
+  100% { transform: translateX(-40px) translateY(-15px) scale(1.8); opacity: 0; }
+}
+@media (max-width: 767px) {
+  .t-eco-boar { width: 43px; height: 39px; }
+  #boar-anim-new svg { width: 100%; height: 100%; }
+}
+
+/* ΔΡΥΟΚΟΛΑΠΤΗΣ */
+.t-woodpecker-tree { position: absolute; width: 51.5px; height: 47.5px; z-index: 36; cursor: pointer; display: none; }
+.t-woodpecker-tree.active { display: block; }
+.woodpecker-shake { animation: tree-vibration 2.5s infinite; }
+@keyframes tree-vibration {
+  0%, 60%, 77%, 100% { transform: translateX(0px); }
+  62%, 68%, 74% { transform: translateX(-1px); }
+  65%, 71% { transform: translateX(1px); }
+}
+.woodpecker-head-peck { animation: bird-pecking 2.5s infinite; transform-origin: 52px 35px; }
+@keyframes bird-pecking {
+  0%, 60%, 65%, 71%, 77%, 100% { transform: rotate(0deg); }
+  62%, 68%, 74% { transform: rotate(-18deg); }
+}
+.wood-chips path { opacity: 0; animation: chips-fly 2.5s infinite; }
+.wood-chips .c1 { animation-delay: 0.05s; }
+.wood-chips .c2 { animation-delay: 0.15s; }
+.wood-chips .c3 { animation-delay: 0.25s; }
+@keyframes chips-fly {
+  0%, 60%, 100% { opacity: 0; transform: translate(0px, 0px) scale(0.5) rotate(0deg); }
+  65% { opacity: 1; }
+  80% { opacity: 0; transform: translate(-8px, 12px) scale(1) rotate(45deg); }
+}
+@media (max-width: 767px) { #woodpecker-nature { width: 44.6px; height: 40px; } }
+
+/* ΖΑΡΚΑΔΙ */
+.t-roe-deer { position: absolute; width: 59.5px; height: 52.5px; z-index: 34; cursor: pointer; display: none; }
+.t-roe-deer.active { display: block; }
+.deer-body-breathe { animation: deer-breathe 4s infinite alternate ease-in-out; transform-origin: 55px 45px; }
+@keyframes deer-breathe { 0% { transform: scaleY(0.98); } 100% { transform: scaleY(1.02); } }
+.deer-neck-head { animation: deer-alert-bob 7s infinite ease-in-out; transform-origin: 45px 48px; }
+@keyframes deer-alert-bob {
+  0%, 30%, 70%, 100% { transform: rotate(-45deg) translate(-5px, 12px); }
+  35%, 65% { transform: rotate(0deg) translate(0px, 0px); }
+}
+.deer-ear-l { animation: ear-twitch-l 7s infinite; transform-origin: 32px 20px; }
+.deer-ear-r { animation: ear-twitch-r 7s infinite; transform-origin: 36px 20px; }
+@keyframes ear-twitch-l {
+  0%, 40%, 55%, 100% { transform: rotate(0deg); }
+  45%, 51% { transform: rotate(-15deg); }
+  48% { transform: rotate(5deg); }
+}
+@keyframes ear-twitch-r {
+  0%, 42%, 56%, 100% { transform: rotate(0deg); }
+  46%, 52% { transform: rotate(15deg); }
+  49% { transform: rotate(-5deg); }
+}
+.deer-tail { animation: tail-flick 4s infinite ease-in-out; transform-origin: 75px 42px; }
+@keyframes tail-flick {
+  0%, 80%, 95%, 100% { transform: rotate(0deg); }
+  85% { transform: rotate(-15deg); }
+  90% { transform: rotate(5deg); }
+}
+@media (max-width: 767px) { #roe-deer-nature { width: 49.6px; height: 45px; } }
+
+/* ΣΑΛΑΜΑΝΔΡΑ */
+.t-eco-salamander { position: absolute; width: 50px; height: 45px; z-index: 49; cursor: pointer; display: none; }
+.t-eco-salamander.active { display: block; }
+.sal-torso { animation: sal-body-bend 3s infinite ease-in-out; transform-origin: 50px 48px; }
+@keyframes sal-body-bend { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+.sal-head { animation: sal-head-bend 3s infinite ease-in-out; transform-origin: 50px 32px; }
+@keyframes sal-head-bend { 0%, 100% { transform: rotate(14deg); } 50% { transform: rotate(-14deg); } }
+.sal-tail-group { animation: sal-tail-bend 3s infinite ease-in-out; transform-origin: 50px 63px; }
+@keyframes sal-tail-bend { 0%, 100% { transform: rotate(20deg); } 50% { transform: rotate(-20deg); } }
+.sal-leg.fl { animation: leg-swing-a 3s infinite ease-in-out; transform-origin: 41px 35px; }
+.sal-leg.br { animation: leg-swing-a 3s infinite ease-in-out; transform-origin: 59px 60px; }
+.sal-leg.fr { animation: leg-swing-b 3s infinite ease-in-out; transform-origin: 59px 35px; }
+.sal-leg.bl { animation: leg-swing-b 3s infinite ease-in-out; transform-origin: 41px 60px; }
+@keyframes leg-swing-a { 0%, 100% { transform: rotate(-30deg); } 50% { transform: rotate(30deg); } }
+@keyframes leg-swing-b { 0%, 100% { transform: rotate(30deg); } 50% { transform: rotate(-30deg); } }
+.sal-wrapper { animation: sal-forward-crawl 1.5s infinite ease-in-out; }
+@keyframes sal-forward-crawl { 0%, 100% { transform: rotate(35deg) translateY(0px); } 50% { transform: rotate(35deg) translateY(-2px); } }
+@media (max-width: 767px) { .t-eco-salamander { width: 47px; height: 43px; } }
+
+/* ΑΛΕΠΟΥ */
+.t-eco-fox { position: absolute; width: 59.5px; height: 52.5px; z-index: 34; cursor: pointer; display: none; }
+.t-eco-fox.active { display: block; }
+.fox-tail-swish { animation: fox-tail-wag 3s infinite alternate ease-in-out; transform-origin: 65px 70px; }
+@keyframes fox-tail-wag { 0% { transform: rotate(-8deg); } 100% { transform: rotate(12deg); } }
+.fox-head-sniff { animation: fox-sniffing 6s infinite ease-in-out; transform-origin: 45px 45px; }
+@keyframes fox-sniffing {
+  0%, 70%, 90%, 100% { transform: rotate(0deg) translate(0px, 0px); }
+  75%, 85% { transform: rotate(-35deg) translate(-10px, 12px); }
+}
+.fox-body-breathe { animation: fox-breathe 2.5s infinite alternate ease-in-out; }
+@keyframes fox-breathe { 0% { transform: scaleY(0.98) translateY(1px); } 100% { transform: scaleY(1.02) translateY(0px); } }
+@media (max-width: 767px) { #fox-eco-nature { width: 47.6px; height: 42px; } }
+
+/* ΑΡΓΥΡΟΠΕΛΕΚΑΝΟΣ */
+.t-eco-pelican { position: absolute; width: 59.5px; height: 52.5px; z-index: 36; cursor: pointer; display: none; }
+.t-eco-pelican.active { display: block; }
+.peli-head-tilt { animation: pelican-yawn 7s infinite ease-in-out; transform-origin: 60px 30px; }
+@keyframes pelican-yawn { 0%, 55%, 72%, 100% { transform: rotate(0deg); } 60%, 65% { transform: rotate(25deg); } }
+.peli-upper-beak { animation: beak-open 7s infinite ease-in-out; transform-origin: 52px 28px; }
+@keyframes beak-open { 0%, 56%, 70%, 100% { transform: rotate(0deg); } 60%, 65% { transform: rotate(-35deg); } }
+.peli-pouch-stretch { animation: pouch-expand 7s infinite ease-in-out; transform-origin: 52px 30px; }
+@keyframes pouch-expand {
+  0%, 56%, 70%, 100% { transform: scaleY(1) scaleX(1) translateY(0); }
+  60%, 65% { transform: scaleY(1.5) scaleX(1.1) translateY(2px) skewX(-10deg); }
+}
+.peli-wing-stretch { animation: wing-flex 7s infinite ease-in-out; transform-origin: 65px 45px; }
+@keyframes wing-flex {
+  0%, 55%, 72%, 100% { transform: rotate(0deg) scale(1); }
+  60%, 65% { transform: rotate(-20deg) scale(1.1) translateY(-2px); }
+}
+.peli-body-breathe { animation: peli-breathe 3s infinite alternate ease-in-out; }
+@keyframes peli-breathe { 0% { transform: translateY(1px); } 100% { transform: translateY(-1px); } }
+@media (max-width: 767px) { #pelican-eco-nature { width: 47.6px; height: 42px; } }
+
+/* ΑΛΠΙΚΟΣ ΤΡΙΤΩΝΑΣ */
+.t-eco-tritonas { position: absolute; width: 59.5px; height: 52.5px; z-index: 33; cursor: pointer; display: none; }
+.t-eco-tritonas.active { display: block; }
+.triton-float { animation: water-hover 4s infinite alternate ease-in-out; }
+@keyframes water-hover { 0% { transform: translateY(-3px); } 100% { transform: translateY(3px); } }
+.triton-tail-swim { animation: tail-swish 1.5s infinite alternate ease-in-out; transform-origin: 50px 55px; }
+@keyframes tail-swish { 0% { transform: rotate(-15deg) skewX(-15deg); } 100% { transform: rotate(15deg) skewX(15deg); } }
+.triton-ripple { fill: none; stroke: #ffffff; stroke-width: 1; animation: ripple-expand 3s infinite linear; opacity: 0; transform-origin: 50px 40px; }
+.triton-ripple.r1 { animation-delay: 0s; }
+.triton-ripple.r2 { animation-delay: 1.5s; }
+@keyframes ripple-expand { 0% { transform: scale(0.2); opacity: 0.5; } 100% { transform: scale(2.5); opacity: 0; } }
+@media (max-width: 767px) { #tritonas-eco-nature { width: 49.6px; height: 44px; } }
+
+/* ΝΕΡΟΦΙΔΟ */
+.t-eco-nerofido { position: absolute; width: 59.5px; height: 52.5px; z-index: 34; cursor: pointer; display: none; }
+.t-eco-nerofido.active { display: block; }
+.snake-water-ripple { fill: none; stroke: #7ec8e3; stroke-width: 1.5; animation: river-ripple 3s infinite linear; opacity: 0; transform-origin: 50px 50px; }
+.snake-water-ripple.r2 { animation-delay: 1.5s; }
+@keyframes river-ripple { 0% { transform: scale(0.3) scaleY(0.7); opacity: 0.8; } 100% { transform: scale(2) scaleY(1); opacity: 0; } }
+.snake-body-float { animation: snake-hover 4s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes snake-hover { 0% { transform: scale(0.98) rotate(-2deg); } 100% { transform: scale(1.02) rotate(2deg); } }
+.snake-head-lift { animation: head-bob 5s infinite ease-in-out; transform-origin: 30px 30px; }
+@keyframes head-bob { 0%, 75%, 100% { transform: translateY(0px) rotate(0deg); } 85%, 95% { transform: translateY(-4px) rotate(-8deg); } }
+.snake-tongue-flick { animation: tongue-dart 5s infinite; transform-origin: 19px 28px; }
+@keyframes tongue-dart { 0%, 84%, 88%, 92%, 100% { transform: scaleX(0); } 86%, 90% { transform: scaleX(1); } }
+@media (max-width: 767px) { #nerofido-eco-nature { width: 51.6px; height: 44px; } }
+
+/* ΚΑΒΟΥΡΑΣ */
+.t-sea-crab { position: absolute; width: 59.5px; height: 52.5px; z-index: 33; cursor: pointer; display: none; }
+.t-sea-crab.active { display: block; }
+.crab-sideways-patrol { animation: crab-walk 6s infinite ease-in-out; }
+@keyframes crab-walk { 0%, 10%, 90%, 100% { transform: translateX(0); } 40%, 60% { transform: translateX(15px); } }
+.crab-claw-l { animation: claw-snap-l 6s infinite; transform-origin: 35px 45px; }
+.crab-claw-r { animation: claw-snap-r 6s infinite; transform-origin: 65px 45px; }
+@keyframes claw-snap-l { 0%, 42%, 48%, 55%, 100% { transform: rotate(0deg); } 45%, 52% { transform: rotate(-25deg); } }
+@keyframes claw-snap-r { 0%, 42%, 48%, 55%, 100% { transform: rotate(0deg); } 45%, 52% { transform: rotate(25deg); } }
+.crab-legs-move { animation: leg-scuttle 0.2s infinite; }
+@keyframes leg-scuttle { 0% { transform: translateY(0); } 100% { transform: translateY(1.5px); } }
+@media (max-width: 767px) { #crab-sea-nature { width: 47.6px; height: 42px; } }
+
+/* ΔΕΛΦΙΝΙΑ */
+.t-sea-dolphins { position: absolute; width: 59.5px; height: 52.5px; z-index: 33; cursor: pointer; display: none; }
+.t-sea-dolphins.active { display: block; }
+.dolphin-jump { animation: dolphin-jump-anim 4s infinite ease-in-out; opacity: 0; }
+.dolphin-jump.parent { animation-delay: 0s; }
+.dolphin-jump.calf { animation-delay: 0.5s; }
+@keyframes dolphin-jump-anim {
+  0% { transform: translate(-35px, 25px) rotate(-60deg); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  50% { transform: translate(0px, -35px) rotate(0deg); opacity: 1; }
+  100% { transform: translate(35px, 25px) rotate(60deg); opacity: 0; }
+}
+.dolphin-splash {
+  fill: none; stroke: #ffffff; stroke-width: 1.5; opacity: 0;
+  animation-duration: 4s; animation-iteration-count: infinite; animation-timing-function: ease-out;
+}
+.dolphin-splash.s-takeoff { animation-name: splash-boom-start; transform-origin: 20px 65px; }
+.dolphin-splash.s-calf-takeoff { animation-name: splash-boom-start; animation-delay: 0.5s; transform-origin: 25px 65px; }
+.dolphin-splash.s-landing { animation-name: splash-boom-end; transform-origin: 80px 65px; }
+@keyframes splash-boom-start {
+  0%, 100% { opacity: 0; transform: scale(0.2); }
+  2% { opacity: 1; }
+  12% { opacity: 0; transform: scale(1.8); }
+}
+@keyframes splash-boom-end {
+  0%, 82%, 100% { opacity: 0; transform: scale(0.2); }
+  85% { opacity: 1; }
+  95% { opacity: 0; transform: scale(1.8); }
+}
+@media (max-width: 767px) { #dolphins-sea-nature { width: 47.6px; height: 42px; } }
+
+/* ΑΒΟΚΕΤΑ */
+.t-eco-avocet { position: absolute; width: 54px; height: 49px; z-index: 48; cursor: pointer; display: none; }
+.t-eco-avocet.active { display: block; }
+.avocet-sweep-group { animation: avocet-foraging 4s infinite ease-in-out; transform-origin: 45px 52px; }
+@keyframes avocet-foraging { 0%, 100% { transform: rotate(-22deg); } 50% { transform: rotate(18deg); } }
+.avo-ripple-l, .avo-ripple-r { opacity: 0; }
+.avo-ripple-l circle { animation: beak-ripple-fx 4s infinite ease-out; }
+.avo-ripple-r circle { animation: beak-ripple-fx 4s infinite ease-out 2s; }
+@keyframes beak-ripple-fx {
+  0%, 100% { transform: scale(0.2); opacity: 0; }
+  5% { opacity: 1; }
+  35% { transform: scale(3.5); opacity: 0; }
+}
+.avocet-body { animation: avocet-body-balance 2s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes avocet-body-balance { 0% { transform: translateY(0px) rotate(-1deg); } 100% { transform: translateY(-1.5px) rotate(1deg); } }
+@media (max-width: 767px) { .t-eco-avocet { width: 43px; height: 38px; } }
+
+/* ΝΕΡΟΚΟΤΣΥΦΑΣ (Το ρέμα .foam-fast/slow/splash παραμένει στατικό) */
+.t-eco-dipper { position: absolute; width: 60px; height: 60px; z-index: 47; cursor: pointer; display: none; }
+.t-eco-dipper.active { display: block; }
+.dipper-bob-master { animation: dipper-squash-jump 2.5s infinite; transform-origin: 50px 72px; }
+@keyframes dipper-squash-jump {
+  0%, 32%, 40%, 80%, 100% { transform: scale(1, 1) translateY(0); }
+  8%, 24% { transform: scale(1.08, 0.85) translateY(3px); }
+  16% { transform: scale(0.95, 1.05) translateY(-2px); }
+  55%, 65% { transform: scale(0.92, 1.1) translateY(-4px); }
+}
+.dipper-tail { animation: dipper-tail-twitch 2.5s infinite; transform-origin: 62px 60px; }
+@keyframes dipper-tail-twitch { 0%, 40%, 100% { transform: rotate(0deg); } 16% { transform: rotate(-15deg); } 55% { transform: rotate(10deg); } }
+.foam-fast { stroke-dasharray: 15 15; }
+.foam-slow { stroke-dasharray: 20 25; opacity: 0.7; }
+.foam-splash { stroke-dasharray: 10 30; opacity: 0.9; }
+@media (max-width: 767px) { .t-eco-dipper { width: 45px; height: 45px; } }
+
+/* ΜΑΥΡΟΚΕΦΑΛΟΣ ΓΛΑΡΟΣ */
+.t-sea-gull { position: absolute; width: 59.5px; height: 52.5px; z-index: 36; cursor: pointer; display: none; }
+.t-sea-gull.active { display: block; }
+.gull-dive-master { animation: gull-hunt-cycle 6s infinite ease-in-out; transform-origin: 25px 20px; }
+@keyframes gull-hunt-cycle {
+  0%, 15%, 65%, 100% { transform: translate(0px, 0px) rotate(0deg); opacity: 1; }
+  18% { transform: translate(5px, -5px) rotate(80deg); opacity: 1; }
+  25% { transform: translate(15px, 38px) rotate(80deg); opacity: 1; }
+  26%, 45% { transform: translate(15px, 38px) rotate(80deg); opacity: 0; }
+  46% { transform: translate(15px, 38px) rotate(-35deg); opacity: 0; }
+  50% { transform: translate(15px, 38px) rotate(-35deg); opacity: 1; }
+}
+.gull-wings-fold { animation: wing-aerodynamic 6s infinite ease-in-out; transform-origin: 25px 20px; }
+@keyframes wing-aerodynamic {
+  0%, 15%, 26%, 100% { transform: scaleY(1) scaleX(1); }
+  18%, 25% { transform: scaleY(0.15) scaleX(0.7) rotate(10deg); }
+}
+.gull-wing-flap { animation: wing-beat 0.4s infinite alternate ease-in-out; transform-origin: 25px 20px; }
+@keyframes wing-beat { 0% { transform: rotate(-25deg); } 100% { transform: rotate(25deg); } }
+.gull-water-splash {
+  fill: none; stroke: #ffffff; stroke-width: 1.5; stroke-linecap: round;
+  animation: splash-burst 6s infinite ease-out; transform-origin: 35px 65px; opacity: 0;
+}
+@keyframes splash-burst {
+  0%, 24%, 100% { opacity: 0; transform: scale(0.3) translateY(0); }
+  25% { opacity: 1; transform: scale(0.8) translateY(-2px); }
+  30% { opacity: 0; transform: scale(1.6) translateY(-8px); }
+}
+@media (max-width: 767px) { #gull-sea-nature { width: 54.6px; height: 49px; } }
+
+/* ΚΟΠΑΔΙ ΤΣΙΠΟΥΡΕΣ */
+.t-sea-school { position: absolute; width: 59.5px; height: 52.5px; z-index: 32; cursor: pointer; display: none; }
+.t-sea-school.active { display: block; }
+.fish-swim { animation: school-bob 2.5s infinite alternate ease-in-out; }
+.fish-1 { animation-delay: 0s; }
+.fish-2 { animation-delay: 0.3s; }
+.fish-3 { animation-delay: 0.6s; }
+@keyframes school-bob { 0% { transform: translateY(-4px) rotate(-2deg); } 100% { transform: translateY(4px) rotate(2deg); } }
+@media (max-width: 767px) { #school-sea-nature { width: 47.6px; height: 42px; } }
+
+/* ΦΩΚΙΑ MONACHUS MONACHUS */
+.t-sea-seal { position: absolute; width: 59.5px; height: 52.5px; z-index: 35; cursor: pointer; overflow: hidden; display: none; }
+.t-sea-seal.active { display: block; }
+.seal-emerge-anim { animation: seal-hide-seek 7s infinite ease-in-out; }
+@keyframes seal-hide-seek {
+  0%, 65%, 90%, 100% { transform: translateY(45px); opacity: 0; }
+  70%, 85% { transform: translateY(5px); opacity: 1; }
+}
+.seal-eyes-look { animation: eyes-scan 12s infinite ease-in-out; }
+@keyframes eyes-scan {
+  0%, 72%, 83%, 100% { transform: translateX(0px); }
+  75% { transform: translateX(-2.5px); }
+  80% { transform: translateX(2.5px); }
+}
+@media (max-width: 767px) { #seal-sea-nature { width: 47.6px; height: 42px; } }
+
+/* ΑΛΚΥΟΝΗ */
+.t-eco-alkyoni { position: absolute; width: 59.5px; height: 52.5px; z-index: 36; cursor: pointer; display: none; }
+.t-eco-alkyoni.active { display: block; }
+.alkyoni-dive-master { animation: alkyoni-hunt 5s infinite ease-in-out; transform-origin: 50px 25px; }
+@keyframes alkyoni-hunt {
+  0%, 20%, 40%, 60%, 82%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+  10%, 30%, 50% { transform: translateY(-2px) rotate(1deg); }
+  64% { transform: translateY(40px) rotate(75deg) scaleX(0.9); opacity: 1; }
+  65%, 67% { transform: translateY(42px) rotate(75deg); opacity: 0; }
+  75% { transform: translateY(-5px) rotate(-20deg); opacity: 1; }
+}
+.alkyoni-wings-flutter { animation: alkyoni-wing-beat 0.15s infinite alternate ease-in-out; transform-origin: 50px 28px; }
+@keyframes alkyoni-wing-beat { 0% { transform: scaleY(0.3) rotate(-10deg); } 100% { transform: scaleY(1.2) rotate(15deg); } }
+.alkyoni-river-splash {
+  fill: none; stroke: #ffffff; stroke-width: 1.5; stroke-linecap: round;
+  opacity: 0; animation: alkyoni-splash-burst 5s infinite ease-out; transform-origin: 62px 65px;
+}
+@keyframes alkyoni-splash-burst {
+  0%, 63%, 100% { opacity: 0; transform: scale(0.3); }
+  64% { opacity: 1; transform: scale(1); }
+  68% { opacity: 0; transform: scale(1.8); }
+}
+@media (max-width: 767px) { #alkyoni-eco-nature { width: 57.6px; height: 51px; } }
+
+/* ΣΚΙΟΥΡΟΣ */
+.t-eco-squirrel { position: absolute; width: 59.5px; height: 52.5px; z-index: 34; cursor: pointer; display: none; }
+.t-eco-squirrel.active { display: block; }
+.squirrel-climb-anim { animation: squirrel-scurry 8s infinite ease-in-out; }
+@keyframes squirrel-scurry {
+  0%, 15% { transform: translateY(40px); opacity: 0; }
+  17% { opacity: 1; }
+  20% { transform: translateY(25px) rotate(-10deg); }
+  22% { transform: translateY(25px) rotate(0deg); }
+  25% { transform: translateY(10px) rotate(-10deg); }
+  27% { transform: translateY(10px) rotate(0deg); }
+  30%, 65% { transform: translateY(-5px) rotate(0deg); opacity: 1; }
+  68% { transform: translateY(-35px) rotate(-5deg); opacity: 1; }
+  72%, 100% { transform: translateY(-35px); opacity: 0; }
+}
+.squirrel-turn-head { animation: squirrel-flip 8s infinite ease-in-out; transform-origin: 38px 35px; }
+@keyframes squirrel-flip { 0%, 42%, 62%, 100% { transform: scaleX(1); } 45%, 58% { transform: scaleX(-1); } }
+.squirrel-tail-twitch { animation: tail-twitch 0.4s infinite alternate ease-in-out; transform-origin: 32px 38px; }
+@keyframes tail-twitch { 0% { transform: rotate(-3deg); } 100% { transform: rotate(3deg); } }
+@media (max-width: 767px) { #squirrel-eco-nature { width: 56.6px; height: 47px; } }
+
+/* ΑΓΡΙΟ ΑΛΟΓΟ */
+.t-wild-mustang { position: absolute; width: 59.5px; height: 52.5px; z-index: 33; cursor: pointer; display: none; }
+.t-wild-mustang.active { display: block; }
+.mustang-gallop-across { animation: gallop-path 19s infinite linear; }
+@keyframes gallop-path {
+  0% { transform: translateX(30px); opacity: 0; }
+  10% { transform: translateX(15px); opacity: 1; }
+  90% { transform: translateX(-15px); opacity: 1; }
+  100% { transform: translateX(-30px); opacity: 0; }
+}
+.mustang-body-rhythm { animation: gallop-bounce 0.6s infinite ease-in-out; transform-origin: 50px 50px; }
+@keyframes gallop-bounce {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(4deg); }
+  100% { transform: translateY(0) rotate(-2deg); }
+}
+.mustang-mane-wind { animation: wind-blow-mane 0.4s infinite alternate ease-in-out; transform-origin: 28px 25px; }
+@keyframes wind-blow-mane { 0% { transform: skewX(10deg); } 100% { transform: skewX(25deg); } }
+.mustang-tail-wind { animation: wind-blow-tail 0.5s infinite alternate ease-in-out; transform-origin: 75px 35px; }
+@keyframes wind-blow-tail { 0% { transform: rotate(10deg) skewX(10deg); } 100% { transform: rotate(25deg) skewX(20deg); } }
+.mustang-legs-blur { animation: legs-gallop 0.3s infinite alternate; transform-origin: 50px 60px; }
+@keyframes legs-gallop { 0% { transform: scaleX(0.8) skewX(10deg); } 100% { transform: scaleX(1.2) skewX(-10deg); } }
+@media (max-width: 767px) { #mustang-eco-nature { width: 47.6px; height: 42px; } }
+
+/* ΚΟΥΚΟΥΒΑΓΙΑ */
+.t-eco-owl { position: absolute; width: 59.5px; height: 52.5px; z-index: 34; cursor: pointer; display: none; }
+.t-eco-owl.active { display: block; }
+.owl-head-turn { animation: owl-head-rotate 7s infinite ease-in-out; transform-origin: 50px 42px; }
+@keyframes owl-head-rotate {
+  0%, 25%, 95%, 100% { transform: rotate(0deg); }
+  35%, 55% { transform: rotate(-70deg); }
+  65%, 85% { transform: rotate(70deg); }
+}
+.owl-eyes-blink { animation: owl-eye-snap 4s infinite ease-in-out; transform-origin: 50px 33px; }
+@keyframes owl-eye-snap { 0%, 45%, 49%, 53%, 100% { transform: scaleY(1); } 47%, 51% { transform: scaleY(0); } }
+.owl-body-breath { animation: owl-breath 3s infinite alternate ease-in-out; transform-origin: 50px 55px; }
+@keyframes owl-breath { 0% { transform: scaleY(0.97); } 100% { transform: scaleY(1.03); } }
+@media (max-width: 767px) { #owl-eco-nature { width: 47.6px; height: 42px; } }
+
+/* ΠΥΓΟΛΑΜΠΙΔΕΣ */
+.t-eco-firefly { position: absolute; width: 59.5px; height: 52.5px; z-index: 35; cursor: pointer; display: none; }
+.t-eco-firefly.active { display: block; }
+.ff-glow {
+  filter: drop-shadow(0 0 8px #ccff00) drop-shadow(0 0 14px #99ff00);
+  animation: firefly-pulse 2.5s infinite alternate ease-in-out;
+}
+.ff-glow.d1 { animation-duration: 3s; animation-delay: 0.5s; }
+.ff-glow.d2 { animation-duration: 2s; animation-delay: 1.2s; }
+.ff-glow.d3 { animation-duration: 3.5s; animation-delay: 0.2s; }
+@keyframes firefly-pulse { 0%, 20% { opacity: 0.35; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+.ff-flight-1 { animation: ff-path-1 8s infinite linear; transform-origin: 50px 45px; }
+.ff-flight-2 { animation: ff-path-2 10s infinite linear reverse; transform-origin: 50px 45px; }
+.ff-flight-3 { animation: ff-path-3 7s infinite linear; transform-origin: 50px 45px; }
+@keyframes ff-path-1 {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  33% { transform: translate(12px, -8px) rotate(15deg); }
+  66% { transform: translate(-8px, 12px) rotate(-10deg); }
+}
+@keyframes ff-path-2 {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  33% { transform: translate(-15px, -12px) rotate(-20deg); }
+  66% { transform: translate(10px, 8px) rotate(10deg); }
+}
+@keyframes ff-path-3 {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  33% { transform: translate(8px, 15px) rotate(10deg); }
+  66% { transform: translate(-12px, -5px) rotate(-15deg); }
+}
+@media (max-width: 767px) { #firefly-eco-nature { width: 56.6px; height: 51px; } }
+
+/* ΣΚΑΝΤΖΟΧΟΙΡΟΣ */
+.t-eco-hedgehog { position: absolute; width: 54.5px; height: 47.5px; z-index: 34; cursor: pointer; display: none; }
+.t-eco-hedgehog.active { display: block; }
+.hh-walk-anim { animation: hh-scuttle 8s infinite alternate ease-in-out; transform-origin: 50px 60px; }
+@keyframes hh-scuttle {
+  0% { transform: translateX(-15px) rotate(0deg); }
+  25% { transform: translateX(-7.5px) rotate(3deg); }
+  50% { transform: translateX(0px) rotate(0deg); }
+  75% { transform: translateX(7.5px) rotate(-3deg); }
+  100% { transform: translateX(15px) rotate(0deg); }
+}
+.hh-face, .hh-legs, .hh-spikes { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .t-eco-hedgehog:hover .hh-walk-anim { animation-play-state: paused; }
+  .t-eco-hedgehog:hover .hh-face { transform: translateX(-12px) scale(0.2); opacity: 0; }
+  .t-eco-hedgehog:hover .hh-legs { transform: translateY(-8px) scaleY(0); opacity: 0; }
+  .t-eco-hedgehog:hover .hh-spikes { transform: scale(1.05) translateY(4px); }
+}
+@media (max-width: 767px) { #hedgehog-eco-nature { width: 49.6px; height: 44px; } }
+
+/* ΠΕΤΑΛΟΥΔΑ ΑΠΟΛΛΩΝ */
+.t-eco-apollo { position: absolute; width: 45px; height: 40px; z-index: 37; cursor: pointer; display: none; }
+.t-eco-apollo.active { display: block; }
+.apollo-flight-x { animation: apollo-wander-x 6s infinite ease-in-out; transform-origin: 50px 42px; }
+@keyframes apollo-wander-x {
+  0%, 100% { transform: translateX(0px) rotate(0deg); }
+  25% { transform: translateX(25px) rotate(15deg); }
+  75% { transform: translateX(-25px) rotate(-15deg); }
+}
+.apollo-flight-y { animation: apollo-wander-y 1.8s infinite ease-in-out; }
+@keyframes apollo-wander-y { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+.apollo-wings-flap { animation: apollo-flap 0.15s infinite alternate ease-in-out; transform-origin: 50px 42px; }
+@keyframes apollo-flap { 0% { transform: scaleX(1); } 100% { transform: scaleX(0.25); } }
+@media (max-width: 767px) { #apollo-eco-nature { width: 53px; height: 48px; } }
+
+/* ΝΥΧΤΕΡΙΔΑ */
+.t-eco-bat { position: absolute; width: 65px; height: 60px; z-index: 38; cursor: pointer; display: none; }
+.t-eco-bat.active { display: block; }
+.bat-master-path { animation: bat-ambient-flight 12s infinite ease-in-out; transform-origin: 50px 16px; }
+@keyframes bat-ambient-flight {
+  0%, 40%, 92%, 100% { transform: translate(0px, 0px) scale(1); }
+  42% { transform: translate(0px, 10px) scale(1.05); }
+  48% { transform: translate(-25px, -8px) scale(0.95); }
+  56% { transform: translate(20px, -28px) scale(0.85); }
+  64% { transform: translate(-30px, -45px) scale(0.75); }
+  74% { transform: translate(25px, -35px) scale(0.85); }
+  84% { transform: translate(5px, -12px) scale(0.95); }
+  90% { transform: translate(0px, 2px) scale(1); }
+}
+.bat-resting-state { transform-origin: 50px 11px; animation: bat-hanging-sway 12s infinite ease-in-out; }
+@keyframes bat-hanging-sway {
+  0%, 100% { opacity: 1; transform: rotate(-4deg); }
+  20% { transform: rotate(4deg); }
+  38% { opacity: 1; transform: rotate(0deg); }
+  40%, 89% { opacity: 0; }
+  90% { opacity: 1; }
+}
+.bat-flying-state { animation: bat-flying-visibility 12s infinite steps(1); }
+@keyframes bat-flying-visibility { 0%, 39.9%, 90%, 100% { opacity: 0; } 40%, 89.9% { opacity: 1; } }
+.bat-wing-left { animation: wing-beat-l 0.12s infinite alternate ease-in-out; transform-origin: 44px 35px; }
+@keyframes wing-beat-l { 0% { transform: rotate(30deg) scaleY(1); } 100% { transform: rotate(-35deg) scaleY(0.8); } }
+.bat-wing-right { animation: wing-beat-r 0.12s infinite alternate ease-in-out; transform-origin: 56px 35px; }
+@keyframes wing-beat-r { 0% { transform: rotate(-30deg) scaleY(1); } 100% { transform: rotate(35deg) scaleY(0.8); } }
+@media (max-width: 767px) { .t-eco-bat { width: 59px; height: 54px; } }
+
+/* ΔΕΝΔΡΟΒΑΤΡΑΧΟΣ (Το άλμα .frog-jump-wrapper παραμένει στατικό) */
+.t-eco-frog { position: absolute; width: 59.5px; height: 52.5px; z-index: 35; cursor: pointer; display: none; }
+.t-eco-frog.active { display: block; }
+.frog-vocal-sac { animation: frog-croaking 2s infinite; transform-origin: 50px 42px; }
+@keyframes frog-croaking {
+  0%, 70%, 80%, 90%, 100% { transform: scale(0); opacity: 0; }
+  75%, 85% { transform: scale(1.5); opacity: 0.85; }
+}
+.frog-body-breath { animation: frog-breath 2s infinite alternate ease-in-out; transform-origin: 50px 50px; }
+@keyframes frog-breath { 0% { transform: scaleY(0.98); } 100% { transform: scaleY(1.02); } }
+.frog-jump-wrapper { transform-origin: 50px 70px; }
+@media (max-width: 767px) { #frog-eco-nature { width: 47.6px; height: 42px; } }
+
+/* ΤΣΑΛΑΠΕΤΕΙΝΟΣ */
+.t-eco-hoopoe { position: absolute; width: 59.5px; height: 52.5px; z-index: 35; cursor: pointer; display: none; }
+.t-eco-hoopoe.active { display: block; }
+.hoopoe-head-group { animation: hoopoe-peck-cycle 5s infinite ease-in-out; transform-origin: 42px 42px; }
+@keyframes hoopoe-peck-cycle {
+  0%, 10%, 20%, 92%, 100% { transform: rotate(0deg); }
+  5%, 15%, 25% { transform: rotate(20deg); }
+  30%, 85% { transform: rotate(-5deg); }
+}
+.hoopoe-crest { animation: hoopoe-crest-fan 5s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-origin: 43px 28px; }
+@keyframes hoopoe-crest-fan {
+  0%, 34%, 85%, 100% { transform: scale(0.2) rotate(-25deg); opacity: 0.4; }
+  38% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+  42%, 80% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.hoopoe-tail-move { animation: hoopoe-tail-wag 2.5s infinite alternate ease-in-out; transform-origin: 26px 52px; }
+@keyframes hoopoe-tail-wag { 0% { transform: rotate(-2deg); } 100% { transform: rotate(4deg); } }
+@media (max-width: 767px) { #hoopoe-eco-nature { width: 58.6px; height: 53px; } }
+
+/* ΓΕΡΑΚΙ */
+.t-eco-hawk { position: absolute; width: 70px; height: 70px; z-index: 39; cursor: pointer; display: none; }
+.t-eco-hawk.active { display: block; }
+.hawk-orbit-center { animation: hawk-glide-circle 20s linear infinite; transform-origin: 35px 35px; }
+@keyframes hawk-glide-circle { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.hawk-altitude-scale { animation: hawk-thermal-lift 6s ease-in-out infinite alternate; transform-origin: 35px 5px; }
+@keyframes hawk-thermal-lift { 0% { transform: scale(0.85); } 100% { transform: scale(1.05); } }
+.hawk-tail-steer { animation: hawk-tail-adjust 4s infinite alternate ease-in-out; transform-origin: -15px 0px; }
+@keyframes hawk-tail-adjust { 0% { transform: rotate(-3deg); } 100% { transform: rotate(3deg); } }
+@media (max-width: 767px) { #hawk-eco-nature { width: 69px; height: 66px; } }
+
+/* ΛΑΓΟΣ */
+.t-eco-hare { position: absolute; width: 59.5px; height: 52.5px; z-index: 34; cursor: pointer; display: none; }
+.t-eco-hare.active { display: block; }
+.hare-head-group { animation: hare-head-logic 10s infinite ease-in-out; transform-origin: 48px 48px; }
+@keyframes hare-head-logic {
+  0%, 12%, 24%, 36%, 48%, 60%, 93%, 100% { transform: translate(4px, 8px) rotate(28deg); }
+  6%, 18%, 30%, 42%, 54% { transform: translate(4px, 10px) rotate(32deg); }
+  67%, 88% { transform: translate(0px, 0px) rotate(0deg); }
+}
+.hare-ears-group { animation: hare-ears-twitch 10s infinite ease-in-out; transform-origin: 46px 32px; }
+@keyframes hare-ears-twitch {
+  0%, 67%, 83%, 100% { transform: rotate(0deg); }
+  70% { transform: rotate(-12deg) skewX(-5deg); }
+  73% { transform: rotate(8deg) skewX(5deg); }
+  76% { transform: rotate(-10deg) skewX(-3deg); }
+  79% { transform: rotate(6deg) skewX(2deg); }
+}
+.hare-tail-twitch { animation: hare-tail-move 1.5s infinite alternate ease-in-out; transform-origin: 20px 58px; }
+@keyframes hare-tail-move { 0% { transform: rotate(-5deg); } 100% { transform: rotate(8deg); } }
+@media (max-width: 767px) { #hare-eco-nature { width: 57.6px; height: 52px; } }
+
+/* ==========================================
+   5. ΔΙΑΒΑΣΜΕΝΑ ΣΗΜΕΙΑ & ΚΙΝΗΤΑ (TOUCH ZOOM)
+   ========================================== */
+.t-banner.visited-banner,
+.mythic-banner.visited-banner,
+.eco-banner.visited-banner {
+  opacity: 0.45 !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .t-banner.visited-banner,
+  .mythic-banner.visited-banner,
+  .eco-banner.visited-banner {
+    filter: grayscale(50%) !important;
+  }
+  .t-banner.visited-banner:hover,
+  .mythic-banner.visited-banner:hover,
+  .eco-banner.visited-banner:hover {
+    opacity: 1 !important;
+    filter: grayscale(0%) !important;
+  }
+}
+
+.rima-mobile-fallback {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  min-width: 0 !important;
+}
+
+.rima-mobile-fallback,
+.rima-mobile-fallback #map-area-2,
+.rima-mobile-fallback .t-banner,
+.rima-mobile-fallback .t-treasure,
+.rima-mobile-fallback svg {
+  touch-action: pan-x pan-y pinch-zoom !important;
+}
